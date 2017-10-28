@@ -32,7 +32,7 @@ public class CleanerKit extends PremiumKit implements Listener {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("Cleaner-Kit-Name",ChatManager.HIGHLIGHTED + "Cleaner"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Cleaner-Kit-Description", "" +
-                "The cleaner has a special ability. With this ability he can make all the zombies dissappear. However it takes a lot of effort to do this!"), 40);
+                "The cleaner has a special ability. With this ability he can make all the zombies disappear. However it takes a lot of effort to do this!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 
