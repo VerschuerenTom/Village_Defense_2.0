@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="worldedit-bukkit-6.1.7.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/worldedit-bukkit-6.1.7.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/LibsDisguises-9.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/spigot-1.9.2-R0.1-SNAPSHOT-latest.jar!/" />
+    </SOURCES>
+  </library>
+</component>

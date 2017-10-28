@@ -1,0 +1,30 @@
+name: VillageDefense
+main: me.TomTheDeveloper.YoutuberInvasion
+version: 2.0-ALPHA
+commands:
+  leave:
+    description: Teleports you to the End!
+    usage: /leave
+  VillageDefense:
+    description: All the commands!
+    usage: /VD help
+    aliases: [vd, villaged]
+  addsigns:
+    usage: /addsigns
+    description: Adds the sign to the plugin!
+  smartreload:
+    usage: /addsign
+    description: Adds the sign to the plugin!
+  smartstop:
+    usage: /addsign
+    description: Adds the sign to the plugin!
+  setshopchest:
+    usage: /addsign
+    description: Adds the sign to the plugin!
+  setprice:
+    usage: /addsign
+    description: Adds the sign to the plugin!
+  stats:
+    usage: /addsign
+    description: Adds the sign to the plugin!
+softdepend: [GameAPI]

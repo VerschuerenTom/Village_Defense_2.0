@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="spigot-1.91">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Documents/Spigot/BuildTools/spigot-1.9.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/Spigot/BuildTools/spigot-1.8.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Documents/Spigot/BuildTools/spigot-1.9.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/Spigot/BuildTools/spigot-1.8.8.jar!/" />
+    </SOURCES>
+  </library>
+</component>
