@@ -30,27 +30,27 @@ public class SpecialItem {
     private int slot;
     private String name;
 
-    public SpecialItem(String name){
+    public SpecialItem(String name) {
         this.name = name;
 
     }
 
-    public static void loadAll(){
+    public static void loadAll() {
         new SpecialItem("Leave").load(ChatColor.RED + "Leave", new String[]{
                 ChatColor.GRAY + "Click to teleport to hub"
-        }, Material.BED,8);
+        }, Material.BED, 8);
     }
 
-    public void load(String displayName, String[] lore, Material material, int slot){
+    public void load(String displayName, String[] lore, Material material, int slot) {
         FileConfiguration config = ConfigurationManager.getConfig("SpecialItems");
 
 
-        if(!config.contains(name)){
-            config.set(name + ".data",0);
-            config.set(name + ".displayname",displayName);
+        if (!config.contains(name)) {
+            config.set(name + ".data", 0);
+            config.set(name + ".displayname", displayName);
             config.set(name + ".lore", Arrays.asList(lore));
             config.set(name + ".material", material.getId());
-            config.set(name + ".slot",slot);
+            config.set(name + ".slot", slot);
         }
         try {
             config.save(ConfigurationManager.getFile("SpecialItems"));
@@ -117,12 +117,17 @@ public class SpecialItem {
         return lore;
     }
 
+    public void setLore(List<String> lore) {
+
+        this.lore = lore.toArray(new String[lore.size()]);
+    }
+
     public void setLore(String[] lore) {
         this.lore = lore;
     }
 
     public String getDisplayName() {
-        return ChatColor.translateAlternateColorCodes('&',displayName);
+        return ChatColor.translateAlternateColorCodes('&', displayName);
     }
 
     public void setDisplayName(String displayName) {
@@ -137,11 +142,6 @@ public class SpecialItem {
         this.effect = effect;
     }
 
-    public void setLore(List<String> lore) {
-
-        this.lore = lore.toArray(new String[lore.size()]);
-    }
-
     public int getSlot() {
         return slot;
     }
@@ -150,15 +150,15 @@ public class SpecialItem {
         this.slot = slot;
     }
 
-    public ItemStack getItemStack(){
+    public ItemStack getItemStack() {
         ItemStack itemStack;
-        if(data != null) {
+        if (data != null) {
             itemStack = new ItemStack(getMaterial(), 1, getData());
-        }else{
+        } else {
             itemStack = new ItemStack(getMaterial());
 
         }
-        Util.setItemNameAndLore(itemStack, ChatColor.translateAlternateColorCodes('&',this.getDisplayName()), lore);
+        Util.setItemNameAndLore(itemStack, ChatColor.translateAlternateColorCodes('&', this.getDisplayName()), lore);
         return itemStack;
     }
 

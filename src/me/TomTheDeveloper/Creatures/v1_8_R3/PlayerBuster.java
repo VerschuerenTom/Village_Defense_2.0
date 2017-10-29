@@ -24,12 +24,6 @@ public class PlayerBuster extends EntityZombie {
 
     public int damage;
     private float bw;
-    @Override
-    protected void initAttributes() {
-        super.initAttributes();
-        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(100.0D);
-        return;
-    }
 
     @SuppressWarnings("rawtypes")
     public PlayerBuster(World world) {
@@ -50,13 +44,13 @@ public class PlayerBuster extends EntityZombie {
         targetC.clear();
 
 
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(5, new PathfinderGoalBreakDoorFaster(this));
-        this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, EntityHuman.class, (float) (this.bw), false)); // this one to attack human
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, (float) this.bw, true));
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, EntityHuman.class, this.bw, false)); // this one to attack human
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, this.bw, true));
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false));
@@ -88,6 +82,13 @@ public class PlayerBuster extends EntityZombie {
     }
 
     @Override
+    protected void initAttributes() {
+        super.initAttributes();
+        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(100.0D);
+        return;
+    }
+
+    @Override
     public void setOnFire(int i) {
         // don't set on fire
         //super.setOnFire(i);
@@ -98,11 +99,10 @@ public class PlayerBuster extends EntityZombie {
         if (damagesource != null && damagesource.getEntity() != null && damagesource.getEntity().getBukkitEntity().getType() == EntityType.PLAYER) {
 
             ItemStack[] itemStack = new ItemStack[]{new ItemStack(Material.ROTTEN_FLESH)};
-            Bukkit.getServer().getPluginManager().callEvent(new EntityDeathEvent((LivingEntity) this.getBukkitEntity(), Arrays.asList(itemStack),expToDrop));
+            Bukkit.getServer().getPluginManager().callEvent(new EntityDeathEvent((LivingEntity) this.getBukkitEntity(), Arrays.asList(itemStack), expToDrop));
             Player player = (Player) damagesource.getEntity().getBukkitEntity();
-            Entity primed= getBukkitEntity().getWorld().spawnEntity(getBukkitEntity().getLocation(), EntityType.PRIMED_TNT);
+            Entity primed = getBukkitEntity().getWorld().spawnEntity(getBukkitEntity().getLocation(), EntityType.PRIMED_TNT);
             this.die();
-
 
 
             return true;

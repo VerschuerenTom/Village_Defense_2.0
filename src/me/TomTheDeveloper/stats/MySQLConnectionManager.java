@@ -3,16 +3,17 @@ package me.TomTheDeveloper.stats;
 /**
  * Created by Tom on 13/11/2014.
  */
-        import com.jolbox.bonecp.BoneCP;
-        import com.jolbox.bonecp.BoneCPConfig;
-        import me.TomTheDeveloper.Handlers.ConfigurationManager;
-        import org.bukkit.configuration.file.FileConfiguration;
-        import org.bukkit.plugin.java.JavaPlugin;
 
-        import java.lang.Class;import java.lang.Exception;import java.sql.Connection;
-        import java.sql.ResultSet;
-        import java.sql.SQLException;
-        import java.sql.Statement;
+import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * User: Ivan
@@ -28,7 +29,7 @@ public class MySQLConnectionManager {
     private int MIN_CONNECTIONS = 5;
     private int MAX_CONNECTIONS = 10;
 
-    public MySQLConnectionManager(JavaPlugin plugin){
+    public MySQLConnectionManager(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -40,12 +41,12 @@ public class MySQLConnectionManager {
             Class.forName("com.mysql.jdbc.Driver"); //also you need the MySQL driver
             plugin.getLogger().info("Creating BoneCP Configuration...");
             BoneCPConfig config = new BoneCPConfig();
-            if(!databaseconfig.contains("address")){
+            if (!databaseconfig.contains("address")) {
                 databaseconfig.set("address", "jdbc:mysql://localhost:3306/<databasename>");
-                databaseconfig.set("user","<user>");
-                databaseconfig.set("password","<password>");
-                databaseconfig.set("min-connections",5);
-                databaseconfig.set("max-connections",10);
+                databaseconfig.set("user", "<user>");
+                databaseconfig.set("password", "<password>");
+                databaseconfig.set("min-connections", 5);
+                databaseconfig.set("max-connections", 10);
                 databaseconfig.save(ConfigurationManager.getFile("MySQL"));
                 plugin.getServer().shutdown();
                 return;
@@ -65,7 +66,7 @@ public class MySQLConnectionManager {
             plugin.getLogger().info("Total connections ==> " + connectionPool.getTotalCreatedConnections());
 
 
-        }   catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace(); //you should use exception wrapping on real-production code
         }
@@ -89,7 +90,6 @@ public class MySQLConnectionManager {
     }
 
     public Connection getConnection() {
-
 
 
         Connection conn = null;

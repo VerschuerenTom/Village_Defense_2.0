@@ -5,7 +5,6 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 /**
  * Created by Tom on 17/08/2014.
@@ -26,7 +25,7 @@ public class RidableIronGolem extends EntityIronGolem {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, 1.0D, true));
 
         this.goalSelector.a(2, new PathfinderGoalMoveTowardsTarget(this, 0.9D, 32.0F));

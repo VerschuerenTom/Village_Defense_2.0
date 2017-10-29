@@ -26,18 +26,12 @@ public class DoorRepairKit extends LevelKit {
         this.setDescription(description.toArray(new String[description.size()]));
 
 
-
     }
-
 
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if (UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.hasPermission("villagefense.kit.door")) {
-            return true;
-        } else {
-            return false;
-        }
+        return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.hasPermission("villagefense.kit.door");
 
 
     }
@@ -49,7 +43,7 @@ public class DoorRepairKit extends LevelKit {
         player.getInventory().addItem(WeaponHelper.getEnchantedBow(Enchantment.DURABILITY, 10));
         player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
-        player.getInventory().addItem(new ItemStack(Material.WOOD_DOOR,2));
+        player.getInventory().addItem(new ItemStack(Material.WOOD_DOOR, 2));
     }
 
     @Override

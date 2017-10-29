@@ -75,7 +75,7 @@ public class RewardsHandler {
     }
 
     public void performEndWaveRewards(InvasionInstance invasionInstance, int wave) {
-        if(!config.contains("rewards.endwave." + wave))
+        if (!config.contains("rewards.endwave." + wave))
             return;
         for (String string : config.getStringList("rewards.endwave." + wave))
             performCommand(invasionInstance, string);

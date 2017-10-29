@@ -1,13 +1,6 @@
 package me.TomTheDeveloper.versions;
 
-import me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie;
-import me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie;
-import me.TomTheDeveloper.Creatures.v1_7_R4.GolemBuster;
-import me.TomTheDeveloper.Creatures.v1_7_R4.HardZombie;
-import me.TomTheDeveloper.Creatures.v1_7_R4.PlayerBuster;
-import me.TomTheDeveloper.Creatures.v1_7_R4.RidableIronGolem;
-import me.TomTheDeveloper.Creatures.v1_7_R4.RidableVillager;
-import me.TomTheDeveloper.Creatures.v1_7_R4.WorkingWolf;
+import me.TomTheDeveloper.Creatures.v1_7_R4.*;
 import me.TomTheDeveloper.InvasionInstance;
 import net.minecraft.server.v1_7_R4.GenericAttributes;
 import org.bukkit.Location;
@@ -25,8 +18,8 @@ import java.util.Random;
  * Created by Tom on 10/07/2015.
  */
 public class InvasionInstance1_7_10 extends InvasionInstance {
-    
-    
+
+
     public InvasionInstance1_7_10(String ID) {
         super(ID);
     }
@@ -40,7 +33,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         Villager villager = (Villager) ridableVillager.getBukkitEntity();
         villager.setRemoveWhenFarAway(false);
 
-        this.addVillager((Villager)ridableVillager.getBukkitEntity());
+        this.addVillager((Villager) ridableVillager.getBukkitEntity());
     }
 
     public void spawnGolem(Location location) {
@@ -126,9 +119,10 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.setRemoveWhenFarAway(false);
         zombie.getEquipment().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,Integer.MAX_VALUE,1));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         zombiestospawn--;
     }
+
     @Override
     public void spawnBabyZombie(Random random) {
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size() - 1));
@@ -156,7 +150,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
 
@@ -173,7 +167,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
 
@@ -184,16 +178,15 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         GolemBuster fastZombie = new GolemBuster(location.getWorld());
         fastZombie.setPosition(location.getX(), location.getY(), location.getZ());
         McWorld.addEntity(fastZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        Zombie zombie =(Zombie) fastZombie.getBukkitEntity();
+        Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT));
         zombie.getEquipment().setHelmetDropChance(0.0F);
         zombie.getEquipment().setItemInHandDropChance(0F);
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }
-
 
 
     @Override
@@ -203,7 +196,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         PlayerBuster fastZombie = new PlayerBuster(location.getWorld());
         fastZombie.setPosition(location.getX(), location.getY(), location.getZ());
         McWorld.addEntity(fastZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        Zombie zombie =(Zombie) fastZombie.getBukkitEntity();
+        Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT));
         zombie.getEquipment().setHelmetDropChance(0.0F);
         zombie.getEquipment().setItemInHandDropChance(0F);
@@ -211,9 +204,9 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setLeggings(new ItemStack(Material.GOLD_LEGGINGS));
         zombie.getEquipment().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }
-    
+
 }

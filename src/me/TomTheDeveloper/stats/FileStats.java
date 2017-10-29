@@ -23,8 +23,8 @@ public class FileStats {
     }
 
 
-    public void saveStat(Player player, String stat){
-       User user= UserManager.getUser(player.getUniqueId());
+    public void saveStat(Player player, String stat) {
+        User user = UserManager.getUser(player.getUniqueId());
         config.set(player.getUniqueId().toString() + "." + stat, user.getInt(stat));
         try {
             config.save(ConfigurationManager.getFile("STATS"));
@@ -33,12 +33,12 @@ public class FileStats {
         }
     }
 
-    public void loadStat(Player player, String stat){
-        User user= UserManager.getUser(player.getUniqueId());
-        if(config.contains(player.getUniqueId().toString() + "." + stat))
-            user.setInt(stat,config.getInt(player.getUniqueId().toString() + "." + stat));
+    public void loadStat(Player player, String stat) {
+        User user = UserManager.getUser(player.getUniqueId());
+        if (config.contains(player.getUniqueId().toString() + "." + stat))
+            user.setInt(stat, config.getInt(player.getUniqueId().toString() + "." + stat));
         else
-            user.setInt(stat,0);
+            user.setInt(stat, 0);
     }
 
 

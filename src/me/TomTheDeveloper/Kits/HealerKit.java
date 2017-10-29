@@ -21,7 +21,7 @@ import java.util.List;
 public class HealerKit extends LevelKit {
 
     public HealerKit() {
-        setName(ChatManager.getFromLanguageConfig("Healer-Kit-Name",ChatManager.PREFIX + "Healer"));
+        setName(ChatManager.getFromLanguageConfig("Healer-Kit-Name", ChatManager.PREFIX + "Healer"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Healer-Kit-Description", "Being a healer is the same as being loved. You" +
                 "are able to heal your teammates and villagers! Gets a restock every wave!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
@@ -30,9 +30,7 @@ public class HealerKit extends LevelKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp()|| player.hasPermission("villagefense.kit.healer"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp() || player.hasPermission("villagefense.kit.healer");
     }
 
     @Override
@@ -52,10 +50,10 @@ public class HealerKit extends LevelKit {
 
     @Override
     public void reStock(Player player) {
-        for(int i = 0; i <2;i++) {
+        for (int i = 0; i < 2; i++) {
             player.getInventory().addItem(Items.getPotion(PotionType.INSTANT_HEAL, 2, true, 1));
         }
-        for(int i = 0; i <2;i++) {
+        for (int i = 0; i < 2; i++) {
             player.getInventory().addItem(Items.getPotion(PotionType.REGEN, 1, true, 1));
         }
     }

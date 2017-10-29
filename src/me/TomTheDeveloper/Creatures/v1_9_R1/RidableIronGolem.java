@@ -4,7 +4,6 @@ import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,7 +25,7 @@ public class RidableIronGolem extends EntityIronGolem {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(2, new PathfinderGoalMoveTowardsTarget(this, 0.9D, 32.0F));
         this.goalSelector.a(3, new PathfinderGoalMoveThroughVillage(this, 0.6D, true));
@@ -103,61 +102,6 @@ public class RidableIronGolem extends EntityIronGolem {
         }
     } */
 
-    @Override
-    public void g(float f, float f1)
-    {
-        if ((isVehicle()) && (cK()))
-        {
-            EntityLiving entityliving = (EntityLiving)bt();
-
-            this.lastYaw = (this.yaw = entityliving.yaw);
-            this.pitch = (entityliving.pitch * 0.5F);
-            setYawPitch(this.yaw, this.pitch);
-            this.aO = (this.aM = this.yaw);
-            f = entityliving.bd * 0.5F;
-            f1 = entityliving.be;
-            if (f1 <= 0.0F)
-            {
-                f1 *= 0.25F;
-            }
-            if ((this.onGround))
-            {
-                f = 0.0F;
-                f1 = 0.0F;
-            }
-
-            this.P = 1.0F;
-            this.aQ = (ck() * 0.1F);
-            if (bx())
-            {
-                l((float)getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).getValue());
-                super.g(f, f1);
-            }
-            else if ((entityliving instanceof EntityHuman))
-            {
-                this.motX = 0.0D;
-                this.motY = 0.0D;
-                this.motZ = 0.0D;
-            }
-
-            this.aE = this.aF;
-            double d0 = this.locX - this.lastX;
-            double d1 = this.locZ - this.lastZ;
-            float f4 = MathHelper.sqrt(d0 * d0 + d1 * d1) * 4.0F;
-            if (f4 > 1.0F) {
-                f4 = 1.0F;
-            }
-            this.aF += (f4 - this.aF) * 0.4F;
-            this.aG += this.aF;
-        }
-        else
-        {
-            this.P = 0.5F;
-            this.aQ = 0.02F;
-            super.g(f, f1);
-        }
-    }
-
     public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
@@ -175,6 +119,52 @@ public class RidableIronGolem extends EntityIronGolem {
         }
 
         return o;
+    }
+
+    @Override
+    public void g(float f, float f1) {
+        if ((isVehicle()) && (cK())) {
+            EntityLiving entityliving = (EntityLiving) bt();
+
+            this.lastYaw = (this.yaw = entityliving.yaw);
+            this.pitch = (entityliving.pitch * 0.5F);
+            setYawPitch(this.yaw, this.pitch);
+            this.aO = (this.aM = this.yaw);
+            f = entityliving.bd * 0.5F;
+            f1 = entityliving.be;
+            if (f1 <= 0.0F) {
+                f1 *= 0.25F;
+            }
+            if ((this.onGround)) {
+                f = 0.0F;
+                f1 = 0.0F;
+            }
+
+            this.P = 1.0F;
+            this.aQ = (ck() * 0.1F);
+            if (bx()) {
+                l((float) getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).getValue());
+                super.g(f, f1);
+            } else if ((entityliving instanceof EntityHuman)) {
+                this.motX = 0.0D;
+                this.motY = 0.0D;
+                this.motZ = 0.0D;
+            }
+
+            this.aE = this.aF;
+            double d0 = this.locX - this.lastX;
+            double d1 = this.locZ - this.lastZ;
+            float f4 = MathHelper.sqrt(d0 * d0 + d1 * d1) * 4.0F;
+            if (f4 > 1.0F) {
+                f4 = 1.0F;
+            }
+            this.aF += (f4 - this.aF) * 0.4F;
+            this.aG += this.aF;
+        } else {
+            this.P = 0.5F;
+            this.aQ = 0.02F;
+            super.g(f, f1);
+        }
     }
 
     @Override

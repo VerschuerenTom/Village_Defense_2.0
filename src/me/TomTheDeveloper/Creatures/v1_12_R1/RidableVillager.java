@@ -2,12 +2,9 @@ package me.TomTheDeveloper.Creatures.v1_12_R1;
 
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import com.google.common.collect.Lists;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftVillager;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -32,10 +29,10 @@ public class RidableVillager extends EntityVillager {
         targetC.clear();
 
         this.setSize(0.6F, 1.8F);
-        ((Navigation)getNavigation()).b(true);
-        ((Navigation)getNavigation()).a(true);
+        ((Navigation) getNavigation()).b(true);
+        ((Navigation) getNavigation()).a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-       // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
+        // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
         this.goalSelector.a(1, new PathfinderGoalTradeWithPlayer(this));
         this.goalSelector.a(1, new PathfinderGoalLookAtTradingPlayer(this));
         this.goalSelector.a(2, new PathfinderGoalMoveIndoors(this));

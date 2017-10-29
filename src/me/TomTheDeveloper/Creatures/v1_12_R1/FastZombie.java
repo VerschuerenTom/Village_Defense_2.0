@@ -6,7 +6,6 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -14,13 +13,6 @@ import java.util.List;
 public class FastZombie extends net.minecraft.server.v1_12_R1.EntityZombie {
     public int damage;
     private float bw;
-
-    @Override
-    protected void initAttributes() {
-        super.initAttributes();
-        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(100.0D);
-        return;
-    }
 
     @SuppressWarnings("rawtypes")
     public FastZombie(org.bukkit.World world) {
@@ -40,18 +32,18 @@ public class FastZombie extends net.minecraft.server.v1_12_R1.EntityZombie {
         targetC.clear();
 
 
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
         this.goalSelector.a(2, new PathfinderGoalZombieAttack(this, 1.0D, false));
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class,  true)); // this one to target human
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class,  false));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class,  false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true)); // this one to target human
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, false));
 
 
     }
@@ -75,6 +67,12 @@ public class FastZombie extends net.minecraft.server.v1_12_R1.EntityZombie {
         return o;
     }
 
+    @Override
+    protected void initAttributes() {
+        super.initAttributes();
+        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(100.0D);
+        return;
+    }
 
     @Override
     public void setOnFire(int i) {

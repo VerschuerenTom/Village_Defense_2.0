@@ -31,15 +31,13 @@ public class StrenghtKit extends LevelKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp()|| player.hasPermission("villagefense.kit.terminator"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp() || player.hasPermission("villagefense.kit.terminator");
     }
 
     @Override
     public void giveKitItems(Player player) {
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.STONE, 10));
-        player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.BONE),new Enchantment[]{Enchantment.DAMAGE_ALL, Enchantment.KNOCKBACK},new int[]{3,7}));
+        player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.BONE), new Enchantment[]{Enchantment.DAMAGE_ALL, Enchantment.KNOCKBACK}, new int[]{3, 7}));
         ArmorHelper.setColouredArmor(Color.BLACK, player);
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));
         player.getInventory().addItem(Items.getPotion(PotionType.STRENGTH, 2, true, 1));
@@ -54,7 +52,7 @@ public class StrenghtKit extends LevelKit {
 
     @Override
     public void reStock(Player player) {
-        for(int i = 0; i <2;i++) {
+        for (int i = 0; i < 2; i++) {
             player.getInventory().addItem(Items.getPotion(PotionType.STRENGTH, 2, true, 1));
         }
 

@@ -4,20 +4,12 @@ import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Tom on 17/08/2014.
  */
 public class WorkingWolf extends EntityWolf {
-
-    @Override
-    protected void initAttributes() {
-        super.initAttributes();
-        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(70.0D);
-        return;
-    }
 
     public WorkingWolf(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
@@ -33,18 +25,37 @@ public class WorkingWolf extends EntityWolf {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).a(true);
+        ((Navigation) getNavigation()).a(true);
         this.goalSelector.a(3, new PathfinderGoalLeapAtTarget(this, 0.4F));
         this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(5, new PathfinderGoalFollowOwner(this, 1.0D, 10.0F, 2.0F));
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this,  (float) 1.5F, false));
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, 1.5F, false));
         this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
         this.goalSelector.a(6, new PathfinderGoalRandomStroll(this, 0.6D));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
         this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityZombie.class,  true));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityZombie.class, true));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
 
+    }
+
+    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+        Field field;
+        Object o = null;
+
+        try {
+            field = clazz.getDeclaredField(fieldName);
+
+            field.setAccessible(true);
+
+            o = field.get(object);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return o;
     }
 
   /*  @Override
@@ -108,23 +119,11 @@ public class WorkingWolf extends EntityWolf {
         }
     } */
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
+    @Override
+    protected void initAttributes() {
+        super.initAttributes();
+        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(70.0D);
+        return;
     }
 
 

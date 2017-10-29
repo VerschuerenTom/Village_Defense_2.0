@@ -1,35 +1,9 @@
 package me.TomTheDeveloper.Creatures.v1_9_R1;
 
-import net.minecraft.server.v1_8_R3.*;
 import net.minecraft.server.v1_9_R1.*;
-import net.minecraft.server.v1_9_R1.EntityAgeable;
-import net.minecraft.server.v1_9_R1.EntityHuman;
-import net.minecraft.server.v1_9_R1.EntityInsentient;
-import net.minecraft.server.v1_9_R1.EntityLiving;
-import net.minecraft.server.v1_9_R1.EntityVillager;
-import net.minecraft.server.v1_9_R1.GenericAttributes;
-import net.minecraft.server.v1_9_R1.MathHelper;
-import net.minecraft.server.v1_9_R1.Navigation;
-import net.minecraft.server.v1_9_R1.PathfinderGoal;
-import net.minecraft.server.v1_9_R1.PathfinderGoalFloat;
-import net.minecraft.server.v1_9_R1.PathfinderGoalInteract;
-import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtTradingPlayer;
-import net.minecraft.server.v1_9_R1.PathfinderGoalMakeLove;
-import net.minecraft.server.v1_9_R1.PathfinderGoalMoveIndoors;
-import net.minecraft.server.v1_9_R1.PathfinderGoalMoveTowardsRestriction;
-import net.minecraft.server.v1_9_R1.PathfinderGoalOpenDoor;
-import net.minecraft.server.v1_9_R1.PathfinderGoalPlay;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRandomStroll;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRestrictOpenDoor;
-import net.minecraft.server.v1_9_R1.PathfinderGoalSelector;
-import net.minecraft.server.v1_9_R1.PathfinderGoalTradeWithPlayer;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
-import org.bukkit.entity.Entity;
 
 import java.lang.reflect.Field;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -55,10 +29,10 @@ public class RidableVillager extends EntityVillager {
         targetC.clear();
 
         this.a(0.6F, 1.8F);
-        ((Navigation)getNavigation()).b(true);
-        ((Navigation)getNavigation()).a(true);
+        ((Navigation) getNavigation()).b(true);
+        ((Navigation) getNavigation()).a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-       // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
+        // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
         this.goalSelector.a(1, new PathfinderGoalTradeWithPlayer(this));
         this.goalSelector.a(1, new PathfinderGoalLookAtTradingPlayer(this));
         this.goalSelector.a(2, new PathfinderGoalMoveIndoors(this));
@@ -183,17 +157,17 @@ public class RidableVillager extends EntityVillager {
     @Override
     public void g(float f, float f1) {
 
-        if(this.passengers.isEmpty())
+        if (this.passengers.isEmpty())
             return;
         net.minecraft.server.v1_9_R1.Entity passenger = this.passengers.get(0);
-        if(passenger == null)
+        if (passenger == null)
             return;
-        if ( passenger!= null && passenger instanceof EntityLiving) {
+        if (passenger != null && passenger instanceof EntityLiving) {
             this.lastYaw = this.yaw = passenger.yaw;
             this.pitch = passenger.pitch * 0.5F;
             setYawPitch(this.yaw, this.pitch);
             this.aI = this.aG = this.yaw;
-            f = ((EntityLiving) passenger).az* 0.5F;
+            f = ((EntityLiving) passenger).az * 0.5F;
             f1 = ((EntityLiving) passenger).bd;
             if (f1 <= 0.0F) {
                 f1 *= 0.25F;
@@ -228,7 +202,7 @@ public class RidableVillager extends EntityVillager {
             }
 
             this.az += (f4 - this.az) * 0.4F;
-            this.aB+= this.az;
+            this.aB += this.az;
         } else {
             this.R = 0.5F;
             this.aK = 0.02F;

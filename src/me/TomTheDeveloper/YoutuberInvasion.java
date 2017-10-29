@@ -4,19 +4,11 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import me.TomTheDeveloper.Anvils.AnvilManager;
-import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
-import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.GolemBuster;
-import me.TomTheDeveloper.Creatures.v1_12_R1.HardZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
-import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
-import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
-import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
+import me.TomTheDeveloper.Creatures.v1_12_R1.*;
+import me.TomTheDeveloper.Events.DeathEvent;
 import me.TomTheDeveloper.Events.Events;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
 import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Events.DeathEvent;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Handlers.ChatManager;
@@ -43,17 +35,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.*;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -62,76 +54,76 @@ import java.util.List;
 import java.util.UUID;
 
 
-
 /**
  * Created by Tom on 12/08/2014.
  */
-public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor  {
+public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor {
 
-   // private MyDatabase database;
+    public static int STARTING_TIMER_TIME = 60;
+    public static float MINI_ZOMBIE_SPEED;
+    public static float ZOMBIE_SPEED;
+    // private MyDatabase database;
     private boolean databaseActivated = false;
     private MySQLDatabase database;
     private FileConfiguration statsConfig = null;
     private FileStats fileStats;
     private boolean chatformat = true;
     private RewardsHandler rewardsHandler;
-    public static int STARTING_TIMER_TIME = 60;
-    public static float MINI_ZOMBIE_SPEED;
-    public static float ZOMBIE_SPEED;
     private GameAPI gameAPI = new GameAPI();
 
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
+    private String version;
 
     public void setupMessageConfig() {
         gameAPI.loadLanguageFile();
 
         ChatManager.getFromLanguageConfig("Join", ChatManager.HIGHLIGHTED + "%PLAYER%" + ChatColor.GRAY + " joined the game (%PLAYERSIZE%/%MAXPLAYERS%)!");
         ChatManager.getFromLanguageConfig("Leave", ChatManager.HIGHLIGHTED + "%PLAYER% " + ChatColor.GRAY + "left the game (%PLAYERSIZE%/%MAXPLAYERS%)!");
-        ChatManager.getFromLanguageConfig("Death", ChatManager.HIGHLIGHTED +"%PLAYER% " + ChatColor.GRAY + "died!");
+        ChatManager.getFromLanguageConfig("Death", ChatManager.HIGHLIGHTED + "%PLAYER% " + ChatColor.GRAY + "died!");
         ChatManager.getFromLanguageConfig("Seconds-Left-Until-Game-Starts", "The game starts in " + ChatManager.HIGHLIGHTED + "%TIME%" + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("Waiting-For-Players", "Waiting for players... We need at least " + ChatManager.HIGHLIGHTED + "%MINPLAYERS%"+ ChatColor.GRAY +" players to start.");
+        ChatManager.getFromLanguageConfig("Waiting-For-Players", "Waiting for players... We need at least " + ChatManager.HIGHLIGHTED + "%MINPLAYERS%" + ChatColor.GRAY + " players to start.");
         ChatManager.getFromLanguageConfig("Enough-Players-To-Start", "We now have enough players. The game is starting soon!");
         ChatManager.getFromLanguageConfig("Teleport-To-EndLocation-In-X-Seconds", "You will be teleported to the lobby in " + ChatManager.HIGHLIGHTED + "%TIME%" + ChatColor.GRAY + " seconds");
-        ChatManager.getFromLanguageConfig("The-Game-Has-Started","The game has started! Defend the village against waves of zombies!");
-        ChatManager.getFromLanguageConfig("Zombie-Got-Stuck-In-The-Map","It seems like the last zombie got stuck somewhere. No worries! The gods killed" +
+        ChatManager.getFromLanguageConfig("The-Game-Has-Started", "The game has started! Defend the village against waves of zombies!");
+        ChatManager.getFromLanguageConfig("Zombie-Got-Stuck-In-The-Map", "It seems like the last zombie got stuck somewhere. No worries! The gods killed" +
                 " him for you!");
         ChatManager.getFromLanguageConfig("Dead-Tag-On-Death", ChatColor.DARK_GRAY + "Dead");
-        ChatManager.getFromLanguageConfig("Teleported-To-The-Lobby","Teleported to the lobby!");
-        ChatManager.getFromLanguageConfig("You-leveled-up",ChatColor.GREEN + "You leveled up! You're now level %NUMBER%! ");
-        ChatManager.getFromLanguageConfig("All-Villagers-Have-Died",ChatColor.RED + "All villagers have died! You lost the game!");
+        ChatManager.getFromLanguageConfig("Teleported-To-The-Lobby", "Teleported to the lobby!");
+        ChatManager.getFromLanguageConfig("You-leveled-up", ChatColor.GREEN + "You leveled up! You're now level %NUMBER%! ");
+        ChatManager.getFromLanguageConfig("All-Villagers-Have-Died", ChatColor.RED + "All villagers have died! You lost the game!");
         ChatManager.getFromLanguageConfig("Reached-Wave-X", "You have reached wave " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + "!");
-        ChatManager.getFromLanguageConfig("Teleporting-To-Lobby-In-10-Seconds","You will be teleported to the lobby in " + ChatManager.HIGHLIGHTED + 10 + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("All-Players-Have-Died",ChatColor.RED + "All players have died!");
-        ChatManager.getFromLanguageConfig("You-Feel-Refreshed",ChatColor.GREEN + "You feel refreshed!");
-        ChatManager.getFromLanguageConfig("Next-Wave-Starts-In","Next wave starts in " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("A-Villager-Has-Died",ChatColor.RED + "A villager has died!");
+        ChatManager.getFromLanguageConfig("Teleporting-To-Lobby-In-10-Seconds", "You will be teleported to the lobby in " + ChatManager.HIGHLIGHTED + 10 + ChatColor.GRAY + " seconds!");
+        ChatManager.getFromLanguageConfig("All-Players-Have-Died", ChatColor.RED + "All players have died!");
+        ChatManager.getFromLanguageConfig("You-Feel-Refreshed", ChatColor.GREEN + "You feel refreshed!");
+        ChatManager.getFromLanguageConfig("Next-Wave-Starts-In", "Next wave starts in " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + " seconds!");
+        ChatManager.getFromLanguageConfig("A-Villager-Has-Died", ChatColor.RED + "A villager has died!");
         ChatManager.getFromLanguageConfig("You-Are-Spectator", ChatColor.RED + "You're now a spectator! You can fly now!");
-        ChatManager.getFromLanguageConfig("You're-Back-In-Game",ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!");
-        ChatManager.getFromLanguageConfig("Don't-Hit-Me-With-Weapon",ChatColor.RED + "You can't hit me with a weapon. That's just rude!");
-        ChatManager.getFromLanguageConfig("Only-Command-Ingame-Is-Leave",ChatColor.RED + "You have to leave the game first to perform commands. The only command that works is /leave!");
-        ChatManager.getFromLanguageConfig("Need-More-Orbs-To-Buy-this",ChatColor.RED + "You need more orbs to buy this item!");
+        ChatManager.getFromLanguageConfig("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!");
+        ChatManager.getFromLanguageConfig("Don't-Hit-Me-With-Weapon", ChatColor.RED + "You can't hit me with a weapon. That's just rude!");
+        ChatManager.getFromLanguageConfig("Only-Command-Ingame-Is-Leave", ChatColor.RED + "You have to leave the game first to perform commands. The only command that works is /leave!");
+        ChatManager.getFromLanguageConfig("Need-More-Orbs-To-Buy-this", ChatColor.RED + "You need more orbs to buy this item!");
         ChatManager.getFromLanguageConfig("You-Can't-Clean-You're-Spectator", ChatColor.RED + "You can't clean the map now! You are a spectator! You'll respawn at the start of the next wave!");
-        ChatManager.getFromLanguageConfig("Map-is-already-empty",ChatColor.GREEN + "The map is already empty!");
+        ChatManager.getFromLanguageConfig("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!");
         ChatManager.getFromLanguageConfig("Player-has-cleaned-the-map", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleaned the map!");
-        ChatManager.getFromLanguageConfig("Ability-Still-On-Cooldown",ChatColor.RED + "this ability is on cooldown! Wait " + "%COOLDOWN%" + " more seconds!");
-        ChatManager.getFromLanguageConfig("Teleportion-Menu-Name",ChatColor.RESET + "Teleportation Menu");
+        ChatManager.getFromLanguageConfig("Ability-Still-On-Cooldown", ChatColor.RED + "this ability is on cooldown! Wait " + "%COOLDOWN%" + " more seconds!");
+        ChatManager.getFromLanguageConfig("Teleportion-Menu-Name", ChatColor.RESET + "Teleportation Menu");
         ChatManager.getFromLanguageConfig("Teleportion-Item-Lore", ChatColor.GRAY + "Right click to open teleportation menu!");
-        ChatManager.getFromLanguageConfig("Teleportation-Menu-Name","Teleporter Menu");
-        ChatManager.getFromLanguageConfig("Teleported-To-Villager",ChatColor.GREEN + "Teleported!");
-        ChatManager.getFromLanguageConfig("Didn't-Found-The-Villager",ChatColor.DARK_RED + "Village defense didn't found that villager! That villager is probably already dead!");
-        ChatManager.getFromLanguageConfig("Teleported-To-Player",ChatColor.GREEN + "Teleported to %PLAYER%");
-        ChatManager.getFromLanguageConfig("Player-Not-Found",ChatColor.RED + "Player not found! Try again!");
-        ChatManager.getFromLanguageConfig("Cleaner-Wand-Name",ChatColor.GOLD + "Cleaner Wand!");
-        ChatManager.getFromLanguageConfig("Cleaner-Item-Lore","Right click to kill all zombies!   "+ "Cooldown: 400 seconds");
-        ChatManager.getFromLanguageConfig("STATS-AboveLine",ChatColor.BOLD + "-----YOUR STATS----- ");
-        ChatManager.getFromLanguageConfig("STATS-Kills",ChatColor.GREEN + "Kills: " +ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Deaths",ChatColor.GREEN + "Deaths: " +ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Games-Played",ChatColor.GREEN + "Games played: " +ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Hihgest-Wave",ChatColor.GREEN + "Highest wave: " +ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Level",ChatColor.GREEN + "Level: " +ChatColor.YELLOW );
-        ChatManager.getFromLanguageConfig("STATS-Exp",ChatColor.GREEN + "Exp: " +ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Next-Level-Exp",ChatColor.GREEN + "Next Level Exp " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-UnderLinen",ChatColor.BOLD + "--------------------");
+        ChatManager.getFromLanguageConfig("Teleportation-Menu-Name", "Teleporter Menu");
+        ChatManager.getFromLanguageConfig("Teleported-To-Villager", ChatColor.GREEN + "Teleported!");
+        ChatManager.getFromLanguageConfig("Didn't-Found-The-Villager", ChatColor.DARK_RED + "Village defense didn't found that villager! That villager is probably already dead!");
+        ChatManager.getFromLanguageConfig("Teleported-To-Player", ChatColor.GREEN + "Teleported to %PLAYER%");
+        ChatManager.getFromLanguageConfig("Player-Not-Found", ChatColor.RED + "Player not found! Try again!");
+        ChatManager.getFromLanguageConfig("Cleaner-Wand-Name", ChatColor.GOLD + "Cleaner Wand!");
+        ChatManager.getFromLanguageConfig("Cleaner-Item-Lore", "Right click to kill all zombies!   " + "Cooldown: 400 seconds");
+        ChatManager.getFromLanguageConfig("STATS-AboveLine", ChatColor.BOLD + "-----YOUR STATS----- ");
+        ChatManager.getFromLanguageConfig("STATS-Kills", ChatColor.GREEN + "Kills: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Deaths", ChatColor.GREEN + "Deaths: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Games-Played", ChatColor.GREEN + "Games played: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Hihgest-Wave", ChatColor.GREEN + "Highest wave: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Level", ChatColor.GREEN + "Level: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Exp", ChatColor.GREEN + "Exp: " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-Next-Level-Exp", ChatColor.GREEN + "Next Level Exp " + ChatColor.YELLOW);
+        ChatManager.getFromLanguageConfig("STATS-UnderLinen", ChatColor.BOLD + "--------------------");
         ChatManager.getFromLanguageConfig("SCOREBOARD-Rotten-Flesh", ChatColor.DARK_GREEN + "Rotten Flesh:");
         ChatManager.getFromLanguageConfig("SCOREBOARD-Villagers", ChatColor.GREEN + "Villagers:");
         ChatManager.getFromLanguageConfig("SCOREBOARD-Zombies", ChatColor.RED + "Zombies:");
@@ -144,19 +136,19 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         ChatManager.getFromLanguageConfig("SCOREBOARD-Next-Wave-In", ChatColor.GRAY + "Next wave in:");
         ChatManager.getFromLanguageConfig("Wave-Started", "Wave " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + " started!");
         ChatManager.getFromLanguageConfig("SCOREBOARD-Header", ChatManager.PREFIX + "Village Defense");
-        ChatManager.getFromLanguageConfig("RottenFleshLevelUp",ChatManager.HIGHLIGHTED + "The gods were happy with the rottenflesh!" +
+        ChatManager.getFromLanguageConfig("RottenFleshLevelUp", ChatManager.HIGHLIGHTED + "The gods were happy with the rottenflesh!" +
                 ChatManager.HIGHLIGHTED + " There for they gave you an extra heart!");
         ChatManager.getFromLanguageConfig("Spawn-Golem", "Spawn Golem");
-        ChatManager.getFromLanguageConfig("Golem-Spawned",ChatColor.GREEN + "Golem spawned in the village!");
+        ChatManager.getFromLanguageConfig("Golem-Spawned", ChatColor.GREEN + "Golem spawned in the village!");
         ChatManager.getFromLanguageConfig("Wolf-Spawned", ChatColor.GREEN + "Wolf spawned in the village!");
-        ChatManager.getFromLanguageConfig("Wolf-Spawned",ChatColor.GREEN + "Wolf spawned in the village!");
+        ChatManager.getFromLanguageConfig("Wolf-Spawned", ChatColor.GREEN + "Wolf spawned in the village!");
         ChatManager.getFromLanguageConfig("orbs-In-Shop", "orbs");
-        ChatManager.getFromLanguageConfig("Dog-Friend-Kit-Name",ChatManager.HIGHLIGHTED + "Dog Friend");
+        ChatManager.getFromLanguageConfig("Dog-Friend-Kit-Name", ChatManager.HIGHLIGHTED + "Dog Friend");
         ChatManager.getFromLanguageConfig("Dog-Friend-Kit-Description", "Start off with three dogs and get one extra dog every wave!!");
-        ChatManager.getFromLanguageConfig("DEAD-SCREEN",ChatColor.RED +  "You died!");
-        ChatManager.getFromLanguageConfig("Died-Respawn-In-Next-Wave", ChatColor.YELLOW.toString() +  ChatColor.BOLD + "DON'T LEAVE!" + ChatColor.GREEN + "You'll respawn next once the wave ends!");
+        ChatManager.getFromLanguageConfig("DEAD-SCREEN", ChatColor.RED + "You died!");
+        ChatManager.getFromLanguageConfig("Died-Respawn-In-Next-Wave", ChatColor.YELLOW.toString() + ChatColor.BOLD + "DON'T LEAVE!" + ChatColor.GREEN + "You'll respawn next once the wave ends!");
         ChatManager.getFromLanguageConfig("Barrier-Placed", ChatColor.GREEN + "Barrier placed!");
-        ChatManager.getFromLanguageConfig("Door-Placed",ChatColor.GREEN + "Door placed!");
+        ChatManager.getFromLanguageConfig("Door-Placed", ChatColor.GREEN + "Door placed!");
         ChatManager.getFromLanguageConfig("KitChosenButNotUnlockedMessage", ChatColor.RED + "You haven't unlocked " + ChatColor.AQUA + "%KIT%" + ChatColor.RED + " yet!");
         ChatManager.getFromLanguageConfig("KitChosenMessage", ChatColor.GREEN + "You have chosen: " + ChatColor.AQUA + "%KIT%" + ChatColor.GREEN + " !");
     }
@@ -165,45 +157,30 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         gameAPI.setAbreviation("vd");
 
 
+    }
 
+    public boolean is1_8_R3() {
+        return getVersion().equalsIgnoreCase("v1_8_R3");
+    }
 
-
+    public boolean is1_12_R1() {
+        return getVersion().equalsIgnoreCase("v1_12_R1");
     }
 
 
-    private String version;
-
-
-     public boolean is1_8_R3(){
-        if(getVersion().equalsIgnoreCase("v1_8_R3"))
-            return true;
-        return false;
+    public boolean is1_8_R4() {
+        return getVersion().equalsIgnoreCase("v1_8_R4");
     }
 
-    public boolean is1_12_R1(){
-        if(getVersion().equalsIgnoreCase("v1_12_R1"))
-            return true;
-        return false;
+    public boolean is1_7_R4() {
+        return getVersion().equalsIgnoreCase("v1_7_R4");
     }
 
-
-    public boolean is1_8_R4(){
-        if(getVersion().equalsIgnoreCase("v1_8_R4"))
-            return true;
-        return false;
-    }
-
-    public boolean is1_7_R4(){
-        if(getVersion().equalsIgnoreCase("v1_7_R4"))
-            return true;
-        return false;
-    }
-
-    public String getVersion(){
+    public String getVersion() {
         return version;
     }
 
-    public GameAPI getGameAPI(){
+    public GameAPI getGameAPI() {
         return gameAPI;
     }
 
@@ -217,35 +194,35 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         gameAPI.setAllowBuilding(true);
         InvasionInstance.youtuberInvasion = this;
         gameAPI.onSetup(this, this);
-        this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI,this));
+        this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
         this.setupMessageConfig();
-       // this.onSetup();
-       if(!this.getConfig().contains("DatabaseActivated"))
-           this.getConfig().set("DatabaseActivated", false);
+        // this.onSetup();
+        if (!this.getConfig().contains("DatabaseActivated"))
+            this.getConfig().set("DatabaseActivated", false);
         this.saveConfig();
-        if(!this.getConfig().contains("Starting-Waiting-Time")){
-            this.getConfig().set("Starting-Waiting-Time",60);
+        if (!this.getConfig().contains("Starting-Waiting-Time")) {
+            this.getConfig().set("Starting-Waiting-Time", 60);
             this.saveConfig();
         }
         STARTING_TIMER_TIME = this.getConfig().getInt("Starting-Waiting-Time");
-        if(!this.getConfig().contains("Mini-Zombie-Speed")){
-            this.getConfig().set("Mini-Zombie-Speed",2.0);
+        if (!this.getConfig().contains("Mini-Zombie-Speed")) {
+            this.getConfig().set("Mini-Zombie-Speed", 2.0);
             this.saveConfig();
         }
-        MINI_ZOMBIE_SPEED =(float) this.getConfig().getDouble("Mini-Zombie-Speed");
-        if(!this.getConfig().contains("Zombie-Speed")){
-            this.getConfig().set("Zombie-Speed",0.4);
+        MINI_ZOMBIE_SPEED = (float) this.getConfig().getDouble("Mini-Zombie-Speed");
+        if (!this.getConfig().contains("Zombie-Speed")) {
+            this.getConfig().set("Zombie-Speed", 0.4);
             this.saveConfig();
         }
-        ZOMBIE_SPEED =(float) this.getConfig().getDouble("Zombie-Speed");
+        ZOMBIE_SPEED = (float) this.getConfig().getDouble("Zombie-Speed");
         databaseActivated = this.getConfig().getBoolean("DatabaseActivated");
-        if(databaseActivated)
+        if (databaseActivated)
             this.database = new MySQLDatabase(this);
-        else{
-           fileStats = new FileStats(this);
+        else {
+            fileStats = new FileStats(this);
         }
-        version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
-        if(this.getVersion().equalsIgnoreCase("v1_8_R3")) {
+        version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+        if (this.getVersion().equalsIgnoreCase("v1_8_R3")) {
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.Youtuber.class);
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.FastZombie.class);
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.BabyZombie.class);
@@ -257,7 +234,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.TankerZombie.class);
             gameAPI.registerEntity("Wolf", 95, me.TomTheDeveloper.Creatures.v1_8_R3.WorkingWolf.class);
         }
-        if(this.getVersion().equalsIgnoreCase("v1_7_R4")) {
+        if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
             gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.Youtuber.class);
             gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie.class);
             gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie.class);
@@ -269,26 +246,26 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             gameAPI.registerEntity1_7_10("Wolf", 95, me.TomTheDeveloper.Creatures.v1_7_R4.WorkingWolf.class);
         }
 
-        if(this.getVersion().equalsIgnoreCase("v1_9_R1")){
-            gameAPI.register1_9_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_9_R1.FastZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_9_R1.BabyZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_9_R1.GolemBuster.class);
-            gameAPI.register1_9_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_9_R1.HardZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_9_R1.PlayerBuster.class);
-            gameAPI.register1_9_R1_Entity("Wolf",95, me.TomTheDeveloper.Creatures.v1_9_R1.WorkingWolf.class);
-            gameAPI.register1_9_R1_Entity("VillagerGolem",99, me.TomTheDeveloper.Creatures.v1_9_R1.RidableIronGolem.class);
-            gameAPI.register1_9_R1_Entity("Villager",120, me.TomTheDeveloper.Creatures.v1_9_R1.RidableVillager.class);
+        if (this.getVersion().equalsIgnoreCase("v1_9_R1")) {
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.FastZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.BabyZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.GolemBuster.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.HardZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.PlayerBuster.class);
+            gameAPI.register1_9_R1_Entity("Wolf", 95, me.TomTheDeveloper.Creatures.v1_9_R1.WorkingWolf.class);
+            gameAPI.register1_9_R1_Entity("VillagerGolem", 99, me.TomTheDeveloper.Creatures.v1_9_R1.RidableIronGolem.class);
+            gameAPI.register1_9_R1_Entity("Villager", 120, me.TomTheDeveloper.Creatures.v1_9_R1.RidableVillager.class);
 
         }
-        if(this.getVersion().equalsIgnoreCase("v1_12_R1")){
-            NMSUtils.registerEntity(this,"FastZombie",NMSUtils.Type.ZOMBIE,FastZombie.class ,false);
-            NMSUtils.registerEntity(this, "GolemBuster", NMSUtils.Type.ZOMBIE,GolemBuster.class ,false);
-            NMSUtils.registerEntity(this, "HardZombie", NMSUtils.Type.ZOMBIE,HardZombie.class ,false);
-            NMSUtils.registerEntity(this, "PlayerBuster",NMSUtils.Type.ZOMBIE,PlayerBuster.class ,false);
-            NMSUtils.registerEntity(this, "BabyZombie",NMSUtils.Type.ZOMBIE,BabyZombie.class ,false);
-            NMSUtils.registerEntity(this, "IronGolem", NMSUtils.Type.IRON_GOLEM,RidableIronGolem.class ,false);
-            NMSUtils.registerEntity(this, "WorkingWolf", NMSUtils.Type.WOLF, WorkingWolf.class,false);
-            NMSUtils.registerEntity(this, "RidableVillager", NMSUtils.Type.VILLAGER, RidableVillager.class,false);
+        if (this.getVersion().equalsIgnoreCase("v1_12_R1")) {
+            NMSUtils.registerEntity(this, "FastZombie", NMSUtils.Type.ZOMBIE, FastZombie.class, false);
+            NMSUtils.registerEntity(this, "GolemBuster", NMSUtils.Type.ZOMBIE, GolemBuster.class, false);
+            NMSUtils.registerEntity(this, "HardZombie", NMSUtils.Type.ZOMBIE, HardZombie.class, false);
+            NMSUtils.registerEntity(this, "PlayerBuster", NMSUtils.Type.ZOMBIE, PlayerBuster.class, false);
+            NMSUtils.registerEntity(this, "BabyZombie", NMSUtils.Type.ZOMBIE, BabyZombie.class, false);
+            NMSUtils.registerEntity(this, "IronGolem", NMSUtils.Type.IRON_GOLEM, RidableIronGolem.class, false);
+            NMSUtils.registerEntity(this, "WorkingWolf", NMSUtils.Type.WOLF, WorkingWolf.class, false);
+            NMSUtils.registerEntity(this, "RidableVillager", NMSUtils.Type.VILLAGER, RidableVillager.class, false);
 
             /*gameAPI.register1_12_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie.class);
             gameAPI.register1_12_R1_Entity("Zombie",54, me.TomTheDeveloper.Creatures.v1_12_R1.GolemBuster.class);
@@ -303,14 +280,14 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
-        this.getServer().getPluginManager().registerEvents(new AnvilManager(this),this);
+        this.getServer().getPluginManager().registerEvents(new AnvilManager(this), this);
 
         this.getCommand("setshopchest").setExecutor(new ChestCommand(this));
         this.getCommand("setprice").setExecutor(this);
         this.getCommand("stats").setExecutor(new StatsCommand());
         Shop.plugin = this;
         new Shop();
-        this.getServer().getPluginManager().registerEvents(ChunkManager.getInstance(),this);
+        this.getServer().getPluginManager().registerEvents(ChunkManager.getInstance(), this);
 
         BreakFenceListener listener = new BreakFenceListener();
         listener.runTaskTimer(this, 1L, 20L);
@@ -321,7 +298,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         gameAPI.getKitHandler().registerKit(lightTankKit);
         ZombieFinder zombieFinderKit = new ZombieFinder(this);
         gameAPI.getKitHandler().registerKit(zombieFinderKit);
-        this.getServer().getPluginManager().registerEvents(zombieFinderKit,this);
+        this.getServer().getPluginManager().registerEvents(zombieFinderKit, this);
         ArcherKit archerKit = new ArcherKit();
         gameAPI.getKitHandler().registerKit(archerKit);
 
@@ -333,9 +310,9 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         gameAPI.getKitHandler().registerKit(healerkit);
         LooterKit looterKit = new LooterKit(this);
         gameAPI.getKitHandler().registerKit(looterKit);
-        this.getServer().getPluginManager().registerEvents(looterKit,this);
+        this.getServer().getPluginManager().registerEvents(looterKit, this);
         this.getServer().getPluginManager().registerEvents(new SuperArcherKit(), this);
-       RunnerKit runnerKit = new RunnerKit();
+        RunnerKit runnerKit = new RunnerKit();
         gameAPI.getKitHandler().registerKit(runnerKit);
         MediumTankKit mediumTankKit = new MediumTankKit();
         gameAPI.getKitHandler().registerKit(mediumTankKit);
@@ -356,7 +333,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         TeleporterKit teleporterKit = new TeleporterKit(this);
         gameAPI.getKitHandler().registerKit(teleporterKit);
         this.getServer().getPluginManager().registerEvents(teleporterKit, this);
-       // JumperKit jumperkit = new JumperKit();
+        // JumperKit jumperkit = new JumperKit();
         //gameAPI.getKitHandler().registerKit(jumperkit);
         HeavyTankKit heavyTankKit = new HeavyTankKit();
         gameAPI.getKitHandler().registerKit(heavyTankKit);
@@ -369,13 +346,13 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         PremiumHardcoreKit premiumHardcoreKit = new PremiumHardcoreKit();
         gameAPI.getKitHandler().registerKit(premiumHardcoreKit);
 
-            TornadoKit tornadoKit = new TornadoKit(this);
+        TornadoKit tornadoKit = new TornadoKit(this);
         gameAPI.getKitHandler().registerKit(tornadoKit);
-            this.getServer().getPluginManager().registerEvents(tornadoKit, this);
+        this.getServer().getPluginManager().registerEvents(tornadoKit, this);
 
         BlockerKit blockerKit = new BlockerKit(this);
         gameAPI.getKitHandler().registerKit(blockerKit);
-        this.getServer().getPluginManager().registerEvents(blockerKit,this);
+        this.getServer().getPluginManager().registerEvents(blockerKit, this);
         MedicKit medicKit = new MedicKit(this);
         gameAPI.getKitHandler().registerKit(medicKit);
 
@@ -385,15 +362,15 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         rewardsHandler = new RewardsHandler(this);
         gameAPI.getKitHandler().setDefaultKit(knightkit);
         gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
-        gameAPI.getKitMenuHandler().setItemName(ChatManager.getFromLanguageConfig("Kit-Menu-Item-Name","Kit Menu"));
-        gameAPI.getKitMenuHandler().setMenuName(ChatManager.getFromLanguageConfig("Kit Menu-Title","Kit Menu"));
-        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.getFromLanguageConfig("Open-Kit-Menu","Open Kit Menu")});
+        gameAPI.getKitMenuHandler().setItemName(ChatManager.getFromLanguageConfig("Kit-Menu-Item-Name", "Kit Menu"));
+        gameAPI.getKitMenuHandler().setMenuName(ChatManager.getFromLanguageConfig("Kit Menu-Title", "Kit Menu"));
+        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.getFromLanguageConfig("Open-Kit-Menu", "Open Kit Menu")});
 
         SpecialItem.loadAll();
         loadInstances();
         //database = new MyDatabase();
         FileConfiguration config = ConfigurationManager.getConfig("Bungee");
-        if(!config.contains("ShutdownWhenGameEnds")){
+        if (!config.contains("ShutdownWhenGameEnds")) {
             config.set("ShutdownWhenGameEnds", false);
             try {
                 ConfigurationManager.getConfig("Bungee").save(ConfigurationManager.getFile("Bungee"));
@@ -401,11 +378,10 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                 e.printStackTrace();
             }
         }
-        if(!getConfig().contains("ChatFormat-Enabled")){
-            getConfig().set("ChatFormat-Enabled",true);
+        if (!getConfig().contains("ChatFormat-Enabled")) {
+            getConfig().set("ChatFormat-Enabled", true);
             saveConfig();
         }
-
 
 
         chatformat = getConfig().getBoolean("ChatFormat-Enabled");
@@ -416,19 +392,19 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     }
 
 
-    public RewardsHandler getRewardsHandler(){
+    public RewardsHandler getRewardsHandler() {
         return rewardsHandler;
     }
 
-    public boolean isChatFormatEnabled(){
+    public boolean isChatFormatEnabled() {
         return chatformat;
     }
 
     @Override
-    public boolean checkPlayerCommands(Player player,Command command,String s,String[] strings){
-        if(strings.length == 2 && strings[0].equals("join")){
-            for(GameInstance gameInstance:gameAPI.getGameInstanceManager().getGameInstances()){
-                if(strings[1].equalsIgnoreCase(gameInstance.getID())) {
+    public boolean checkPlayerCommands(Player player, Command command, String s, String[] strings) {
+        if (strings.length == 2 && strings[0].equals("join")) {
+            for (GameInstance gameInstance : gameAPI.getGameInstanceManager().getGameInstances()) {
+                if (strings[1].equalsIgnoreCase(gameInstance.getID())) {
                     gameInstance.joinAttempt(player);
                     return true;
                 }
@@ -437,21 +413,21 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             player.sendMessage(ChatManager.getSingleMessage("No-Arena-Like-That", ChatColor.RED + "No arena with that ID!"));
             return true;
         }
-        if(strings.length==1 && strings[0].equals("leave")){
+        if (strings.length == 1 && strings[0].equals("leave")) {
             GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(player);
-            if(gameInstance!= null){
+            if (gameInstance != null) {
                 gameInstance.leaveAttempt(player);
             }
             return true;
         }
-        if(strings.length == 1 && strings[0].equalsIgnoreCase("spychat") && player.hasPermission("villagedefense.spychat")){
-            if(!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("spychat") && player.hasPermission("villagedefense.spychat")) {
+            if (!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
                     this.spyChatEnabled.get(player.getUniqueId()) == false) {
                 player.sendMessage(ChatColor.GREEN + "SpyChat Enabled!");
-                this.spyChatEnabled.put(player.getUniqueId(),true);
+                this.spyChatEnabled.put(player.getUniqueId(), true);
                 return true;
-            }else{
-                this.spyChatEnabled.put(player.getUniqueId(),false);
+            } else {
+                this.spyChatEnabled.put(player.getUniqueId(), false);
                 player.sendMessage(ChatColor.GREEN + "SpyChat Disabled!");
                 return true;
 
@@ -461,12 +437,12 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     }
 
     @Override
-    public boolean checkSpecialCommands(Player player,Command command, String s, String[] strings){
-        if(strings.length == 0){
+    public boolean checkSpecialCommands(Player player, Command command, String s, String[] strings) {
+        if (strings.length == 0) {
             player.sendMessage(ChatColor.GOLD + "----------------{VillageDefense Commands}----------");
-            player.sendMessage( "   ");
+            player.sendMessage("   ");
             player.sendMessage(ChatColor.GREEN + "Setup the game:");
-            player.sendMessage( "   ");
+            player.sendMessage("   ");
 
             player.sendMessage(ChatColor.AQUA + "/villagedefense create <ARENAID>: " + ChatColor.GRAY + "Create an arena!");
             player.sendMessage(ChatColor.AQUA + "/villagedefense <ARENAID> edit: " + ChatColor.GRAY + "Opens the menu to edit the arena!");
@@ -476,9 +452,9 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
             player.sendMessage(ChatColor.AQUA + "/addsigns: " + ChatColor.GRAY + "Select signs with World Edit. Then perform this command. The plugin will filter out the signs.");
 
-            player.sendMessage( "   ");
+            player.sendMessage("   ");
             player.sendMessage(ChatColor.GREEN + "Manage the game:");
-            player.sendMessage( "   ");
+            player.sendMessage("   ");
 
             player.sendMessage(ChatColor.AQUA + "/villagedefense admin: " + ChatColor.GRAY + "Shows all the admin commands");
             player.sendMessage(ChatColor.AQUA + "/villagedefense reload: " + ChatColor.GRAY + "Reloads the arenas");
@@ -486,24 +462,24 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             player.sendMessage(ChatColor.GOLD + "-------------------------------------------------");
             return true;
         }
-        if(strings.length == 1 && strings[0].equalsIgnoreCase("reload")){
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("reload")) {
             this.loadInstances();
             player.sendMessage("Instances reloaded!");
         }
 
-        if(strings.length == 1 && strings[0].equalsIgnoreCase("spychat")){
-            if(!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("spychat")) {
+            if (!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
                     this.spyChatEnabled.get(player.getUniqueId()) == false) {
                 player.sendMessage(ChatColor.GREEN + "SpyChat Enabled!");
-                this.spyChatEnabled.put(player.getUniqueId(),true);
+                this.spyChatEnabled.put(player.getUniqueId(), true);
                 return true;
-            }else{
-                this.spyChatEnabled.put(player.getUniqueId(),false);
+            } else {
+                this.spyChatEnabled.put(player.getUniqueId(), false);
                 player.sendMessage(ChatColor.GREEN + "SpyChat Disabled!");
                 return true;
             }
         }
-        if(strings.length == 1 &&strings[0].equals("admin")){
+        if (strings.length == 1 && strings[0].equals("admin")) {
             player.sendMessage(ChatManager.HIGHLIGHTED + "--------{Ingame Admin Commands}-----------");
             player.sendMessage(ChatManager.PREFIX + "/villagedefense clear zombies" + ChatColor.GRAY + ": Clears the zombies in the arena");
             player.sendMessage(ChatManager.PREFIX + "/villagedefense clear villagers" + ChatColor.GRAY + ": Clears the villagers in the arena");
@@ -519,26 +495,26 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             return true;
         }
 
-        if(strings.length == 3 &&strings[0].equals("add") && strings[1].equals("orbs")){
-            if(NumberUtils.isNumber(strings[2])){
-                if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 3 && strings[0].equals("add") && strings[1].equals("orbs")) {
+            if (NumberUtils.isNumber(strings[2])) {
+                if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                     return true;
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
                 User user = UserManager.getUser(player.getUniqueId());
                 user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
                 return true;
-            }else{
+            } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount>");
                 return true;
             }
         }
-        if(strings.length == 4 &&strings[0].equals("add") && strings[1].equals("orbs")){
-            if(NumberUtils.isNumber(strings[2])){
-                if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 4 && strings[0].equals("add") && strings[1].equals("orbs")) {
+            if (NumberUtils.isNumber(strings[2])) {
+                if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                     return true;
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-                for(Player getplayer:invasionInstance.getPlayers()){
-                    if(getplayer.getName().equals(strings[3])){
+                for (Player getplayer : invasionInstance.getPlayers()) {
+                    if (getplayer.getName().equals(strings[3])) {
                         User user = UserManager.getUser(getplayer.getUniqueId());
                         user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
                         player.sendMessage(ChatColor.GREEN + "Orbs add to that player!");
@@ -547,141 +523,143 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                 }
                 player.sendMessage(ChatColor.RED + "PLayer not found!");
                 return true;
-            }else{
+            } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount> <Player");
                 return true;
             }
 
         }
-        if(strings.length == 1 &&strings[0].equalsIgnoreCase("stop")){
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("stop")) {
 
-            if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+            if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                 return true;
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
             invasionInstance.stopGame();
 
         }
-        if(strings.length == 2 && strings[0].equalsIgnoreCase("clear")){
-            if(strings[1].equalsIgnoreCase("zombies")){
-                if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 2 && strings[0].equalsIgnoreCase("clear")) {
+            if (strings[1].equalsIgnoreCase("zombies")) {
+                if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                     return true;
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-                if(invasionInstance.getZombies() != null){
-                    for(Zombie zombie: invasionInstance.getZombies()){
-                        ParticleEffect.LAVA.display(1,1,1,1,20,zombie.getLocation(),100 );
+                if (invasionInstance.getZombies() != null) {
+                    for (Zombie zombie : invasionInstance.getZombies()) {
+                        ParticleEffect.LAVA.display(1, 1, 1, 1, 20, zombie.getLocation(), 100);
                         zombie.remove();
 
                     }
                     invasionInstance.getZombies().clear();
-                }else{
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty",ChatColor.GREEN + "The map is already empty!"));
+                } else {
+                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
                     return true;
                 }
 
-                if(this.is1_9_R1()){
-                    player.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_DEATH,1,1);
-                }else {
-                  //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
-                }                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Zombies", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleared the zombies!", player);
+                if (this.is1_9_R1()) {
+                    player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
+                } else {
+                    //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                }
+                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Zombies", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleared the zombies!", player);
                 return true;
             }
-            if(strings[1].equalsIgnoreCase("villagers")){
-                if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+            if (strings[1].equalsIgnoreCase("villagers")) {
+                if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                     return false;
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-                if(invasionInstance.getVillagers() != null){
-                    for(Villager zombie: invasionInstance.getVillagers()){
-                        ParticleEffect.LAVA.display(1,1,1,1,20,zombie.getLocation(),100 );
+                if (invasionInstance.getVillagers() != null) {
+                    for (Villager zombie : invasionInstance.getVillagers()) {
+                        ParticleEffect.LAVA.display(1, 1, 1, 1, 20, zombie.getLocation(), 100);
                         zombie.remove();
 
                     }
                     invasionInstance.getVillagers().clear();
-                }else{
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty",ChatColor.GREEN + "The map is already empty!"));
+                } else {
+                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
                     return true;
                 }
-                if(this.is1_9_R1()){
-                    player.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_DEATH,1,1);
-                }else {
-                  //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
-                }                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Villagers", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has removed all the villagers!", player);
+                if (this.is1_9_R1()) {
+                    player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
+                } else {
+                    //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                }
+                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Villagers", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has removed all the villagers!", player);
                 return true;
             }
-            if(strings[1].equalsIgnoreCase("golems")){
-                if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+            if (strings[1].equalsIgnoreCase("golems")) {
+                if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                     return false;
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-                if(invasionInstance.getIronGolems() != null){
-                    for(IronGolem zombie: invasionInstance.getIronGolems()){
-                        ParticleEffect.LAVA.display(1,1,1,1,20,zombie.getLocation(),100 );
+                if (invasionInstance.getIronGolems() != null) {
+                    for (IronGolem zombie : invasionInstance.getIronGolems()) {
+                        ParticleEffect.LAVA.display(1, 1, 1, 1, 20, zombie.getLocation(), 100);
                         zombie.remove();
 
                     }
                     invasionInstance.getIronGolems().clear();
 
-                }else{
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty",ChatColor.GREEN + "The map is already empty!"));
+                } else {
+                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
                     return true;
                 }
-                if(this.is1_9_R1()){
-                    player.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_DEATH,1,1);
-                }else {
-                   // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                if (this.is1_9_R1()) {
+                    player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
+                } else {
+                    // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
                 }
                 invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Golems", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has removed all the golems!", player);
 
             }
         }
-        if( strings.length == 3&&strings[0].equalsIgnoreCase("set") && strings[1].equalsIgnoreCase("wave") ){
-            if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 3 && strings[0].equalsIgnoreCase("set") && strings[1].equalsIgnoreCase("wave")) {
+            if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                 return false;
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-            if(NumberUtils.isNumber(strings[2])){
-                invasionInstance.setWave(Integer.parseInt(strings[2])-1);
+            if (NumberUtils.isNumber(strings[2])) {
+                invasionInstance.setWave(Integer.parseInt(strings[2]) - 1);
                 invasionInstance.endWave();
-                invasionInstance.getChatManager().broadcastMessage("Admin-Changed-Wave",ChatManager.HIGHLIGHTED + "Admin changed the wave to %NUMBER%", invasionInstance.getWave());
-                if(invasionInstance.getZombies() != null){
-                    for(Zombie zombie: invasionInstance.getZombies()){
-                        ParticleEffect.LAVA.display(1,1,1,1,20,zombie.getLocation(),100 );
+                invasionInstance.getChatManager().broadcastMessage("Admin-Changed-Wave", ChatManager.HIGHLIGHTED + "Admin changed the wave to %NUMBER%", invasionInstance.getWave());
+                if (invasionInstance.getZombies() != null) {
+                    for (Zombie zombie : invasionInstance.getZombies()) {
+                        ParticleEffect.LAVA.display(1, 1, 1, 1, 20, zombie.getLocation(), 100);
                         zombie.setHealth(0.0);
 
                     }
                     invasionInstance.getZombies().clear();
-                }else{
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty",ChatColor.GREEN + "The map is already empty!"));
+                } else {
+                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
 
                 }
-                if(this.is1_9_R1()){
-                    player.playSound(player.getLocation(),Sound.ENTITY_ZOMBIE_DEATH,1,1);
-                }else {
-                   // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                if (this.is1_9_R1()) {
+                    player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
+                } else {
+                    // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
                 }
                 invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Zombies", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleared the zombies!", player);
 
                 return true;
-            }else{
+            } else {
                 player.sendMessage(ChatColor.RED + "Wave needs to be number! Do /villagedefense set wave <number>");
                 return true;
             }
 
         }
-        if( strings.length ==1&&strings[0].equalsIgnoreCase("forcestart") ){
-            if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("forcestart")) {
+            if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                 return false;
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
-            if(invasionInstance.getGameState() == GameState.WAITING_FOR_PLAYERS) {
+            if (invasionInstance.getGameState() == GameState.WAITING_FOR_PLAYERS) {
                 invasionInstance.setGameState(GameState.STARTING);
                 invasionInstance.getChatManager().broadcastMessage("Admin-ForceStart-Game", ChatManager.HIGHLIGHTED + "An admin forcestarted the game!");
                 return true;
             }
-            if(invasionInstance.getGameState() == GameState.STARTING) {
+            if (invasionInstance.getGameState() == GameState.STARTING) {
                 invasionInstance.setTimer(0);
                 invasionInstance.getChatManager().broadcastMessage("Admin-Set-Starting-In-To-0", ChatManager.HIGHLIGHTED + "An admin set waiting time to 0. Game starts now!");
                 return true;
             }
         }
-        if( strings.length == 1&&strings[0].equalsIgnoreCase("respawn") ){
-            if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 1 && strings[0].equalsIgnoreCase("respawn")) {
+            if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                 return false;
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
             player.setGameMode(GameMode.SURVIVAL);
@@ -694,16 +672,16 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             player.setFlying(false);
             player.setAllowFlight(false);
             invasionInstance.showPlayer(player);
-            player.sendMessage(invasionInstance.getChatManager().getMessage("You're-Back-In-Game",ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!"));
+            player.sendMessage(invasionInstance.getChatManager().getMessage("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!"));
             return true;
         }
-        if(strings.length == 2&&strings[0].equalsIgnoreCase("respawn")){
-            if(gameAPI.getGameInstanceManager().getGameInstance(player) == null)
+        if (strings.length == 2 && strings[0].equalsIgnoreCase("respawn")) {
+            if (gameAPI.getGameInstanceManager().getGameInstance(player) == null)
                 return false;
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
             boolean b = false;
-            for(Player getplayer:invasionInstance.getPlayers()){
-                if(strings[1].equalsIgnoreCase(getplayer.getName())) {
+            for (Player getplayer : invasionInstance.getPlayers()) {
+                if (strings[1].equalsIgnoreCase(getplayer.getName())) {
                     getplayer.setGameMode(GameMode.SURVIVAL);
                     User user = UserManager.getUser(getplayer.getUniqueId());
                     user.setFakeDead(false);
@@ -715,45 +693,38 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                     getplayer.setAllowFlight(false);
                     invasionInstance.showPlayer(getplayer);
                     getplayer.sendMessage(invasionInstance.getChatManager().getMessage("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!"));
-                    return  true;
+                    return true;
                 }
             }
-            player.sendMessage(ChatColor.RED  +"Player not found!");
+            player.sendMessage(ChatColor.RED + "Player not found!");
             return true;
         }
 
-    return false;
-    }
-
-
-
-
-    public boolean isSpyChatEnabled(Player player){
-        if(!spyChatEnabled.containsKey(player.getUniqueId()))
-            return false;
-        else if(spyChatEnabled.get(player.getUniqueId()) == null)
-            return false;
-        return spyChatEnabled.get(player.getUniqueId());
-    }
-
-    public boolean is1_9_R1(){
-        if(getVersion().equalsIgnoreCase("v1_9_R1"))
-            return true;
         return false;
     }
 
 
+    public boolean isSpyChatEnabled(Player player) {
+        if (!spyChatEnabled.containsKey(player.getUniqueId()))
+            return false;
+        else if (spyChatEnabled.get(player.getUniqueId()) == null)
+            return false;
+        return spyChatEnabled.get(player.getUniqueId());
+    }
+
+    public boolean is1_9_R1() {
+        return getVersion().equalsIgnoreCase("v1_9_R1");
+    }
 
 
-
-    public FileStats getFileStats(){
+    public FileStats getFileStats() {
         return fileStats;
     }
 
 
     public void addExtraItemsToSetupInventory() {
-        System.out.println("ITEMSTACK: " + new ItemStack(Material.MONSTER_EGG,1, (byte) 120));
-        System.out.println("BUILDOER:" + new ItemBuilder(new ItemStack(Material.MONSTER_EGG,1, (byte) 120))
+        System.out.println("ITEMSTACK: " + new ItemStack(Material.MONSTER_EGG, 1, (byte) 120));
+        System.out.println("BUILDOER:" + new ItemBuilder(new ItemStack(Material.MONSTER_EGG, 1, (byte) 120))
                 .name(ChatColor.GOLD + "Add villager spawns")
                 .lore(ChatColor.GRAY + "Click to add a villager spawn")
                 .lore(ChatColor.GRAY + "on the place you're standing").build());
@@ -770,12 +741,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     @Override
     public void onDisable() {
-        for(Player player:this.getServer().getOnlinePlayers()) {
-
-
+        for (Player player : this.getServer().getOnlinePlayers()) {
             User user = UserManager.getUser(player.getUniqueId());
-
-
             List<String> temp = new ArrayList<String>();
             temp.add("gamesplayed");
             temp.add("kills");
@@ -784,11 +751,12 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             temp.add("xp");
             temp.add("level");
             temp.add("orbs");
-            for(String s:temp){
-                if(this.isDatabaseActivated())
-                    this.getMySQLDatabase().setStat(player.getUniqueId().toString(),s, user.getInt(s) );
-                else
-                    this.getFileStats().saveStat(player,s);
+            for (String s : temp) {
+                if (this.isDatabaseActivated()) {
+                    this.getMySQLDatabase().setStat(player.getUniqueId().toString(), s, user.getInt(s));
+                } else {
+                    this.getFileStats().saveStat(player, s);
+                }
             }
 
 
@@ -796,19 +764,19 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
         }
         for (GameInstance invasionInstance : gameAPI.getGameInstanceManager().getGameInstances()) {
-            for(Player player:invasionInstance.getPlayers()){
+            for (Player player : invasionInstance.getPlayers()) {
                 invasionInstance.teleportToEndLocation(player);
-                if(gameAPI.isInventoryManagerEnabled())
+                if (gameAPI.isInventoryManagerEnabled())
                     gameAPI.getInventoryManager().loadInventory(player);
 
 
-           }
-            if(invasionInstance instanceof InvasionInstance)
-                ((InvasionInstance)invasionInstance).clearVillagers();
-                ((InvasionInstance)invasionInstance).stopGame();
-            ((InvasionInstance)invasionInstance).clearVillagers();
+            }
+            if (invasionInstance instanceof InvasionInstance)
+                ((InvasionInstance) invasionInstance).clearVillagers();
+            ((InvasionInstance) invasionInstance).stopGame();
+            ((InvasionInstance) invasionInstance).clearVillagers();
 
-            ((InvasionInstance)invasionInstance).teleportAllToEndLocation();
+            invasionInstance.teleportAllToEndLocation();
 
 
         }
@@ -816,12 +784,11 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     }
 
 
-
     public void loadInstances() {
-        if(gameAPI.getGameInstanceManager().getGameInstances() != null) {
+        if (gameAPI.getGameInstanceManager().getGameInstances() != null) {
             if (gameAPI.getGameInstanceManager().getGameInstances().size() > 0) {
                 for (GameInstance gameInstance : gameAPI.getGameInstanceManager().getGameInstances()) {
-                   InvasionInstance invasionInstance = (InvasionInstance) gameInstance;
+                    InvasionInstance invasionInstance = (InvasionInstance) gameInstance;
                     invasionInstance.clearZombies();
                     invasionInstance.clearVillagers();
                     invasionInstance.clearWolfs();
@@ -842,14 +809,13 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             if (s.contains("default"))
                 continue;
 
-            if(this.is1_8_R3()) {
+            if (this.is1_8_R3()) {
                 invasionInstance = new InvasionInstance1_8_R3(ID);
-            }else if(this.is1_9_R1()) {
+            } else if (this.is1_9_R1()) {
                 invasionInstance = new InvasionInstance1_9_R1(ID);
-            }else{
+            } else {
                 invasionInstance = new InvasionInstance1_12_R1(ID);
             }
-
 
 
             if (getConfig().contains(s + "minimumplayers"))
@@ -872,7 +838,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                 invasionInstance.setEndLocation(gameAPI.getLocation(s + "Endlocation"));
 
             if (gameAPI.needsMapRestore() && getConfig().contains(s + "schematic")) {
-                if(!getConfig().getString(s + "schematic").contains(" schematic")) {
+                if (!getConfig().getString(s + "schematic").contains(" schematic")) {
                     invasionInstance.setSchematicName(getConfig().getString(s + "schematic"));
                 } else {
                     System.out.print("You need to assign a schematic file to the arena" + s + ". You can do this in the config or with the ingame-command /earthmaster <arena> set schematic <name of file without .schematic!>");
@@ -880,7 +846,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
                 }
             } else {
-                if(gameAPI.needsMapRestore()) {
+                if (gameAPI.needsMapRestore()) {
                     System.out.print("No schematic found for arena " + s + ". You need to assign an schematic file to that arena! You can do this with the ingame-command /earthmaster <arena> set schematic <name of file without .schematic!>");
                     continue;
                 }
@@ -934,7 +900,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-   public boolean isDatabaseActivated(){
+    public boolean isDatabaseActivated() {
         return databaseActivated;
     }
 
@@ -1027,7 +993,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     @EventHandler
     public void onSpawn(CreatureSpawnEvent event) {
-        if(!event.getEntity().getWorld().getName().contains("VD"))
+        if (!event.getEntity().getWorld().getName().contains("VD"))
             return;
         if (event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.CUSTOM)
             event.setCancelled(true);
@@ -1039,7 +1005,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             if (sender.isOp() && args.length == 1) {
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
-                Util.addLore(item,ChatColor.GOLD + args[0] + " " + ChatManager.getSingleMessage("orbs-In-Shop", "orbs"));
+                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.getSingleMessage("orbs-In-Shop", "orbs"));
                 p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                 return true;
             }
@@ -1049,15 +1015,15 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     }
 
 
-    public void checkForSteal(){
+    public void checkForSteal() {
 
     }
 
-    public void loadStatsForPlayersOnline(){
-        for(final Player player:getServer().getOnlinePlayers()){
-            if(gameAPI.isBungeeActivated())
+    public void loadStatsForPlayersOnline() {
+        for (final Player player : getServer().getOnlinePlayers()) {
+            if (gameAPI.isBungeeActivated())
                 gameAPI.getGameInstanceManager().getGameInstances().get(0).teleportToLobby(player);
-            if(!this.isDatabaseActivated()){
+            if (!this.isDatabaseActivated()) {
                 List<String> temp = new ArrayList<String>();
                 temp.add("gamesplayed");
                 temp.add("kills");
@@ -1066,7 +1032,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                 temp.add("xp");
                 temp.add("level");
                 temp.add("orbs");
-                for(String s:temp) {
+                for (String s : temp) {
                     this.getFileStats().loadStat(player, s);
                 }
                 return;
@@ -1078,13 +1044,14 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
 
                 final String playername = player.getUniqueId().toString();
+
                 @Override
                 public void run() {
                     boolean b = false;
                     MySQLDatabase database = getMySQLDatabase();
-                    ResultSet resultSet = database.executeQuery("SELECT UUID from playerstats WHERE UUID='"+playername+"'");
+                    ResultSet resultSet = database.executeQuery("SELECT UUID from playerstats WHERE UUID='" + playername + "'");
                     try {
-                        if(!resultSet.next()) {
+                        if (!resultSet.next()) {
                             database.insertPlayer(playername);
                             b = true;
                         }
@@ -1096,7 +1063,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                         int xp = 0;
                         int level = 0;
                         int orbs = 0;
-                        gamesplayed =    database.getStat(player.getUniqueId().toString(), "gamesplayed");
+                        gamesplayed = database.getStat(player.getUniqueId().toString(), "gamesplayed");
                         zombiekills = database.getStat(player.getUniqueId().toString(), "kills");
                         highestwave = database.getStat(player.getUniqueId().toString(), "highestwave");
                         deaths = database.getStat(player.getUniqueId().toString(), "deaths");
@@ -1116,9 +1083,9 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                         System.out.print("CONNECTION FAILED FOR PLAYER " + player.getName());
                         //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
-                    if(b=false){
+                    if (b = false) {
                         try {
-                            if(!resultSet.next()) {
+                            if (!resultSet.next()) {
                                 database.insertPlayer(playername);
                                 b = true;
                             }
@@ -1130,7 +1097,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
                             int xp = 0;
                             int level = 0;
                             int orbs = 0;
-                            gamesplayed =    database.getStat(player.getUniqueId().toString(), "gamesplayed");
+                            gamesplayed = database.getStat(player.getUniqueId().toString(), "gamesplayed");
                             zombiekills = database.getStat(player.getUniqueId().toString(), "kills");
                             highestwave = database.getStat(player.getUniqueId().toString(), "highestwave");
                             deaths = database.getStat(player.getUniqueId().toString(), "deaths");

@@ -13,35 +13,14 @@ import java.util.*;
  * For LeaderHeads.
  */
 public enum VillageDefenseStats {
-    KILLS ("kills"),DEATHS ("deaths"),GAMES_PLAYED ("gamesplayed"),HIGHEST_WAVE ("highestwave"),LEVEL("level"), XP("xp");
+    KILLS("kills"), DEATHS("deaths"), GAMES_PLAYED("gamesplayed"), HIGHEST_WAVE("highestwave"), LEVEL("level"), XP("xp");
 
     public static YoutuberInvasion plugin;
     private String name;
 
 
-    VillageDefenseStats(String name){
+    VillageDefenseStats(String name) {
         this.name = name;
-    }
-
-
-
-    public Map<UUID, Integer> getStats(){
-        if(plugin.isDatabaseActivated())
-            return plugin.getMySQLDatabase().getColumn(name);
-        else{
-            FileConfiguration config = ConfigurationManager.getConfig("STATS");
-            Map<UUID, Integer> stats = new LinkedHashMap<UUID, Integer>();
-            for(String string:config.getKeys(false)){
-                stats.put(UUID.fromString(string), config.getInt(string + "." + name));
-            }
-            return sortByValue(stats);
-        }
-
-
-    }
-
-    public int getStat(Player player){
-        return UserManager.getUser(player.getUniqueId()).getInt(name);
     }
 
     private static Map sortByValue(Map unsortMap) {
@@ -55,11 +34,30 @@ public enum VillageDefenseStats {
         });
 
         Map sortedMap = new LinkedHashMap();
-        for (Iterator it = list.iterator(); it.hasNext();) {
+        for (Iterator it = list.iterator(); it.hasNext(); ) {
             Map.Entry entry = (Map.Entry) it.next();
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         return sortedMap;
+    }
+
+    public Map<UUID, Integer> getStats() {
+        if (plugin.isDatabaseActivated())
+            return plugin.getMySQLDatabase().getColumn(name);
+        else {
+            FileConfiguration config = ConfigurationManager.getConfig("STATS");
+            Map<UUID, Integer> stats = new LinkedHashMap<UUID, Integer>();
+            for (String string : config.getKeys(false)) {
+                stats.put(UUID.fromString(string), config.getInt(string + "." + name));
+            }
+            return sortByValue(stats);
+        }
+
+
+    }
+
+    public int getStat(Player player) {
+        return UserManager.getUser(player.getUniqueId()).getInt(name);
     }
 
 

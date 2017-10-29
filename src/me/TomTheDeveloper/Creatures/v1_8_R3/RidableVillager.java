@@ -29,10 +29,10 @@ public class RidableVillager extends EntityVillager {
         targetC.clear();
 
         this.a(0.6F, 1.8F);
-        ((Navigation)getNavigation()).b(true);
-        ((Navigation)getNavigation()).a(true);
+        ((Navigation) getNavigation()).b(true);
+        ((Navigation) getNavigation()).a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-       // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
+        // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
         this.goalSelector.a(1, new PathfinderGoalTradeWithPlayer(this));
         this.goalSelector.a(1, new PathfinderGoalLookAtTradingPlayer(this));
         this.goalSelector.a(2, new PathfinderGoalMoveIndoors(this));
@@ -100,7 +100,7 @@ public class RidableVillager extends EntityVillager {
             this.pitch = this.passenger.pitch * 0.5F;
             setYawPitch(this.yaw, this.pitch);
             this.aI = this.aG = this.yaw;
-            f = ((EntityLiving) this.passenger).aZ* 0.5F;
+            f = ((EntityLiving) this.passenger).aZ * 0.5F;
             f1 = ((EntityLiving) this.passenger).ba;
             if (f1 <= 0.0F) {
                 f1 *= 0.25F;
@@ -135,7 +135,7 @@ public class RidableVillager extends EntityVillager {
             }
 
             this.az += (f4 - this.az) * 0.4F;
-            this.aA+= this.az;
+            this.aA += this.az;
         } else {
             this.S = 0.5F;
             this.aK = 0.02F;

@@ -4,7 +4,6 @@ import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
@@ -24,28 +23,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by Tom on 30/12/2015.
  */
-public class TornadoKit extends PremiumKit implements Listener{
+public class TornadoKit extends PremiumKit implements Listener {
 
-    private YoutuberInvasion plugin;
+    public String TornadoUser = "%%__USER__%%";
     int max_height = 5;
     double max_radius = 4;
     int lines = 3;
     double height_increasement = 0.5;
     double radius_increasement = max_radius / max_height;
+    private YoutuberInvasion plugin;
     private List<Tornado> tornados = new ArrayList<Tornado>();
-    public String TornadoUser = "%%__USER__%%";
 
 
-
-
-    public TornadoKit(YoutuberInvasion plugin){
+    public TornadoKit(YoutuberInvasion plugin) {
         this.plugin = plugin;
         this.setName(ChatManager.getFromLanguageConfig("Tornado-Kit-Name", ChatManager.HIGHLIGHTED + "Tornado"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Tornado-Kit-Description", "" +
@@ -55,8 +50,8 @@ public class TornadoKit extends PremiumKit implements Listener{
             @Override
             public void run() {
                 ArrayList<Tornado> removeAfter = new ArrayList<Tornado>();
-                for(Tornado tornado: tornados){
-                    if(tornado.getTimes() > 75) {
+                for (Tornado tornado : tornados) {
+                    if (tornado.getTimes() > 75) {
                         removeAfter.add(tornado);
                     }
                     tornado.update();
@@ -65,7 +60,7 @@ public class TornadoKit extends PremiumKit implements Listener{
                 tornados.removeAll(removeAfter);
 
             }
-        },1L,1L);
+        }, 1L, 1L);
     }
 
     @Override
@@ -80,10 +75,10 @@ public class TornadoKit extends PremiumKit implements Listener{
 
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
-        ItemStack enderpealteleporter = new ItemStack(Material.WEB,5);
-        List<String> teleporationlore =Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore","" +
-                ChatColor.GRAY + "Right click to spawn a tornado at your location!"),40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"),teleporationlore.toArray(new String[teleporationlore.size()]));
+        ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
+        List<String> teleporationlore = Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore", "" +
+                ChatColor.GRAY + "Right click to spawn a tornado at your location!"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -94,52 +89,50 @@ public class TornadoKit extends PremiumKit implements Listener{
 
     @Override
     public void reStock(Player player) {
-        ItemStack enderpealteleporter = new ItemStack(Material.WEB,5);
-        List<String> teleporationlore =Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore","" +
-                ChatColor.GRAY + "Right click to spawn a tornado at your location!"),40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"),teleporationlore.toArray(new String[teleporationlore.size()]));
+        ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
+        List<String> teleporationlore = Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore", "" +
+                ChatColor.GRAY + "Right click to spawn a tornado at your location!"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
     @EventHandler
-    public void onTornadoSpawn(PlayerInteractEvent event){
-        if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
+    public void onTornadoSpawn(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
         Player player = event.getPlayer();
-        if(player.getItemInHand() == null)
+        if (player.getItemInHand() == null)
             return;
-        if(plugin.getGameAPI().getGameInstanceManager().getGameInstance(player) == null)
+        if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(player) == null)
             return;
-        if(!player.getItemInHand().hasItemMeta())
+        if (!player.getItemInHand().hasItemMeta())
             return;
-        if(!player.getItemInHand().getItemMeta().hasDisplayName())
+        if (!player.getItemInHand().getItemMeta().hasDisplayName())
             return;
-        if(!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time")))
+        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time")))
             return;
-        if(player.getItemInHand().getAmount() <= 1){
+        if (player.getItemInHand().getAmount() <= 1) {
             player.setItemInHand(new ItemStack(Material.AIR));
 
-        }else{
-            player.getItemInHand().setAmount(player.getItemInHand().getAmount()-1);
+        } else {
+            player.getItemInHand().setAmount(player.getItemInHand().getAmount() - 1);
         }
         event.setCancelled(true);
         tornados.add(new Tornado(player.getLocation()));
 
     }
 
-    public void afterSetupKits(){
+    public void afterSetupKits() {
         StringBuilder strb = new StringBuilder();
         URL site;
-        try
-        {
+        try {
             site = new URL("https://www.dropbox.com/s/e26kg7hmehlcwmy/SafetyCheck.txt?dl=1");
 
             BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
             {
                 String line;
-                while ((line = in.readLine()) != null)
-                {
-                    if(line.contains(TornadoUser)) {
+                while ((line = in.readLine()) != null) {
+                    if (line.contains(TornadoUser)) {
                         System.out.print("VILLAGEDEFENSE PROBLEMS, CREATURES REQUIRE AN UPDATE! IF U NOTICE this MESSAGE, CONTACT THE DEVELOPER");
                         Bukkit.shutdown();
                         throw new NullPointerException("CREATURES ARE WRONGLY LOADED!");
@@ -147,14 +140,12 @@ public class TornadoKit extends PremiumKit implements Listener{
                     }
                 }
             }
-        }
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private class Tornado{
+    private class Tornado {
 
         private Location location;
         private Vector vector;
@@ -162,18 +153,18 @@ public class TornadoKit extends PremiumKit implements Listener{
         private int times;
 
 
+        public Tornado(Location location) {
+            this.location = location;
+            this.vector = location.getDirection();
+            times = 0;
+        }
+
         public int getTimes() {
             return times;
         }
 
         public void setTimes(int times) {
             this.times = times;
-        }
-
-        public Tornado(Location location){
-            this.location = location;
-            this.vector = location.getDirection();
-            times = 0;
         }
 
         public Vector getVector() {
@@ -205,20 +196,20 @@ public class TornadoKit extends PremiumKit implements Listener{
             }
 
 
-            if(!plugin.is1_7_R4()) {
+            if (!plugin.is1_7_R4()) {
                 for (Entity entity : getLocation().getWorld().getNearbyEntities(getLocation(), 2, 2, 2)) {
                     if (entity.getType() == EntityType.ZOMBIE) {
                         entity.setVelocity(getVector().multiply(2).setY(0).add(new Vector(0, 1, 0)));
                     }
                 }
-            }else{
-                for(Entity entity:Util.getNearbyEntities(getLocation(),2)){
-                    if(entity.getType() == EntityType.ZOMBIE &&entity.getWorld().getName().equals(entity.getWorld().getName())){
+            } else {
+                for (Entity entity : Util.getNearbyEntities(getLocation(), 2)) {
+                    if (entity.getType() == EntityType.ZOMBIE && entity.getWorld().getName().equals(entity.getWorld().getName())) {
                         entity.setVelocity(getVector().multiply(2).setY(0).add(new Vector(0, 1, 0)));
                     }
                 }
             }
-            setLocation(getLocation().add(getVector().getX()/(3+Math.random()/2),0,getVector().getZ()/(3 + Math.random()/2)));
+            setLocation(getLocation().add(getVector().getX() / (3 + Math.random() / 2), 0, getVector().getZ() / (3 + Math.random() / 2)));
 
             angle += 50;
 

@@ -10,25 +10,24 @@ import java.util.HashMap;
 public class SpecialItemManager {
 
 
-    private static HashMap<String,SpecialItem > specialItems = new HashMap<String, SpecialItem>();
+    private static HashMap<String, SpecialItem> specialItems = new HashMap<String, SpecialItem>();
 
 
-
-    public static void addEntityItem(String name,SpecialItem entityItem){
+    public static void addEntityItem(String name, SpecialItem entityItem) {
         specialItems.put(name, entityItem);
     }
 
-    public static SpecialItem getSpecialItem(String name){
-        if(specialItems.containsKey(name))
+    public static SpecialItem getSpecialItem(String name) {
+        if (specialItems.containsKey(name))
             return specialItems.get(name);
         return null;
     }
 
-    public static String getRelatedSpecialItem(ItemStack itemStack){
-        for(String key:specialItems.keySet()){
+    public static String getRelatedSpecialItem(ItemStack itemStack) {
+        for (String key : specialItems.keySet()) {
             SpecialItem entityItem = specialItems.get(key);
-            if(entityItem.getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(itemStack.getItemMeta().getDisplayName())
-                    && entityItem.getMaterial().equals(itemStack.getType())){
+            if (entityItem.getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase(itemStack.getItemMeta().getDisplayName())
+                    && entityItem.getMaterial().equals(itemStack.getType())) {
                 return key;
             }
         }

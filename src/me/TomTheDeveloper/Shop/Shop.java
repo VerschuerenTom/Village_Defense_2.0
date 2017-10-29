@@ -13,14 +13,26 @@ import org.bukkit.inventory.ItemStack;
  */
 public class Shop {
 
-    private Chest chest;
     public static YoutuberInvasion plugin;
     private static IconMenu iconMenu;
+    private Chest chest;
 
     public Shop() {
         setup();
     }
 
+    public static void openShop(Player player) {
+        if (iconMenu == null) {
+            System.out.print("Set up the shop or the shopchest first please!");
+            return;
+        }
+
+        iconMenu.open(player);
+    }
+
+    public static void closeShop(Player player) {
+        player.closeInventory();
+    }
 
     private void setup() {
         if (!plugin.getConfig().contains("shop.location")) {
@@ -37,30 +49,17 @@ public class Shop {
         int i = 0;
         for (ItemStack itemStack : chest.getInventory().getContents()) {
             //if (itemStack != null)
-                i++;
+            i++;
         }
         iconMenu = new IconMenu("Shop", i);
         i = 0;
         for (ItemStack itemStack : chest.getInventory().getContents()) {
 
             if (itemStack != null && itemStack.getType() != Material.REDSTONE_BLOCK)
-                iconMenu.addOption(itemStack,i);
+                iconMenu.addOption(itemStack, i);
             i++;
         }
 
-    }
-
-    public static void openShop(Player player) {
-        if(iconMenu == null){
-            System.out.print("Set up the shop or the shopchest first please!");
-            return;
-        }
-
-        iconMenu.open(player);
-    }
-
-    public static void closeShop(Player player) {
-        player.closeInventory();
     }
 
 

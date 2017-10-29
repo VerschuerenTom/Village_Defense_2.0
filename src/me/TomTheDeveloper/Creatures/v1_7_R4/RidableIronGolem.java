@@ -25,7 +25,7 @@ public class RidableIronGolem extends EntityIronGolem {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).b(true);
+        getNavigation().b(true);
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(2, new PathfinderGoalMoveTowardsTarget(this, 0.9D, 32.0F));
         this.goalSelector.a(3, new PathfinderGoalMoveThroughVillage(this, 0.6D, true));
@@ -38,45 +38,6 @@ public class RidableIronGolem extends EntityIronGolem {
         this.targetSelector.a(2, new PathfinderGoalHurtByTarget(this, false));
         this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityInsentient.class, 0, false, true, IMonster.a));
         this.setHealth(500);
-    }
-
-    public void e(float f, float f1)
-    {
-        if ((this.passenger != null) && ((this.passenger instanceof EntityLiving)))
-        {
-            this.lastYaw = (this.yaw = this.passenger.yaw);
-            this.pitch = (this.passenger.pitch * 0.5F);
-            b(this.yaw, this.pitch);
-            this.aO = (this.aM = this.yaw);
-            f = ((EntityLiving)this.passenger).bd * 0.5F;
-            f1 = ((EntityLiving)this.passenger).be;
-
-
-
-            this.W = 1.0F;
-            this.aQ = (bl() * 0.1F);
-            if (!this.world.isStatic)
-            {
-                i((float)getAttributeInstance(GenericAttributes.d).getValue());
-                super.e(f, f1);
-            }
-
-            this.aE = this.aF;
-            double d0 = this.locX - this.lastX;
-            double d1 = this.locZ - this.lastZ;
-            float f4 = MathHelper.sqrt(d0 * d0 + d1 * d1) * 4.0F;
-            if (f4 > 1.0F) {
-                f4 = 1.0F;
-            }
-            this.aF += (f4 - this.aF) * 0.4F;
-            this.aG += this.aF;
-        }
-        else
-        {
-            this.W = 0.5F;
-            this.aQ = 0.02F;
-            super.e(f, f1);
-        }
     }
 
     public static Object getPrivateField(String fieldName, Class clazz, Object object) {
@@ -96,6 +57,39 @@ public class RidableIronGolem extends EntityIronGolem {
         }
 
         return o;
+    }
+
+    public void e(float f, float f1) {
+        if ((this.passenger != null) && ((this.passenger instanceof EntityLiving))) {
+            this.lastYaw = (this.yaw = this.passenger.yaw);
+            this.pitch = (this.passenger.pitch * 0.5F);
+            b(this.yaw, this.pitch);
+            this.aO = (this.aM = this.yaw);
+            f = ((EntityLiving) this.passenger).bd * 0.5F;
+            f1 = ((EntityLiving) this.passenger).be;
+
+
+            this.W = 1.0F;
+            this.aQ = (bl() * 0.1F);
+            if (!this.world.isStatic) {
+                i((float) getAttributeInstance(GenericAttributes.d).getValue());
+                super.e(f, f1);
+            }
+
+            this.aE = this.aF;
+            double d0 = this.locX - this.lastX;
+            double d1 = this.locZ - this.lastZ;
+            float f4 = MathHelper.sqrt(d0 * d0 + d1 * d1) * 4.0F;
+            if (f4 > 1.0F) {
+                f4 = 1.0F;
+            }
+            this.aF += (f4 - this.aF) * 0.4F;
+            this.aG += this.aF;
+        } else {
+            this.W = 0.5F;
+            this.aQ = 0.02F;
+            super.e(f, f1);
+        }
     }
 
     @Override

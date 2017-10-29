@@ -29,10 +29,10 @@ public class RidableVillager extends EntityVillager {
         targetC.clear();
 
         this.a(0.6F, 1.8F);
-        ((Navigation)getNavigation()).b(true);
-        ((Navigation)getNavigation()).a(true);
+        getNavigation().b(true);
+        getNavigation().a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-       // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
+        // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
         this.goalSelector.a(1, new PathfinderGoalTradeWithPlayer(this));
         this.goalSelector.a(1, new PathfinderGoalLookAtTradingPlayer(this));
         this.goalSelector.a(2, new PathfinderGoalMoveIndoors(this));
@@ -91,24 +91,20 @@ public class RidableVillager extends EntityVillager {
         }
     } */
 
-    public void e(float f, float f1)
-    {
-        if ((this.passenger != null) && ((this.passenger instanceof EntityLiving)))
-        {
+    public void e(float f, float f1) {
+        if ((this.passenger != null) && ((this.passenger instanceof EntityLiving))) {
             this.lastYaw = (this.yaw = this.passenger.yaw);
             this.pitch = (this.passenger.pitch * 0.5F);
             b(this.yaw, this.pitch);
             this.aO = (this.aM = this.yaw);
-            f = ((EntityLiving)this.passenger).bd * 0.5F;
-            f1 = ((EntityLiving)this.passenger).be;
-
+            f = ((EntityLiving) this.passenger).bd * 0.5F;
+            f1 = ((EntityLiving) this.passenger).be;
 
 
             this.W = 1.0F;
             this.aQ = (bl() * 0.1F);
-            if (!this.world.isStatic)
-            {
-                i((float)getAttributeInstance(GenericAttributes.d).getValue());
+            if (!this.world.isStatic) {
+                i((float) getAttributeInstance(GenericAttributes.d).getValue());
                 super.e(f, f1);
             }
 
@@ -121,9 +117,7 @@ public class RidableVillager extends EntityVillager {
             }
             this.aF += (f4 - this.aF) * 0.4F;
             this.aG += this.aF;
-        }
-        else
-        {
+        } else {
             this.W = 0.5F;
             this.aQ = 0.02F;
             super.e(f, f1);

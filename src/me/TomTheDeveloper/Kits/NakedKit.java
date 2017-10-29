@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -26,24 +25,23 @@ import java.util.List;
 /**
  * Created by Tom on 8/02/2015.
  */
-public class NakedKit extends PremiumKit implements Listener{
+public class NakedKit extends PremiumKit implements Listener {
 
-    public NakedKit(){
+    public NakedKit() {
         setDescription(new String[]{
-                 "You are the ultimate master!",
-                 "You start off with a" + ChatManager.HIGHLIGHTED + " diamond",
+                "You are the ultimate master!",
+                "You start off with a" + ChatManager.HIGHLIGHTED + " diamond",
                 ChatManager.HIGHLIGHTED + "Sharpness VI sword!",
                 ChatColor.DARK_PURPLE + "However you can't wear any",
-                 "armor during the game!",
+                "armor during the game!",
                 "Think good about your tactic!"
         });
         setName(ChatManager.HIGHLIGHTED + "Wild Naked");
     }
+
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(player.hasPermission("villagedefense.kit.naked")|| UserManager.getUser(player.getUniqueId()).isPremium())
-            return true;
-        return false;
+        return player.hasPermission("villagedefense.kit.naked") || UserManager.getUser(player.getUniqueId()).isPremium();
     }
 
     @Override
@@ -62,58 +60,56 @@ public class NakedKit extends PremiumKit implements Listener{
 
     @Override
     public void reStock(Player player) {
-        player.getInventory().addItem(Items.getPotion(PotionType.INSTANT_HEAL,1,true,1));
+        player.getInventory().addItem(Items.getPotion(PotionType.INSTANT_HEAL, 1, true, 1));
     }
 
     @EventHandler
-    public void onArmor(InventoryClickEvent event){
-        if(!(UserManager.getUser(((Player)event.getWhoClicked()).getUniqueId()).getKit() instanceof NakedKit))
+    public void onArmor(InventoryClickEvent event) {
+        if (!(UserManager.getUser(event.getWhoClicked().getUniqueId()).getKit() instanceof NakedKit))
             return;
-        if(event.getInventory().getType() != InventoryType.PLAYER)
+        if (event.getInventory().getType() != InventoryType.PLAYER)
             return;
         PlayerInventory inventory = (PlayerInventory) event.getInventory();
         boolean b = false;
-        for(ItemStack itemStack: inventory.getArmorContents()){
-            if(itemStack != null){
+        for (ItemStack itemStack : inventory.getArmorContents()) {
+            if (itemStack != null) {
                 itemStack.setType(Material.AIR);
                 b = true;
             }
         }
-        if(b = true){
-            ((Player) event.getWhoClicked()).sendMessage(ChatColor.RED + "You can't equip armor with the " + ChatManager.HIGHLIGHTED + "Wild Naked kit" + ChatColor.RED + "!");
+        if (b = true) {
+            event.getWhoClicked().sendMessage(ChatColor.RED + "You can't equip armor with the " + ChatManager.HIGHLIGHTED + "Wild Naked kit" + ChatColor.RED + "!");
         }
-        if(!getAllArmorTypes().contains(event.getCurrentItem()))
+        if (!getAllArmorTypes().contains(event.getCurrentItem()))
             return;
-        if((event.getClick() == ClickType.SHIFT_RIGHT)){
+        if ((event.getClick() == ClickType.SHIFT_RIGHT)) {
             event.setCancelled(true);
-            ((Player) event.getWhoClicked()).sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
+            event.getWhoClicked().sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
             return;
         }
-        if(Arrays.asList(100,101,102,103).contains(event.getSlot()) || Arrays.asList(100,101,102,103).contains(event.getRawSlot())) {
+        if (Arrays.asList(100, 101, 102, 103).contains(event.getSlot()) || Arrays.asList(100, 101, 102, 103).contains(event.getRawSlot())) {
             event.setCancelled(true);
-            ((Player) event.getWhoClicked()).sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
+            event.getWhoClicked().sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
 
         }
 
     }
 
     @EventHandler
-    public void onArmorClick(PlayerInteractEvent event){
-        if(!(UserManager.getUser(((Player)event.getPlayer()).getUniqueId()).getKit() instanceof NakedKit))
-        return;
-        if(!event.hasItem())
+    public void onArmorClick(PlayerInteractEvent event) {
+        if (!(UserManager.getUser(event.getPlayer().getUniqueId()).getKit() instanceof NakedKit))
             return;
-        if(getAllArmorTypes().contains(event.getItem().getType())){
+        if (!event.hasItem())
+            return;
+        if (getAllArmorTypes().contains(event.getItem().getType())) {
             event.setCancelled(true);
-            ((Player) event.getPlayer()).sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
+            event.getPlayer().sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
         }
 
     }
 
 
-
-
-    public List<Material> getAllArmorTypes(){
+    public List<Material> getAllArmorTypes() {
         List<Material> list = new ArrayList<Material>();
         list.add(Material.LEATHER_BOOTS);
         list.add(Material.LEATHER_CHESTPLATE);

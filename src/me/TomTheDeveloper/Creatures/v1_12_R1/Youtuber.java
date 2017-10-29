@@ -5,7 +5,6 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 /**
  * Created by Tom on 12/08/2014.
@@ -27,7 +26,7 @@ public class Youtuber extends EntityZombie {
         targetC.clear();
 
 
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
         this.goalSelector.a(2, new PathfinderGoalZombieAttack(this, 1.0D, false));
@@ -38,8 +37,8 @@ public class Youtuber extends EntityZombie {
         this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
         this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class,  true));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class,  false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
         this.a(0.6F, 1.8F);
 // this are its default goals.
     }

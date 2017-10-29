@@ -14,7 +14,6 @@ public class FastZombie extends EntityZombie {
     private float bw;
 
 
-
     @SuppressWarnings("rawtypes")
     public FastZombie(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
@@ -33,20 +32,20 @@ public class FastZombie extends EntityZombie {
         targetC.clear();
 
 
-        ((Navigation)getNavigation()).b(true);
+        getNavigation().b(true);
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
-        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityHuman.class, (float) (this.bw), false)); // this one to attack human
-        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, (float) this.bw, true));
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityVillager.class, (float) this.bw, true));
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityHuman.class, this.bw, false)); // this one to attack human
+        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, this.bw, true));
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityVillager.class, this.bw, true));
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class,0,  true)); // this one to target human
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class,0,  false));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class,0,  false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, true)); // this one to target human
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, 0, false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, 0, false));
 
 
     }

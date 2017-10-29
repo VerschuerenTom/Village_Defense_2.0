@@ -27,7 +27,7 @@ public class BreakFenceListener extends BukkitRunnable {
 
     @Override
     public void run() {
-        for(World world: Bukkit.getServer().getWorlds()) {
+        for (World world : Bukkit.getServer().getWorlds()) {
             for (Entity entity : world.getEntities()) {
                 if (!(entity.getType() == EntityType.ZOMBIE))
                     continue;
@@ -35,7 +35,7 @@ public class BreakFenceListener extends BukkitRunnable {
                 for (Block block : blocks) {
 
                     if (block.getType() == Material.WOOD_DOOR || block.getType() == Material.WOODEN_DOOR /*|| block.getType() == Material.FENCE*/) {
-                        ParticleEffect.BLOCK_CRACK.display(new ParticleEffect.BlockData(Material.WOODEN_DOOR, (byte) 0),(float)0.1, (float)0.1, (float)0.1,1,50,block.getLocation(),100);
+                        ParticleEffect.BLOCK_CRACK.display(new ParticleEffect.BlockData(Material.WOODEN_DOOR, (byte) 0), (float) 0.1, (float) 0.1, (float) 0.1, 1, 50, block.getLocation(), 100);
                         block.getWorld().playSound(block.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD, 5F, 5F);
                         this.particleDoor(block);
                         if (random.nextInt(15) == 5) {
@@ -51,9 +51,8 @@ public class BreakFenceListener extends BukkitRunnable {
 
     public void particleDoor(Block block) {
         for (BlockFace blockFace : BlockFace.values()) {
-            if (block.getRelative(blockFace).getType() == Material.WOOD_DOOR || block.getRelative(blockFace).getType() == Material.WOODEN_DOOR|| block.getType() == Material.FENCE) {
-                ParticleEffect.BLOCK_CRACK.display(new ParticleEffect.BlockData(Material.WOODEN_DOOR, (byte) 0),(float)0.1, (float)0.1, (float)0.1,1,50,block.getLocation(),100);
-
+            if (block.getRelative(blockFace).getType() == Material.WOOD_DOOR || block.getRelative(blockFace).getType() == Material.WOODEN_DOOR || block.getType() == Material.FENCE) {
+                ParticleEffect.BLOCK_CRACK.display(new ParticleEffect.BlockData(Material.WOODEN_DOOR, (byte) 0), (float) 0.1, (float) 0.1, (float) 0.1, 1, 50, block.getLocation(), 100);
 
 
             }

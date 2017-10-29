@@ -23,7 +23,7 @@ public class RunnerKit extends LevelKit {
 
     public RunnerKit() {
         setLevel(10);
-        setName(ChatManager.getFromLanguageConfig("Runner-Kit-Name",ChatManager.PREFIX + "Runner"));
+        setName(ChatManager.getFromLanguageConfig("Runner-Kit-Name", ChatManager.PREFIX + "Runner"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Runner-Kit-Description", "Parkour is your passion" +
                 "! You are able to run faster than everybody else. You have also the ability to jump higher."), 40);
         this.setDescription(description.toArray(new String[description.size()]));
@@ -31,9 +31,7 @@ public class RunnerKit extends LevelKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp() || player.hasPermission("villagefense.kit.runner"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.isOp() || player.hasPermission("villagefense.kit.runner");
     }
 
     @Override
@@ -41,7 +39,7 @@ public class RunnerKit extends LevelKit {
         player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.STICK), new Enchantment[]{
                 Enchantment.KNOCKBACK, Enchantment.DAMAGE_UNDEAD, Enchantment.DURABILITY
         }, new int[]{
-                2,1,10
+                2, 1, 10
         }));
         ArmorHelper.setColouredArmor(Color.BLUE, player);
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 3));

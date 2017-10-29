@@ -11,13 +11,6 @@ import java.util.List;
  */
 public class RidableIronGolem extends EntityIronGolem {
 
-    @Override
-    protected void initAttributes() {
-        super.initAttributes();
-        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(150D);
-        return;
-    }
-
     public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
@@ -32,7 +25,7 @@ public class RidableIronGolem extends EntityIronGolem {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).b(true);
+        ((Navigation) getNavigation()).b(true);
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(2, new PathfinderGoalMoveTowardsTarget(this, 0.9D, 32.0F));
         this.goalSelector.a(3, new PathfinderGoalMoveThroughVillage(this, 0.6D, true));
@@ -47,6 +40,32 @@ public class RidableIronGolem extends EntityIronGolem {
         this.setHealth(500);
     }
 
+    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+        Field field;
+        Object o = null;
+
+        try {
+            field = clazz.getDeclaredField(fieldName);
+
+            field.setAccessible(true);
+
+            o = field.get(object);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return o;
+    }
+
+    @Override
+    protected void initAttributes() {
+        super.initAttributes();
+        this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(150D);
+        return;
+    }
+
     @Override
     public void g(float f, float f1) {
 
@@ -56,7 +75,7 @@ public class RidableIronGolem extends EntityIronGolem {
             this.pitch = this.passenger.pitch * 0.5F;
             setYawPitch(this.yaw, this.pitch);
             this.aI = this.aG = this.yaw;
-            f = ((EntityLiving) this.passenger).aZ* 0.5F;
+            f = ((EntityLiving) this.passenger).aZ * 0.5F;
             f1 = ((EntityLiving) this.passenger).ba;
             if (f1 <= 0.0F) {
                 f1 *= 0.25F;
@@ -91,7 +110,7 @@ public class RidableIronGolem extends EntityIronGolem {
             }
 
             this.az += (f4 - this.az) * 0.4F;
-            this.aA+= this.az;
+            this.aA += this.az;
         } else {
             this.S = 0.5F;
             this.aK = 0.02F;
@@ -107,25 +126,6 @@ public class RidableIronGolem extends EntityIronGolem {
             super.g(f, f1);
             this.S = 1.0F;
         }
-    }
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
     }
 
     @Override

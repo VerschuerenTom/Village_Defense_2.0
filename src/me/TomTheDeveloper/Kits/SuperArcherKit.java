@@ -37,16 +37,14 @@ public class SuperArcherKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.superarcher"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.superarcher");
     }
 
     @Override
     public void giveKitItems(Player player) {
         ArmorHelper.setColouredArmor(Color.GREEN, player);
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
-        player.getInventory().addItem(WeaponHelper.getEnchantedBow(new Enchantment[]{Enchantment.DURABILITY, Enchantment.ARROW_KNOCKBACK}, new int[]{10,1}));
+        player.getInventory().addItem(WeaponHelper.getEnchantedBow(new Enchantment[]{Enchantment.DURABILITY, Enchantment.ARROW_KNOCKBACK}, new int[]{10, 1}));
         player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
@@ -63,17 +61,17 @@ public class SuperArcherKit extends PremiumKit implements Listener {
     }
 
     @EventHandler
-    public void ShootArrow(PlayerInteractEvent e){
-        if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK){
-            if(e.getPlayer().getItemInHand() != null){
-                if(e.getPlayer().getItemInHand().getType() == Material.BOW ){
-                    if(UserManager.getUser(e.getPlayer().getUniqueId()).getKit() instanceof SuperArcherKit && !UserManager.getUser(e.getPlayer().getUniqueId()).isSpectator()){
-                        if(e.getPlayer().getInventory().contains(Material.ARROW)){
+    public void ShootArrow(PlayerInteractEvent e) {
+        if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+            if (e.getPlayer().getItemInHand() != null) {
+                if (e.getPlayer().getItemInHand().getType() == Material.BOW) {
+                    if (UserManager.getUser(e.getPlayer().getUniqueId()).getKit() instanceof SuperArcherKit && !UserManager.getUser(e.getPlayer().getUniqueId()).isSpectator()) {
+                        if (e.getPlayer().getInventory().contains(Material.ARROW)) {
                             Projectile pr = e.getPlayer().launchProjectile(Arrow.class);
                             pr.setVelocity(e.getPlayer().getLocation().getDirection().multiply(3));
                             e.setCancelled(true);
 
-                            e.getPlayer().getInventory().removeItem(new ItemStack(Material.ARROW, 1)) ;
+                            e.getPlayer().getInventory().removeItem(new ItemStack(Material.ARROW, 1));
                         }
                     }
                 }

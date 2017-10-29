@@ -17,7 +17,7 @@ import java.util.List;
 public class LightTankKit extends FreeKit {
 
     public LightTankKit() {
-        setName(ChatManager.getFromLanguageConfig("Light-Tank-Kit-Name",ChatColor.DARK_GREEN + " Light Tank"));
+        setName(ChatManager.getFromLanguageConfig("Light-Tank-Kit-Name", ChatColor.DARK_GREEN + " Light Tank"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Light-Tank-Kit-Description", "You are tank Junior!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 

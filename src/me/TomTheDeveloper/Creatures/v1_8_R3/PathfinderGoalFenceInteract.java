@@ -1,6 +1,8 @@
 package me.TomTheDeveloper.Creatures.v1_8_R3;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.BlockFence;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.PathfinderGoalDoorInteract;
 
 
 /**

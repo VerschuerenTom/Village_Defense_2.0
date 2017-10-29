@@ -49,7 +49,7 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.setRemoveWhenFarAway(false);
         zombie.getEquipment().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,Integer.MAX_VALUE,1));
+        zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         this.addZombie((Zombie) fastZombie.getBukkitEntity());
 
         zombiestospawn--;
@@ -103,7 +103,7 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
 
@@ -120,21 +120,22 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
+
     public void spawnGolemBuster(Random random) {
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size() - 1));
         net.minecraft.server.v1_8_R3.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
         GolemBuster fastZombie = new GolemBuster(location.getWorld());
         fastZombie.setPosition(location.getX(), location.getY(), location.getZ());
         McWorld.addEntity(fastZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        Zombie zombie =(Zombie) fastZombie.getBukkitEntity();
+        Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT));
         zombie.getEquipment().setHelmetDropChance(0.0F);
         zombie.getEquipment().setItemInHandDropChance(0F);
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }
@@ -145,14 +146,14 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         PlayerBuster fastZombie = new PlayerBuster(location.getWorld());
         fastZombie.setPosition(location.getX(), location.getY(), location.getZ());
         McWorld.addEntity(fastZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        Zombie zombie =(Zombie) fastZombie.getBukkitEntity();
+        Zombie zombie = (Zombie) fastZombie.getBukkitEntity();
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT));
         zombie.getEquipment().setHelmetDropChance(0.0F);
         zombie.getEquipment().setItemInHandDropChance(0F);
         zombie.getEquipment().setBoots(new ItemStack(Material.GOLD_BOOTS));
         zombie.getEquipment().setLeggings(new ItemStack(Material.GOLD_LEGGINGS));
         zombie.getEquipment().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }
@@ -164,7 +165,7 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         McWorld.addEntity(ridableVillager, CreatureSpawnEvent.SpawnReason.CUSTOM);
         Villager villager = (Villager) ridableVillager.getBukkitEntity();
         villager.setRemoveWhenFarAway(false);
-        this.addVillager((Villager)ridableVillager.getBukkitEntity());
+        this.addVillager((Villager) ridableVillager.getBukkitEntity());
     }
 
     public void spawnGolem(Location location) {
@@ -200,7 +201,6 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
         wolf.setCustomNameVisible(true);
         wolf.setInvisible(false);
         ((Wolf) wolf.getBukkitEntity()).setOwner(player);
-
 
 
         this.addWolf((Wolf) wolf.getBukkitEntity());

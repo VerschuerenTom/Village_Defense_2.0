@@ -1,13 +1,11 @@
 package me.TomTheDeveloper.Kits;
 
-import com.google.common.collect.Lists;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -23,21 +21,16 @@ public class ArcherKit extends LevelKit {
 
     public ArcherKit() {
         this.setLevel(2);
-        this.setName(ChatManager.getFromLanguageConfig("Archer-Kit-Name",ChatManager.PREFIX + "Archer"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Archer-Kit-Description","Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"), 40);
+        this.setName(ChatManager.getFromLanguageConfig("Archer-Kit-Name", ChatManager.PREFIX + "Archer"));
+        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Archer-Kit-Description", "Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-
 
 
     }
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if (UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.hasPermission("villagefense.kit.archer")) {
-            return true;
-        } else {
-            return false;
-        }
+        return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.hasPermission("villagefense.kit.archer");
 
     }
 
@@ -57,6 +50,6 @@ public class ArcherKit extends LevelKit {
 
     @Override
     public void reStock(Player player) {
-        player.getInventory().addItem(new ItemStack(Material.ARROW,5));
+        player.getInventory().addItem(new ItemStack(Material.ARROW, 5));
     }
 }

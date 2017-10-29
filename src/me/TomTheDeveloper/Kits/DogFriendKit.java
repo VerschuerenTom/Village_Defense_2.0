@@ -10,7 +10,6 @@ import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,9 +24,9 @@ public class DogFriendKit extends PremiumKit {
 
     private YoutuberInvasion plugin;
 
-    public DogFriendKit(YoutuberInvasion invasion){
+    public DogFriendKit(YoutuberInvasion invasion) {
         this.plugin = invasion;
-        this.setName(ChatManager.getSingleMessage("Dog-Friend-Kit-Name",ChatManager.HIGHLIGHTED + "Dog Friend"));
+        this.setName(ChatManager.getSingleMessage("Dog-Friend-Kit-Name", ChatManager.HIGHLIGHTED + "Dog Friend"));
         List<String> description = Util.splitString(ChatManager.getSingleMessage("Dog-Friend-Kit-Description", "Start off with three dogs and get one extra dog every wave!!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
@@ -36,9 +35,7 @@ public class DogFriendKit extends PremiumKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.dogfriend"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.dogfriend");
     }
 
     @Override
@@ -49,18 +46,18 @@ public class DogFriendKit extends PremiumKit {
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         GameInstance gameInstance = plugin.getGameAPI().getGameInstanceManager().getGameInstance(player);
-        if(gameInstance == null)
+        if (gameInstance == null)
             return;
-        if(!(gameInstance instanceof InvasionInstance)){
+        if (!(gameInstance instanceof InvasionInstance)) {
             return;
         }
-        if(plugin.is1_8_R3()){
+        if (plugin.is1_8_R3()) {
             InvasionInstance1_8_R3 invasionInstance1_8_r3 = (InvasionInstance1_8_R3) gameInstance;
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
         }
-        if(plugin.is1_12_R1()){
+        if (plugin.is1_12_R1()) {
             InvasionInstance1_12_R1 invasionInstance1_8_r3 = (InvasionInstance1_12_R1) gameInstance;
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
@@ -76,16 +73,16 @@ public class DogFriendKit extends PremiumKit {
     @Override
     public void reStock(Player player) {
         GameInstance gameInstance = plugin.getGameAPI().getGameInstanceManager().getGameInstance(player);
-        if(gameInstance == null)
+        if (gameInstance == null)
             return;
-        if(!(gameInstance instanceof InvasionInstance)){
+        if (!(gameInstance instanceof InvasionInstance)) {
             return;
         }
-        if(plugin.is1_8_R3()){
+        if (plugin.is1_8_R3()) {
             InvasionInstance1_8_R3 invasionInstance1_8_r3 = (InvasionInstance1_8_R3) gameInstance;
             invasionInstance1_8_r3.spawnWolf(invasionInstance1_8_r3.getStartLocation(), player);
         }
-        if(plugin.is1_12_R1()){
+        if (plugin.is1_12_R1()) {
             InvasionInstance1_12_R1 invasionInstance1_12_R1 = (InvasionInstance1_12_R1) gameInstance;
             invasionInstance1_12_R1.spawnWolf(invasionInstance1_12_R1.getStartLocation(), player);
         }

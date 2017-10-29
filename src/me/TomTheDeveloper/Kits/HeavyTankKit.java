@@ -19,7 +19,7 @@ import java.util.List;
 public class HeavyTankKit extends PremiumKit {
 
     public HeavyTankKit() {
-        setName(ChatManager.getFromLanguageConfig("Heavy-Tank-Kit-Name",ChatManager.HIGHLIGHTED + "Heavy Tank"));
+        setName(ChatManager.getFromLanguageConfig("Heavy-Tank-Kit-Name", ChatManager.HIGHLIGHTED + "Heavy Tank"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Heavy-Tank-Kit-Description", "" +
                 "Start off with iron armor and a double amount of hearts! Yup that's right, you'll be the last man standing!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
@@ -27,14 +27,12 @@ public class HeavyTankKit extends PremiumKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        if(UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.heavytank"))
-            return true;
-        return false;
+        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.heavytank");
     }
 
     @Override
     public void giveKitItems(Player player) {
-        player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.STICK), new Enchantment[]{Enchantment.DURABILITY, Enchantment.DAMAGE_ALL}, new int[]{10,2}));
+        player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.STICK), new Enchantment[]{Enchantment.DURABILITY, Enchantment.DAMAGE_ALL}, new int[]{10, 2}));
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));
         player.setMaxHealth(40.0);
         player.setHealth(40.0);
