@@ -19,7 +19,7 @@ import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
 import me.TomTheDeveloper.Events.Events;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
 import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Events.onDeath;
+import me.TomTheDeveloper.Events.DeathEvent;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Handlers.ChatManager;
@@ -76,7 +76,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
    // private MyDatabase database;
     private boolean databaseActivated = false;
-   private MySQLDatabase database;
+    private MySQLDatabase database;
     private FileConfiguration statsConfig = null;
     private FileStats fileStats;
     private boolean chatformat = true;
@@ -307,7 +307,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         }
 
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.getServer().getPluginManager().registerEvents(new onDeath(this), this);
+        this.getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
         this.getServer().getPluginManager().registerEvents(new AnvilManager(this),this);
 
