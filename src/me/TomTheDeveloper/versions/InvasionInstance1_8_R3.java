@@ -193,16 +193,16 @@ public class InvasionInstance1_8_R3 extends InvasionInstance {
 
     public void spawnWolf(Location location, Player player) {
         net.minecraft.server.v1_8_R3.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
-        WorkingWolf ridableIronGolem = new WorkingWolf(location.getWorld());
-        ridableIronGolem.setPosition(location.getX(), location.getY(), location.getZ());
-        McWorld.addEntity(ridableIronGolem, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        ridableIronGolem.setCustomName(player.getName() + "'s Wolf");
-        ridableIronGolem.setCustomNameVisible(true);
-        ridableIronGolem.setInvisible(false);
-        ((Wolf) ridableIronGolem.getBukkitEntity()).setOwner(player);
+        WorkingWolf wolf = new WorkingWolf(location.getWorld());
+        wolf.setPosition(location.getX(), location.getY(), location.getZ());
+        McWorld.addEntity(wolf, CreatureSpawnEvent.SpawnReason.CUSTOM);
+        wolf.setCustomName(player.getName() + "'s Wolf");
+        wolf.setCustomNameVisible(true);
+        wolf.setInvisible(false);
+        ((Wolf) wolf.getBukkitEntity()).setOwner(player);
 
 
 
-        this.addWolf((Wolf) ridableIronGolem.getBukkitEntity());
+        this.addWolf((Wolf) wolf.getBukkitEntity());
     }
 }
