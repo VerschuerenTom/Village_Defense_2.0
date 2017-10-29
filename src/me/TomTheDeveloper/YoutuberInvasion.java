@@ -775,19 +775,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
             User user = UserManager.getUser(player.getUniqueId());
 
-       /* List<String> temp = new ArrayList<String>();
-        temp.add("gamesplayed");
-        temp.add("kills");
-        temp.add("deaths");
-        temp.add("highestwave");
-        temp.add("exp");
-        temp.add("level");
-        temp.add("orbs");
-        for (String s : temp) {
-            plugin.getMyDatabase().updateDocument(new BasicDBObject("UUID", event.getPlayer().getUniqueId().toString()), new BasicDBObject(s, user.getInt(s)));
-            System.out.println("");
-        }
-        */
+
             List<String> temp = new ArrayList<String>();
             temp.add("gamesplayed");
             temp.add("kills");
@@ -827,34 +815,6 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-
-
-
-
-
-  /*  public void registerEntity(String name, int id, Class<? extends EntityInsentient> customClass) {
-        try {
-
-            List<Map<?, ?>> dataMaps = new ArrayList<Map<?, ?>>();
-            for (Field f : EntityTypes.class.getDeclaredFields()) {
-                if (f.getType().getSimpleName().equals(Map.class.getSimpleName())) {
-                    f.setAccessible(true);
-                    dataMaps.add((Map<?, ?>) f.get(null));
-                }
-            }
-
-            ((Map<Class<? extends EntityInsentient>, String>) dataMaps.get(1)).put(customClass, name);
-            ((Map<Class<? extends EntityInsentient>, Integer>) dataMaps.get(3)).put(customClass, id);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-*/
-
-    /*public MySQLDatabase getMySQLDatabase(){
-        return this.database;
-    }*/
 
 
     public void loadInstances() {
@@ -1113,22 +1073,6 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             }
             User user = UserManager.getUser(player.getUniqueId());
 
-/*        if (plugin.getMyDatabase().getSingle(new BasicDBObject().append("UUID", event.getPlayer().getUniqueId().toString())) == null) {
-            plugin.getMyDatabase().insertDocument(new String[]{"UUID", "gamesplayed", "kills", "deaths", "highestwave", "exp", "level", "orbs"},
-                    new Object[]{event.getPlayer().getUniqueId().toString(), 0, 0, 0, 0, 0, 0, 0});
-        }
-
-        List<String> temp = new ArrayList<String>();
-        temp.add("gamesplayed");
-        temp.add("kills");
-        temp.add("deaths");
-        temp.add("highestwave");
-        temp.add("exp");
-        temp.add("level");
-        temp.add("orbs");
-        for (String s : temp) {
-            user.setInt(s, (Integer) plugin.getMyDatabase().getSingle(new BasicDBObject("UUID", event.getPlayer().getUniqueId().toString())).get(s));
-        } */
 
             Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
 
