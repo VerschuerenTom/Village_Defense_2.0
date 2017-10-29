@@ -14,7 +14,6 @@ import me.TomTheDeveloper.Creatures.v1_12_R1.HardZombie;
 import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
-import me.TomTheDeveloper.Creatures.v1_12_R1.TankerZombie;
 import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
 import me.TomTheDeveloper.Events.Events;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;

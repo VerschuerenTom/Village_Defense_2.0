@@ -6,12 +6,12 @@ import org.bukkit.event.Listener;
 /**
  * Created by Tom on 15/08/2014.
  */
-public class onDeath implements Listener {
+public class DeathEvent implements Listener {
 
     private YoutuberInvasion plugin;
 
 
-    public onDeath(YoutuberInvasion plugin) {
+    public DeathEvent(YoutuberInvasion plugin) {
         this.plugin = plugin;
     }
 
