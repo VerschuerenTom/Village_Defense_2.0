@@ -76,7 +76,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
    // private MyDatabase database;
     private boolean databaseActivated = false;
-   private MySQLDatabase database;
+    private MySQLDatabase database;
     private FileConfiguration statsConfig = null;
     private FileStats fileStats;
     private boolean chatformat = true;
