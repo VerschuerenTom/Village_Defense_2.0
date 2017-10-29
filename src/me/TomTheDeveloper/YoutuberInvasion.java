@@ -3,7 +3,6 @@ package me.TomTheDeveloper;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
-import me.TomTheDeveloper.Anvils.AnvilManager;
 import me.TomTheDeveloper.Creatures.v1_12_R1.*;
 import me.TomTheDeveloper.Events.DeathEvent;
 import me.TomTheDeveloper.Events.Events;
@@ -280,7 +279,6 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
-        this.getServer().getPluginManager().registerEvents(new AnvilManager(this), this);
 
         this.getCommand("setshopchest").setExecutor(new ChestCommand(this));
         this.getCommand("setprice").setExecutor(this);
