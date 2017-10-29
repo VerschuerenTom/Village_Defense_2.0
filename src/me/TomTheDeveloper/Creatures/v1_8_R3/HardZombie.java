@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Creatures;
+package me.TomTheDeveloper.Creatures.v1_8_R3;
 
 import me.TomTheDeveloper.YoutuberInvasion;
 import net.minecraft.server.v1_8_R3.*;
@@ -8,9 +8,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 /**
- * Created by Tom on 17/12/2015.
+ * Created by Tom on 14/08/2014.
  */
-public class TankerZombie extends EntityZombie {
+public class HardZombie extends EntityZombie {
 
     public int damage;
     private float bw;
@@ -19,14 +19,11 @@ public class TankerZombie extends EntityZombie {
     protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(100.0D);
-        this.getAttributeInstance(GenericAttributes.c).setValue(0D);
         return;
     }
 
-    
-
     @SuppressWarnings("rawtypes")
-    public TankerZombie(org.bukkit.World world) {
+    public HardZombie(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
         this.bw = YoutuberInvasion.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
         this.damage = 15; // set the damage
@@ -79,8 +76,6 @@ public class TankerZombie extends EntityZombie {
 
         return o;
     }
-
-
 
     @Override
     public void setOnFire(int i) {

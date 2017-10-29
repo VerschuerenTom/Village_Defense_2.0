@@ -1,7 +1,5 @@
 package me.TomTheDeveloper.versions;
 
-import me.TomTheDeveloper.Creatures.*;
-import me.TomTheDeveloper.Creatures.v1_7_R4.*;
 import me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie;
 import me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie;
 import me.TomTheDeveloper.Creatures.v1_7_R4.GolemBuster;

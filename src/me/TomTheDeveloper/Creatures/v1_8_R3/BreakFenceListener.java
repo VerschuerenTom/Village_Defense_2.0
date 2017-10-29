@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Creatures;
+package me.TomTheDeveloper.Creatures.v1_8_R3;
 
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;

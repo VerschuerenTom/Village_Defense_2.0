@@ -1,6 +1,5 @@
 package me.TomTheDeveloper.Creatures.v1_12_R1;
 
-import me.TomTheDeveloper.Creatures.PathfinderGoalBreakDoorFaster;
 import me.TomTheDeveloper.YoutuberInvasion;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.*;
@@ -11,7 +10,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 /**
  * Created by Tom on 14/08/2014.

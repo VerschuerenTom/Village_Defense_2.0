@@ -1,6 +1,6 @@
 package me.TomTheDeveloper.versions;
 
-import me.TomTheDeveloper.Creatures.*;
+import me.TomTheDeveloper.Creatures.v1_8_R3.*;
 import me.TomTheDeveloper.InvasionInstance;
 import net.minecraft.server.v1_8_R3.GenericAttributes;
 import org.bukkit.Location;

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Creatures;
+package me.TomTheDeveloper.Creatures.v1_8_R3;
 
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.EntityInsentient;

@@ -83,7 +83,7 @@ public class Events implements Listener {
 	}
 
 
-
+    @Deprecated
 	@EventHandler
 	public void onPickUp(PlayerPickupItemEvent event) {
 		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
@@ -408,7 +408,7 @@ public class Events implements Listener {
 
 
 
-	@EventHandler
+	@EventHandler @Deprecated
 	public void onSpectate(PlayerPickupItemEvent event) {
 		if (UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
 			event.setCancelled(true);

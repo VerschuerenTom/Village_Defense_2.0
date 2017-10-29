@@ -4,8 +4,6 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import me.TomTheDeveloper.Anvils.AnvilManager;
-import me.TomTheDeveloper.Creatures.*;
-import me.TomTheDeveloper.Creatures.v1_12_R1.*;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
 import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
@@ -33,12 +31,10 @@ import me.TomTheDeveloper.chunks.ChunkManager;
 import me.TomTheDeveloper.commands.InstanceCommands;
 import me.TomTheDeveloper.items.SpecialItem;
 import me.TomTheDeveloper.rewards.RewardsHandler;
-import me.TomTheDeveloper.setup.SetupInventory;
 import me.TomTheDeveloper.stats.FileStats;
 import me.TomTheDeveloper.stats.MySQLDatabase;
 import me.TomTheDeveloper.stats.VillageDefenseStats;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
 import org.apache.commons.lang.math.NumberUtils;
@@ -51,7 +47,6 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -251,16 +246,16 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         }
         version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
         if(this.getVersion().equalsIgnoreCase("v1_8_R3")) {
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.Youtuber.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.FastZombie.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.BabyZombie.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.PlayerBuster.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.GolemBuster.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.HardZombie.class);
-            gameAPI.registerEntity("Villager", 120, me.TomTheDeveloper.Creatures.RidableVillager.class);
-            gameAPI.registerEntity("VillagerGolem", 99, me.TomTheDeveloper.Creatures.RidableIronGolem.class);
-            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.TankerZombie.class);
-            gameAPI.registerEntity("Wolf", 95, me.TomTheDeveloper.Creatures.WorkingWolf.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.Youtuber.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.FastZombie.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.BabyZombie.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.PlayerBuster.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.GolemBuster.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.HardZombie.class);
+            gameAPI.registerEntity("Villager", 120, me.TomTheDeveloper.Creatures.v1_8_R3.RidableVillager.class);
+            gameAPI.registerEntity("VillagerGolem", 99, me.TomTheDeveloper.Creatures.v1_8_R3.RidableIronGolem.class);
+            gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.TankerZombie.class);
+            gameAPI.registerEntity("Wolf", 95, me.TomTheDeveloper.Creatures.v1_8_R3.WorkingWolf.class);
         }
         if(this.getVersion().equalsIgnoreCase("v1_7_R4")) {
             gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.Youtuber.class);
@@ -396,7 +391,6 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
         SpecialItem.loadAll();
         loadInstances();
-        setupZombieSpawns();
         //database = new MyDatabase();
         FileConfiguration config = ConfigurationManager.getConfig("Bungee");
         if(!config.contains("ShutdownWhenGameEnds")){
@@ -731,7 +725,6 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     return false;
     }
 
-    private String shizzle = "%%__USER__%%";
 
 
 
@@ -834,31 +827,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-    public void setupZombieSpawns(){
-        StringBuilder strb = new StringBuilder();
-        URL site;
-        try
-        {
-            site = new URL("https://www.dropbox.com/s/e26kg7hmehlcwmy/SafetyCheck.txt?dl=1");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
-            {
-                String line;
-                while ((line = in.readLine()) != null)
-                {
-                    if(line.contains(shizzle)) {
-                        System.out.print("VILLAGEDEFENSE PROBLEMS, CREATURES REQUIRE AN UPDATE! IF U NOTICE this MESSAGE, CONTACT THE DEVELOPER");
-                        Bukkit.shutdown();
-                        throw new NullPointerException("CREATURES ARE WRONGLY LOADED!");
-                    }
-                }
-            }
-        }
-        catch(IOException ex)
-        {
-            ex.printStackTrace();
-        }
-    }
 
 
 

@@ -10,6 +10,7 @@ import java.util.*;
 
 /**
  * Created by Tom on 30/12/2015.
+ * For LeaderHeads.
  */
 public enum VillageDefenseStats {
     KILLS ("kills"),DEATHS ("deaths"),GAMES_PLAYED ("gamesplayed"),HIGHEST_WAVE ("highestwave"),LEVEL("level"), XP("xp");
