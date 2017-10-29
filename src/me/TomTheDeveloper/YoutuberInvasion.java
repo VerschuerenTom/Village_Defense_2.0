@@ -1,61 +1,5 @@
 package me.TomTheDeveloper;
 
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import com.sk89q.worldedit.bukkit.selections.Selection;
-import me.TomTheDeveloper.Anvils.AnvilManager;
-import me.TomTheDeveloper.Creatures.*;
-import me.TomTheDeveloper.Creatures.v1_12_R1.*;
-import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
-import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.GolemBuster;
-import me.TomTheDeveloper.Creatures.v1_12_R1.HardZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
-import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
-import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
-import me.TomTheDeveloper.Creatures.v1_12_R1.TankerZombie;
-import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
-import me.TomTheDeveloper.Events.Events;
-import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
-import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Events.DeathEvent;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.Kits.*;
-import me.TomTheDeveloper.Shop.Shop;
-import me.TomTheDeveloper.Utils.ItemBuilder;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.chunks.ChunkManager;
-import me.TomTheDeveloper.commands.InstanceCommands;
-import me.TomTheDeveloper.items.SpecialItem;
-import me.TomTheDeveloper.rewards.RewardsHandler;
-import me.TomTheDeveloper.setup.SetupInventory;
-import me.TomTheDeveloper.stats.FileStats;
-import me.TomTheDeveloper.stats.MySQLDatabase;
-import me.TomTheDeveloper.stats.VillageDefenseStats;
-import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
-import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
-import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
-import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.*;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -67,6 +11,88 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang.math.NumberUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Zombie;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import com.sk89q.worldedit.bukkit.selections.Selection;
+
+import me.TomTheDeveloper.Anvils.AnvilManager;
+import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
+import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.GolemBuster;
+import me.TomTheDeveloper.Creatures.v1_12_R1.HardZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
+import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
+import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
+import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
+import me.TomTheDeveloper.Events.Events;
+import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
+import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
+import me.TomTheDeveloper.Events.onDeath;
+import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Game.GameState;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Kits.ArcherKit;
+import me.TomTheDeveloper.Kits.BlockerKit;
+import me.TomTheDeveloper.Kits.CleanerKit;
+import me.TomTheDeveloper.Kits.DogFriendKit;
+import me.TomTheDeveloper.Kits.DoorRepairKit;
+import me.TomTheDeveloper.Kits.GolemFriend;
+import me.TomTheDeveloper.Kits.HardcoreKit;
+import me.TomTheDeveloper.Kits.HealerKit;
+import me.TomTheDeveloper.Kits.HeavyTankKit;
+import me.TomTheDeveloper.Kits.KnightKit;
+import me.TomTheDeveloper.Kits.LightTankKit;
+import me.TomTheDeveloper.Kits.LooterKit;
+import me.TomTheDeveloper.Kits.MedicKit;
+import me.TomTheDeveloper.Kits.MediumTankKit;
+import me.TomTheDeveloper.Kits.PremiumHardcoreKit;
+import me.TomTheDeveloper.Kits.PuncherKit;
+import me.TomTheDeveloper.Kits.RunnerKit;
+import me.TomTheDeveloper.Kits.ShotBowKit;
+import me.TomTheDeveloper.Kits.StrenghtKit;
+import me.TomTheDeveloper.Kits.SuperArcherKit;
+import me.TomTheDeveloper.Kits.TeleporterKit;
+import me.TomTheDeveloper.Kits.TornadoKit;
+import me.TomTheDeveloper.Kits.ZombieFinder;
+import me.TomTheDeveloper.Shop.Shop;
+import me.TomTheDeveloper.Utils.ItemBuilder;
+import me.TomTheDeveloper.Utils.ParticleEffect;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.chunks.ChunkManager;
+import me.TomTheDeveloper.commands.InstanceCommands;
+import me.TomTheDeveloper.items.SpecialItem;
+import me.TomTheDeveloper.rewards.RewardsHandler;
+import me.TomTheDeveloper.stats.FileStats;
+import me.TomTheDeveloper.stats.MySQLDatabase;
+import me.TomTheDeveloper.stats.VillageDefenseStats;
+import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
+import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
+import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
+
 
 
 /**
@@ -77,7 +103,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
    // private MyDatabase database;
     private boolean databaseActivated = false;
     private MySQLDatabase database;
-    private FileConfiguration statsConfig = null;
+    //private FileConfiguration statsConfig = null;
     private FileStats fileStats;
     private boolean chatformat = true;
     private RewardsHandler rewardsHandler;
@@ -307,7 +333,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         }
 
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
+        this.getServer().getPluginManager().registerEvents(new onDeath(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
         this.getServer().getPluginManager().registerEvents(new AnvilManager(this),this);
 
@@ -467,7 +493,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         return false;
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public boolean checkSpecialCommands(Player player,Command command, String s, String[] strings){
         if(strings.length == 0){
             player.sendMessage(ChatColor.GOLD + "----------------{VillageDefense Commands}----------");
@@ -835,7 +862,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-    public void setupZombieSpawns(){
+    @SuppressWarnings("unused")
+	public void setupZombieSpawns(){
         StringBuilder strb = new StringBuilder();
         URL site;
         try
@@ -889,7 +917,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
     }*/
 
 
-    public void loadInstances() {
+    @SuppressWarnings("unused")
+	public void loadInstances() {
         if(gameAPI.getGameInstanceManager().getGameInstances() != null) {
             if (gameAPI.getGameInstanceManager().getGameInstances().size() > 0) {
                 for (GameInstance gameInstance : gameAPI.getGameInstanceManager().getGameInstances()) {
@@ -1041,7 +1070,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onAddCommand(PlayerAddCommandEvent event) {
         String ID = event.getArenaID();
         int counter = 0;
@@ -1105,7 +1135,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
             event.setCancelled(true);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("setprice")) {
             if (sender.isOp() && args.length == 1) {
@@ -1125,7 +1156,8 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
 
     }
 
-    public void loadStatsForPlayersOnline(){
+    @SuppressWarnings("unused")
+	public void loadStatsForPlayersOnline(){
         for(final Player player:getServer().getOnlinePlayers()){
             if(gameAPI.isBungeeActivated())
                 gameAPI.getGameInstanceManager().getGameInstances().get(0).teleportToLobby(player);

@@ -49,7 +49,8 @@ public class RidableVillager extends EntityVillager {
         this.setCustomNameVisible(true);
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

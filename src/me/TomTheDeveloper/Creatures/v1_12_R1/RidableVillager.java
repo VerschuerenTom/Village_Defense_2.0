@@ -1,14 +1,29 @@
 package me.TomTheDeveloper.Creatures.v1_12_R1;
 
-import net.minecraft.server.v1_12_R1.*;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import com.google.common.collect.Lists;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftVillager;
-
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Random;
+
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+
+import net.minecraft.server.v1_12_R1.EntityAgeable;
+import net.minecraft.server.v1_12_R1.EntityHuman;
+import net.minecraft.server.v1_12_R1.EntityInsentient;
+import net.minecraft.server.v1_12_R1.EntityVillager;
+import net.minecraft.server.v1_12_R1.Navigation;
+import net.minecraft.server.v1_12_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_12_R1.PathfinderGoalInteract;
+import net.minecraft.server.v1_12_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_12_R1.PathfinderGoalLookAtTradingPlayer;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMakeLove;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveIndoors;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_12_R1.PathfinderGoalOpenDoor;
+import net.minecraft.server.v1_12_R1.PathfinderGoalPlay;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRestrictOpenDoor;
+import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_12_R1.PathfinderGoalTradeWithPlayer;
 
 /**
  * Created by Tom on 15/08/2014.
@@ -52,7 +67,8 @@ public class RidableVillager extends EntityVillager {
         this.setCustomNameVisible(true);
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

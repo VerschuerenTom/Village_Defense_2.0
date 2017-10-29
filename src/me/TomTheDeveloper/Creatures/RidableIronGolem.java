@@ -18,7 +18,8 @@ public class RidableIronGolem extends EntityIronGolem {
         return;
     }
 
-    public RidableIronGolem(org.bukkit.World world) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -109,7 +110,8 @@ public class RidableIronGolem extends EntityIronGolem {
         }
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

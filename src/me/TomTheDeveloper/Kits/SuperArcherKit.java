@@ -62,7 +62,8 @@ public class SuperArcherKit extends PremiumKit implements Listener {
 
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void ShootArrow(PlayerInteractEvent e){
         if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK){
             if(e.getPlayer().getItemInHand() != null){

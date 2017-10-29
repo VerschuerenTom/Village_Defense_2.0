@@ -4,7 +4,6 @@ import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,7 +20,7 @@ public class FastZombie extends EntityZombie {
         return;
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public FastZombie(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
         this.bw = 1.5F; //Change this to your liking. this is were you set the speed
@@ -43,8 +42,8 @@ public class FastZombie extends EntityZombie {
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
-        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, (float) (this.bw), false)); // this one to attack human
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, (this.bw), false)); // this one to attack human
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
@@ -55,7 +54,8 @@ public class FastZombie extends EntityZombie {
 
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

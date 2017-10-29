@@ -1,7 +1,36 @@
 package me.TomTheDeveloper;
 
-import me.TomTheDeveloper.Bungee.Bungee;
-import me.TomTheDeveloper.Creatures.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Zombie;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Game.InstanceType;
@@ -15,23 +44,6 @@ import me.TomTheDeveloper.Utils.ArmorHelper;
 //import me.mgone.bossbarapi.BossbarAPI;
 import me.TomTheDeveloper.chunks.ChunkManager;
 import me.TomTheDeveloper.items.SpecialItemManager;
-import org.bukkit.*;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.block.Block;
-import org.bukkit.entity.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-
-import java.util.*;
 
 /**
  * Created by Tom on 12/08/2014.
@@ -78,7 +90,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             return true;
     }
 
-    @Override
+    @SuppressWarnings({ "deprecation", "incomplete-switch" })
+	@Override
     public void run() {
 
         User.handleCooldowns();
@@ -308,7 +321,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 if(plugin.isBungeeActivated()){
                     if(ConfigurationManager.getConfig("Bungee").getBoolean("ShutdownWhenGameEnds"))
                         plugin.getPlugin().getServer().shutdown();
-                }
+                	}
                 }
                 setTimer(getTimer() - 1);
                 break;
@@ -342,7 +355,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         }
     }
 
-    private void updateBar() {
+    @SuppressWarnings({ "unused", "incomplete-switch" })
+	private void updateBar() {
         switch (getGameState()) {
             case WAITING_FOR_PLAYERS:
                 for (Player player : getPlayers()) {
@@ -359,7 +373,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
             case STARTING:
                 for (Player player : getPlayers()) {
-                    float percentage = (float) Math.ceil((double) (100 * getTimer() / 30));
+                    float percentage = (float) Math.ceil(100 * getTimer() / 30);
 
 
                    // BossbarAPI.setMessage(player, ChatColor.GRAY + "Starting in: " + ChatManager.HIGHLIGHTED + getTimer(), percentage);
@@ -589,7 +603,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
 
 
-    public void endWave() {
+    @SuppressWarnings("deprecation")
+	public void endWave() {
         youtuberInvasion.getRewardsHandler().performEndWaveRewards(this, wave);
         setTimer(25);
         zombiecheckerlocations.clear();
@@ -625,7 +640,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
 
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void joinAttempt(Player p){
         System.out.print("Joining using Village Defense");
         if((getGameState() == GameState.INGAME || (getGameState() == GameState.STARTING && getTimer() <=3) || getGameState() == GameState.ENDING)){
@@ -958,7 +974,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         this.doorblocks.put(location, data);
     }
 
-    public void restoreDoors() {
+    @SuppressWarnings({ "deprecation", "unused" })
+	public void restoreDoors() {
         for (Location location : doorblocks.keySet()) {
 
 
@@ -1063,7 +1080,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
     public void onDieEntity(EntityDeathEvent event) {
 
         if (event.getEntity().getType() == EntityType.ZOMBIE) {
-            if (getZombies().contains((Zombie) event.getEntity()))
+            if (getZombies().contains(event.getEntity()))
                 removeZombie((Zombie) event.getEntity());
             if(event.getEntity().getKiller() != null){
                 if(plugin.getGameInstanceManager().getGameInstance(event.getEntity().getKiller()) !=null) {
@@ -1073,7 +1090,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             }
         }
         if (event.getEntity().getType() == EntityType.VILLAGER) {
-            if (getVillagers().contains((Villager) event.getEntity())) {
+            if (getVillagers().contains(event.getEntity())) {
                 getStartLocation().getWorld().strikeLightningEffect(event.getEntity().getLocation());
                 removeVillager((Villager) event.getEntity());
                 getChatManager().broadcastMessage("A-Villager-Has-Died",ChatColor.RED + "A villager has died!");
@@ -1083,12 +1100,13 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onPlayerDie(PlayerDeathEvent event){
         if(!getPlayers().contains(event.getEntity()))
             return;
-        if (getPlayers().contains((Player) event.getEntity()))
-            this.onDeath((Player) event.getEntity());
+        if (getPlayers().contains(event.getEntity()))
+            this.onDeath(event.getEntity());
         if(event.getEntity().isDead())
             if(plugin.is1_8_R3()) {
                 event.getEntity().setHealth(event.getEntity().getMaxHealth());
@@ -1172,7 +1190,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void leaveAttempt(Player p){
 
         User user = UserManager.getUser(p.getUniqueId());

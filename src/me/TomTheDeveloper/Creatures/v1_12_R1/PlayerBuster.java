@@ -1,19 +1,34 @@
 package me.TomTheDeveloper.Creatures.v1_12_R1;
 
-import me.TomTheDeveloper.Creatures.PathfinderGoalBreakDoorFaster;
-import me.TomTheDeveloper.YoutuberInvasion;
-import net.minecraft.server.v1_12_R1.*;
-import org.bukkit.*;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.entity.*;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
+
+import me.TomTheDeveloper.YoutuberInvasion;
+import net.minecraft.server.v1_12_R1.DamageSource;
+import net.minecraft.server.v1_12_R1.EntityHuman;
+import net.minecraft.server.v1_12_R1.EntityIronGolem;
+import net.minecraft.server.v1_12_R1.EntityZombie;
+import net.minecraft.server.v1_12_R1.GenericAttributes;
+import net.minecraft.server.v1_12_R1.Navigation;
+import net.minecraft.server.v1_12_R1.PathfinderGoalBreakDoor;
+import net.minecraft.server.v1_12_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_12_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_12_R1.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_12_R1.PathfinderGoalZombieAttack;
 
 /**
  * Created by Tom on 15/08/2014.
@@ -29,7 +44,7 @@ public class PlayerBuster extends EntityZombie {
         return;
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public PlayerBuster(org.bukkit.World world) {
 
         super(((CraftWorld) world).getHandle());
@@ -54,7 +69,7 @@ public class PlayerBuster extends EntityZombie {
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
 
         this.goalSelector.a(2, new PathfinderGoalZombieAttack(this, 1.0D, false));
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false));
@@ -66,7 +81,8 @@ public class PlayerBuster extends EntityZombie {
 
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 
@@ -91,7 +107,8 @@ public class PlayerBuster extends EntityZombie {
         //super.setOnFire(i);
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public boolean damageEntity(DamageSource damagesource, float f) {
         if (damagesource != null && damagesource.getEntity() != null && damagesource.getEntity().getBukkitEntity().getType() == EntityType.PLAYER) {
 

@@ -1,55 +1,74 @@
 package me.TomTheDeveloper.Events;
 
-import com.mongodb.BasicDBObject;
-import com.sk89q.worldedit.bukkit.selections.Selection;
-import me.TomTheDeveloper.Bungee.Bungee;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Game.InstanceType;
-import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.Kits.DogFriendKit;
-import me.TomTheDeveloper.Shop.Shop;
-import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.YoutuberInvasion;
-import me.TomTheDeveloper.items.SpecialItemManager;
-import me.TomTheDeveloper.stats.MySQLDatabase;
-import org.apache.logging.log4j.core.net.Priority;
-import org.bukkit.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
-import org.bukkit.entity.*;
-import org.bukkit.event.Event;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.event.entity.PlayerLeashEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerExpChangeEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.event.world.ChunkUnloadEvent;
-import org.bukkit.inventory.EnchantingInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.*;
+import me.TomTheDeveloper.GameAPI;
+import me.TomTheDeveloper.InvasionInstance;
+import me.TomTheDeveloper.User;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Bungee.Bungee;
+import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Game.GameState;
+import me.TomTheDeveloper.Game.InstanceType;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Shop.Shop;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.items.SpecialItemManager;
+import me.TomTheDeveloper.stats.MySQLDatabase;
 
 /**
  * Created by Tom on 16/08/2014.
  */
+@SuppressWarnings("deprecation")
 public class Events implements Listener {
 
 	private YoutuberInvasion plugin;
@@ -64,7 +83,7 @@ public class Events implements Listener {
 	@EventHandler
 	public void onItemPickup(PlayerExpChangeEvent event) {
 
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null)
 			return;
 		if(gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
@@ -82,11 +101,9 @@ public class Events implements Listener {
 
 	}
 
-
-
 	@EventHandler
 	public void onPickUp(PlayerPickupItemEvent event) {
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if(gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		if(UserManager.getUser(event.getPlayer().getUniqueId()).isFakeDead()) {
@@ -119,7 +136,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onDrop(PlayerDropItemEvent event) {
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if(gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		if(UserManager.getUser(event.getPlayer().getUniqueId()).isFakeDead()) {
@@ -169,19 +186,22 @@ public class Events implements Listener {
 		String name = event.getItemStack().getItemMeta().getDisplayName();
 		if(name.contains("Add villager")){
 			event.setCancelled(true);
-			event.getPlayer().performCommand(event.getGameInstance().getPlugin().getGameName() + " " + event.getGameInstance().getID() + " addspawn villager");
+			event.getGameInstance();
+			event.getPlayer().performCommand(GameInstance.getPlugin().getGameName() + " " + event.getGameInstance().getID() + " addspawn villager");
 			event.getPlayer().closeInventory();
 			return;
 
 		}
 		if(name.contains("Add zombie")){
 			event.setCancelled(true);
-			event.getPlayer().performCommand(event.getGameInstance().getPlugin().getGameName() + " " + event.getGameInstance().getID() + " addspawn zombie");
+			event.getGameInstance();
+			event.getPlayer().performCommand(GameInstance.getPlugin().getGameName() + " " + event.getGameInstance().getID() + " addspawn zombie");
 			event.getPlayer().closeInventory();
 		}
 		if(name.contains("Add doors")){
 			event.setCancelled(true);
-			event.getPlayer().performCommand(event.getGameInstance().getPlugin().getGameName() + " " + event.getGameInstance().getID() + " add doors");
+			event.getGameInstance();
+			event.getPlayer().performCommand(GameInstance.getPlugin().getGameName() + " " + event.getGameInstance().getID() + " add doors");
 			event.getPlayer().closeInventory();
 			return;
 
@@ -206,7 +226,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onEntityInteractEntity(PlayerInteractEntityEvent event) {
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		User user = UserManager.getUser(event.getPlayer().getUniqueId());
@@ -274,7 +294,7 @@ public class Events implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void disableCommands(PlayerCommandPreprocessEvent event){
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if(gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		if(event.getMessage().contains("leave") || event.getMessage().contains("stats")){
@@ -303,7 +323,7 @@ public class Events implements Listener {
 	public void onLeave(PlayerInteractEvent event){
 		if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
 			return;
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		ItemStack itemStack = event.getPlayer().getItemInHand();
@@ -418,7 +438,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onSpectate(PlayerDropItemEvent event) {
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		if (gameInstance.getGameState() != GameState.INGAME)
@@ -447,6 +467,7 @@ public class Events implements Listener {
 		}
 	}
 
+	@SuppressWarnings({ "unused", "rawtypes" })
 	@EventHandler
 	public void onShop(InventoryClickEvent event) {
 		if (!(event.getWhoClicked() instanceof Player))
@@ -523,6 +544,7 @@ public class Events implements Listener {
 
 	}
 
+	@SuppressWarnings("unused")
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent event) {
 		if(gameAPI.isBungeeActivated())
@@ -724,7 +746,7 @@ public class Events implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onDoorPlace(BlockPlaceEvent event){
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null || gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
 			return;
 		User user = UserManager.getUser(event.getPlayer().getUniqueId());
@@ -755,7 +777,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onBlockBreakEvent(BlockBreakEvent event){
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null)
 			return;
 		if(gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
@@ -770,7 +792,7 @@ public class Events implements Listener {
 
 	@EventHandler
 	public void onCraft(PlayerInteractEvent event){
-		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getPlayer());
+		GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
 		if (gameInstance == null)
 			return;
 		if(gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
@@ -780,6 +802,7 @@ public class Events implements Listener {
 	}
 
 
+	@SuppressWarnings("unused")
 	@EventHandler
 	public void onRottenFleshDrop(InventoryPickupItemEvent event){
 		if(event.getInventory().getType() != InventoryType.HOPPER)
@@ -805,7 +828,7 @@ public class Events implements Listener {
 					int end = invasionInstance.getRottenFlesh();
 					if(invasionInstance.checkLevelUpRottenFlesh()){
 						for(Player player: invasionInstance.getPlayers()){
-							player.setMaxHealth(player.getMaxHealth()+(double)2.0);
+							player.setMaxHealth(player.getMaxHealth()+2.0);
 						}
 						invasionInstance.getChatManager().broadcastMessage("RottenFleshLevelUp", ChatColor.AQUA + "The gods were happy with the rottenflesh!" +
 								ChatColor.AQUA + " There for they gave you an extra heart!");

@@ -29,8 +29,8 @@ public class RidableVillager extends EntityVillager {
         targetC.clear();
 
         this.a(0.6F, 1.8F);
-        ((Navigation)getNavigation()).b(true);
-        ((Navigation)getNavigation()).a(true);
+        getNavigation().b(true);
+        getNavigation().a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
        // this.goalSelector.a(1, new PathfinderGoalAvoidTarget(this, new EntityZom(this), 8.0F, 0.6D, 0.6D));
         this.goalSelector.a(1, new PathfinderGoalTradeWithPlayer(this));
@@ -49,7 +49,8 @@ public class RidableVillager extends EntityVillager {
         this.setCustomNameVisible(true);
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 
@@ -91,7 +92,8 @@ public class RidableVillager extends EntityVillager {
         }
     } */
 
-    public void e(float f, float f1)
+    @Override
+	public void e(float f, float f1)
     {
         if ((this.passenger != null) && ((this.passenger instanceof EntityLiving)))
         {

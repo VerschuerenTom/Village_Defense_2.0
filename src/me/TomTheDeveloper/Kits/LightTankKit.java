@@ -28,7 +28,8 @@ public class LightTankKit extends FreeKit {
         return true;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void giveKitItems(Player player) {
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));

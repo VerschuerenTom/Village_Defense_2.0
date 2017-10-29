@@ -11,7 +11,8 @@ import java.util.List;
  */
 public class RidableIronGolem extends EntityIronGolem {
 
-    public RidableIronGolem(org.bukkit.World world) {
+    @SuppressWarnings("rawtypes")
+	public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -25,7 +26,7 @@ public class RidableIronGolem extends EntityIronGolem {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).b(true);
+        getNavigation().b(true);
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(2, new PathfinderGoalMoveTowardsTarget(this, 0.9D, 32.0F));
         this.goalSelector.a(3, new PathfinderGoalMoveThroughVillage(this, 0.6D, true));
@@ -40,7 +41,8 @@ public class RidableIronGolem extends EntityIronGolem {
         this.setHealth(500);
     }
 
-    public void e(float f, float f1)
+    @Override
+	public void e(float f, float f1)
     {
         if ((this.passenger != null) && ((this.passenger instanceof EntityLiving)))
         {
@@ -79,7 +81,8 @@ public class RidableIronGolem extends EntityIronGolem {
         }
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

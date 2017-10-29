@@ -41,7 +41,8 @@ public class SpecialItem {
         }, Material.BED,8);
     }
 
-    public void load(String displayName, String[] lore, Material material, int slot){
+    @SuppressWarnings("deprecation")
+	public void load(String displayName, String[] lore, Material material, int slot){
         FileConfiguration config = ConfigurationManager.getConfig("SpecialItems");
 
 

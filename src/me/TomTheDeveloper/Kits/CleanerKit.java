@@ -10,12 +10,10 @@ import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
 import org.bukkit.*;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -43,7 +41,8 @@ public class CleanerKit extends PremiumKit implements Listener {
         return false;
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void giveKitItems(Player player) {
         ArmorHelper.setColouredArmor(Color.YELLOW, player);
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));

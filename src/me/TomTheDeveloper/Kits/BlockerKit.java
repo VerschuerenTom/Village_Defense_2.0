@@ -9,7 +9,6 @@ import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
-import net.minecraft.server.v1_8_R3.Enchantment;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -17,12 +16,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.scheduler.BukkitRunnable;
-
 import java.util.*;
 
 /**
@@ -77,7 +73,7 @@ public class BlockerKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(Util.setItemNameAndLore(new ItemStack(Material.FENCE,3),
                 ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name","Fence"),
-                (String[]) Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
+                Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
                         " These barriers last for 10 seconds"), 40).toArray(new String[Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
                         " These barriers last for 10 seconds"), 40).size()])));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
@@ -89,17 +85,19 @@ public class BlockerKit extends PremiumKit implements Listener {
         return plugin.is1_7_R4() ? Material.FENCE:Material.BARRIER;
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void reStock(Player player) {
         PlayerInventory inventory = player.getInventory();
         player.getInventory().addItem(Util.setItemNameAndLore(new ItemStack(Material.FENCE,3),
                 ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name","Fence"),
-                (String[]) Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
+                Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
                         " These barriers last for 10 seconds"), 40).toArray(new String[Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
                         " These barriers last for 10 seconds"), 40).size()])));
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.HIGHEST)
     public void onBarrierPlace(PlayerInteractEvent event){
         if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
@@ -154,7 +152,8 @@ public class BlockerKit extends PremiumKit implements Listener {
             seconds = 10;
         }
 
-        public UUID getUuid() {
+        @SuppressWarnings("unused")
+		public UUID getUuid() {
             return uuid;
         }
 
@@ -174,7 +173,8 @@ public class BlockerKit extends PremiumKit implements Listener {
             return seconds;
         }
 
-        public void setSeconds(int seconds) {
+        @SuppressWarnings("unused")
+		public void setSeconds(int seconds) {
             this.seconds = seconds;
         }
 

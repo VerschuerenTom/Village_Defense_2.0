@@ -3,7 +3,6 @@ package me.TomTheDeveloper.stats;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.String;import java.sql.Connection;import java.sql.ResultSet;import java.sql.SQLException;import java.sql.Statement;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -110,7 +109,7 @@ public class MySQLDatabase {
         Map<java.util.UUID, java.lang.Integer> column = new LinkedHashMap<UUID, Integer>();
         try {
             while(set.next()){
-                column.put(java.util.UUID.fromString(set.getString("UUID")), (java.lang.Integer) set.getInt(stat));
+                column.put(java.util.UUID.fromString(set.getString("UUID")), set.getInt(stat));
             }
         } catch (SQLException e) {
             e.printStackTrace();

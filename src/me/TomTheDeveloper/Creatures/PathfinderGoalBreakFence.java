@@ -1,6 +1,5 @@
 package me.TomTheDeveloper.Creatures;
 
-import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.EntityInsentient;
 
 /**
@@ -8,8 +7,8 @@ import net.minecraft.server.v1_8_R3.EntityInsentient;
  */
 public class PathfinderGoalBreakFence extends PathfinderGoalFenceInteract {
 
-    private int i = 0;
-    private int j = -1;
+    //private int i = 0;
+	//private int j = -1;
 
     public PathfinderGoalBreakFence(EntityInsentient entityinsentient) {
         super(entityinsentient);

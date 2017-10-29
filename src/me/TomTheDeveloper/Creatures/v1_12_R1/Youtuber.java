@@ -1,21 +1,36 @@
 package me.TomTheDeveloper.Creatures.v1_12_R1;
 
-import net.minecraft.server.v1_12_R1.*;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
+
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+
+import net.minecraft.server.v1_12_R1.EntityHuman;
+import net.minecraft.server.v1_12_R1.EntityVillager;
+import net.minecraft.server.v1_12_R1.EntityZombie;
+import net.minecraft.server.v1_12_R1.Navigation;
+import net.minecraft.server.v1_12_R1.PathfinderGoalBreakDoor;
+import net.minecraft.server.v1_12_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_12_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveThroughVillage;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_12_R1.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_12_R1.PathfinderGoalZombieAttack;
 
 /**
  * Created by Tom on 12/08/2014.
  */
 public class Youtuber extends EntityZombie {
 
-    private final PathfinderGoalBreakDoor bs = new PathfinderGoalBreakDoor(this);
+    //private final PathfinderGoalBreakDoor bs = new PathfinderGoalBreakDoor(this);
 
 
-    public Youtuber(org.bukkit.World world) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public Youtuber(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
         LinkedHashSet goalB = (LinkedHashSet) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
@@ -44,7 +59,8 @@ public class Youtuber extends EntityZombie {
 // this are its default goals.
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

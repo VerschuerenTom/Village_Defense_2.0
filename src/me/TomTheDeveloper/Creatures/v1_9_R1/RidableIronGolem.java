@@ -4,7 +4,6 @@ import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +11,8 @@ import java.util.Set;
  */
 public class RidableIronGolem extends EntityIronGolem {
 
-    public RidableIronGolem(org.bukkit.World world) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -158,7 +158,8 @@ public class RidableIronGolem extends EntityIronGolem {
         }
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

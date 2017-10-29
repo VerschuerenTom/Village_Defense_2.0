@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -65,7 +64,8 @@ public class NakedKit extends PremiumKit implements Listener{
         player.getInventory().addItem(Items.getPotion(PotionType.INSTANT_HEAL,1,true,1));
     }
 
-    @EventHandler
+    @SuppressWarnings({ "unused", "unlikely-arg-type" })
+	@EventHandler
     public void onArmor(InventoryClickEvent event){
         if(!(UserManager.getUser(((Player)event.getWhoClicked()).getUniqueId()).getKit() instanceof NakedKit))
             return;
@@ -99,13 +99,13 @@ public class NakedKit extends PremiumKit implements Listener{
 
     @EventHandler
     public void onArmorClick(PlayerInteractEvent event){
-        if(!(UserManager.getUser(((Player)event.getPlayer()).getUniqueId()).getKit() instanceof NakedKit))
+        if(!(UserManager.getUser(event.getPlayer().getUniqueId()).getKit() instanceof NakedKit))
         return;
         if(!event.hasItem())
             return;
         if(getAllArmorTypes().contains(event.getItem().getType())){
             event.setCancelled(true);
-            ((Player) event.getPlayer()).sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
+            event.getPlayer().sendMessage(ChatColor.RED + "You can't wear armor with the Wild Naked kit!");
         }
 
     }

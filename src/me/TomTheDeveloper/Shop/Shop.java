@@ -22,7 +22,8 @@ public class Shop {
     }
 
 
-    private void setup() {
+    @SuppressWarnings("unused")
+	private void setup() {
         if (!plugin.getConfig().contains("shop.location")) {
             System.out.print("NO SHOP FOUND FOR THE GAME!!!!");
             return;

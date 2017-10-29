@@ -31,7 +31,7 @@ public class PlayerBuster extends EntityZombie {
         return;
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public PlayerBuster(World world) {
 
         super(((CraftWorld) world).getHandle());
@@ -54,9 +54,9 @@ public class PlayerBuster extends EntityZombie {
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(5, new PathfinderGoalBreakDoorFaster(this));
-        this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, EntityHuman.class, (float) (this.bw), false)); // this one to attack human
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, (float) this.bw, true));
-        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, (float) this.bw));
+        this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, EntityHuman.class, (this.bw), false)); // this one to attack human
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityIronGolem.class, this.bw, true));
+        this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false));
@@ -68,7 +68,8 @@ public class PlayerBuster extends EntityZombie {
 
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 
@@ -93,7 +94,8 @@ public class PlayerBuster extends EntityZombie {
         //super.setOnFire(i);
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public boolean damageEntity(DamageSource damagesource, float f) {
         if (damagesource != null && damagesource.getEntity() != null && damagesource.getEntity().getBukkitEntity().getType() == EntityType.PLAYER) {
 

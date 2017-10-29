@@ -24,7 +24,7 @@ public class PathfinderGoalBreakDoorFaster extends PathfinderGoalBreakDoor {
         }
 
         ++this.i;
-        int i = (int) ((float) this.i / 240.0F * 10.0F);
+        int i = (int) (this.i / 240.0F * 10.0F);
 
         if (i != this.j) {
             this.a.world.c(this.a.getId(), this.b, i);

@@ -1,18 +1,35 @@
 package me.TomTheDeveloper.Creatures.v1_12_R1;
 
-import net.minecraft.server.v1_12_R1.*;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-
 import java.lang.reflect.Field;
 import java.util.LinkedHashSet;
-import java.util.List;
+
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+
+import net.minecraft.server.v1_12_R1.EntityHuman;
+import net.minecraft.server.v1_12_R1.EntityInsentient;
+import net.minecraft.server.v1_12_R1.EntityIronGolem;
+import net.minecraft.server.v1_12_R1.IMonster;
+import net.minecraft.server.v1_12_R1.Navigation;
+import net.minecraft.server.v1_12_R1.PathfinderGoalDefendVillage;
+import net.minecraft.server.v1_12_R1.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveThroughVillage;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_12_R1.PathfinderGoalMoveTowardsTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_12_R1.PathfinderGoalOfferFlower;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_12_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
 
 /**
  * Created by Tom on 17/08/2014.
  */
 public class RidableIronGolem extends EntityIronGolem {
 
-    public RidableIronGolem(org.bukkit.World world) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -43,7 +60,8 @@ public class RidableIronGolem extends EntityIronGolem {
     }
 
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

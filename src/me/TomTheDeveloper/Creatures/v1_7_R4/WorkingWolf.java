@@ -12,7 +12,8 @@ import java.util.List;
 public class WorkingWolf extends EntityWolf {
 
 
-    public WorkingWolf(org.bukkit.World world) {
+    @SuppressWarnings("rawtypes")
+	public WorkingWolf(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -26,11 +27,11 @@ public class WorkingWolf extends EntityWolf {
         targetC.clear();
 
         this.a(1.4F, 2.9F);
-        ((Navigation)getNavigation()).a(true);
+        getNavigation().a(true);
         this.goalSelector.a(3, new PathfinderGoalLeapAtTarget(this, 0.4F));
         this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, 1.0D, true));
         this.goalSelector.a(5, new PathfinderGoalFollowOwner(this, 1.0D, 10.0F, 2.0F));
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityZombie.class, (float) 1.5F, false));
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityZombie.class, 1.5F, false));
         this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
         this.goalSelector.a(6, new PathfinderGoalRandomStroll(this, 0.6D));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
@@ -101,7 +102,8 @@ public class WorkingWolf extends EntityWolf {
         }
     } */
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

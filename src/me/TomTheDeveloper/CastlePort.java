@@ -11,7 +11,8 @@ public class CastlePort {
     private int MAX;
     private int MIN;
     private int HEALTH;
-    private Block block;
+    @SuppressWarnings("unused")
+	private Block block;
 
     public CastlePort(Block block) {
         this.block = block;

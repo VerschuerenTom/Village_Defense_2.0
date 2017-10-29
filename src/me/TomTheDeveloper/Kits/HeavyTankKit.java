@@ -32,7 +32,8 @@ public class HeavyTankKit extends PremiumKit {
         return false;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void giveKitItems(Player player) {
         player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.STICK), new Enchantment[]{Enchantment.DURABILITY, Enchantment.DAMAGE_ALL}, new int[]{10,2}));
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));

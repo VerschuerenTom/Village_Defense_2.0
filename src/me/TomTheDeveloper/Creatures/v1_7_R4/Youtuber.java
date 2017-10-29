@@ -11,10 +11,11 @@ import java.util.List;
  */
 public class Youtuber extends EntityZombie {
 
-    private final PathfinderGoalBreakDoor bs = new PathfinderGoalBreakDoor(this);
+    //private final PathfinderGoalBreakDoor bs = new PathfinderGoalBreakDoor(this);
 
 
-    public Youtuber(org.bukkit.World world) {
+    @SuppressWarnings("rawtypes")
+	public Youtuber(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
         List goalB = (List) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
@@ -26,7 +27,7 @@ public class Youtuber extends EntityZombie {
         targetC.clear();
 
 
-        ((Navigation)getNavigation()).b(true);
+        getNavigation().b(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalMeleeAttack(this, EntityHuman.class, 1.0D, false));
         this.goalSelector.a(3, new PathfinderGoalMeleeAttack(this, EntityVillager.class, 1.0D, true));
@@ -43,7 +44,8 @@ public class Youtuber extends EntityZombie {
 // this are its default goals.
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

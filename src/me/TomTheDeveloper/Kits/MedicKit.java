@@ -63,7 +63,8 @@ public class MedicKit extends PremiumKit implements Listener {
     }
 
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onZombieHit(EntityDamageByEntityEvent event){
         if(event.getDamager().getType() != EntityType.PLAYER)
             return;

@@ -3,7 +3,6 @@ package me.TomTheDeveloper.Kits;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.Util;
@@ -37,7 +36,8 @@ public class HardcoreKit extends LevelKit {
         return false;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void giveKitItems(Player player) {
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         ArmorHelper.setColouredArmor(Color.WHITE, player);

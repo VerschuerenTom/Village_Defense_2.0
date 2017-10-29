@@ -1,7 +1,5 @@
 package me.TomTheDeveloper.versions;
 
-import me.TomTheDeveloper.Creatures.*;
-import me.TomTheDeveloper.Creatures.v1_7_R4.*;
 import me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie;
 import me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie;
 import me.TomTheDeveloper.Creatures.v1_7_R4.GolemBuster;
@@ -34,7 +32,8 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
     }
 
 
-    public void spawnVillager(Location location) {
+    @Override
+	public void spawnVillager(Location location) {
         net.minecraft.server.v1_7_R4.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
         RidableVillager ridableVillager = new RidableVillager(location.getWorld());
         ridableVillager.setPosition(location.getX(), location.getY(), location.getZ());
@@ -45,7 +44,8 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         this.addVillager((Villager)ridableVillager.getBukkitEntity());
     }
 
-    public void spawnGolem(Location location) {
+    @SuppressWarnings("unused")
+	public void spawnGolem(Location location) {
         Random random = new Random();
         net.minecraft.server.v1_7_R4.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
         RidableIronGolem ridableIronGolem = new RidableIronGolem(location.getWorld());
@@ -56,7 +56,8 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         McWorld.addEntity(ridableIronGolem, CreatureSpawnEvent.SpawnReason.CUSTOM);
     }
 
-    public void spawnGolem(Location location, Player player) {
+    @Override
+	public void spawnGolem(Location location, Player player) {
         net.minecraft.server.v1_7_R4.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
         RidableIronGolem ridableIronGolem = new RidableIronGolem(location.getWorld());
         ridableIronGolem.setPosition(location.getX(), location.getY(), location.getZ());
@@ -68,7 +69,8 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         this.addIronGolem((IronGolem) ridableIronGolem.getBukkitEntity());
     }
 
-    public void spawnWolf(Location location, Player player) {
+    @Override
+	public void spawnWolf(Location location, Player player) {
         net.minecraft.server.v1_7_R4.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
         WorkingWolf ridableIronGolem = new WorkingWolf(location.getWorld());
         ridableIronGolem.setPosition(location.getX(), location.getY(), location.getZ());
@@ -97,7 +99,8 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
     }
 
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void spawnKnockbackResistantZombies(Random random) {
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size() - 1));
         net.minecraft.server.v1_7_R4.World McWorld = ((org.bukkit.craftbukkit.v1_7_R4.CraftWorld) location.getWorld()).getHandle();
@@ -158,7 +161,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
 
@@ -175,11 +178,12 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
         zombie.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
         zombiestospawn--;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void spawnGolemBuster(Random random) {
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size() - 1));
         net.minecraft.server.v1_7_R4.World McWorld = ((org.bukkit.craftbukkit.v1_7_R4.CraftWorld) location.getWorld()).getHandle();
@@ -191,14 +195,15 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setHelmetDropChance(0.0F);
         zombie.getEquipment().setItemInHandDropChance(0F);
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }
 
 
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void spawnPlayerBuster(Random random) {
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size() - 1));
         net.minecraft.server.v1_7_R4.World McWorld = ((org.bukkit.craftbukkit.v1_7_R4.CraftWorld) location.getWorld()).getHandle();
@@ -213,7 +218,7 @@ public class InvasionInstance1_7_10 extends InvasionInstance {
         zombie.getEquipment().setLeggings(new ItemStack(Material.GOLD_LEGGINGS));
         zombie.getEquipment().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
         zombie.setRemoveWhenFarAway(false);
-        this.addZombie((Zombie) zombie);
+        this.addZombie(zombie);
 
         zombiestospawn--;
     }

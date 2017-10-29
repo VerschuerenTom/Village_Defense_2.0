@@ -4,7 +4,6 @@ import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
@@ -24,8 +23,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -101,7 +98,8 @@ public class TornadoKit extends PremiumKit implements Listener{
         player.getInventory().addItem(enderpealteleporter);
     }
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void onTornadoSpawn(PlayerInteractEvent event){
         if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
@@ -127,7 +125,8 @@ public class TornadoKit extends PremiumKit implements Listener{
 
     }
 
-    public void afterSetupKits(){
+    @SuppressWarnings("unused")
+	public void afterSetupKits(){
         StringBuilder strb = new StringBuilder();
         URL site;
         try
@@ -166,7 +165,8 @@ public class TornadoKit extends PremiumKit implements Listener{
             return times;
         }
 
-        public void setTimes(int times) {
+        @SuppressWarnings("unused")
+		public void setTimes(int times) {
             this.times = times;
         }
 
@@ -180,7 +180,8 @@ public class TornadoKit extends PremiumKit implements Listener{
             return vector;
         }
 
-        public void setVector(Vector vector) {
+        @SuppressWarnings("unused")
+		public void setVector(Vector vector) {
             this.vector = vector;
         }
 
@@ -192,7 +193,8 @@ public class TornadoKit extends PremiumKit implements Listener{
             this.location = location;
         }
 
-        public void update() {
+        @SuppressWarnings("deprecation")
+		public void update() {
             times++;
             for (int l = 0; l < lines; l++) {
                 for (double y = 0; y < max_height; y += height_increasement) {

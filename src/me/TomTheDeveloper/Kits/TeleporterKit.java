@@ -11,7 +11,6 @@ import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.YoutuberInvasion;
-import net.minecraft.server.v1_8_R3.Village;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -77,7 +76,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
     }
 
-    public void OpenAndCreateTeleportationMenu(World world, Player p){
+    @SuppressWarnings("deprecation")
+	public void OpenAndCreateTeleportationMenu(World world, Player p){
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(p);
         Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.getSingleMessage("Teleportation-Menu-Name","Teleportation Menu"))  ;
         for(Player player: world.getPlayers() ){
@@ -105,7 +105,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
     }
 
 
-    @EventHandler
+    @SuppressWarnings("deprecation")
+	@EventHandler
     public void OpenInventoryRightClickEnderPearl(PlayerInteractEvent e){
         if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK){
             if(gameAPI.getGameInstanceManager().getGameInstance(e.getPlayer()) == null)
