@@ -34,29 +34,7 @@ public class AnvilManager implements Listener {
 
         if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(player) == null)
             return;
-        for (Location locations : sphere(player.getLocation(), 5, false)) {
-            if (locations.getBlock().getType() == Material.ANVIL)
-                locations.getBlock().setType(Material.ANVIL);
-        }
-    }
 
-    public Set<Location> sphere(Location location, int radius, boolean hollow) {
-        Set<Location> blocks = new HashSet<Location>();
-        World world = location.getWorld();
-        int X = location.getBlockX();
-        int Y = location.getBlockY();
-        int Z = location.getBlockZ();
-        int radiusSquared = radius * radius;
-        for (int x = X - radius; x <= X + radius; x++) {
-            for (int y = Y - radius; y <= Y + radius; y++) {
-                for (int z = Z - radius; z <= Z + radius; z++) {
-                    if ((X - x) * (X - x) + (Y - y) * (Y - y) + (Z - z) * (Z - z) <= radiusSquared) {
-                        Location block = new Location(world, x, y, z);
-                        blocks.add(block);
-                    }
-                }
-            }
-        }
-        return blocks;
     }
+    
 }
