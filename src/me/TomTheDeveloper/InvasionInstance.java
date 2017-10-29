@@ -746,50 +746,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     public void spawnZombies() {
         Random random = new Random();
-        /*if (zombiestospawn < 5) {
-            spawnFastZombie(random);
-            return;
-        }
-        if (random.nextInt(8) == 0 && getIronGolems().size() > 0) {
-            for (int i = 0; i < 6; i++) {
-                spawnGolemBuster(random);
-
-            }
-            return;
-        }
-        if (random.nextInt(8) == 0 && wave > 10) {
-            for (int i = 0; i < 6; i++) {
-                spawnPlayerBuster(random);
-            }
-        }
-
-        if (random.nextInt(15) == 0) {
-            if (random.nextInt(4) == 0) {
-                if (random.nextInt(2) == 1) {
-                    spawnHardZombie(random);
-                    spawnHardZombie(random);
-
-                    if(wave > 5)
-                        spawnHardZombie(random);
-
-                    if(wave>10)
-                        spawnHardZombie(random);
-                        return;
-                } else {
-                    for(int i = 0;i<=wave;i++) {
-                        spawnBabyZombie(random);
-                    }
-                    return;
-                }
-            } else {
-                for (int i = 0; i <= wave; i++) {
-                    spawnFastZombie(random);
-
-                }
-                return;
-            }
-
-        } */
         if(getZombies() == null || getZombies().size() <=0){
             for (int i = 0; i <= wave; i++) {
                 if(zombiestospawn >0) {
