@@ -36,7 +36,7 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
-import me.TomTheDeveloper.Anvils.AnvilManager;
+import me.TomTheDeveloper.Chunks.ChunkManager;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
 import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
@@ -49,12 +49,12 @@ import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
 import me.TomTheDeveloper.Events.Events;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
 import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Events.onDeath;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Items.SpecialItem;
 import me.TomTheDeveloper.Kits.ArcherKit;
 import me.TomTheDeveloper.Kits.BlockerKit;
 import me.TomTheDeveloper.Kits.CleanerKit;
@@ -78,20 +78,18 @@ import me.TomTheDeveloper.Kits.SuperArcherKit;
 import me.TomTheDeveloper.Kits.TeleporterKit;
 import me.TomTheDeveloper.Kits.TornadoKit;
 import me.TomTheDeveloper.Kits.ZombieFinder;
+import me.TomTheDeveloper.Rewards.RewardsHandler;
 import me.TomTheDeveloper.Shop.Shop;
+import me.TomTheDeveloper.Stats.FileStats;
+import me.TomTheDeveloper.Stats.MySQLDatabase;
+import me.TomTheDeveloper.Stats.VillageDefenseStats;
 import me.TomTheDeveloper.Utils.ItemBuilder;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.chunks.ChunkManager;
+import me.TomTheDeveloper.Versions.InvasionInstance1_12_R1;
+import me.TomTheDeveloper.Versions.InvasionInstance1_8_R3;
+import me.TomTheDeveloper.Versions.InvasionInstance1_9_R1;
 import me.TomTheDeveloper.commands.InstanceCommands;
-import me.TomTheDeveloper.items.SpecialItem;
-import me.TomTheDeveloper.rewards.RewardsHandler;
-import me.TomTheDeveloper.stats.FileStats;
-import me.TomTheDeveloper.stats.MySQLDatabase;
-import me.TomTheDeveloper.stats.VillageDefenseStats;
-import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
-import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
 
 
 
@@ -333,9 +331,7 @@ public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, L
         }
 
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.getServer().getPluginManager().registerEvents(new onDeath(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
-        this.getServer().getPluginManager().registerEvents(new AnvilManager(this),this);
 
         this.getCommand("setshopchest").setExecutor(new ChestCommand(this));
         this.getCommand("setprice").setExecutor(this);

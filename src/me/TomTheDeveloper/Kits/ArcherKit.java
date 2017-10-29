@@ -25,8 +25,6 @@ public class ArcherKit extends LevelKit {
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Archer-Kit-Description","Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
-
-
     }
 
     @Override

@@ -31,6 +31,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
+import me.TomTheDeveloper.Chunks.ChunkManager;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Game.InstanceType;
@@ -38,12 +39,9 @@ import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.MessageHandler;
 import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Items.SpecialItemManager;
 import me.TomTheDeveloper.Kits.GolemFriend;
 import me.TomTheDeveloper.Utils.ArmorHelper;
-//import me.confuser.barapi.BarAPI;
-//import me.mgone.bossbarapi.BossbarAPI;
-import me.TomTheDeveloper.chunks.ChunkManager;
-import me.TomTheDeveloper.items.SpecialItemManager;
 
 /**
  * Created by Tom on 12/08/2014.
@@ -68,7 +66,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     private List<Zombie> glitchedzombies = new ArrayList<Zombie>();
 
-    private int spawncounter =0;
+    private int spawncounter = 0;
     private HashMap<Zombie, Location> zombiecheckerlocations = new HashMap<Zombie, Location>();
 
 

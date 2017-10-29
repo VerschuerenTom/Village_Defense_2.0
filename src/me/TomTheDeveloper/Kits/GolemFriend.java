@@ -8,10 +8,11 @@ import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import me.TomTheDeveloper.Versions.InvasionInstance1_12_R1;
+import me.TomTheDeveloper.Versions.InvasionInstance1_7_10;
+import me.TomTheDeveloper.Versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.YoutuberInvasion;
-import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
-import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
