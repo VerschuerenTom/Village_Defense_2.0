@@ -1,7 +1,9 @@
 package me.TomTheDeveloper.Creatures.v1_8_R3;
 
-import me.TomTheDeveloper.YoutuberInvasion;
-import net.minecraft.server.v1_8_R3.*;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,9 +15,21 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
+import me.TomTheDeveloper.YoutuberInvasion;
+import net.minecraft.server.v1_8_R3.DamageSource;
+import net.minecraft.server.v1_8_R3.EntityHuman;
+import net.minecraft.server.v1_8_R3.EntityIronGolem;
+import net.minecraft.server.v1_8_R3.EntityZombie;
+import net.minecraft.server.v1_8_R3.GenericAttributes;
+import net.minecraft.server.v1_8_R3.Navigation;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
+import net.minecraft.server.v1_8_R3.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_8_R3.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_8_R3.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_8_R3.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -24,7 +38,7 @@ public class GolemBuster extends EntityZombie {
     public int damage;
     private float bw;
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public GolemBuster(World world) {
         super(((CraftWorld) world).getHandle());
         this.bw = YoutuberInvasion.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
@@ -59,7 +73,8 @@ public class GolemBuster extends EntityZombie {
 
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 
@@ -91,7 +106,8 @@ public class GolemBuster extends EntityZombie {
         //super.setOnFire(i);
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public boolean damageEntity(DamageSource damagesource, float f) {
         if (damagesource != null && damagesource.getEntity() != null && damagesource.getEntity().getBukkitEntity().getType() == EntityType.IRON_GOLEM) {
             this.die();

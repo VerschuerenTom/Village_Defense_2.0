@@ -1,23 +1,24 @@
 package me.TomTheDeveloper.Kits;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
-import me.TomTheDeveloper.YoutuberInvasion;
-import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
-import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
-import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
+import java.util.List;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
+import me.TomTheDeveloper.InvasionInstance;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
+import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.Utils.WeaponHelper;
+import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
+import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
+import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 
 /**
  * Created by Tom on 21/07/2015.

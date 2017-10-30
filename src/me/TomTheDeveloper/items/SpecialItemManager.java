@@ -1,8 +1,8 @@
 package me.TomTheDeveloper.items;
 
-import org.bukkit.inventory.ItemStack;
-
 import java.util.HashMap;
+
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Created by Tom on 5/02/2016.

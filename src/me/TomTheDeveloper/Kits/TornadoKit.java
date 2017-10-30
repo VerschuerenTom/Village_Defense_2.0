@@ -1,13 +1,17 @@
 package me.TomTheDeveloper.Kits;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
-import me.TomTheDeveloper.YoutuberInvasion;
-import org.bukkit.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -18,12 +22,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.Utils.WeaponHelper;
 
 /**
  * Created by Tom on 30/12/2015.

@@ -1,18 +1,31 @@
 package me.TomTheDeveloper.versions;
 
-import me.TomTheDeveloper.Creatures.v1_12_R1.*;
-import me.TomTheDeveloper.InvasionInstance;
-import net.minecraft.server.v1_12_R1.GenericAttributes;
+import java.util.Random;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.entity.*;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Random;
+import me.TomTheDeveloper.InvasionInstance;
+import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.GolemBuster;
+import me.TomTheDeveloper.Creatures.v1_12_R1.HardZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
+import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
+import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
+import me.TomTheDeveloper.Creatures.v1_12_R1.TankerZombie;
+import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
+import net.minecraft.server.v1_12_R1.GenericAttributes;
 
 /**
  * Created by TomVerschueren on 9/06/2017.

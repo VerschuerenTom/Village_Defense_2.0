@@ -1,12 +1,8 @@
 package me.TomTheDeveloper.Kits;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
-import me.TomTheDeveloper.YoutuberInvasion;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -17,8 +13,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.List;
+import me.TomTheDeveloper.InvasionInstance;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.Utils.WeaponHelper;
 
 /**
  * Created by Tom on 21/07/2015.
@@ -48,7 +51,10 @@ public class ZombieFinder extends LevelKit implements Listener {
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));
         ItemStack zombieteleporter = WeaponHelper.getEnchanted(new ItemStack(Material.BOOK), new Enchantment[]{Enchantment.DAMAGE_ALL}, new int[]{1});
-        Util.setItemNameAndLore(zombieteleporter, ChatManager.getFromLanguageConfig("Zombie-Teleporter-Name", "ZombieTeleporter"), new String[]{ChatManager.getFromLanguageConfig("Zombie-Teleporter-Lore", "Teleport zombies to you!")});
+        ItemMeta im = zombieteleporter.getItemMeta();
+        im.setDisplayName(ChatManager.getFromLanguageConfig("Zombie-Teleporter-Name", "ZombieTeleporter"));
+        im.setLore(Arrays.asList(ChatManager.getFromLanguageConfig("Zombie-Teleporter-Lore", "Teleport zombies to you!")));
+        zombieteleporter.setItemMeta(im);
         player.getInventory().addItem(zombieteleporter);
     }
 

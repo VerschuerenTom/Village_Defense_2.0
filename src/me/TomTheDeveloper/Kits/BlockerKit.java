@@ -1,15 +1,16 @@
 package me.TomTheDeveloper.Kits;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
-import me.TomTheDeveloper.YoutuberInvasion;
-import org.bukkit.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,11 +20,17 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import me.TomTheDeveloper.User;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.Utils.ParticleEffect;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.Utils.WeaponHelper;
 
 /**
  * Created by Tom on 17/12/2015.
@@ -74,11 +81,12 @@ public class BlockerKit extends PremiumKit implements Listener {
         ArmorHelper.setColouredArmor(Color.RED, player);
         player.getInventory().addItem(WeaponHelper.getEnchanted(new ItemStack(Material.STONE_SWORD), new org.bukkit.enchantments.Enchantment[]{org.bukkit.enchantments.Enchantment.DURABILITY}, new int[]{10}));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
-        player.getInventory().addItem(Util.setItemNameAndLore(new ItemStack(Material.FENCE, 3),
-                ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"),
-                Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                        " These barriers last for 10 seconds"), 40).toArray(new String[Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                        " These barriers last for 10 seconds"), 40).size()])));
+        ItemStack is = new ItemStack(Material.FENCE, 3);
+        ItemMeta im = is.getItemMeta();
+        im.setDisplayName(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"));
+        im.setLore(Arrays.asList(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" + " These barriers last for 10 seconds"), ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
+                " These barriers last for 10 seconds")));
+        is.setItemMeta(im);
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
 
     }
@@ -91,11 +99,12 @@ public class BlockerKit extends PremiumKit implements Listener {
     @Override
     public void reStock(Player player) {
         PlayerInventory inventory = player.getInventory();
-        player.getInventory().addItem(Util.setItemNameAndLore(new ItemStack(Material.FENCE, 3),
-                ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"),
-                Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                        " These barriers last for 10 seconds"), 40).toArray(new String[Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                        " These barriers last for 10 seconds"), 40).size()])));
+        ItemStack is = new ItemStack(Material.FENCE, 3);
+        ItemMeta im = is.getItemMeta();
+        im.setDisplayName(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"));
+        im.setLore(Arrays.asList(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" + " These barriers last for 10 seconds"), ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
+                " These barriers last for 10 seconds")));
+        is.setItemMeta(im);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

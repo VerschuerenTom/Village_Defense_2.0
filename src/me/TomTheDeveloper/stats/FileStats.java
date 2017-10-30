@@ -1,13 +1,14 @@
-package me.TomTheDeveloper.stats;
+package me.TomTheDeveloper.Stats;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import java.io.IOException;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
+import me.TomTheDeveloper.User;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.UserManager;
 
 /**
  * Created by Tom on 17/06/2015.

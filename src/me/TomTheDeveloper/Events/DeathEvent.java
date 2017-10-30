@@ -1,7 +1,8 @@
 package me.TomTheDeveloper.Events;
 
-import me.TomTheDeveloper.YoutuberInvasion;
 import org.bukkit.event.Listener;
+
+import me.TomTheDeveloper.YoutuberInvasion;
 
 /**
  * Created by Tom on 15/08/2014.

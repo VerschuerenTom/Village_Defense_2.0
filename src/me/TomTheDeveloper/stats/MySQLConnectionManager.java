@@ -1,4 +1,12 @@
-package me.TomTheDeveloper.stats;
+package me.TomTheDeveloper.Stats;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Created by Tom on 13/11/2014.
@@ -6,14 +14,8 @@ package me.TomTheDeveloper.stats;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
 
 /**
  * User: Ivan
@@ -141,7 +143,7 @@ public class MySQLConnectionManager {
     }
 
     public void setConnectionPool(BoneCP connectionPool) {
-        connectionPool = connectionPool;
+        this.connectionPool = connectionPool;
     }
 
 }

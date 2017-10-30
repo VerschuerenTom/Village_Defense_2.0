@@ -1,20 +1,25 @@
 package me.TomTheDeveloper;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Game.InstanceType;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.MessageHandler;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.Kits.GolemFriend;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.chunks.ChunkManager;
-import me.TomTheDeveloper.items.SpecialItemManager;
-import org.bukkit.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Random;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -26,7 +31,17 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
-import java.util.*;
+import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Game.GameState;
+import me.TomTheDeveloper.Game.InstanceType;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.MessageHandler;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Kits.GolemFriend;
+import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.chunks.ChunkManager;
+import me.TomTheDeveloper.items.SpecialItemManager;
 
 //import me.confuser.barapi.BarAPI;
 //import me.mgone.bossbarapi.BossbarAPI;
@@ -75,7 +90,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             return true;
     }
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public void run() {
 
         User.handleCooldowns();

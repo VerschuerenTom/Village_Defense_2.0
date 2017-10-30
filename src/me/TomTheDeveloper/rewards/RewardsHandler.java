@@ -1,13 +1,18 @@
 package me.TomTheDeveloper.rewards;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.*;
+import me.TomTheDeveloper.InvasionInstance;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
 
 /**
  * Created by Tom on 30/01/2016.

@@ -1,12 +1,20 @@
-package me.TomTheDeveloper.stats;
+package me.TomTheDeveloper.Stats;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.YoutuberInvasion;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.UserManager;
 
 /**
  * Created by Tom on 30/12/2015.

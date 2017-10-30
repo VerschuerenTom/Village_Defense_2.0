@@ -1,17 +1,37 @@
 package me.TomTheDeveloper.Creatures.v1_7_R4;
 
-import net.minecraft.server.v1_7_R4.*;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-
 import java.lang.reflect.Field;
 import java.util.List;
+
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+
+import net.minecraft.server.v1_7_R4.EntityHuman;
+import net.minecraft.server.v1_7_R4.EntityInsentient;
+import net.minecraft.server.v1_7_R4.EntityIronGolem;
+import net.minecraft.server.v1_7_R4.EntityLiving;
+import net.minecraft.server.v1_7_R4.GenericAttributes;
+import net.minecraft.server.v1_7_R4.IMonster;
+import net.minecraft.server.v1_7_R4.MathHelper;
+import net.minecraft.server.v1_7_R4.PathfinderGoalDefendVillage;
+import net.minecraft.server.v1_7_R4.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMoveThroughVillage;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMoveTowardsTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalOfferFlower;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
 /**
  * Created by Tom on 17/08/2014.
  */
 public class RidableIronGolem extends EntityIronGolem {
 
-    public RidableIronGolem(org.bukkit.World world) {
+    @SuppressWarnings("rawtypes")
+	public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
 
@@ -40,7 +60,8 @@ public class RidableIronGolem extends EntityIronGolem {
         this.setHealth(500);
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

@@ -1,11 +1,24 @@
 package me.TomTheDeveloper.Creatures.v1_7_R4;
 
-import me.TomTheDeveloper.YoutuberInvasion;
-import net.minecraft.server.v1_7_R4.*;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-
 import java.lang.reflect.Field;
 import java.util.List;
+
+import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
+
+import me.TomTheDeveloper.YoutuberInvasion;
+import net.minecraft.server.v1_7_R4.EntityHuman;
+import net.minecraft.server.v1_7_R4.EntityIronGolem;
+import net.minecraft.server.v1_7_R4.EntityVillager;
+import net.minecraft.server.v1_7_R4.EntityZombie;
+import net.minecraft.server.v1_7_R4.PathfinderGoalBreakDoor;
+import net.minecraft.server.v1_7_R4.PathfinderGoalFloat;
+import net.minecraft.server.v1_7_R4.PathfinderGoalHurtByTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMeleeAttack;
+import net.minecraft.server.v1_7_R4.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_7_R4.PathfinderGoalNearestAttackableTarget;
+import net.minecraft.server.v1_7_R4.PathfinderGoalRandomLookaround;
+import net.minecraft.server.v1_7_R4.PathfinderGoalSelector;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -54,7 +67,8 @@ public class BabyZombie extends EntityZombie {
 
     }
 
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
+    @SuppressWarnings("rawtypes")
+	public static Object getPrivateField(String fieldName, Class clazz, Object object) {
         Field field;
         Object o = null;
 

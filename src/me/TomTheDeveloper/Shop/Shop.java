@@ -1,12 +1,13 @@
 package me.TomTheDeveloper.Shop;
 
-import me.TomTheDeveloper.MenuAPI.IconMenu;
-import me.TomTheDeveloper.YoutuberInvasion;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.MenuAPI.IconMenu;
 
 /**
  * Created by Tom on 16/08/2014.
