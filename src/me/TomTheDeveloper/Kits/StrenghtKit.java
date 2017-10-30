@@ -1,12 +1,7 @@
 package me.TomTheDeveloper.Kits;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.Items;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
+import java.util.List;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -14,7 +9,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
-import java.util.List;
+import me.TomTheDeveloper.Handlers.ChatManager;
+import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
+import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.Utils.Items;
+import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.Utils.WeaponHelper;
 
 /**
  * Created by Tom on 18/07/2015.

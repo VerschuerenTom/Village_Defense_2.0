@@ -1,6 +1,4 @@
-package me.TomTheDeveloper.stats;
-
-import org.bukkit.plugin.java.JavaPlugin;
+package me.TomTheDeveloper.Stats;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +7,8 @@ import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class MySQLDatabase {
 

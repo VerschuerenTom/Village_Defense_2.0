@@ -1,17 +1,18 @@
 package me.TomTheDeveloper.items;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Utils.ParticleEffect;
 
 /**
  * Created by Tom on 5/02/2016.
@@ -158,7 +159,10 @@ public class SpecialItem {
             itemStack = new ItemStack(getMaterial());
 
         }
-        Util.setItemNameAndLore(itemStack, ChatColor.translateAlternateColorCodes('&', this.getDisplayName()), lore);
+        ItemMeta im = itemStack.getItemMeta();
+        im.setDisplayName(ChatColor.translateAlternateColorCodes('&', this.getDisplayName()));
+        im.setLore(Arrays.asList(lore));
+        itemStack.setItemMeta(im);
         return itemStack;
     }
 

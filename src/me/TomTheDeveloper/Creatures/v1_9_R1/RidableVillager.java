@@ -1,11 +1,32 @@
 package me.TomTheDeveloper.Creatures.v1_9_R1;
 
-import net.minecraft.server.v1_9_R1.*;
-import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
-
 import java.lang.reflect.Field;
 import java.util.Random;
 import java.util.Set;
+
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
+
+import net.minecraft.server.v1_9_R1.EntityAgeable;
+import net.minecraft.server.v1_9_R1.EntityHuman;
+import net.minecraft.server.v1_9_R1.EntityInsentient;
+import net.minecraft.server.v1_9_R1.EntityLiving;
+import net.minecraft.server.v1_9_R1.EntityVillager;
+import net.minecraft.server.v1_9_R1.GenericAttributes;
+import net.minecraft.server.v1_9_R1.MathHelper;
+import net.minecraft.server.v1_9_R1.Navigation;
+import net.minecraft.server.v1_9_R1.PathfinderGoalFloat;
+import net.minecraft.server.v1_9_R1.PathfinderGoalInteract;
+import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtTradingPlayer;
+import net.minecraft.server.v1_9_R1.PathfinderGoalMakeLove;
+import net.minecraft.server.v1_9_R1.PathfinderGoalMoveIndoors;
+import net.minecraft.server.v1_9_R1.PathfinderGoalMoveTowardsRestriction;
+import net.minecraft.server.v1_9_R1.PathfinderGoalOpenDoor;
+import net.minecraft.server.v1_9_R1.PathfinderGoalPlay;
+import net.minecraft.server.v1_9_R1.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_9_R1.PathfinderGoalRestrictOpenDoor;
+import net.minecraft.server.v1_9_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_9_R1.PathfinderGoalTradeWithPlayer;
 
 /**
  * Created by Tom on 15/08/2014.
