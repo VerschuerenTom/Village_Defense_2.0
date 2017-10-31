@@ -19,7 +19,7 @@ ________________________________________________________________________________
 Village Defense is a minigame where you're fighting against waves of zombies to protect a village. The zombies you're fighting against aren't a normal kind though, they are an evolved kind which are a lot more difficult to handle. The ultimate goal is to keep the villagers alive.
 
 [COLOR=#80ff00][B][IMG]https://youtube.googleblog.com/favicon.ico[/IMG] Wanna see it in action?[/B][/COLOR]
-[B][spoiler=YouTube videos][/spoiler][/B][spoiler=YouTube videos]
+[spoiler=YouTube videos]
 [B](videos are outdated)[/B]
 [MEDIA=youtube]EJUqNHc_Stc[/MEDIA]
 
@@ -29,17 +29,33 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [COLOR=#ffff00]
 [B]Currently supported version is [U]1.12 AND 1.8[/U][/B][/COLOR]
 
-[COLOR=#ff9999][B]Optional dependencies:[/B][/COLOR] [URL='https://dev.bukkit.org/projects/worldedit']WorldEdit[/URL]
+[COLOR=#ff9999][B]Optional dependencies:[/B][/COLOR] [URL='https://dev.bukkit.org/projects/worldedit']WorldEdit, [/URL][URL='https://www.spigotmc.org/resources/leaderheads.2079/']LeaderHeads[/URL] (yes LeaderHeads support[B]s[/B] VillageDefense (please see Configuration section))
 [COLOR=#ff0000]
 [B]Known bugs:[/B][/COLOR]
 - Kit item can be used everywhere when the lore and item name are correct.
 [/CENTER]
+[IMG]https://i.imgur.com/sB1IxxS.jpg[/IMG]
+[LIST]
+[*][URL='https://www.spigotmc.org/resources/leaderheads.2079/']LeaderHeads[/URL] support
+[*][B]Overpowered zombies![/B]
+
+[*]Over [B]24[/B] ingame kits!
+[*]5 zombie types! (Fast zombies, Baby zombies, Tank zombies, Golem and Player busters)
+
+[*]Donator and leveling kits
+[*]Configurable rewards after game
+[*]Most of messages configurable
+[*]Create shop that can contain every item and can be different for each arena
+[*]Flat file and MySQL support
+[*]Translatable signs
+[*]Easy GUI setup
+[/LIST]
 [IMG]https://i.imgur.com/WIftUFr.jpg[/IMG]
-[B]todo[/B]
+Images of gameplay will be soon™!
 
 [IMG]https://i.imgur.com/N75BbDG.jpg[/IMG]
 [LIST]
-[*]/leave - Leaves VillageDefense game
+[*]/leave - Leaves Village Defense game
 [*]/addsigns - Sets game signs (by WorldEdit selection)
 [*]/setshopchest - Sets game shop in selected chest (by WorldEdit selection)
 [*]/setprice - Set price of holding item (needed for shop)
@@ -48,10 +64,15 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 
 [IMG]https://i.imgur.com/oGVYsYu.jpg[/IMG]
 [LIST]
-[*]minigames.vip - unlocks donator kits, able to join full games, get 50% more orbs
-[*]minigames.mvip - unlocks donator kits, able to join full games, get 100% more orbs
-[*]minigames.elite - unlocks donator kits, able to join full games, get 150% more orbs
-[*]minigames.edit - permission to edit arenas
+[*]minigames.vip - Permission to get [B]donator kits[/B], join [B]full games[/B] and get [B]50% more orbs[/B]
+
+[*]minigames.mvip - Same as above but get [B]100% more orbs[/B]
+
+[*]minigames.elite - Same as above but get [B]150% more orbs[/B]
+
+[*]minigames.edit - Permission to edit game arenas
+
+[*]minigames.fullgame - Permission to join full games
 [/LIST]
 
 [IMG]https://i.imgur.com/dBz4mIs.jpg[/IMG]
@@ -60,6 +81,7 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [*][URL='https://pastebin.com/0HjNaanQ']Kits.yml[/URL]
 [*][URL='https://pastebin.com/c2MuNvCP']language.yml[/URL]
 [*][URL='https://pastebin.com/zV0yNuQQ']rewards.yml[/URL]
+[*][URL='https://www.dropbox.com/sh/91wyg1labne0uvx/AAASCjSzY8QwtvAIeLFlH_Qua?dl=1'][U]Example Village Defense map[/U][/URL] (screenshots soon™)
 [/LIST]
 
 [IMG]https://i.imgur.com/AfPoDcC.jpg[/IMG]
@@ -68,7 +90,7 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [B]2.[/B] Type [B]/vd reload[/B] to reload plugin.
 [B]3.[/B] Edit arena typing [B]/villagedefense <ARENA ID>[/B] edit.
 You will see this menu:
-[IMG]https://proxy.spigotmc.org/efba5c6921c8c0e3b93ccd309be1da555ec90acc?url=http%3A%2F%2Fi60.tinypic.com%2F2qi8qhl.png[/IMG]
+[IMG]https://i.imgur.com/HfaXM5C.png[/IMG]
 [B]4. [/B]Configure arena from menu above.
 [B]5.[/B] Get items that you want to be in the game and holding item type [B]/setprice <amount>[/B] to set it's game price.
 [B]6.[/B] Set chest on a safe place where players can't reach and put items there then select chest with WorldEdit wand and use chest item from menu above to set the shop.
@@ -78,21 +100,21 @@ Now you're done!
 
 [IMG]https://i.imgur.com/AWHhplE.jpg[/IMG]
 [U][SIZE=5][COLOR=#404040][B]Stats[/B][/COLOR][/SIZE][/U]
-There are two options to store players statistics:
+[INDENT]There are two options to store players statistics:
 [LIST]
 [*]Flat file (STATS.yml) (enabled by default)
 [*]MySQL database (set option DatabaseActivated in config.yml to true then restart server)
 After restart MySQL.yml file will be created, then configure it
-[spoiler=MySQL.yml]address: jdbc:mysql://localhost:3306/<databasename>
+[spoiler=MySQL.yml][code=yaml]address: jdbc:mysql://localhost:3306/<databasename>
 user: <user>
 password: <password>
 min-connections: 5
-max-connections: 10[/spoiler]
-[/LIST]
+max-connections: 10[/code][/spoiler]
+[/LIST][/INDENT]
 [SIZE=5][COLOR=#404040][U][B]Sign modification[/B][/U][/COLOR][/SIZE]
-You can modify sign messages in signModification.yml
+[INDENT]You can modify sign messages in signModification.yml
 This is default file:
-[spoiler=signModification.yml]
+[spoiler=signModification.yml][code=yaml]
 signs:
     format:
         WaitingForNewGame:
@@ -137,10 +159,10 @@ signs:
                 '2': "&cRESTARTING"
                 '3': "&c----------"
                 '4': "&c----------"
-[/spoiler]
+[/code][/spoiler][/INDENT]
 
 [SIZE=5][COLOR=#404040][U][B]Bungeecord[/B][/U][/COLOR][/SIZE]
-This minigame supports bungeecord but it's disabled by default.
+[INDENT]This minigame supports bungeecord but it's disabled by default.
 To activate bungeecord set value BungeeActivated in config.yml to true
 Setup for signs using bungeecord:
 [LIST]
@@ -232,7 +254,19 @@ servers:
         mapname: Testmap
 CheckOffline: 10
 CheckOnline: 1[/code]
-[/spoiler]
+[/spoiler][/INDENT]
+
+[SIZE=5][COLOR=#404040][U][B]LeaderHeads Support[/B][/U][/COLOR][/SIZE]
+[INDENT]This plugin supports [URL='https://www.spigotmc.org/resources/leaderheads.2079/']LeaderHeads plugin[/URL] that means you can create leaderboards for your players!
+Available statistics:
+[spoiler=LeaderHeads Statistics]
+[B]vd-kills[/B]: shows the players with the most kills
+[B]vd-deaths[/B]: shows the players with the most deaths
+[B]vd-games[/B]: shows the players with the most games played
+[B]vd-highestwave[/B]: shows the players with the highest wave reached
+[B]vd-xp[/B]: shows the players with the most xp
+[B]vd-level[/B]: shows the players with the highest level
+[/spoiler][/INDENT]
 [FONT=Book Antiqua][SIZE=7][COLOR=#b35900][B]To do[/B][/COLOR][/SIZE][/FONT]
 [LIST]
 [*]Add /remove sign command
