@@ -14,7 +14,7 @@ ________________________________________________________________________________
 [/CENTER]
 
 [CENTER][COLOR=#0080ff][B][B][IMG]https://www.ls-stories.pl/public/style_extra/cprofile_icons/discord_icon.gif[/IMG] [/B]Need support? [/B]
-[B]Join our support server:[/B][/COLOR] https://discord.gg/UXzUdTP
+[B]Join our support server:[/B][/COLOR] [URL]https://discord.gg/UXzUdTP[/URL]
 
 Village Defense is a minigame where you're fighting against waves of zombies to protect a village. The zombies you're fighting against aren't a normal kind though, they are an evolved kind which are a lot more difficult to handle. The ultimate goal is to keep the villagers alive.
 
@@ -27,18 +27,17 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 
 [MEDIA=youtube]OTn8eItZ57k[/MEDIA][/spoiler]
 [COLOR=#ffff00]
-[B]Currently supported version is [U]1.12[/U][/B]
-[B][U]First version[/U] also support [U]1.7.10[/U] and [U]1.8.8[/U][/B][/COLOR]
+[B]Currently supported version is [U]1.12 AND 1.8[/U][/B][/COLOR]
 
 [COLOR=#ff9999][B]Optional dependencies:[/B][/COLOR] [URL='https://dev.bukkit.org/projects/worldedit']WorldEdit[/URL]
 [COLOR=#ff0000]
-[B]Known caveats:[/B][/COLOR]
+[B]Known bugs:[/B][/COLOR]
 - Kit item can be used everywhere when the lore and item name are correct.
 [/CENTER]
-[img]https://i.imgur.com/WIftUFr.jpg[/img]
+[IMG]https://i.imgur.com/WIftUFr.jpg[/IMG]
 [B]todo[/B]
 
-[img]https://i.imgur.com/N75BbDG.jpg[/img]
+[IMG]https://i.imgur.com/N75BbDG.jpg[/IMG]
 [LIST]
 [*]/leave - Leaves VillageDefense game
 [*]/addsigns - Sets game signs (by WorldEdit selection)
@@ -47,7 +46,7 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [*]/stats - Show your game stats
 [/LIST]
 
-[img]https://i.imgur.com/oGVYsYu.jpg[/img]
+[IMG]https://i.imgur.com/oGVYsYu.jpg[/IMG]
 [LIST]
 [*]minigames.vip - unlocks donator kits, able to join full games, get 50% more orbs
 [*]minigames.mvip - unlocks donator kits, able to join full games, get 100% more orbs
@@ -55,7 +54,7 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [*]minigames.edit - permission to edit arenas
 [/LIST]
 
-[img]https://i.imgur.com/dBz4mIs.jpg[/img]
+[IMG]https://i.imgur.com/dBz4mIs.jpg[/IMG]
 [LIST]
 [*][URL='https://pastebin.com/0xqQkdeg']config.yml[/URL]
 [*][URL='https://pastebin.com/0HjNaanQ']Kits.yml[/URL]
@@ -63,7 +62,7 @@ Village Defense is a minigame where you're fighting against waves of zombies to 
 [*][URL='https://pastebin.com/zV0yNuQQ']rewards.yml[/URL]
 [/LIST]
 
-[img]https://i.imgur.com/AfPoDcC.jpg[/img]
+[IMG]https://i.imgur.com/AfPoDcC.jpg[/IMG]
 * - optional
 [B]1.[/B] Create arena with command [B]/villagedefense create <ARENA ID>[/B] (ARENA ID must be unique!).
 [B]2.[/B] Type [B]/vd reload[/B] to reload plugin.
@@ -77,7 +76,7 @@ You will see this menu:
 
 Now you're done!
 
-[img]https://i.imgur.com/AWHhplE.jpg[/img]
+[IMG]https://i.imgur.com/AWHhplE.jpg[/IMG]
 [U][SIZE=5][COLOR=#404040][B]Stats[/B][/COLOR][/SIZE][/U]
 There are two options to store players statistics:
 [LIST]
@@ -233,16 +232,16 @@ servers:
         mapname: Testmap
 CheckOffline: 10
 CheckOnline: 1[/code]
-
+[/spoiler]
 [FONT=Book Antiqua][SIZE=7][COLOR=#b35900][B]To do[/B][/COLOR][/SIZE][/FONT]
 [LIST]
 [*]Add /remove sign command
-[*]Reimplement 1.8 and 1.7.10 support
 [*]Re-implement Bunny kit
 [*]Make Villagers and Golems ridable again.
 [/LIST]
 
 [RIGHT][B]Thanks to:[/B]
-- First version made together with @IvanTheBuilder
+- First version made together with [USER=18881]@IvanTheBuilder[/USER]
 - Logo and banner by @[URL='https://www.spigotmc.org/members/xdizastercyx.9271/']xDizasterCYx[/URL]
+-Thread design by [USER=423193]@Plajer[/USER]
 - Plugin idea by DerpyKitteh[/RIGHT]
