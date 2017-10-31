@@ -10,7 +10,6 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
-import me.TomTheDeveloper.Permissions.PermStrings;
 
 /**
  * Created by Tom on 27/07/2014.
@@ -149,42 +148,14 @@ public class User {
         return spectator;
     }
 
-    public void allowDoubleJump(){
-        doublejump = true;
-    }
-
-    public boolean getAllowDoubleJump(){
-        if((this.toPlayer().hasPermission(PermStrings.getDoubleJump()) || this.toPlayer().isOp() || isVIP()) && doublejump  )
-            return true;
-        else
-            return false;
-    }
-
-    public boolean hasDoubleJumped(){
-       return hasdoublejumped;
-    }
-
-    public void reNewDoubleJump(){
-        hasdoublejumped = false;
-    }
-
-    public void doubleJumped(){
-        hasdoublejumped = true;
-    }
-
     public int getInt(String s){
         if(!ints.containsKey(s)) {
             ints.put(s, 0);
             return 0;
-        }else if(ints.get(s) == null){
+        } else if(ints.get(s) == null){
             return 0;
         }
-
         return ints.get(s);
-
-
-
-
     }
 
     public void removeScoreboard(){
@@ -195,40 +166,6 @@ public class User {
     public void setInt(String s, int i){
         ints.put(s, i);
 
-    }
-
-    public boolean isPremium(){
-        if(this.toPlayer().hasPermission(PermStrings.getVIP())
-                || this.toPlayer().hasPermission(PermStrings.getMVP())
-                || this.toPlayer().hasPermission(PermStrings.getELITE())) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public boolean isVIP(){
-        if(this.toPlayer().hasPermission(PermStrings.getVIP())
-                || this.toPlayer().hasPermission(PermStrings.getMVP())
-                || this.toPlayer().hasPermission(PermStrings.getELITE())) {
-            return true;
-        }else {
-
-            return false;
-        }
-    }
-
-    public boolean isMVP(){
-        if( this.toPlayer().hasPermission(PermStrings.getMVP())
-                || this.toPlayer().hasPermission(PermStrings.getELITE()))
-            return true;
-        return false;
-    }
-
-    public boolean isELITE(){
-        if(this.toPlayer().hasPermission(PermStrings.getELITE()))
-            return true;
-        return false;
     }
 
     public void addInt(String s, int i){

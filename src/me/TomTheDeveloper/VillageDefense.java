@@ -83,6 +83,7 @@ import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.chunks.ChunkManager;
 import me.TomTheDeveloper.commands.InstanceCommands;
+import me.TomTheDeveloper.commands.StatsCommand;
 import me.TomTheDeveloper.items.SpecialItem;
 import me.TomTheDeveloper.rewards.RewardsHandler;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
@@ -93,7 +94,7 @@ import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
 /**
  * Created by Tom on 12/08/2014.
  */
-public class YoutuberInvasion extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor {
+public class VillageDefense extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor {
 
     public static int STARTING_TIMER_TIME = 60;
     public static float MINI_ZOMBIE_SPEED;

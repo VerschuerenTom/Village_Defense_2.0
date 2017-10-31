@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 
@@ -23,7 +23,7 @@ import me.TomTheDeveloper.Handlers.UserManager;
 public enum VillageDefenseStats {
     KILLS("kills"), DEATHS("deaths"), GAMES_PLAYED("gamesplayed"), HIGHEST_WAVE("highestwave"), LEVEL("level"), XP("xp");
 
-    public static YoutuberInvasion plugin;
+    public static VillageDefense plugin;
     private String name;
 
 

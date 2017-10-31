@@ -51,7 +51,7 @@ import me.TomTheDeveloper.items.SpecialItemManager;
  */
 public abstract class InvasionInstance extends GameInstance implements Listener {
 
-    public static YoutuberInvasion youtuberInvasion;
+    public static VillageDefense youtuberInvasion;
     public LinkedHashMap<Location, Byte> doorblocks = new LinkedHashMap<Location, Byte>();
     protected List<Location> zombiespawns = new ArrayList<Location>();
     protected int zombiestospawn;
@@ -112,7 +112,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 } else {
                     getChatManager().broadcastMessage("Enough-Players-To-Start", "We now have enough players. The game is starting soon!");
                     setGameState(GameState.STARTING);
-                    setTimer(YoutuberInvasion.STARTING_TIMER_TIME);
+                    setTimer(VillageDefense.STARTING_TIMER_TIME);
                     this.showPlayers();
 
                 }
@@ -727,13 +727,13 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         User user = UserManager.getUser(player.getUniqueId());
         user.addInt(stat, i);
         if (stat.equalsIgnoreCase("xp")) {
-            if (user.isVIP()) {
+            if (player.hasPermission("minigames.vip")) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
-            if (user.isMVP()) {
+            if (player.hasPermission("minigames.mvip")) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
-            if (user.isELITE()) {
+            if (player.hasPermission("minigames.elite")) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
         }

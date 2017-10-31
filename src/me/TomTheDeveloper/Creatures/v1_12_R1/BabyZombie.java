@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import net.minecraft.server.v1_12_R1.EntityHuman;
 import net.minecraft.server.v1_12_R1.EntityIronGolem;
 import net.minecraft.server.v1_12_R1.EntityVillager;
@@ -33,7 +33,7 @@ public class BabyZombie extends EntityZombie {
     @SuppressWarnings("rawtypes")
     public BabyZombie(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
-        this.bw = YoutuberInvasion.MINI_ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
+        this.bw = VillageDefense.MINI_ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
         this.damage = 15; // set the damage
         //There's also a ton of options of you do this. play around with it
 

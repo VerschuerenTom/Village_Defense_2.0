@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 
@@ -15,10 +15,10 @@ import me.TomTheDeveloper.Handlers.UserManager;
  */
 public class FileStats {
 
-    public YoutuberInvasion plugin;
+    public VillageDefense plugin;
     private FileConfiguration config;
 
-    public FileStats(YoutuberInvasion plugin) {
+    public FileStats(VillageDefense plugin) {
         this.plugin = plugin;
         config = ConfigurationManager.getConfig("STATS");
     }

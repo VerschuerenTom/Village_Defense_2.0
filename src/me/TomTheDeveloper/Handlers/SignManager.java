@@ -19,7 +19,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Permissions.PermStrings;
 
 /**
  * User: Ivan
@@ -50,8 +49,6 @@ public class SignManager extends BukkitRunnable implements Listener {
 
         this.start();
     }
-
-
 
 
 
@@ -236,11 +233,11 @@ public class SignManager extends BukkitRunnable implements Listener {
 
                 if (instance.getMAX_PLAYERS() <= instance.getPlayers().size()) {
 
-                    if ((event.getPlayer().hasPermission(PermStrings.getVIP()) || event.getPlayer().hasPermission(PermStrings.getJoinFullGames()))) {
+                    if ((event.getPlayer().hasPermission("minigames.vip") || event.getPlayer().hasPermission("minigames.fullgames"))) {
 
                         boolean b = false;
                         for (Player player : instance.getPlayers()) {
-                            if (player.hasPermission(PermStrings.getVIP()) || player.hasPermission(PermStrings.getJoinFullGames())) {
+                            if (player.hasPermission("minigames.vip") || player.hasPermission("minigames.fullgames")) {
 
                             } else {
                                 if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {
@@ -250,7 +247,7 @@ public class SignManager extends BukkitRunnable implements Listener {
                                     instance.joinAttempt(event.getPlayer());
                                     b = true;
                                     return;
-                                }else{
+                                } else{
                                     instance.joinAttempt(event.getPlayer());
                                     b = true;
                                     return;

@@ -23,7 +23,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
@@ -37,11 +37,11 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
  */
 public class BlockerKit extends PremiumKit implements Listener {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
     private List<ZombieBarrier> zombiebarriers = new ArrayList<ZombieBarrier>();
 
 
-    public BlockerKit(final YoutuberInvasion plugin) {
+    public BlockerKit(final VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("The-Blocker-Kit-Name", ChatColor.AQUA + "Blocker"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Kit-Description", "Hold the zombies back with your special barriers." +
@@ -73,7 +73,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.blockerkit") || player.hasPermission("villagedefense.kits.blockerkit");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.blockerkit") || player.hasPermission("villagedefense.kits.blockerkit");
     }
 
     @Override

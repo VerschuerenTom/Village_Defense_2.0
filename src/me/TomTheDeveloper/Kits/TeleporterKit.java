@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
@@ -37,10 +37,10 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
  */
 public class TeleporterKit extends PremiumKit implements Listener {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
     private GameAPI gameAPI;
 
-    public TeleporterKit(YoutuberInvasion plugin) {
+    public TeleporterKit(VillageDefense plugin) {
         this.plugin = plugin;
         gameAPI = plugin.getGameAPI();
         this.setName(ChatManager.getFromLanguageConfig("Teleporter-Kit-Name", ChatManager.HIGHLIGHTED + "Teleporter"));
@@ -52,7 +52,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.teleporter");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.teleporter");
     }
 
     @Override

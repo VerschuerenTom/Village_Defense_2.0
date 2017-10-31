@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 
@@ -21,11 +21,11 @@ public class RewardsHandler {
 
 
     private FileConfiguration config;
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
     private boolean enabled = false;
 
 
-    public RewardsHandler(YoutuberInvasion plugin) {
+    public RewardsHandler(VillageDefense plugin) {
         this.plugin = plugin;
 
         if (!plugin.getConfig().contains("Rewards-Enabled")) {

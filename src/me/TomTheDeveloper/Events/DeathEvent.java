@@ -2,17 +2,17 @@ package me.TomTheDeveloper.Events;
 
 import org.bukkit.event.Listener;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 
 /**
  * Created by Tom on 15/08/2014.
  */
 public class DeathEvent implements Listener {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
 
-    public DeathEvent(YoutuberInvasion plugin) {
+    public DeathEvent(VillageDefense plugin) {
         this.plugin = plugin;
     }
 

@@ -6,7 +6,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.MenuAPI.IconMenu;
 
 /**
@@ -14,7 +14,7 @@ import me.TomTheDeveloper.MenuAPI.IconMenu;
  */
 public class Shop {
 
-    public static YoutuberInvasion plugin;
+    public static VillageDefense plugin;
     private static IconMenu iconMenu;
     private Chest chest;
 

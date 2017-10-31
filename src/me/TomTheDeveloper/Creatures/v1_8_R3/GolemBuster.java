@@ -15,7 +15,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import net.minecraft.server.v1_8_R3.DamageSource;
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntityIronGolem;
@@ -41,7 +41,7 @@ public class GolemBuster extends EntityZombie {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public GolemBuster(World world) {
         super(((CraftWorld) world).getHandle());
-        this.bw = YoutuberInvasion.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
+        this.bw = VillageDefense.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
         this.damage = 15; // set the damage
         //There's also a ton of options of you do this. play around with it
 

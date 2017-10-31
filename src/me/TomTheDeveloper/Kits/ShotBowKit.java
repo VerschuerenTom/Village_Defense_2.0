@@ -38,7 +38,7 @@ public class ShotBowKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.shotbow");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.shotbow");
     }
 
     @Override

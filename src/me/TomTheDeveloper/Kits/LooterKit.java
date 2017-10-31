@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
@@ -26,9 +26,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class LooterKit extends LevelKit implements Listener {
 
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public LooterKit(YoutuberInvasion plugin) {
+    public LooterKit(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("Looter-Kit-Name", ChatManager.PREFIX + "Looter"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Looter-Kit-Description", "Get one additional rotten flesh on every zombie kill!!"), 40);
