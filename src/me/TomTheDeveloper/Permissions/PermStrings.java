@@ -8,7 +8,7 @@ import me.TomTheDeveloper.Permissions.PermStrings;
 public class PermStrings {
 
 
-    private static String joinFullGames = "minigames.fullgames";
+    /*private static String joinFullGames = "minigames.fullgames";
     private static String VIP = "minigames.VIP";
     private static String MVP = "minigames.MVP";
     private static String ELITE = "minigames.ELITE";
@@ -61,5 +61,5 @@ public class PermStrings {
 
     public static void setEditGames(String editGames) {
         PermStrings.editGames = editGames;
-    }
+    }*/
 }

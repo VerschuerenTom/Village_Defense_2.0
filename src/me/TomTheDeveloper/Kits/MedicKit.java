@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
@@ -31,9 +31,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class MedicKit extends PremiumKit implements Listener {
 
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public MedicKit(YoutuberInvasion plugin) {
+    public MedicKit(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("Medic-Kit", ChatManager.PREFIX + "Medic"));
 
@@ -44,7 +44,7 @@ public class MedicKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.medic");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.medic");
     }
 
     @Override

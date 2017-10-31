@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
@@ -29,9 +29,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
  */
 public class CleanerKit extends PremiumKit implements Listener {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public CleanerKit(YoutuberInvasion plugin) {
+    public CleanerKit(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("Cleaner-Kit-Name", ChatManager.HIGHLIGHTED + "Cleaner"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Cleaner-Kit-Description", "" +
@@ -41,7 +41,7 @@ public class CleanerKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.cleaner");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.cleaner");
     }
 
     @Override

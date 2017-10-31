@@ -51,7 +51,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Bungee.Bungee;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
@@ -69,10 +69,10 @@ import me.TomTheDeveloper.items.SpecialItemManager;
 public class Events implements Listener {
 
     private final List<EntityType> VILLAGE_ENTITIES = Arrays.asList(EntityType.PLAYER, EntityType.WOLF, EntityType.IRON_GOLEM, EntityType.VILLAGER);
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
     private GameAPI gameAPI;
 
-    public Events(YoutuberInvasion plugin) {
+    public Events(VillageDefense plugin) {
         this.plugin = plugin;
         this.gameAPI = plugin.getGameAPI();
     }
@@ -92,10 +92,18 @@ public class Events implements Listener {
             return;
         }
 
-        if (user.isVIP() || user.isMVP() || user.isELITE())
-            user.addInt("orbs", (int) Math.ceil(event.getAmount() * 0.5));
-        user.addInt("orbs", event.getAmount());
-
+        if(event.getPlayer().hasPermission("minigames.elite")){
+        	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 1.5));
+        	return;
+        } else if(event.getPlayer().hasPermission("minigames.mvip")) {
+        	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 1.0));
+        	return;
+        } else if(event.getPlayer().hasPermission("minigames.vip")) {
+        	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 0.5));
+        	return;
+        } else {
+        	user.addInt("orbs", event.getAmount());
+        }
     }
 
 

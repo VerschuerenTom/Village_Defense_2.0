@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
@@ -25,10 +25,10 @@ import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
  */
 public class GolemFriend extends LevelKit {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
 
-    public GolemFriend(YoutuberInvasion plugin) {
+    public GolemFriend(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.getFromLanguageConfig("Golem-Friend-Kit-Name", ChatManager.PREFIX + "Golem Friend"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Golem-Friend-Kit-Description", "Start with a golem!"), 40);

@@ -8,16 +8,14 @@ import org.bukkit.entity.Player;
 
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
-import me.TomTheDeveloper.Permissions.PermStrings;
-
 /**
  * Created by Tom on 16/08/2014.
  */
 public class ChestCommand implements CommandExecutor {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public ChestCommand(YoutuberInvasion plugin) {
+    public ChestCommand(VillageDefense plugin) {
         this.plugin = plugin;
     }
 
@@ -30,7 +28,7 @@ public class ChestCommand implements CommandExecutor {
 
         if (!command.getLabel().equalsIgnoreCase("setshopchest"))
             return true;
-        if (!(player.isOp() || player.hasPermission(PermStrings.getEditGames())))
+        if (!(player.isOp() || player.hasPermission("minigames.edit")))
             return true;
         if (plugin.getGameAPI().getWorldEditPlugin().getSelection(player) == null)
             return true;

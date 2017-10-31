@@ -1,7 +1,9 @@
 name: VillageDefense
-main: me.TomTheDeveloper.YoutuberInvasion
-version: 2.0-ALPHA
+main: me.TomTheDeveloper.VillageDefense
+version: 2.1.0
 prefix: villagedefense
+softdepend: [WorldEdit]
+
 commands:
   leave:
     description: Teleports you to the End!
@@ -45,4 +47,3 @@ permissions:
       villagedefense.admin.smartstop: true
       villagedefense.admin.setshopchest: true
       villagedefense.admin.setprice: true
-depend: [WorldEdit]

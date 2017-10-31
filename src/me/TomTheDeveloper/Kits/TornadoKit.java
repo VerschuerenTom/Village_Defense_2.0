@@ -22,9 +22,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
@@ -41,11 +40,11 @@ public class TornadoKit extends PremiumKit implements Listener {
     int lines = 3;
     double height_increasement = 0.5;
     double radius_increasement = max_radius / max_height;
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
     private List<Tornado> tornados = new ArrayList<Tornado>();
 
 
-    public TornadoKit(YoutuberInvasion plugin) {
+    public TornadoKit(VillageDefense plugin) {
         this.plugin = plugin;
         this.setName(ChatManager.getFromLanguageConfig("Tornado-Kit-Name", ChatManager.HIGHLIGHTED + "Tornado"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Tornado-Kit-Description", "" +
@@ -70,7 +69,7 @@ public class TornadoKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return player.hasPermission("villagedefense.kit.tornado") || UserManager.getUser(player.getUniqueId()).isPremium();
+        return player.hasPermission("villagedefense.kit.tornado") || player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite");
     }
 
     @Override

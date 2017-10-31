@@ -7,10 +7,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
@@ -23,9 +22,9 @@ import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
  */
 public class DogFriendKit extends PremiumKit {
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public DogFriendKit(YoutuberInvasion invasion) {
+    public DogFriendKit(VillageDefense invasion) {
         this.plugin = invasion;
         this.setName(ChatManager.getSingleMessage("Dog-Friend-Kit-Name", ChatManager.HIGHLIGHTED + "Dog Friend"));
         List<String> description = Util.splitString(ChatManager.getSingleMessage("Dog-Friend-Kit-Description", "Start off with three dogs and get one extra dog every wave!!"), 40);
@@ -36,7 +35,7 @@ public class DogFriendKit extends PremiumKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return UserManager.getUser(player.getUniqueId()).isPremium() || player.hasPermission("villagedefense.kit.dogfriend");
+        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.dogfriend");
     }
 
     @Override

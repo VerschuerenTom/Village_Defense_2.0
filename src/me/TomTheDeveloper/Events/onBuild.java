@@ -29,8 +29,6 @@ public class onBuild  implements Listener{
 
     }
 
-
-
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         if(plugin.getAllowBuilding())

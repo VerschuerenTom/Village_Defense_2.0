@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.TomTheDeveloper.InvasionInstance;
-import me.TomTheDeveloper.YoutuberInvasion;
+import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
@@ -29,9 +29,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class ZombieFinder extends LevelKit implements Listener {
 
 
-    private YoutuberInvasion plugin;
+    private VillageDefense plugin;
 
-    public ZombieFinder(YoutuberInvasion plugin) {
+    public ZombieFinder(VillageDefense plugin) {
         this.plugin = plugin;
         this.setName(ChatManager.getFromLanguageConfig("Zombie-Teleporter-Kit-Name", ChatColor.DARK_GREEN + "Zombie Teleporter"));
         List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Zombie-Teleporter-Kit-Description", "Teleport those zombies to you!" +
