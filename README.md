@@ -16,7 +16,7 @@ ________________________________________________________________________________
 [CENTER][COLOR=#0080ff][B][B][IMG]https://www.ls-stories.pl/public/style_extra/cprofile_icons/discord_icon.gif[/IMG] [/B]Need support? [/B]
 [B]Join our support server:[/B][/COLOR] https://discord.gg/UXzUdTP
 
-Village Defense is a minigame where you're fighting aganist waves of zombies. They aren't normal zombies, they evolved into smarter and faster kind. Game is very configurable and you'll have a lot of fun playing it!
+Village Defense is a minigame where you're fighting against waves of zombies to protect a village. The zombies you're fighting against aren't a normal kind though, they are an evolved kind which are a lot more difficult to handle. The ultimate goal is to keep the villagers alive.
 
 [COLOR=#80ff00][B][IMG]https://youtube.googleblog.com/favicon.ico[/IMG] Wanna see it in action?[/B][/COLOR]
 [B][spoiler=YouTube videos][/spoiler][/B][spoiler=YouTube videos]
@@ -35,10 +35,10 @@ Village Defense is a minigame where you're fighting aganist waves of zombies. Th
 [B]Known caveats:[/B][/COLOR]
 - Kit item can be used everywhere when the lore and item name are correct.
 [/CENTER]
-[FONT=Book Antiqua][SIZE=7][COLOR=#b35900][B]Images[/B][/COLOR][/SIZE][/FONT]
+[img]https://i.imgur.com/WIftUFr.jpg[/img]
 [B]todo[/B]
-[FONT=Book Antiqua]
-[SIZE=7][COLOR=#b35900][B]Commands[/B][/COLOR][/SIZE][/FONT]
+
+[img]https://i.imgur.com/N75BbDG.jpg[/img]
 [LIST]
 [*]/leave - Leaves VillageDefense game
 [*]/addsigns - Sets game signs (by WorldEdit selection)
@@ -47,7 +47,7 @@ Village Defense is a minigame where you're fighting aganist waves of zombies. Th
 [*]/stats - Show your game stats
 [/LIST]
 
-[FONT=Book Antiqua][SIZE=7][COLOR=#b35900][B]Permissions[/B][/COLOR][/SIZE][/FONT]
+[img]https://i.imgur.com/oGVYsYu.jpg[/img]
 [LIST]
 [*]minigames.vip - unlocks donator kits, able to join full games, get 50% more orbs
 [*]minigames.mvip - unlocks donator kits, able to join full games, get 100% more orbs
@@ -55,14 +55,15 @@ Village Defense is a minigame where you're fighting aganist waves of zombies. Th
 [*]minigames.edit - permission to edit arenas
 [/LIST]
 
-[FONT=Book Antiqua][SIZE=7][COLOR=#b35900][B][B]Files[/B][/B][/COLOR][/SIZE][/FONT]
+[img]https://i.imgur.com/dBz4mIs.jpg[/img]
 [LIST]
 [*][URL='https://pastebin.com/0xqQkdeg']config.yml[/URL]
 [*][URL='https://pastebin.com/0HjNaanQ']Kits.yml[/URL]
 [*][URL='https://pastebin.com/c2MuNvCP']language.yml[/URL]
 [*][URL='https://pastebin.com/zV0yNuQQ']rewards.yml[/URL]
 [/LIST]
-[B][COLOR=#b35900][SIZE=7][FONT=Book Antiqua]Setup[/FONT][/SIZE][/COLOR][/B]
+
+[img]https://i.imgur.com/AfPoDcC.jpg[/img]
 * - optional
 [B]1.[/B] Create arena with command [B]/villagedefense create <ARENA ID>[/B] (ARENA ID must be unique!).
 [B]2.[/B] Type [B]/vd reload[/B] to reload plugin.
@@ -76,7 +77,7 @@ You will see this menu:
 
 Now you're done!
 
-[B][FONT=Book Antiqua][SIZE=7][COLOR=#b35900]Configuration[/COLOR][/SIZE][/FONT][/B]
+[img]https://i.imgur.com/AWHhplE.jpg[/img]
 [U][SIZE=5][COLOR=#404040][B]Stats[/B][/COLOR][/SIZE][/U]
 There are two options to store players statistics:
 [LIST]
@@ -152,94 +153,84 @@ Setup for signs using bungeecord:
 Example configuration:
 [spoiler=Bungeecord configuration]
 [code=yaml]signs:
-
-  format:
-
-  WAITING_FOR_PLAYERS:
-  lines:
-  '1': "\xa72[Join]"
-  '2': '%MAPNAME%'
-  '3': '%SERVER%'
-  '4': "\xa75[%PLAYERSIZE%/%MAXPLAYERS%]"
-
-  STARTING:
-
-  lines:
-  '1': "\xa72[Join]"
-  '2': '%MAPNAME%'
-  '3': '%SERVER%'
-  '4': "\xa75[%PLAYERSIZE%/%MAXPLAYERS%]"
-
-  INGAME:
-
-  lines:
-  '1': "\xa7c[Ingame]"
-  '2': '%MAPNAME%'
-  '3': '%SERVER%'
-  '4': "\xa75[%PLAYERSIZE%/%MAXPLAYERS%]"
-
-  ENDING:
-
-  lines:
-  '1': "\xa7c----------"
-  '2': "\xa7c--ENDING--"
-  '3': "\xa7c----------"
-  '4': "\xa7c----------"
-
-  RESTARTING:
-
-  lines:
-  '1': "\xa7c----------"
-  '2': "\xa7cRESTARTING"
-  '3': "\xa7c----------"
-  '4': "\xa7c----------"
-  signlocations:
-  example: world,-169.0,4.0,-332.0,0.0,0.0
-  '1': world,-192.0,26.0,-329.0,0.0,0.0
-  '2': world,-192.0,26.0,-330.0,0.0,0.0
-  '3': world,-192.0,26.0,-331.0,0.0,0.0
-  '4': world,-192.0,26.0,-332.0,0.0,0.0
-  '5': world,-192.0,26.0,-333.0,0.0,0.0
-  '6': world,-192.0,26.0,-334.0,0.0,0.0
-  '7': world,-192.0,26.0,-335.0,0.0,0.0
-  '8': world,-192.0,26.0,-336.0,0.0,0.0
+    format:
+        WAITING_FOR_PLAYERS:
+            lines:
+                '1': "&2[Join]"
+                '2': '%MAPNAME%'
+                '3': '%SERVER%'
+                '4': "&5[%PLAYERSIZE%/%MAXPLAYERS%]"
+        STARTING:
+            lines:
+                '1': "&2[Join]"
+                '2': '%MAPNAME%'
+                '3': '%SERVER%'
+                '4': "&5[%PLAYERSIZE%/%MAXPLAYERS%]"
+        INGAME:
+            lines:
+                '1': "&c[Ingame]"
+                '2': '%MAPNAME%'
+                '3': '%SERVER%'
+                '4': "&5[%PLAYERSIZE%/%MAXPLAYERS%]"
+        ENDING:
+            lines:
+                '1': "&c----------"
+                '2': "&c--ENDING--"
+                '3': "&c----------"
+                '4': "&c----------"
+        RESTARTING:
+            lines:
+                '1': "&c----------"
+                '2': "&cRESTARTING"
+                '3': "&c----------"
+                '4': "&c----------"
+signlocations:
+    example: world,-169.0,4.0,-332.0,0.0,0.0
+        '1': world,-192.0,26.0,-329.0,0.0,0.0
+        '2': world,-192.0,26.0,-330.0,0.0,0.0
+        '3': world,-192.0,26.0,-331.0,0.0,0.0
+        '4': world,-192.0,26.0,-332.0,0.0,0.0
+        '5': world,-192.0,26.0,-333.0,0.0,0.0
+        '6': world,-192.0,26.0,-334.0,0.0,0.0
+        '7': world,-192.0,26.0,-335.0,0.0,0.0
+        '8': world,-192.0,26.0,-336.0,0.0,0.0
 servers:
-  fm01:
-    hostname: 0.0.0.0
-    port: 25567
-    mapname: fm01
-  fm02:
-    hostname: 0.0.0.0
-    port: 25568
-    mapname: fm02
-  fm03:
-    hostname: 0.0.0.0
-    port: 25569
-    mapname: fm03
-  fm04:
-    hostname: 0.0.0.0
-    port: 25570
-    mapname: fm04
-  fm05:
-    hostname: 0.0.0.0
-    port: 25571
-    mapname: fm05
-  fm06:
-    hostname: 0.0.0.0
-    port: 25572
-    mapname: fm06
-  fm07:
-    hostname: 0.0.0.0
-    port: 25573
-    mapname: fm07
-  fm08:
-    hostname: 0.0.0.0
-    port: 25574
-    mapname: fm08
-  default:
-    hostname: localhost
-    port: 25565
-    mapname: Testmap
+    fm01:
+        hostname: 0.0.0.0
+        port: 25567
+        mapname: fm01
+    fm02:
+        hostname: 0.0.0.0
+        port: 25568
+        mapname: fm02
+    fm03:
+        hostname: 0.0.0.0
+        port: 25569
+        mapname: fm03
+    fm04:
+        hostname: 0.0.0.0
+        port: 25570
+        mapname: fm04
+    fm05:
+        hostname: 0.0.0.0
+        port: 25571
+        mapname: fm05
+    fm06:
+        hostname: 0.0.0.0
+        port: 25572
+        mapname: fm06
+    fm07:
+        hostname: 0.0.0.0
+        port: 25573
+        mapname: fm07
+    fm08:
+        hostname: 0.0.0.0
+        port: 25574
+        mapname: fm08
+    default:
+        hostname: localhost
+        port: 25565
+        mapname: Testmap
 CheckOffline: 10
 CheckOnline: 1[/code]
 
@@ -255,6 +246,3 @@ CheckOnline: 1[/code]
 - First version made together with @IvanTheBuilder
 - Logo and banner by @[URL='https://www.spigotmc.org/members/xdizastercyx.9271/']xDizasterCYx[/URL]
 - Plugin idea by DerpyKitteh[/RIGHT]
-
-
-
