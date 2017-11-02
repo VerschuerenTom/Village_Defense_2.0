@@ -8,12 +8,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -22,8 +22,8 @@ public class ArcherKit extends LevelKit {
 
     public ArcherKit() {
         this.setLevel(2);
-        this.setName(ChatManager.getFromLanguageConfig("Archer-Kit-Name", ChatManager.PREFIX + "Archer"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Archer-Kit-Description", "Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"), 40);
+        this.setName(LanguageManager.getLanguageFile().get("Archer-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Archer-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
 

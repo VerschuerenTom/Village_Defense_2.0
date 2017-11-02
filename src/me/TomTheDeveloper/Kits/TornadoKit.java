@@ -1,14 +1,8 @@
 package me.TomTheDeveloper.Kits;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,18 +17,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 30/12/2015.
  */
 public class TornadoKit extends PremiumKit implements Listener {
 
-    public String TornadoUser = "%%__USER__%%";
     int max_height = 5;
     double max_radius = 4;
     int lines = 3;
@@ -46,9 +39,8 @@ public class TornadoKit extends PremiumKit implements Listener {
 
     public TornadoKit(VillageDefense plugin) {
         this.plugin = plugin;
-        this.setName(ChatManager.getFromLanguageConfig("Tornado-Kit-Name", ChatManager.HIGHLIGHTED + "Tornado"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Tornado-Kit-Description", "" +
-                "Spawn in an awesome tornado!"), 40);
+        setName(LanguageManager.getLanguageFile().get("Tornado-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Tornado-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
@@ -80,9 +72,8 @@ public class TornadoKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore", "" +
-                ChatColor.GRAY + "Right click to spawn a tornado at your location!"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(LanguageManager.getLanguageFile().get("Tornado-Item-Lore").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), 40);
+        this.setItemNameAndLore(enderpealteleporter, LanguageManager.getLanguageFile().get("Tornado-Item-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -94,9 +85,8 @@ public class TornadoKit extends PremiumKit implements Listener {
     @Override
     public void reStock(Player player) {
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.getSingleMessage("Tornado-Item-Lore", "" +
-                ChatColor.GRAY + "Right click to spawn a tornado at your location!"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(LanguageManager.getLanguageFile().get("Tornado-Item-Lore").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), 40);
+        this.setItemNameAndLore(enderpealteleporter, LanguageManager.getLanguageFile().get("Tornado-Item-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -113,7 +103,7 @@ public class TornadoKit extends PremiumKit implements Listener {
             return;
         if (!player.getItemInHand().getItemMeta().hasDisplayName())
             return;
-        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.getSingleMessage("Tornado-Item-Name", "Tornado Time")))
+        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(LanguageManager.getLanguageFile().get("Tornado-Item-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")))
             return;
         if (player.getItemInHand().getAmount() <= 1) {
             player.setItemInHand(new ItemStack(Material.AIR));
@@ -124,29 +114,6 @@ public class TornadoKit extends PremiumKit implements Listener {
         event.setCancelled(true);
         tornados.add(new Tornado(player.getLocation()));
 
-    }
-
-    public void afterSetupKits() {
-        StringBuilder strb = new StringBuilder();
-        URL site;
-        try {
-            site = new URL("https://www.dropbox.com/s/e26kg7hmehlcwmy/SafetyCheck.txt?dl=1");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
-            {
-                String line;
-                while ((line = in.readLine()) != null) {
-                    if (line.contains(TornadoUser)) {
-                        System.out.print("VILLAGEDEFENSE PROBLEMS, CREATURES REQUIRE AN UPDATE! IF U NOTICE this MESSAGE, CONTACT THE DEVELOPER");
-                        Bukkit.shutdown();
-                        throw new NullPointerException("CREATURES ARE WRONGLY LOADED!");
-
-                    }
-                }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     private class Tornado {

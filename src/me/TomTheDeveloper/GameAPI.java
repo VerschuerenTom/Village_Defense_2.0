@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -29,7 +28,6 @@ import me.TomTheDeveloper.Events.onQuit;
 import me.TomTheDeveloper.Events.onSpectate;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.AttackManager;
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.GameInstanceManager;
 import me.TomTheDeveloper.Handlers.InventoryManager;
@@ -203,14 +201,12 @@ public class GameAPI {
 		plugin.getServer().getPluginManager().registerEvents(new SetupInventoryEvents(this), plugin);
 		plugin.getServer().getPluginManager().registerEvents(new onJoin(this),plugin);
 
-		loadLanguageFile();
 		loadInstanceConfig();
 		loadSigns();
 
 		onStart();
 		plugin.saveConfig();
-		ChatManager.getFromLanguageConfig("Unlocks-at-level", ChatColor.GREEN + "Unlocks at level %NUMBER% ");
-		if( plugin.getConfig().getBoolean("BungeeActivated")){
+		if(plugin.getConfig().getBoolean("BungeeActivated")){
 
 			plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
 
@@ -393,17 +389,6 @@ public class GameAPI {
 
 
 		}
-
-	}
-
-	public void loadLanguageFile(){
-		FileConfiguration config = ConfigurationManager.getConfig("language");
-		try {
-			config.save("language");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 
 	}
 

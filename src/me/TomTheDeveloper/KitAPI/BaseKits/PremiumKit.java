@@ -1,10 +1,9 @@
 package me.TomTheDeveloper.KitAPI.BaseKits;
 
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Utils.Util;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 25/07/2014.
@@ -31,7 +30,7 @@ public abstract class PremiumKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack, ChatManager.getFromLanguageConfig("Unlock-This-Kit-In-The-Store", ChatColor.AQUA+ "Unlock this in the store!"));
+        Util.addLore(itemStack, LanguageManager.getLanguageFile().get("Unlock-This-Kit-In-The-Store").toString());
         return itemStack;
     }
 }

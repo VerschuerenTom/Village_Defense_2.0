@@ -9,23 +9,23 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/07/2015.
  */
-public class StrenghtKit extends LevelKit {
+public class TerminatorKit extends LevelKit {
 
 
-    public StrenghtKit() {
-        setName(ChatManager.getFromLanguageConfig("Terminator-Kit-Name", ChatManager.PREFIX + "Terminator"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Terminator-Kit-Description", "Easily kil those zombies with your strenght powers!!"), 40);
+    public TerminatorKit() {
+    	setName(LanguageManager.getLanguageFile().get("Terminator-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Terminator-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(20);
     }

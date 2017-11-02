@@ -7,10 +7,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 28/07/2015.
@@ -18,10 +18,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class PremiumHardcoreKit extends PremiumKit {
 
     public PremiumHardcoreKit() {
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("PremiumHardcore-Kit-Description", "One hit most zombies with your OP sword!" +
-                " However be carefull. this kit is only for the pro's! Do not use it if u aren't a pro!"), 40);
+        setName(LanguageManager.getLanguageFile().get("PremiumHardcore-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("PremiumHardcore-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-        setName(ChatManager.getFromLanguageConfig("PremiumHardcore-Kit-Name", ChatManager.HIGHLIGHTED + "Premium Hardcore Master"));
 
     }
 

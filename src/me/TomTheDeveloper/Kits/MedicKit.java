@@ -16,7 +16,6 @@ import org.bukkit.potion.PotionType;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
@@ -24,6 +23,7 @@ import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 1/12/2015.
@@ -35,10 +35,9 @@ public class MedicKit extends PremiumKit implements Listener {
 
     public MedicKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("Medic-Kit", ChatManager.PREFIX + "Medic"));
+        setName(LanguageManager.getLanguageFile().get("Medic-Kit").toString());
 
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Medic-Kit-Description", "This kit activates your passive powers." +
-                " Everytime u hit a zombie, u have a 1/10 chance to heal the players in a 5 block radius around u."), 40);
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Medic-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

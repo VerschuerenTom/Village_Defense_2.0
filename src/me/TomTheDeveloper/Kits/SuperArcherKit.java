@@ -14,12 +14,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -27,11 +27,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class SuperArcherKit extends PremiumKit implements Listener {
 
     public SuperArcherKit() {
-        setName(ChatManager.getFromLanguageConfig("SuperArcher-Kit-Name", ChatManager.HIGHLIGHTED + "Super Archer"));
-
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("SuperArcher-Kit-Description", "" +
-                "You are soo good at shooting arrows that you developed a technic to insta-shoot arrows!" +
-                "Shooting an arrow per second is quite easy for you."), 40);
+    	setName(LanguageManager.getLanguageFile().get("SuperArcher-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("SuperArcher-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

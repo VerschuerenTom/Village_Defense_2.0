@@ -2,16 +2,15 @@ package me.TomTheDeveloper.Kits;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.FreeKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -19,9 +18,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class KnightKit extends FreeKit {
 
     public KnightKit() {
-        this.setName(ChatManager.getFromLanguageConfig("Knight-Kit-Name", ChatColor.DARK_GREEN + "Knight"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Knight-Kit-Description", "this is the one and only knight kit!" +
-                "Many people think this is the worst kit! I must admit they they are totally wrong!"), 40);
+        this.setName(LanguageManager.getLanguageFile().get("Knight-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Knight-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

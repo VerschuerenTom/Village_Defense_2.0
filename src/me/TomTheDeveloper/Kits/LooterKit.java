@@ -13,12 +13,12 @@ import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 21/07/2015.
@@ -30,8 +30,8 @@ public class LooterKit extends LevelKit implements Listener {
 
     public LooterKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("Looter-Kit-Name", ChatManager.PREFIX + "Looter"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Looter-Kit-Description", "Get one additional rotten flesh on every zombie kill!!"), 40);
+        setName(LanguageManager.getLanguageFile().get("Looter-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Looter-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(8);
     }

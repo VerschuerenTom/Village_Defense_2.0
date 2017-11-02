@@ -3,7 +3,6 @@ package me.TomTheDeveloper.KitAPI;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,6 +21,7 @@ import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
 import me.TomTheDeveloper.MenuAPI.IconMenu;
 import me.TomTheDeveloper.Utils.Util;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 26/07/2014.
@@ -42,12 +42,10 @@ public class KitMenuHandler implements Listener {
 
 
     public KitMenuHandler(GameAPI GameAPI) {
-        itemname = ChatManager.getFromLanguageConfig("Kit-Menu-Item-Name", "Kit-Menu");
+        itemname = LanguageManager.getLanguageFile().get("Kit-Menu-Item-Name").toString();
         this.GameAPI = GameAPI;
-       UNLOCKED = ChatManager.getFromLanguageConfig("KitUnlockedLoreInKitMenu", ChatColor.GREEN + "UNLOCKED!");
-       LOCKED = ChatManager.getFromLanguageConfig("KitLockedLoreInKitMenu", ChatColor.RED + "LOCKED!");
-
-
+       UNLOCKED = LanguageManager.getLanguageFile().get("KitUnlockedLoreInKitMenu").toString();
+       LOCKED = LanguageManager.getLanguageFile().get("KitLockedLoreInKitMenu").toString();
 
     }
 
@@ -155,12 +153,11 @@ public class KitMenuHandler implements Listener {
         if(event.getKit().isUnlockedByPlayer(event.getPlayer())){
             User user = UserManager.getUser(event.getPlayer().getUniqueId());
             user.setKit(event.getKit());
-            String chosenkitmessage = ChatManager.getFromLanguageConfig("KitChosenMessage", ChatColor.GREEN + "You have chosen: " + ChatColor.AQUA + "%KIT%" + ChatColor.GREEN + " !");
+            String chosenkitmessage = LanguageManager.getLanguageFile().get("KitChosenMessage").toString();
              chosenkitmessage = ChatManager.formatMessage(chosenkitmessage, event.getKit());
             event.getPlayer().sendMessage(chosenkitmessage);
         }else{
-            String chosenKitMessageButNotUnlocked =ChatManager.getFromLanguageConfig("KitChosenButNotUnlockedMessage", ChatColor.RED + "You haven't unlocked " + ChatColor.AQUA + "%KIT%" + ChatColor.RED + " yet!");
-
+            String chosenKitMessageButNotUnlocked = LanguageManager.getLanguageFile().get("KitChosenButNotUnlockedMessage").toString();
             event.getPlayer().sendMessage(ChatManager.formatMessage(chosenKitMessageButNotUnlocked, event.getKit()));
         }
 

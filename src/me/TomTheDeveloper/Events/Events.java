@@ -62,6 +62,7 @@ import me.TomTheDeveloper.Shop.Shop;
 import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.items.SpecialItemManager;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 16/08/2014.
@@ -288,11 +289,11 @@ public class Events implements Listener {
                 event.getRightClicked().setPassenger(event.getPlayer());
                 return;
             } else {
-                event.getPlayer().sendMessage(ChatManager.getSingleMessage("You-Can't-Ride-Golem-From-Somebody-Else", "You can't ride the golem of somebody else!"));
+                event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("You-Can't-Ride-Golem-From-Somebody-Else").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
             }
         } else {
             if (event.getRightClicked().getType() == EntityType.VILLAGER || event.getRightClicked().getType() == EntityType.IRON_GOLEM)
-                event.getPlayer().sendMessage(ChatManager.getSingleMessage("Don't-Hit-Me-With-Weapon", ChatColor.RED + "You can't hit me with a weapon. That's just rude!"));
+                event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Don't-Hit-Me-With-Weapon").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
         }
     }
 
@@ -307,7 +308,7 @@ public class Events implements Listener {
         if (event.getPlayer().isOp() || event.getPlayer().hasPermission("minigames.edit"))
             return;
         event.setCancelled(true);
-        event.getPlayer().sendMessage(ChatManager.getSingleMessage("Only-Command-Ingame-Is-Leave", ChatColor.RED + "You have to leave the game first to perform commands. The only command that works is /leave!"));
+        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Only-Command-Ingame-Is-Leave").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
     }
 
     @EventHandler
@@ -490,10 +491,10 @@ public class Events implements Listener {
             return;
         String string = event.getCurrentItem().getItemMeta().getLore().get(0);
         string = ChatColor.stripColor(string);
-        if (!(string.contains(ChatManager.getSingleMessage("orbs-In-Shop", "Orbs")) || string.contains("orbs"))) {
+        if (!(string.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")) || string.contains("orbs"))) {
             boolean b = false;
             for (String s : event.getCurrentItem().getItemMeta().getLore()) {
-                if (string.contains(ChatManager.getSingleMessage("orbs-In-Shop", "Orbs")) || string.contains("orbs")) {
+                if (string.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")) || string.contains("orbs")) {
                     string = s;
                     b = true;
                     continue;
@@ -504,13 +505,13 @@ public class Events implements Listener {
         }
         int price = Integer.parseInt(string.split(" ")[0]);
         if (price > UserManager.getUser(player.getUniqueId()).getInt("orbs")) {
-            player.sendMessage(ChatManager.getSingleMessage("Need-More-Orbs-To-Buy-this", ChatColor.RED + "You need more orbs to buy this item!"));
+            player.sendMessage(LanguageManager.getLanguageFile().get("Need-More-Orbs-To-Buy-this").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
             return;
         }
         if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()) {
-            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.getSingleMessage("Spawn-Golem", "Spawn Golem"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(LanguageManager.getLanguageFile().get("Spawn-Golem").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
                 ((InvasionInstance) gameInstance).spawnGolem(gameInstance.getStartLocation(), player);
-                player.sendMessage(ChatManager.getSingleMessage("Golem-Spawned", ChatColor.GREEN + "Golem spawned in the village! Right Click to ride it!"));
+                player.sendMessage(LanguageManager.getLanguageFile().get("Golem-Spawned").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
 
@@ -522,7 +523,7 @@ public class Events implements Listener {
                     player.sendMessage(ChatManager.getSingleMessage("Wolf-Spawned",ChatColor.GREEN + "Wolf spawned in the village!"));
                 } */
                 ((InvasionInstance) gameInstance).spawnWolf(gameInstance.getStartLocation(), player);
-                player.sendMessage(ChatManager.getSingleMessage("Wolf-Spawned", ChatColor.GREEN + "Wolf spawned in the village!"));
+                player.sendMessage(LanguageManager.getLanguageFile().get("Wolf-Spawned").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
             }
@@ -534,7 +535,7 @@ public class Events implements Listener {
         Iterator iterator = lore.iterator();
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            if (s.contains(ChatManager.getSingleMessage("orbs-In-Shop", "Orbs"))) {
+            if (s.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
                 lore.remove(s);
             }
         }
@@ -765,7 +766,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(ChatManager.getSingleMessage("Door-Placed", ChatColor.GREEN + "Door placed!"));
+        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Door-Placed").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
     }
 
 
@@ -823,8 +824,10 @@ public class Events implements Listener {
                         for (Player player : invasionInstance.getPlayers()) {
                             player.setMaxHealth(player.getMaxHealth() + 2.0);
                         }
-                        invasionInstance.getChatManager().broadcastMessage("RottenFleshLevelUp", ChatColor.AQUA + "The gods were happy with the rottenflesh!" +
-                                ChatColor.AQUA + " There for they gave you an extra heart!");
+                        for(Player player1 : gameInstance.getPlayers()) {
+                        	String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("RottenFleshLevelUp").toString(), player1);
+                            player1.sendMessage("§a[VillageDefense] " + message);
+                        }
                     }
 
                 }
@@ -874,10 +877,10 @@ public class Events implements Listener {
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                 } else {
                     player.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + UserManager.getUser(event.getPlayer().getUniqueId()).getInt("level") +
-                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + gameInstance.getChatManager().getMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
+                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                     System.out.print(ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + UserManager.getUser(event.getPlayer().getUniqueId()).getInt("level") +
-                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + gameInstance.getChatManager().getMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
+                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                 }
             }

@@ -8,12 +8,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -21,9 +21,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class PuncherKit extends LevelKit {
 
     public PuncherKit() {
-        setName(ChatManager.getFromLanguageConfig("Puncher-Kit-Name", ChatManager.PREFIX + "Puncher"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Puncher-Kit-Description", "Punch those zombies back" +
-                " with your epic shovel! Knockback V is not unknow for u!"), 40);
+    	setName(LanguageManager.getLanguageFile().get("Puncher-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Puncher-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(4);
     }

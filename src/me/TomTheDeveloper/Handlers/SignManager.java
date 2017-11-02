@@ -19,6 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * User: Ivan
@@ -226,7 +227,7 @@ public class SignManager extends BukkitRunnable implements Listener {
             if(instance != null) {
                 for(GameInstance gameInstance: plugin.getGameInstanceManager().getGameInstances()){
                     if(gameInstance.getPlayers().contains(event.getPlayer())){
-                        event.getPlayer().sendMessage(ChatManager.getFromLanguageConfig("YouAreAlreadyIngame", ChatColor.RED + "You are already qeued for a game! You can leave a game with /leave."));
+                        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', LanguageManager.getLanguageFile().get("YouAreAlreadyIngame").toString()));
                         return;
                     }
                 }
@@ -242,8 +243,11 @@ public class SignManager extends BukkitRunnable implements Listener {
                             } else {
                                 if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {
                                     instance.leaveAttempt(player);
-                                    player.sendMessage(plugin.getGameInstanceManager().getGameInstances().get(0).getChatManager().getMessage("YouGotKickedToMakePlaceForAPremiumPlayer", ChatColor.RED + "You got kicked out of the game to make place for a premium player!"));
-                                    instance.getChatManager().broadcastMessage(plugin.getGameInstanceManager().getGameInstances().get(0).getChatManager().getMessage("KickedToMakePlaceForPremiumPlayer", "%PLAYER% got removed from the game to make place for a premium players!", player));
+                                    player.sendMessage(LanguageManager.getLanguageFile().get("YouGotKickedToMakePlaceForAPremiumPlayer").toString());
+                                    String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("KickedToMakePlaceForPremiumPlayer").toString(), player);
+                                	for(Player p : instance.getPlayers()) {
+                                		p.sendMessage(ChatManager.PLUGINPREFIX + message);
+                                	}
                                     instance.joinAttempt(event.getPlayer());
                                     b = true;
                                     return;
@@ -256,14 +260,14 @@ public class SignManager extends BukkitRunnable implements Listener {
 
                         }
                         if (!b) {
-                            event.getPlayer().sendMessage(plugin.getGameInstanceManager().getGameInstances().get(0).getChatManager().getMessage("FullGameAlreadyFullWithPermiumPlayers", ChatColor.RED + "This game is already full with premium players! Sorry"));
+                            event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("FullGameAlreadyFullWithPermiumPlayers").toString());
                             return;
                         } else {
                             return;
                         }
 
                     }else{
-                        event.getPlayer().sendMessage(plugin.getGameInstanceManager().getGameInstances().get(0).getChatManager().getMessage("NoPermissionToJoinFullGames","You don't have the permission to join full games!"));
+                        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("NoPermissionToJoinFullGames").toString());
                         return;
                     }
                    // instance.joinAttempt(event.getPlayer());

@@ -15,12 +15,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 27/08/2014.
@@ -29,10 +29,9 @@ public class ShotBowKit extends PremiumKit implements Listener {
 
 
     public ShotBowKit() {
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("ShotBow-Kit-Description", "You invented " +
-                "a crazy shotbow!"), 40);
+    	setName(LanguageManager.getLanguageFile().get("Shotbow-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("ShotBow-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-        setName(ChatManager.getFromLanguageConfig("Shotbow-Kit-Name", ChatManager.HIGHLIGHTED + "Shotbow Master"));
 
     }
 

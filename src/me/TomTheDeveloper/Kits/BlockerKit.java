@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,13 +23,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
+import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 17/12/2015.
@@ -43,9 +42,8 @@ public class BlockerKit extends PremiumKit implements Listener {
 
     public BlockerKit(final VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("The-Blocker-Kit-Name", ChatColor.AQUA + "Blocker"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Blocker-Kit-Description", "Hold the zombies back with your special barriers." +
-                " These barriers last for 10 seconds"), 40);
+        setName(LanguageManager.getLanguageFile().get("The-Blocker-Kit-Name").toString());
+        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Blocker-Kit-Description").toString(), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
@@ -83,9 +81,8 @@ public class BlockerKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         ItemStack is = new ItemStack(Material.FENCE, 3);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"));
-        im.setLore(Arrays.asList(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" + " These barriers last for 10 seconds"), ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                " These barriers last for 10 seconds")));
+        im.setDisplayName(LanguageManager.getLanguageFile().get("Blocker-Fence-Item-Name").toString());
+        im.setLore(Arrays.asList(LanguageManager.getLanguageFile().get("Blocker-Fence-Item-Lore").toString()));
         is.setItemMeta(im);
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
 
@@ -101,9 +98,8 @@ public class BlockerKit extends PremiumKit implements Listener {
         PlayerInventory inventory = player.getInventory();
         ItemStack is = new ItemStack(Material.FENCE, 3);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Name", "Fence"));
-        im.setLore(Arrays.asList(ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" + " These barriers last for 10 seconds"), ChatManager.getFromLanguageConfig("Blocker-Fence-Item-Lore", "Place this barrier to hold back zombies!" +
-                " These barriers last for 10 seconds")));
+        im.setDisplayName(LanguageManager.getLanguageFile().get("Blocker-Fence-Item-Name").toString());
+        im.setLore(Arrays.asList(LanguageManager.getLanguageFile().get("Blocker-Fence-Item-Lore").toString()));
         is.setItemMeta(im);
     }
 
@@ -120,7 +116,7 @@ public class BlockerKit extends PremiumKit implements Listener {
             return;
         if (!player.getItemInHand().getItemMeta().hasDisplayName())
             return;
-        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.getSingleMessage("Blocker-Fence-Item-Name", "Fence")))
+        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(LanguageManager.getLanguageFile().get("Blocker-Fence-Item-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")))
             return;
         Block block = null;
         for (Block blocks : player.getLastTwoTargetBlocks(null, 5)) {
@@ -128,7 +124,7 @@ public class BlockerKit extends PremiumKit implements Listener {
                 block = blocks;
         }
         if (block == null) {
-            event.getPlayer().sendMessage(ChatManager.getSingleMessage("Barrier-Can't-Be-Placed-Here", ChatColor.RED + "Unable to place barrier here"));
+            event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Barrier-Can't-Be-Placed-Here").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
             return;
         }
         if (player.getItemInHand().getAmount() <= 1) {
@@ -138,7 +134,7 @@ public class BlockerKit extends PremiumKit implements Listener {
         }
         User user = UserManager.getUser(event.getPlayer().getUniqueId());
 
-        user.toPlayer().sendMessage(ChatManager.getSingleMessage("Barrier-Placed", ChatColor.GREEN + "Barrier placed!"));
+        user.toPlayer().sendMessage(LanguageManager.getLanguageFile().get("Barrier-Placed").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
         ZombieBarrier zombieBarrier = new ZombieBarrier();
         zombieBarrier.setUuid(user.getUuid());
         zombieBarrier.setLocation(block.getLocation());
