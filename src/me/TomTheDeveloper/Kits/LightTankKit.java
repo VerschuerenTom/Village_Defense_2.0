@@ -6,10 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.FreeKit;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -17,8 +17,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class LightTankKit extends FreeKit {
 
     public LightTankKit() {
-        setName(LanguageManager.getLanguageFile().get("Light-Tank-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Light-Tank-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Light-Tank-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Light-Tank-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

@@ -8,12 +8,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 19/07/2015.
@@ -22,8 +22,8 @@ public class DoorRepairKit extends LevelKit {
 
     public DoorRepairKit() {
         this.setLevel(15);
-        this.setName(LanguageManager.getLanguageFile().get("Worker-Kit-Name").toString()); 
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Worker-Kit-Description").toString(), 40);
+        this.setName(ChatManager.colorMessage("Worker-Kit-Name")); 
+        List<String> description = Util.splitString(ChatManager.colorMessage("Worker-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
 

@@ -13,12 +13,12 @@ import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 21/07/2015.
@@ -30,8 +30,8 @@ public class LooterKit extends LevelKit implements Listener {
 
     public LooterKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(LanguageManager.getLanguageFile().get("Looter-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Looter-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Looter-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Looter-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(8);
     }

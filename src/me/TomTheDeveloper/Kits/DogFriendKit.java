@@ -9,13 +9,13 @@ import org.bukkit.inventory.ItemStack;
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/07/2015.
@@ -26,8 +26,8 @@ public class DogFriendKit extends PremiumKit {
 
     public DogFriendKit(VillageDefense invasion) {
         this.plugin = invasion;
-        this.setName(LanguageManager.getLanguageFile().get("Dog-Friend-Kit-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Dog-Friend-Kit-Description").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), 40);
+        this.setName(ChatManager.colorMessage("Dog-Friend-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Dog-Friend-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

@@ -7,10 +7,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 28/07/2015.
@@ -18,8 +18,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class PremiumHardcoreKit extends PremiumKit {
 
     public PremiumHardcoreKit() {
-        setName(LanguageManager.getLanguageFile().get("PremiumHardcore-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("PremiumHardcore-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("PremiumHardcore-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("PremiumHardcore-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

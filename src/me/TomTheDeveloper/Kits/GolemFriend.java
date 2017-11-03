@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
@@ -18,7 +19,6 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_7_10;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 21/07/2015.
@@ -30,8 +30,8 @@ public class GolemFriend extends LevelKit {
 
     public GolemFriend(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(LanguageManager.getLanguageFile().get("Golem-Friend-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Golem-Friend-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Golem-Friend-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Golem-Friend-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(18);
     }

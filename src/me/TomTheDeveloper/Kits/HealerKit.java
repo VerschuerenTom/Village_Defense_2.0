@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -22,8 +22,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class HealerKit extends LevelKit {
 
     public HealerKit() {
-        setName(LanguageManager.getLanguageFile().get("Healer-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Healer-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Healer-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Healer-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(6);
     }

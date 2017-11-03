@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionType;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
@@ -23,7 +24,6 @@ import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 1/12/2015.
@@ -35,9 +35,8 @@ public class MedicKit extends PremiumKit implements Listener {
 
     public MedicKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(LanguageManager.getLanguageFile().get("Medic-Kit").toString());
-
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Medic-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Medic-Kit"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Medic-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

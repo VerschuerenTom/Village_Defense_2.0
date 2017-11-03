@@ -10,12 +10,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -24,8 +24,8 @@ public class RunnerKit extends LevelKit {
 
     public RunnerKit() {
         setLevel(10);
-        setName(LanguageManager.getLanguageFile().get("Runner-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Runner-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Runner-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Runner-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

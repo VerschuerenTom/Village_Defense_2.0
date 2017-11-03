@@ -8,13 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Items;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 28/07/2015.
@@ -23,8 +23,8 @@ public class HardcoreKit extends LevelKit {
 
 
     public HardcoreKit() {
-        setName(LanguageManager.getLanguageFile().get("Hardcore-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Hardcore-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Hardcore-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Hardcore-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(100);
     }

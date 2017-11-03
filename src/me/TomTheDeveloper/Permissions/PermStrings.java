@@ -1,7 +1,5 @@
 package me.TomTheDeveloper.Permissions;
 
-import me.TomTheDeveloper.Permissions.PermStrings;
-
 /**
  * Created by Tom on 14/08/2014.
  */

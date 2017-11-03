@@ -6,11 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.FreeKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -18,8 +18,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class KnightKit extends FreeKit {
 
     public KnightKit() {
-        this.setName(LanguageManager.getLanguageFile().get("Knight-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Knight-Kit-Description").toString(), 40);
+        this.setName(ChatManager.colorMessage("Knight-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Knight-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

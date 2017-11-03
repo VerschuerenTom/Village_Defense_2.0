@@ -8,12 +8,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.LevelKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -21,8 +21,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class PuncherKit extends LevelKit {
 
     public PuncherKit() {
-    	setName(LanguageManager.getLanguageFile().get("Puncher-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Puncher-Kit-Description").toString(), 40);
+    	setName(ChatManager.colorMessage("Puncher-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Puncher-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(4);
     }

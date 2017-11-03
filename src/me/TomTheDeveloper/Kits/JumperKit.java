@@ -9,12 +9,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.User;
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 19/08/2014.
@@ -22,8 +22,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class JumperKit extends PremiumKit {
 
     public JumperKit() {
-        setName(LanguageManager.getLanguageFile().get("The-Bunny-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Jumper-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("The-Bunny-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Jumper-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

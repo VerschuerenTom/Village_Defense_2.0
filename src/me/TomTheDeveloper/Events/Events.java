@@ -62,7 +62,6 @@ import me.TomTheDeveloper.Shop.Shop;
 import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.items.SpecialItemManager;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 16/08/2014.
@@ -289,11 +288,11 @@ public class Events implements Listener {
                 event.getRightClicked().setPassenger(event.getPlayer());
                 return;
             } else {
-                event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("You-Can't-Ride-Golem-From-Somebody-Else").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                event.getPlayer().sendMessage(ChatManager.colorMessage("You-Can't-Ride-Golem-From-Somebody-Else"));
             }
         } else {
             if (event.getRightClicked().getType() == EntityType.VILLAGER || event.getRightClicked().getType() == EntityType.IRON_GOLEM)
-                event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Don't-Hit-Me-With-Weapon").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                event.getPlayer().sendMessage(ChatManager.colorMessage("Don't-Hit-Me-With-Weapon"));
         }
     }
 
@@ -308,7 +307,7 @@ public class Events implements Listener {
         if (event.getPlayer().isOp() || event.getPlayer().hasPermission("minigames.edit"))
             return;
         event.setCancelled(true);
-        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Only-Command-Ingame-Is-Leave").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("Only-Command-Ingame-Is-Leave"));
     }
 
     @EventHandler
@@ -491,10 +490,10 @@ public class Events implements Listener {
             return;
         String string = event.getCurrentItem().getItemMeta().getLore().get(0);
         string = ChatColor.stripColor(string);
-        if (!(string.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")) || string.contains("orbs"))) {
+        if (!(string.contains(ChatManager.colorMessage("orbs-In-Shop")) || string.contains("orbs"))) {
             boolean b = false;
             for (String s : event.getCurrentItem().getItemMeta().getLore()) {
-                if (string.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2")) || string.contains("orbs")) {
+                if (string.contains(ChatManager.colorMessage("orbs-In-Shop")) || string.contains("orbs")) {
                     string = s;
                     b = true;
                     continue;
@@ -505,13 +504,13 @@ public class Events implements Listener {
         }
         int price = Integer.parseInt(string.split(" ")[0]);
         if (price > UserManager.getUser(player.getUniqueId()).getInt("orbs")) {
-            player.sendMessage(LanguageManager.getLanguageFile().get("Need-More-Orbs-To-Buy-this").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+            player.sendMessage(ChatManager.colorMessage("Need-More-Orbs-To-Buy-this"));
             return;
         }
         if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()) {
-            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(LanguageManager.getLanguageFile().get("Spawn-Golem").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Spawn-Golem"))) {
                 ((InvasionInstance) gameInstance).spawnGolem(gameInstance.getStartLocation(), player);
-                player.sendMessage(LanguageManager.getLanguageFile().get("Golem-Spawned").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                player.sendMessage(ChatManager.colorMessage("Golem-Spawned"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
 
@@ -523,7 +522,7 @@ public class Events implements Listener {
                     player.sendMessage(ChatManager.getSingleMessage("Wolf-Spawned",ChatColor.GREEN + "Wolf spawned in the village!"));
                 } */
                 ((InvasionInstance) gameInstance).spawnWolf(gameInstance.getStartLocation(), player);
-                player.sendMessage(LanguageManager.getLanguageFile().get("Wolf-Spawned").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                player.sendMessage(ChatManager.colorMessage("Wolf-Spawned"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
             }
@@ -535,7 +534,7 @@ public class Events implements Listener {
         Iterator iterator = lore.iterator();
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            if (s.contains(LanguageManager.getLanguageFile().get("orbs-In-Shop").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
+            if (s.contains(ChatManager.colorMessage("orbs-In-Shop"))) {
                 lore.remove(s);
             }
         }
@@ -766,7 +765,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Door-Placed").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("Door-Placed"));
     }
 
 
@@ -825,7 +824,7 @@ public class Events implements Listener {
                             player.setMaxHealth(player.getMaxHealth() + 2.0);
                         }
                         for(Player player1 : gameInstance.getPlayers()) {
-                        	String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("RottenFleshLevelUp").toString(), player1);
+                        	String message = ChatManager.formatMessage(ChatManager.colorMessage("RottenFleshLevelUp"), player1);
                             player1.sendMessage("§a[VillageDefense] " + message);
                         }
                     }

@@ -29,6 +29,16 @@ public class LanguageManager {
 		}
 	}
 
+	public static String getLanguageMessage(String message) {
+		if (languageConfig == null) {
+			reloadLanguageFile();
+		}
+		if(getLanguageFile().isSet(message)) {
+			return getLanguageFile().getString(message);
+		}
+		return null;
+	}
+	
 	public static FileConfiguration getLanguageFile() {
 		if (languageConfig == null) {
 			reloadLanguageFile();

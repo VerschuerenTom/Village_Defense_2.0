@@ -31,7 +31,6 @@ import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -44,9 +43,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
     public TeleporterKit(VillageDefense plugin) {
         this.plugin = plugin;
         gameAPI = plugin.getGameAPI();
-        
-        setName(LanguageManager.getLanguageFile().get("Teleporter-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Teleporter-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Teleporter-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Teleporter-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 
@@ -63,8 +61,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.ENDER_PEARL);
-        List<String> teleporationlore = Util.splitString(LanguageManager.getLanguageFile().get("Teleportion-Item-Lore").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), 40);
-        this.setItemNameAndLore(enderpealteleporter, LanguageManager.getLanguageFile().get("Teleportation-Menu-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Teleportion-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Teleportation-Menu-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -80,7 +78,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
     public void OpenAndCreateTeleportationMenu(World world, Player p) {
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(p);
-        Inventory inventory = plugin.getServer().createInventory(null, 18, LanguageManager.getLanguageFile().get("Teleportation-Menu-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+        Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.colorMessage("Teleportation-Menu-Name"));
         for (Player player : world.getPlayers()) {
             if (gameAPI.getGameInstanceManager().getGameInstance(player) != null && !UserManager.getUser(player.getUniqueId()).isFakeDead()) {
                 ItemStack skull = new ItemStack(397, 1, (short) 3);
@@ -116,7 +114,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
                     if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName() == null)
                         return;
 
-                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(LanguageManager.getLanguageFile().get("Teleportion-Item-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
+                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Teleportion-Item-Name"))) {
                         OpenAndCreateTeleportationMenu(e.getPlayer().getWorld(), e.getPlayer());
                     }
                 }
@@ -144,7 +142,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
         if (!e.getCurrentItem().getItemMeta().hasLore())
             return;
         if (e.getCurrentItem().hasItemMeta()) {
-            if (e.getInventory().getName().equalsIgnoreCase(LanguageManager.getLanguageFile().get("Teleportation-Menu-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))) {
+            if (e.getInventory().getName().equalsIgnoreCase(ChatManager.colorMessage("Teleportation-Menu-Name"))) {
                 e.setCancelled(true);
                 if ((e.isLeftClick() || e.isRightClick())) {
                     if (e.getCurrentItem().getType() == Material.EMERALD) {
@@ -166,12 +164,12 @@ public class TeleporterKit extends PremiumKit implements Listener {
                                     p.getWorld().spawnParticle(Particle.PORTAL, p.getLocation(), 30, 1, 1, 1);
                                 }
                                 villagerfound = true;
-                                p.sendMessage(LanguageManager.getLanguageFile().get("Teleported-To-Villager").toString());
+                                p.sendMessage(ChatManager.colorMessage("Teleported-To-Villager"));
                                 break;
                             }
                         }
                         if (!villagerfound) {
-                            p.sendMessage(LanguageManager.getLanguageFile().get("Didn't-Found-The-Villager").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                            p.sendMessage(ChatManager.colorMessage("Didn't-Found-The-Villager"));
                         }
                         villagerfound = false;
                         e.setCancelled(true);
@@ -180,7 +178,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
                         ItemMeta meta = e.getCurrentItem().getItemMeta();
                         for (Player player : gameInstance.getPlayers()) {
                             if (player.getName().equalsIgnoreCase(meta.getDisplayName()) || ChatColor.stripColor(meta.getDisplayName()).contains(player.getName())) {
-                                p.sendMessage(ChatManager.formatMessage(LanguageManager.getLanguageFile().get("Teleported-To-Player").toString(), player));
+                                p.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("Teleported-To-Player"), player));
                                 p.teleport(player);
                                 if (plugin.is1_9_R1() || plugin.is1_12_R1()) {
                                     p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1);
@@ -198,7 +196,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
                             }
                         }
-                        p.sendMessage(LanguageManager.getLanguageFile().get("Player-Not-Found").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+                        p.sendMessage(ChatManager.colorMessage("Player-Not-Found"));
                     }
                     e.setCancelled(true);
                 }

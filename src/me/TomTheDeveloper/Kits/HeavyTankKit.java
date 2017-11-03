@@ -7,11 +7,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 19/08/2014.
@@ -19,8 +19,8 @@ import pl.Plajer.GameAPI.LanguageManager;
 public class HeavyTankKit extends PremiumKit {
 
     public HeavyTankKit() {
-        setName(LanguageManager.getLanguageFile().get("Heavy-Tank-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Heavy-Tank-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Heavy-Tank-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Heavy-Tank-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

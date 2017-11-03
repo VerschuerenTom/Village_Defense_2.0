@@ -21,7 +21,6 @@ import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
 import me.TomTheDeveloper.MenuAPI.IconMenu;
 import me.TomTheDeveloper.Utils.Util;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 26/07/2014.
@@ -42,10 +41,10 @@ public class KitMenuHandler implements Listener {
 
 
     public KitMenuHandler(GameAPI GameAPI) {
-        itemname = LanguageManager.getLanguageFile().get("Kit-Menu-Item-Name").toString();
-        this.GameAPI = GameAPI;
-       UNLOCKED = LanguageManager.getLanguageFile().get("KitUnlockedLoreInKitMenu").toString();
-       LOCKED = LanguageManager.getLanguageFile().get("KitLockedLoreInKitMenu").toString();
+    	itemname = ChatManager.colorMessage("Kit-Menu-Item-Name");
+    	this.GameAPI = GameAPI;
+    	UNLOCKED = ChatManager.colorMessage("KitUnlockedLoreInKitMenu");
+    	LOCKED = ChatManager.colorMessage("KitLockedLoreInKitMenu");
 
     }
 
@@ -153,11 +152,11 @@ public class KitMenuHandler implements Listener {
         if(event.getKit().isUnlockedByPlayer(event.getPlayer())){
             User user = UserManager.getUser(event.getPlayer().getUniqueId());
             user.setKit(event.getKit());
-            String chosenkitmessage = LanguageManager.getLanguageFile().get("KitChosenMessage").toString();
+            String chosenkitmessage = ChatManager.colorMessage("KitChosenMessage");
              chosenkitmessage = ChatManager.formatMessage(chosenkitmessage, event.getKit());
             event.getPlayer().sendMessage(chosenkitmessage);
         }else{
-            String chosenKitMessageButNotUnlocked = LanguageManager.getLanguageFile().get("KitChosenButNotUnlockedMessage").toString();
+            String chosenKitMessageButNotUnlocked = ChatManager.colorMessage("KitChosenButNotUnlockedMessage");
             event.getPlayer().sendMessage(ChatManager.formatMessage(chosenKitMessageButNotUnlocked, event.getKit()));
         }
 

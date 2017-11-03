@@ -19,7 +19,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * User: Ivan
@@ -227,7 +226,7 @@ public class SignManager extends BukkitRunnable implements Listener {
             if(instance != null) {
                 for(GameInstance gameInstance: plugin.getGameInstanceManager().getGameInstances()){
                     if(gameInstance.getPlayers().contains(event.getPlayer())){
-                        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', LanguageManager.getLanguageFile().get("YouAreAlreadyIngame").toString()));
+                        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', ChatManager.colorMessage("YouAreAlreadyIngame").toString()));
                         return;
                     }
                 }
@@ -243,8 +242,8 @@ public class SignManager extends BukkitRunnable implements Listener {
                             } else {
                                 if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {
                                     instance.leaveAttempt(player);
-                                    player.sendMessage(LanguageManager.getLanguageFile().get("YouGotKickedToMakePlaceForAPremiumPlayer").toString());
-                                    String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("KickedToMakePlaceForPremiumPlayer").toString(), player);
+                                    player.sendMessage(ChatManager.colorMessage("YouGotKickedToMakePlaceForAPremiumPlayer"));
+                                    String message = ChatManager.formatMessage(ChatManager.colorMessage("KickedToMakePlaceForPremiumPlayer"), player);
                                 	for(Player p : instance.getPlayers()) {
                                 		p.sendMessage(ChatManager.PLUGINPREFIX + message);
                                 	}
@@ -260,14 +259,14 @@ public class SignManager extends BukkitRunnable implements Listener {
 
                         }
                         if (!b) {
-                            event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("FullGameAlreadyFullWithPermiumPlayers").toString());
+                            event.getPlayer().sendMessage(ChatManager.colorMessage("FullGameAlreadyFullWithPermiumPlayers"));
                             return;
                         } else {
                             return;
                         }
 
                     }else{
-                        event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("NoPermissionToJoinFullGames").toString());
+                        event.getPlayer().sendMessage(ChatManager.colorMessage("NoPermissionToJoinFullGames"));
                         return;
                     }
                    // instance.joinAttempt(event.getPlayer());

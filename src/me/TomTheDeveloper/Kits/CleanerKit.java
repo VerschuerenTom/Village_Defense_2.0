@@ -22,7 +22,6 @@ import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -33,8 +32,8 @@ public class CleanerKit extends PremiumKit implements Listener {
 
     public CleanerKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(LanguageManager.getLanguageFile().get("Cleaner-Kit-Name").toString());
-        List<String> description = Util.splitString(LanguageManager.getLanguageFile().get("Cleaner-Kit-Description").toString(), 40);
+        setName(ChatManager.colorMessage("Cleaner-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Cleaner-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 
@@ -48,10 +47,10 @@ public class CleanerKit extends PremiumKit implements Listener {
         ArmorHelper.setColouredArmor(Color.YELLOW, player);
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         ItemStack cleaneritem = new ItemStack(Material.BLAZE_ROD);
-        List<String> cleanerWandLore = Util.splitString(LanguageManager.getLanguageFile().get("Cleaner-Item-Lore").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), 40);
+        List<String> cleanerWandLore = Util.splitString(ChatManager.colorMessage("Cleaner-Item-Lore"), 40);
         String[] cleanerWandLoreArray = cleanerWandLore.toArray(new String[cleanerWandLore.size()]);
 
-        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, LanguageManager.getLanguageFile().get("Cleaner-Wand-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"), cleanerWandLoreArray);
+        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, ChatManager.colorMessage("Cleaner-Wand-Name"), cleanerWandLoreArray);
         player.getInventory().addItem(cleaneritem);
         player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
@@ -78,20 +77,20 @@ public class CleanerKit extends PremiumKit implements Listener {
             return;
         if (!(event.getItem().getItemMeta().hasDisplayName()))
             return;
-        if (!(event.getItem().getItemMeta().getDisplayName().contains(LanguageManager.getLanguageFile().get("Cleaner-Wand-Name").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"))))
+        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Cleaner-Wand-Name"))))
             return;
         if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
             return;
         if (UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
-            event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("You-Can't-Clean-You're-Spectator").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("You-Can't-Clean-You're-Spectator"));
             return;
         }
         InvasionInstance invasionInstance = (InvasionInstance) plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer());
 
         if (UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("clean") > 0 && !UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
-        	String msgstring = LanguageManager.getLanguageFile().get("Ability-Still-On-Cooldown").toString();
+        	String msgstring = ChatManager.colorMessage("Ability-Still-On-Cooldown");
         	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("clean")));
-        	event.getPlayer().sendMessage(msgstring.replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+        	event.getPlayer().sendMessage(msgstring);
             return;
         }
         if (invasionInstance.getZombies() != null) {
@@ -105,7 +104,7 @@ public class CleanerKit extends PremiumKit implements Listener {
             }
             invasionInstance.getZombies().clear();
         } else {
-            event.getPlayer().sendMessage(LanguageManager.getLanguageFile().get("Map-is-already-empty").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
             return;
         }
         if (plugin.is1_9_R1() || plugin.is1_12_R1()) {
@@ -113,7 +112,7 @@ public class CleanerKit extends PremiumKit implements Listener {
         } else {
             event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
         }
-        String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("Player-has-cleaned-the-map").toString(), event.getPlayer());
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("Player-has-cleaned-the-map"), event.getPlayer());
         for(Player player1 : plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()).getPlayers()) {
             player1.sendMessage("§a[VillageDefense] " + message);
         }

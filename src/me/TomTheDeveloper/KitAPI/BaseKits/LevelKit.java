@@ -5,9 +5,9 @@ import java.io.IOException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
+import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Utils.Util;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 14/08/2014.
@@ -41,7 +41,7 @@ public abstract class LevelKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack, LanguageManager.getLanguageFile().get("Unlocks-at-level").toString().replaceAll("(&([a-f0-9]))", "\u00A7$2").replaceAll("%NUMBER%",Integer.toString(getLevel())));
+        Util.addLore(itemStack, ChatManager.colorMessage("Unlocks-at-level").replaceAll("%NUMBER%",Integer.toString(getLevel())));
         return itemStack;
     }
 }

@@ -42,7 +42,6 @@ import me.TomTheDeveloper.Kits.GolemFriend;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.chunks.ChunkManager;
 import me.TomTheDeveloper.items.SpecialItemManager;
-import pl.Plajer.GameAPI.LanguageManager;
 
 //import me.confuser.barapi.BarAPI;
 //import me.mgone.bossbarapi.BossbarAPI;
@@ -107,7 +106,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                     if (getTimer() <= 0) {
                         setTimer(15);
-                        String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("Waiting-For-Players").toString(), getMIN_PLAYERS());
+                        String message = ChatManager.formatMessage(ChatManager.colorMessage("Waiting-For-Players"), getMIN_PLAYERS());
                         for(Player player1 : getPlayers()) {
                             player1.sendMessage("§a[Village Defense] " + message);
                         }
@@ -115,7 +114,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
                 } else {
                 	for(Player p : getPlayers()) {
-                        p.sendMessage(LanguageManager.getLanguageFile().get("Enough-Players-To-Start").toString());
+                        p.sendMessage(ChatManager.colorMessage("Enough-Players-To-Start"));
                     }
                     setGameState(GameState.STARTING);
                     setTimer(VillageDefense.STARTING_TIMER_TIME);
@@ -144,7 +143,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         addStat(player, "gamesplayed");
                         addStat(player, "xp", 10);
                         setTimer(25);
-                        player.sendMessage(LanguageManager.getLanguageFile().get("The-Game-Has-Started").toString());
+                        player.sendMessage(ChatManager.colorMessage("The-Game-Has-Started"));
                     }
                     FIGHTING = false;
 
@@ -233,7 +232,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                                 clearZombies();
                                 zombiestospawn = 0;
                                 for(Player p : getPlayers()) {
-                                    p.sendMessage(LanguageManager.getLanguageFile().get("Zombie-Got-Stuck-In-The-Map").toString());
+                                    p.sendMessage(ChatManager.colorMessage("Zombie-Got-Stuck-In-The-Map"));
                                 }
                             } else {
                                 int i = getZombiesLeft();
@@ -310,7 +309,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
 
                     for(Player p : getPlayers()) {
-                        p.sendMessage(LanguageManager.getLanguageFile().get("Teleported-To-The-Lobby").toString());
+                        p.sendMessage(ChatManager.colorMessage("Teleported-To-The-Lobby"));
                     }
 
                     setGameState(GameState.RESTARTING);
@@ -357,7 +356,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
         if (Math.pow(50 * user.getInt("level"), 1.5) < user.getInt("xp")) {
             user.addInt("level", 1);
-            player.sendMessage(ChatManager.formatMessage(LanguageManager.getLanguageFile().get("You-leveled-up").toString(), user.getInt("level")));
+            player.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("You-leveled-up"), user.getInt("level")));
         }
     }
 
@@ -430,15 +429,15 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
     public void stopGame() {
         if (getPlayersLeft().size() > 0) {
         	for(Player p : getPlayers()) {
-                p.sendMessage(LanguageManager.getLanguageFile().get("All-Villagers-Have-Died").toString());
-                p.sendMessage(LanguageManager.getLanguageFile().get("Reached-Wave-X").toString());
-                p.sendMessage(LanguageManager.getLanguageFile().get("Teleporting-To-Lobby-In-10-Seconds").toString());
+                p.sendMessage(ChatManager.colorMessage("All-Villagers-Have-Died"));
+                p.sendMessage(ChatManager.colorMessage("Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.colorMessage("Teleporting-To-Lobby-In-10-Seconds"));
             }
         } else {
         	for(Player p : getPlayers()) {
-                p.sendMessage(LanguageManager.getLanguageFile().get("All-Players-Have-Died").toString());
-                p.sendMessage(LanguageManager.getLanguageFile().get("Reached-Wave-X").toString());
-                p.sendMessage(LanguageManager.getLanguageFile().get("Teleporting-To-Lobby-In-10-Seconds").toString());
+                p.sendMessage(ChatManager.colorMessage("All-Players-Have-Died"));
+                p.sendMessage(ChatManager.colorMessage("Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.colorMessage("Teleporting-To-Lobby-In-10-Seconds"));
             }
         }
         for (Player player : getPlayers()) {
@@ -604,7 +603,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         for (User user : UserManager.getUsers(this)) {
             user.getKit().reStock(user.toPlayer());
         }
-        String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("Wave-Started").toString(), wave);
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("Wave-Started"), wave);
         for(Player player1 : getPlayers()) {
             player1.sendMessage("§a[Village Defense] " + message);
         }
@@ -616,12 +615,12 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         setTimer(25);
         zombiecheckerlocations.clear();
         wave = wave + 1;
-        String message = ChatManager.formatMessage(LanguageManager.getLanguageFile().get("Next-Wave-Starts-In").toString(), getTimer());
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("Next-Wave-Starts-In"), getTimer());
         for(Player player1 : getPlayers()) {
             player1.sendMessage("§a[Village Defense] " + message);
         }
         for (Player player : getPlayers()) {
-        	player.sendMessage(LanguageManager.getLanguageFile().get("You-Feel-Refreshed").toString());
+        	player.sendMessage(ChatManager.colorMessage("You-Feel-Refreshed"));
             if (!(plugin.is1_8_R3() || plugin.is1_7_R4())) {
                 player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             } else {
@@ -658,7 +657,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
             }
             this.teleportToStartLocation(p);
-            p.sendMessage(LanguageManager.getLanguageFile().get("You-Are-Spectator").toString());
+            p.sendMessage(ChatManager.colorMessage("You-Are-Spectator"));
             p.getInventory().clear();
             for (PotionEffect potionEffect : p.getActivePotionEffects()) {
                 p.removePotionEffect(potionEffect.getType());
@@ -975,7 +974,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                 case STARTING:
                     Objective startingobj = user.getScoreboard().getObjective("starting");
-                    startingobj.setDisplayName(LanguageManager.getLanguageFile().get("SCOREBOARD-Header").toString());
+                    startingobj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
                     startingobj.setDisplaySlot(DisplaySlot.SIDEBAR);
                     if (!plugin.isBarEnabled() && getGameState() == GameState.STARTING) {
                         Score timerscore = startingobj.getScore(ChatManager.formatMessage("SCOREBOARD-Starting-In"));
@@ -993,7 +992,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                     if (FIGHTING) {
                         Objective ingameobj = user.getScoreboard().getObjective("ingame");
-                        ingameobj.setDisplayName(LanguageManager.getLanguageFile().get("SCOREBOARD-Header").toString());
+                        ingameobj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
                         ingameobj.setDisplaySlot(DisplaySlot.SIDEBAR);
                         Score playerleftscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Players-Left"));
                         playerleftscore.setScore(this.getPlayersLeft().size());
@@ -1010,7 +1009,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     } else {
 
                         Objective ingame2obj = user.getScoreboard().getObjective("ingame2");
-                        ingame2obj.setDisplayName(LanguageManager.getLanguageFile().get("SCOREBOARD-Header").toString());
+                        ingame2obj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
                         ingame2obj.setDisplaySlot(DisplaySlot.SIDEBAR);
                         Score playerleftscore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Players-Left"));
                         playerleftscore.setScore(this.getPlayersLeft().size());
@@ -1063,7 +1062,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 getStartLocation().getWorld().strikeLightningEffect(event.getEntity().getLocation());
                 removeVillager((Villager) event.getEntity());
                 for(Player p : getPlayers()) {
-                    p.sendMessage(LanguageManager.getLanguageFile().get("A-Villager-Has-Died").toString());
+                    p.sendMessage(ChatManager.colorMessage("A-Villager-Has-Died"));
                 }
             }
         }
@@ -1132,7 +1131,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 MessageHandler.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
                 MessageHandler.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
             } else {
-                player.sendMessage(LanguageManager.getLanguageFile().get("You-Are-Spectator").toString());
+                player.sendMessage(ChatManager.colorMessage("You-Are-Spectator"));
             }
             getChatManager().broadcastDeathMessage(player);
 
@@ -1280,7 +1279,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 player.setAllowFlight(false);
                 player.setGameMode(GameMode.SURVIVAL);
                 this.showPlayers();
-                player.sendMessage(LanguageManager.getLanguageFile().get("You're-Back-In-Game").toString());
+                player.sendMessage(ChatManager.colorMessage("You're-Back-In-Game"));
             }
 
         }
