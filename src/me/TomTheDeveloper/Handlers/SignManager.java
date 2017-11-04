@@ -18,6 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 
 /**
  * User: Ivan
@@ -33,10 +34,6 @@ public class SignManager extends BukkitRunnable implements Listener {
     Queue<GameInstance> gamequeue = new LinkedList<GameInstance>();
     public GameAPI plugin;
     public static String[] signlines = new String[]{"--------", "Waiting", "", "--------"};
-
-
-
-
 
     /*
     The constructor fills our signpool up with sig schedules a
@@ -232,11 +229,11 @@ public class SignManager extends BukkitRunnable implements Listener {
 
                 if (instance.getMAX_PLAYERS() <= instance.getPlayers().size()) {
 
-                    if ((event.getPlayer().hasPermission("minigames.vip") || event.getPlayer().hasPermission("minigames.fullgames"))) {
+                    if ((event.getPlayer().hasPermission(PermissionsManager.getVIP()) || event.getPlayer().hasPermission(PermissionsManager.getJoinFullGames()))) {
 
                         boolean b = false;
                         for (Player player : instance.getPlayers()) {
-                            if (player.hasPermission("minigames.vip") || player.hasPermission("minigames.fullgames")) {
+                            if (player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getJoinFullGames())) {
 
                             } else {
                                 if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {

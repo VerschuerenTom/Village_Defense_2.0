@@ -37,7 +37,9 @@ import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Game.InstanceType;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.MessageHandler;
+import me.TomTheDeveloper.Handlers.MessageHandler_v1_12_R1;
+import me.TomTheDeveloper.Handlers.MessageHandler_v1_8_R3;
+import me.TomTheDeveloper.Handlers.MessageHandler_v1_9_R1;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.Items.SpecialItemManager;
 import me.TomTheDeveloper.Kits.GolemFriend;
@@ -1116,8 +1118,14 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             hidePlayer(player);
             player.setAllowFlight(true);
             if (plugin.is1_8_R3()) {
-                MessageHandler.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
-                MessageHandler.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+                MessageHandler_v1_8_R3.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
+                MessageHandler_v1_8_R3.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+            } else if(plugin.is1_9_R1()){
+            	MessageHandler_v1_9_R1.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
+                MessageHandler_v1_9_R1.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+        	} else if(plugin.is1_12_R1()) {
+            	MessageHandler_v1_12_R1.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
+                MessageHandler_v1_12_R1.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
             } else {
                 player.sendMessage(ChatManager.colorMessage("You-Are-Spectator"));
             }

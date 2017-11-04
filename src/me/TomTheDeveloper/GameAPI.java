@@ -18,8 +18,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
-import me.TomTheDeveloper.Attacks.Attack;
-import me.TomTheDeveloper.Attacks.AttackListener;
 import me.TomTheDeveloper.Bungee.Bungee;
 import me.TomTheDeveloper.Commands.InstanceCommands;
 import me.TomTheDeveloper.Commands.SignCommands;
@@ -31,7 +29,6 @@ import me.TomTheDeveloper.Events.onJoin;
 import me.TomTheDeveloper.Events.onQuit;
 import me.TomTheDeveloper.Events.onSpectate;
 import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Handlers.AttackManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.GameInstanceManager;
 import me.TomTheDeveloper.Handlers.InventoryManager;
@@ -55,8 +52,6 @@ public class GameAPI {
 	private String name;
 	private String abreviation;
 	private boolean kitsenabled = false;
-	private AttackListener attackListener;
-	private AttackManager attackManager;
 	private InventoryManager inventoryManager;
 	private boolean bar = false;
 	private boolean bungee;
@@ -177,15 +172,8 @@ public class GameAPI {
         this.getServer().getPluginManager().registerEvents(new onChatEvent(this), this);*/
 
 		User.plugin = this;
-		AttackListener.plugin = this;
-		Attack.plugin = this;
 
 		this.kitHandler = new KitHandler();
-
-
-		this.attackManager = new AttackManager();
-		this.attackListener = new AttackListener();
-
 
 		this.kitMenuHandler = new KitMenuHandler(this);
 		plugin.getServer().getPluginManager().registerEvents(this.kitMenuHandler, plugin);
@@ -328,11 +316,6 @@ public class GameAPI {
 		return kitsenabled;
 	}
 
-	public AttackManager getAttackManager() {
-		return attackManager;
-	}
-
-
 
 	public void onStart(){};
 	public void onStop(){};
@@ -369,10 +352,6 @@ public class GameAPI {
 		return signManager;
 	}
 
-	public AttackListener getAttackListener(){
-		return attackListener;
-	}
-
 	private void loadInstanceConfig(){
 		if(!plugin.getConfig().contains("instances.default")){
 			this.saveLoc("instances.default.lobbylocation", plugin.getServer().getWorlds().get(0).getSpawnLocation());
@@ -393,10 +372,6 @@ public class GameAPI {
 
 	public InventoryManager getInventoryManager(){
 		return inventoryManager;
-	}
-
-	public void setAttackListener(AttackListener attackListener){
-		this.attackListener = attackListener;
 	}
 
 	public boolean isInventoryManagerEnabled(){
