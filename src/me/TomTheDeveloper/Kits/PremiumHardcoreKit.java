@@ -18,10 +18,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class PremiumHardcoreKit extends PremiumKit {
 
     public PremiumHardcoreKit() {
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("PremiumHardcore-Kit-Description", "One hit most zombies with your OP sword!" +
-                " However be carefull. this kit is only for the pro's! Do not use it if u aren't a pro!"), 40);
+        setName(ChatManager.colorMessage("PremiumHardcore-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("PremiumHardcore-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-        setName(ChatManager.getFromLanguageConfig("PremiumHardcore-Kit-Name", ChatManager.HIGHLIGHTED + "Premium Hardcore Master"));
 
     }
 

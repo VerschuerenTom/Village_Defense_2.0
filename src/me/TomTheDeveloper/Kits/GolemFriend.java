@@ -30,8 +30,8 @@ public class GolemFriend extends LevelKit {
 
     public GolemFriend(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("Golem-Friend-Kit-Name", ChatManager.PREFIX + "Golem Friend"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Golem-Friend-Kit-Description", "Start with a golem!"), 40);
+        setName(ChatManager.colorMessage("Golem-Friend-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Golem-Friend-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(18);
     }

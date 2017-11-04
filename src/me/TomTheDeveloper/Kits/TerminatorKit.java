@@ -20,12 +20,12 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 /**
  * Created by Tom on 18/07/2015.
  */
-public class StrenghtKit extends LevelKit {
+public class TerminatorKit extends LevelKit {
 
 
-    public StrenghtKit() {
-        setName(ChatManager.getFromLanguageConfig("Terminator-Kit-Name", ChatManager.PREFIX + "Terminator"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Terminator-Kit-Description", "Easily kil those zombies with your strenght powers!!"), 40);
+    public TerminatorKit() {
+    	setName(ChatManager.colorMessage("Terminator-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Terminator-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(20);
     }

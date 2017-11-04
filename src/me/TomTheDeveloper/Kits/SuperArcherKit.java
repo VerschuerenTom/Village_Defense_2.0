@@ -27,11 +27,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class SuperArcherKit extends PremiumKit implements Listener {
 
     public SuperArcherKit() {
-        setName(ChatManager.getFromLanguageConfig("SuperArcher-Kit-Name", ChatManager.HIGHLIGHTED + "Super Archer"));
-
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("SuperArcher-Kit-Description", "" +
-                "You are soo good at shooting arrows that you developed a technic to insta-shoot arrows!" +
-                "Shooting an arrow per second is quite easy for you."), 40);
+    	setName(ChatManager.colorMessage("SuperArcher-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("SuperArcher-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

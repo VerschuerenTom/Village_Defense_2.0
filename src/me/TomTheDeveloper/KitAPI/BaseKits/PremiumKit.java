@@ -1,6 +1,5 @@
 package me.TomTheDeveloper.KitAPI.BaseKits;
 
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.Handlers.ChatManager;
@@ -31,7 +30,7 @@ public abstract class PremiumKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack, ChatManager.getFromLanguageConfig("Unlock-This-Kit-In-The-Store", ChatColor.AQUA+ "Unlock this in the store!"));
+        Util.addLore(itemStack, ChatManager.colorMessage("Unlock-This-Kit-In-The-Store"));
         return itemStack;
     }
 }

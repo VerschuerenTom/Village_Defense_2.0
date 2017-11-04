@@ -23,8 +23,8 @@ public class HardcoreKit extends LevelKit {
 
 
     public HardcoreKit() {
-        setName(ChatManager.getFromLanguageConfig("Hardcore-Kit-Name", ChatManager.PREFIX + "Hardcore"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Hardcore-Kit-Description", "You'll see yourself why this is hardcore"), 40);
+        setName(ChatManager.colorMessage("Hardcore-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Hardcore-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(100);
     }

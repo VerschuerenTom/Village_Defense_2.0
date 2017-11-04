@@ -22,8 +22,8 @@ public class ArcherKit extends LevelKit {
 
     public ArcherKit() {
         this.setLevel(2);
-        this.setName(ChatManager.getFromLanguageConfig("Archer-Kit-Name", ChatManager.PREFIX + "Archer"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Archer-Kit-Description", "Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"), 40);
+        this.setName(ChatManager.colorMessage("Archer-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Archer-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
 

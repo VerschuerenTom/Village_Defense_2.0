@@ -19,9 +19,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class HeavyTankKit extends PremiumKit {
 
     public HeavyTankKit() {
-        setName(ChatManager.getFromLanguageConfig("Heavy-Tank-Kit-Name", ChatManager.HIGHLIGHTED + "Heavy Tank"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Heavy-Tank-Kit-Description", "" +
-                "Start off with iron armor and a double amount of hearts! Yup that's right, you'll be the last man standing!"), 40);
+        setName(ChatManager.colorMessage("Heavy-Tank-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Heavy-Tank-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

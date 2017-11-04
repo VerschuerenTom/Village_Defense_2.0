@@ -22,8 +22,8 @@ public class DoorRepairKit extends LevelKit {
 
     public DoorRepairKit() {
         this.setLevel(15);
-        this.setName(ChatManager.getFromLanguageConfig("Worker-Kit-Name", ChatManager.PREFIX + "Worker"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Worker-Kit-Description", "Get each round a door and start of with 2 additional doors. This way u can replace the doors!"), 40);
+        this.setName(ChatManager.colorMessage("Worker-Kit-Name")); 
+        List<String> description = Util.splitString(ChatManager.colorMessage("Worker-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
 

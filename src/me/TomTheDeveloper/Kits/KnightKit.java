@@ -2,7 +2,6 @@ package me.TomTheDeveloper.Kits;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,9 +18,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class KnightKit extends FreeKit {
 
     public KnightKit() {
-        this.setName(ChatManager.getFromLanguageConfig("Knight-Kit-Name", ChatColor.DARK_GREEN + "Knight"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Knight-Kit-Description", "this is the one and only knight kit!" +
-                "Many people think this is the worst kit! I must admit they they are totally wrong!"), 40);
+        this.setName(ChatManager.colorMessage("Knight-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Knight-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

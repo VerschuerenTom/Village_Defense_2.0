@@ -35,10 +35,8 @@ public class MedicKit extends PremiumKit implements Listener {
 
     public MedicKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("Medic-Kit", ChatManager.PREFIX + "Medic"));
-
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Medic-Kit-Description", "This kit activates your passive powers." +
-                " Everytime u hit a zombie, u have a 1/10 chance to heal the players in a 5 block radius around u."), 40);
+        setName(ChatManager.colorMessage("Medic-Kit"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Medic-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

@@ -29,10 +29,9 @@ public class ShotBowKit extends PremiumKit implements Listener {
 
 
     public ShotBowKit() {
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("ShotBow-Kit-Description", "You invented " +
-                "a crazy shotbow!"), 40);
+    	setName(ChatManager.colorMessage("Shotbow-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("ShotBow-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-        setName(ChatManager.getFromLanguageConfig("Shotbow-Kit-Name", ChatManager.HIGHLIGHTED + "Shotbow Master"));
 
     }
 

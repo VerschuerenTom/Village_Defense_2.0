@@ -21,9 +21,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class PuncherKit extends LevelKit {
 
     public PuncherKit() {
-        setName(ChatManager.getFromLanguageConfig("Puncher-Kit-Name", ChatManager.PREFIX + "Puncher"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Puncher-Kit-Description", "Punch those zombies back" +
-                " with your epic shovel! Knockback V is not unknow for u!"), 40);
+    	setName(ChatManager.colorMessage("Puncher-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Puncher-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(4);
     }

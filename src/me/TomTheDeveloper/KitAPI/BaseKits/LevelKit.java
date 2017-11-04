@@ -2,7 +2,6 @@ package me.TomTheDeveloper.KitAPI.BaseKits;
 
 import java.io.IOException;
 
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,7 +29,7 @@ public abstract class LevelKit extends Kit {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else{
             this.level = config.getInt("Required-Level." + name);
         }
     }
@@ -42,7 +41,7 @@ public abstract class LevelKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack,ChatManager.getSingleMessage("Unlocks-at-level", ChatColor.GREEN + "Unlocks at level %NUMBER% ", getLevel()));
+        Util.addLore(itemStack, ChatManager.colorMessage("Unlocks-at-level").replaceAll("%NUMBER%",Integer.toString(getLevel())));
         return itemStack;
     }
 }

@@ -30,8 +30,8 @@ public class LooterKit extends LevelKit implements Listener {
 
     public LooterKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.getFromLanguageConfig("Looter-Kit-Name", ChatManager.PREFIX + "Looter"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Looter-Kit-Description", "Get one additional rotten flesh on every zombie kill!!"), 40);
+        setName(ChatManager.colorMessage("Looter-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Looter-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(8);
     }

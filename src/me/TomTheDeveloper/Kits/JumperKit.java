@@ -2,7 +2,6 @@ package me.TomTheDeveloper.Kits;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -23,9 +22,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class JumperKit extends PremiumKit {
 
     public JumperKit() {
-        setName(ChatManager.getFromLanguageConfig("The-Bunny-Kit-Name", ChatColor.AQUA + "The Bunny"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Jumper-Kit-Description", "Jumping is your passion. During the past," +
-                "you've developed a way to double jump! Jumping on the roofs is easy! However you could use some extra training for shooting your special bow"), 40);
+        setName(ChatManager.colorMessage("The-Bunny-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Jumper-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

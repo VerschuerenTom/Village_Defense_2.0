@@ -2,7 +2,6 @@ package me.TomTheDeveloper.Kits;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,8 +17,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class LightTankKit extends FreeKit {
 
     public LightTankKit() {
-        setName(ChatManager.getFromLanguageConfig("Light-Tank-Kit-Name", ChatColor.DARK_GREEN + " Light Tank"));
-        List<String> description = Util.splitString(ChatManager.getFromLanguageConfig("Light-Tank-Kit-Description", "You are tank Junior!"), 40);
+        setName(ChatManager.colorMessage("Light-Tank-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Light-Tank-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

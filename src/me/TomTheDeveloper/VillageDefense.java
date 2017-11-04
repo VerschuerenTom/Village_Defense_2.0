@@ -69,16 +69,15 @@ import me.TomTheDeveloper.Kits.PremiumHardcoreKit;
 import me.TomTheDeveloper.Kits.PuncherKit;
 import me.TomTheDeveloper.Kits.RunnerKit;
 import me.TomTheDeveloper.Kits.ShotBowKit;
-import me.TomTheDeveloper.Kits.StrenghtKit;
 import me.TomTheDeveloper.Kits.SuperArcherKit;
 import me.TomTheDeveloper.Kits.TeleporterKit;
+import me.TomTheDeveloper.Kits.TerminatorKit;
 import me.TomTheDeveloper.Kits.TornadoKit;
 import me.TomTheDeveloper.Kits.ZombieFinder;
 import me.TomTheDeveloper.Shop.Shop;
 import me.TomTheDeveloper.Stats.FileStats;
 import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Stats.VillageDefenseStats;
-import me.TomTheDeveloper.Utils.ItemBuilder;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.chunks.ChunkManager;
@@ -89,6 +88,7 @@ import me.TomTheDeveloper.rewards.RewardsHandler;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
+import pl.Plajer.GameAPI.LanguageManager;
 
 
 /**
@@ -111,89 +111,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
     private String version;
 
-    public void setupMessageConfig() {
-        gameAPI.loadLanguageFile();
-
-        ChatManager.getFromLanguageConfig("Join", ChatManager.HIGHLIGHTED + "%PLAYER%" + ChatColor.GRAY + " joined the game (%PLAYERSIZE%/%MAXPLAYERS%)!");
-        ChatManager.getFromLanguageConfig("Leave", ChatManager.HIGHLIGHTED + "%PLAYER% " + ChatColor.GRAY + "left the game (%PLAYERSIZE%/%MAXPLAYERS%)!");
-        ChatManager.getFromLanguageConfig("Death", ChatManager.HIGHLIGHTED + "%PLAYER% " + ChatColor.GRAY + "died!");
-        ChatManager.getFromLanguageConfig("Seconds-Left-Until-Game-Starts", "The game starts in " + ChatManager.HIGHLIGHTED + "%TIME%" + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("Waiting-For-Players", "Waiting for players... We need at least " + ChatManager.HIGHLIGHTED + "%MINPLAYERS%" + ChatColor.GRAY + " players to start.");
-        ChatManager.getFromLanguageConfig("Enough-Players-To-Start", "We now have enough players. The game is starting soon!");
-        ChatManager.getFromLanguageConfig("Teleport-To-EndLocation-In-X-Seconds", "You will be teleported to the lobby in " + ChatManager.HIGHLIGHTED + "%TIME%" + ChatColor.GRAY + " seconds");
-        ChatManager.getFromLanguageConfig("The-Game-Has-Started", "The game has started! Defend the village against waves of zombies!");
-        ChatManager.getFromLanguageConfig("Zombie-Got-Stuck-In-The-Map", "It seems like the last zombie got stuck somewhere. No worries! The gods killed" +
-                " him for you!");
-        ChatManager.getFromLanguageConfig("Dead-Tag-On-Death", ChatColor.DARK_GRAY + "Dead");
-        ChatManager.getFromLanguageConfig("Teleported-To-The-Lobby", "Teleported to the lobby!");
-        ChatManager.getFromLanguageConfig("You-leveled-up", ChatColor.GREEN + "You leveled up! You're now level %NUMBER%! ");
-        ChatManager.getFromLanguageConfig("All-Villagers-Have-Died", ChatColor.RED + "All villagers have died! You lost the game!");
-        ChatManager.getFromLanguageConfig("Reached-Wave-X", "You have reached wave " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + "!");
-        ChatManager.getFromLanguageConfig("Teleporting-To-Lobby-In-10-Seconds", "You will be teleported to the lobby in " + ChatManager.HIGHLIGHTED + 10 + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("All-Players-Have-Died", ChatColor.RED + "All players have died!");
-        ChatManager.getFromLanguageConfig("You-Feel-Refreshed", ChatColor.GREEN + "You feel refreshed!");
-        ChatManager.getFromLanguageConfig("Next-Wave-Starts-In", "Next wave starts in " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + " seconds!");
-        ChatManager.getFromLanguageConfig("A-Villager-Has-Died", ChatColor.RED + "A villager has died!");
-        ChatManager.getFromLanguageConfig("You-Are-Spectator", ChatColor.RED + "You're now a spectator! You can fly now!");
-        ChatManager.getFromLanguageConfig("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!");
-        ChatManager.getFromLanguageConfig("Don't-Hit-Me-With-Weapon", ChatColor.RED + "You can't hit me with a weapon. That's just rude!");
-        ChatManager.getFromLanguageConfig("Only-Command-Ingame-Is-Leave", ChatColor.RED + "You have to leave the game first to perform commands. The only command that works is /leave!");
-        ChatManager.getFromLanguageConfig("Need-More-Orbs-To-Buy-this", ChatColor.RED + "You need more orbs to buy this item!");
-        ChatManager.getFromLanguageConfig("You-Can't-Clean-You're-Spectator", ChatColor.RED + "You can't clean the map now! You are a spectator! You'll respawn at the start of the next wave!");
-        ChatManager.getFromLanguageConfig("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!");
-        ChatManager.getFromLanguageConfig("Player-has-cleaned-the-map", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleaned the map!");
-        ChatManager.getFromLanguageConfig("Ability-Still-On-Cooldown", ChatColor.RED + "this ability is on cooldown! Wait " + "%COOLDOWN%" + " more seconds!");
-        ChatManager.getFromLanguageConfig("Teleportion-Menu-Name", ChatColor.RESET + "Teleportation Menu");
-        ChatManager.getFromLanguageConfig("Teleportion-Item-Lore", ChatColor.GRAY + "Right click to open teleportation menu!");
-        ChatManager.getFromLanguageConfig("Teleportation-Menu-Name", "Teleporter Menu");
-        ChatManager.getFromLanguageConfig("Teleported-To-Villager", ChatColor.GREEN + "Teleported!");
-        ChatManager.getFromLanguageConfig("Didn't-Found-The-Villager", ChatColor.DARK_RED + "Village defense didn't found that villager! That villager is probably already dead!");
-        ChatManager.getFromLanguageConfig("Teleported-To-Player", ChatColor.GREEN + "Teleported to %PLAYER%");
-        ChatManager.getFromLanguageConfig("Player-Not-Found", ChatColor.RED + "Player not found! Try again!");
-        ChatManager.getFromLanguageConfig("Cleaner-Wand-Name", ChatColor.GOLD + "Cleaner Wand!");
-        ChatManager.getFromLanguageConfig("Cleaner-Item-Lore", "Right click to kill all zombies!   " + "Cooldown: 400 seconds");
-        ChatManager.getFromLanguageConfig("STATS-AboveLine", ChatColor.BOLD + "-----YOUR STATS----- ");
-        ChatManager.getFromLanguageConfig("STATS-Kills", ChatColor.GREEN + "Kills: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Deaths", ChatColor.GREEN + "Deaths: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Games-Played", ChatColor.GREEN + "Games played: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Hihgest-Wave", ChatColor.GREEN + "Highest wave: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Level", ChatColor.GREEN + "Level: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Exp", ChatColor.GREEN + "Exp: " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-Next-Level-Exp", ChatColor.GREEN + "Next Level Exp " + ChatColor.YELLOW);
-        ChatManager.getFromLanguageConfig("STATS-UnderLinen", ChatColor.BOLD + "--------------------");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Rotten-Flesh", ChatColor.DARK_GREEN + "Rotten Flesh:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Villagers", ChatColor.GREEN + "Villagers:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Zombies", ChatColor.RED + "Zombies:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Players-Left", ChatColor.GRAY + "Players Left:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Villagers", ChatColor.GREEN + "Villagers:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Starting-In", ChatColor.AQUA + "Starting In:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Min-Players", ChatColor.AQUA + "Min Players:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Players", ChatColor.AQUA + "Players:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Orbs", ChatColor.AQUA + "Orbs:");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Next-Wave-In", ChatColor.GRAY + "Next wave in:");
-        ChatManager.getFromLanguageConfig("Wave-Started", "Wave " + ChatManager.HIGHLIGHTED + "%NUMBER%" + ChatColor.GRAY + " started!");
-        ChatManager.getFromLanguageConfig("SCOREBOARD-Header", ChatManager.PREFIX + "Village Defense");
-        ChatManager.getFromLanguageConfig("RottenFleshLevelUp", ChatManager.HIGHLIGHTED + "The gods were happy with the rottenflesh!" +
-                ChatManager.HIGHLIGHTED + " There for they gave you an extra heart!");
-        ChatManager.getFromLanguageConfig("Spawn-Golem", "Spawn Golem");
-        ChatManager.getFromLanguageConfig("Golem-Spawned", ChatColor.GREEN + "Golem spawned in the village!");
-        ChatManager.getFromLanguageConfig("Wolf-Spawned", ChatColor.GREEN + "Wolf spawned in the village!");
-        ChatManager.getFromLanguageConfig("Wolf-Spawned", ChatColor.GREEN + "Wolf spawned in the village!");
-        ChatManager.getFromLanguageConfig("orbs-In-Shop", "orbs");
-        ChatManager.getFromLanguageConfig("Dog-Friend-Kit-Name", ChatManager.HIGHLIGHTED + "Dog Friend");
-        ChatManager.getFromLanguageConfig("Dog-Friend-Kit-Description", "Start off with three dogs and get one extra dog every wave!!");
-        ChatManager.getFromLanguageConfig("DEAD-SCREEN", ChatColor.RED + "You died!");
-        ChatManager.getFromLanguageConfig("Died-Respawn-In-Next-Wave", ChatColor.YELLOW.toString() + ChatColor.BOLD + "DON'T LEAVE!" + ChatColor.GREEN + "You'll respawn next once the wave ends!");
-        ChatManager.getFromLanguageConfig("Barrier-Placed", ChatColor.GREEN + "Barrier placed!");
-        ChatManager.getFromLanguageConfig("Door-Placed", ChatColor.GREEN + "Door placed!");
-        ChatManager.getFromLanguageConfig("KitChosenButNotUnlockedMessage", ChatColor.RED + "You haven't unlocked " + ChatColor.AQUA + "%KIT%" + ChatColor.RED + " yet!");
-        ChatManager.getFromLanguageConfig("KitChosenMessage", ChatColor.GREEN + "You have chosen: " + ChatColor.AQUA + "%KIT%" + ChatColor.GREEN + " !");
-    }
-
     public void onPreStart() {
         gameAPI.setAbreviation("vd");
-
-
     }
 
     public boolean is1_8_R3() {
@@ -203,8 +122,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     public boolean is1_12_R1() {
         return getVersion().equalsIgnoreCase("v1_12_R1");
     }
-
-
+    
     public boolean is1_8_R4() {
         return getVersion().equalsIgnoreCase("v1_8_R4");
     }
@@ -223,8 +141,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
     @Override
     public void onEnable() {
-
-
         gameAPI.setGameName("VillageDefense");
         gameAPI.setAbreviation("vd");
         gameAPI.enableKits();
@@ -232,7 +148,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         InvasionInstance.youtuberInvasion = this;
         gameAPI.onSetup(this, this);
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
-        this.setupMessageConfig();
+        LanguageManager.init(this);
+        LanguageManager.saveDefaultLanguageFile();
         // this.onSetup();
         if (!this.getConfig().contains("DatabaseActivated"))
             this.getConfig().set("DatabaseActivated", false);
@@ -356,7 +273,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.getKitHandler().registerKit(doorRepairKit);
         GolemFriend golemFriendKit = new GolemFriend(this);
         gameAPI.getKitHandler().registerKit(golemFriendKit);
-        StrenghtKit strenghtKit = new StrenghtKit();
+        TerminatorKit strenghtKit = new TerminatorKit();
         gameAPI.getKitHandler().registerKit(strenghtKit);
         HardcoreKit hardcoreKit = new HardcoreKit();
         gameAPI.getKitHandler().registerKit(hardcoreKit);
@@ -398,9 +315,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         rewardsHandler = new RewardsHandler(this);
         gameAPI.getKitHandler().setDefaultKit(knightkit);
         gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
-        gameAPI.getKitMenuHandler().setItemName(ChatManager.getFromLanguageConfig("Kit-Menu-Item-Name", "Kit Menu"));
-        gameAPI.getKitMenuHandler().setMenuName(ChatManager.getFromLanguageConfig("Kit Menu-Title", "Kit Menu"));
-        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.getFromLanguageConfig("Open-Kit-Menu", "Open Kit Menu")});
+        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("Kit-Menu-Item-Name"));
+        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("Kit Menu-Title"));
+        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("Open-Kit-Menu")});
 
         SpecialItem.loadAll();
         loadInstances();
@@ -424,7 +341,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
         loadStatsForPlayersOnline();
         VillageDefenseStats.plugin = this;
-        addExtraItemsToSetupInventory();
     }
 
 
@@ -446,7 +362,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 }
 
             }
-            player.sendMessage(ChatManager.getSingleMessage("No-Arena-Like-That", ChatColor.RED + "No arena with that ID!"));
+            player.sendMessage(ChatManager.colorMessage("No-Arena-Like-That"));
             return true;
         }
         if (strings.length == 1 && strings[0].equals("leave")) {
@@ -586,7 +502,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
+                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                     return true;
                 }
 
@@ -595,7 +511,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 } else {
                     //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
                 }
-                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Zombies", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleared the zombies!", player);
+                for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
+                    player1.sendMessage("§a[VillageDefense]" + message);
+                }
                 return true;
             }
             if (strings[1].equalsIgnoreCase("villagers")) {
@@ -610,7 +529,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getVillagers().clear();
                 } else {
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
+                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                     return true;
                 }
                 if (this.is1_9_R1()) {
@@ -618,7 +537,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 } else {
                     //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
                 }
-                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Villagers", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has removed all the villagers!", player);
+                for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Villagers"), new Player[] {(player1)});
+                    player1.sendMessage("§a[VillageDefense]" + message);
+                }
                 return true;
             }
             if (strings[1].equalsIgnoreCase("golems")) {
@@ -634,7 +556,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     invasionInstance.getIronGolems().clear();
 
                 } else {
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
+                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                     return true;
                 }
                 if (this.is1_9_R1()) {
@@ -642,8 +564,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 } else {
                     // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
                 }
-                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Golems", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has removed all the golems!", player);
-
+                for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Golems"), new Player[] {(player1)});
+                    player1.sendMessage("§a[VillageDefense]" + message);
+                }
             }
         }
         if (strings.length == 3 && strings[0].equalsIgnoreCase("set") && strings[1].equalsIgnoreCase("wave")) {
@@ -653,7 +577,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             if (NumberUtils.isNumber(strings[2])) {
                 invasionInstance.setWave(Integer.parseInt(strings[2]) - 1);
                 invasionInstance.endWave();
-                invasionInstance.getChatManager().broadcastMessage("Admin-Changed-Wave", ChatManager.HIGHLIGHTED + "Admin changed the wave to %NUMBER%", invasionInstance.getWave());
+                String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Changed-Wave"), invasionInstance.getWave());
+                for(Player player1 : invasionInstance.getPlayers()) {
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message);
+                }
                 if (invasionInstance.getZombies() != null) {
                     for (Zombie zombie : invasionInstance.getZombies()) {
                         ParticleEffect.LAVA.display(1, 1, 1, 1, 20, zombie.getLocation(), 100);
@@ -662,16 +589,17 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.getSingleMessage("Map-is-already-empty", ChatColor.GREEN + "The map is already empty!"));
-
+                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                 }
-                if (this.is1_9_R1()) {
+                if(this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
                 } else {
-                    // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                    player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
-                invasionInstance.getChatManager().broadcastMessage("Admin-Removed-Zombies", ChatManager.HIGHLIGHTED + "%PLAYER%" + " has cleared the zombies!", player);
-
+                for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    String message1 = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
+                    player1.sendMessage("§a[VillageDefense]" + message1);
+                }
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Wave needs to be number! Do /villagedefense set wave <number>");
@@ -685,12 +613,16 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
             if (invasionInstance.getGameState() == GameState.WAITING_FOR_PLAYERS) {
                 invasionInstance.setGameState(GameState.STARTING);
-                invasionInstance.getChatManager().broadcastMessage("Admin-ForceStart-Game", ChatManager.HIGHLIGHTED + "An admin forcestarted the game!");
+                for(Player p : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("Admin-ForceStart-Game"));
+                }
                 return true;
             }
             if (invasionInstance.getGameState() == GameState.STARTING) {
                 invasionInstance.setTimer(0);
-                invasionInstance.getChatManager().broadcastMessage("Admin-Set-Starting-In-To-0", ChatManager.HIGHLIGHTED + "An admin set waiting time to 0. Game starts now!");
+                for(Player p : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
+                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("Admin-Set-Starting-In-To-0"));
+                }
                 return true;
             }
         }
@@ -708,7 +640,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             player.setFlying(false);
             player.setAllowFlight(false);
             invasionInstance.showPlayer(player);
-            player.sendMessage(invasionInstance.getChatManager().getMessage("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!"));
+            player.sendMessage(LanguageManager.getLanguageFile().get("You're-Back-In-Game").toString());
             return true;
         }
         if (strings.length == 2 && strings[0].equalsIgnoreCase("respawn")) {
@@ -728,7 +660,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     getplayer.setFlying(false);
                     getplayer.setAllowFlight(false);
                     invasionInstance.showPlayer(getplayer);
-                    getplayer.sendMessage(invasionInstance.getChatManager().getMessage("You're-Back-In-Game", ChatColor.GREEN + "You're not a spectator anymore! You're back in the game!"));
+                    getplayer.sendMessage(ChatManager.colorMessage("You're-Back-In-Game"));
                     return true;
                 }
             }
@@ -755,16 +687,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
     public FileStats getFileStats() {
         return fileStats;
-    }
-
-
-    public void addExtraItemsToSetupInventory() {
-        System.out.println("ITEMSTACK: " + new ItemStack(Material.MONSTER_EGG, 1, (byte) 120));
-        System.out.println("BUILDOER:" + new ItemBuilder(new ItemStack(Material.MONSTER_EGG, 1, (byte) 120))
-                .name(ChatColor.GOLD + "Add villager spawns")
-                .lore(ChatColor.GRAY + "Click to add a villager spawn")
-                .lore(ChatColor.GRAY + "on the place you're standing").build());
-
     }
 
     public MySQLDatabase getMySQLDatabase() {
@@ -1041,8 +963,13 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             if (sender.isOp() && args.length == 1) {
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
-                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.getSingleMessage("orbs-In-Shop", "orbs"));
-                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                //check any price from lore
+                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("orbs-In-Shop"))) {
+	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("orbs-In-Shop"));
+	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                } else {
+                	p.sendMessage(ChatColor.RED + "This item contains shop price already!");
+                }
                 return true;
             }
 

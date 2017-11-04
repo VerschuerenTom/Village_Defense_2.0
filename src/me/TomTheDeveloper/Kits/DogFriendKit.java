@@ -26,8 +26,8 @@ public class DogFriendKit extends PremiumKit {
 
     public DogFriendKit(VillageDefense invasion) {
         this.plugin = invasion;
-        this.setName(ChatManager.getSingleMessage("Dog-Friend-Kit-Name", ChatManager.HIGHLIGHTED + "Dog Friend"));
-        List<String> description = Util.splitString(ChatManager.getSingleMessage("Dog-Friend-Kit-Description", "Start off with three dogs and get one extra dog every wave!!"), 40);
+        this.setName(ChatManager.colorMessage("Dog-Friend-Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Dog-Friend-Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

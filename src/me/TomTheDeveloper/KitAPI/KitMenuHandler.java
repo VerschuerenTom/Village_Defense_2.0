@@ -3,7 +3,6 @@ package me.TomTheDeveloper.KitAPI;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,12 +41,10 @@ public class KitMenuHandler implements Listener {
 
 
     public KitMenuHandler(GameAPI GameAPI) {
-        itemname = ChatManager.getFromLanguageConfig("Kit-Menu-Item-Name", "Kit-Menu");
-        this.GameAPI = GameAPI;
-       UNLOCKED = ChatManager.getFromLanguageConfig("KitUnlockedLoreInKitMenu", ChatColor.GREEN + "UNLOCKED!");
-       LOCKED = ChatManager.getFromLanguageConfig("KitLockedLoreInKitMenu", ChatColor.RED + "LOCKED!");
-
-
+    	itemname = ChatManager.colorMessage("Kit-Menu-Item-Name");
+    	this.GameAPI = GameAPI;
+    	UNLOCKED = ChatManager.colorMessage("KitUnlockedLoreInKitMenu");
+    	LOCKED = ChatManager.colorMessage("KitLockedLoreInKitMenu");
 
     }
 
@@ -155,12 +152,11 @@ public class KitMenuHandler implements Listener {
         if(event.getKit().isUnlockedByPlayer(event.getPlayer())){
             User user = UserManager.getUser(event.getPlayer().getUniqueId());
             user.setKit(event.getKit());
-            String chosenkitmessage = ChatManager.getFromLanguageConfig("KitChosenMessage", ChatColor.GREEN + "You have chosen: " + ChatColor.AQUA + "%KIT%" + ChatColor.GREEN + " !");
+            String chosenkitmessage = ChatManager.colorMessage("KitChosenMessage");
              chosenkitmessage = ChatManager.formatMessage(chosenkitmessage, event.getKit());
             event.getPlayer().sendMessage(chosenkitmessage);
         }else{
-            String chosenKitMessageButNotUnlocked =ChatManager.getFromLanguageConfig("KitChosenButNotUnlockedMessage", ChatColor.RED + "You haven't unlocked " + ChatColor.AQUA + "%KIT%" + ChatColor.RED + " yet!");
-
+            String chosenKitMessageButNotUnlocked = ChatManager.colorMessage("KitChosenButNotUnlockedMessage");
             event.getPlayer().sendMessage(ChatManager.formatMessage(chosenKitMessageButNotUnlocked, event.getKit()));
         }
 
