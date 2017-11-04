@@ -108,7 +108,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         setTimer(15);
                         String message = ChatManager.formatMessage(ChatManager.colorMessage("Waiting-For-Players"), getMIN_PLAYERS());
                         for(Player player1 : getPlayers()) {
-                            player1.sendMessage("§a[Village Defense] " + message);
+                            player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                         }
                         return;
                     }
@@ -605,7 +605,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         }
         String message = ChatManager.formatMessage(ChatManager.colorMessage("Wave-Started"), wave);
         for(Player player1 : getPlayers()) {
-            player1.sendMessage("§a[Village Defense] " + message);
+            player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
     }
 
@@ -617,7 +617,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         wave = wave + 1;
         String message = ChatManager.formatMessage(ChatManager.colorMessage("Next-Wave-Starts-In"), getTimer());
         for(Player player1 : getPlayers()) {
-            player1.sendMessage("§a[Village Defense] " + message);
+            player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
         for (Player player : getPlayers()) {
         	player.sendMessage(ChatManager.colorMessage("You-Feel-Refreshed"));
@@ -649,7 +649,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     @Override
     public void joinAttempt(Player p) {
-        System.out.print("Joining using Village Defense");
         if ((getGameState() == GameState.INGAME || (getGameState() == GameState.STARTING && getTimer() <= 3) || getGameState() == GameState.ENDING)) {
             if (plugin.isInventoryManagerEnabled()) {
                 p.setLevel(0);
@@ -665,11 +664,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             }
 
             this.addPlayer(p);
-            if (plugin.is1_8_R3()) {
-                p.setHealth(p.getMaxHealth());
-            } else {
-                p.setHealth(p.getMaxHealth());
-            }
+            p.setHealth(p.getMaxHealth());
             p.setFoodLevel(20);
             if (plugin.is1_8_R3()) {
                 p.setGameMode(GameMode.SPECTATOR);
@@ -704,11 +699,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         }
         teleportToLobby(p);
         this.addPlayer(p);
-        if (plugin.is1_8_R3()) {
-            p.setHealth(p.getMaxHealth());
-        } else {
-            p.setHealth(p.getMaxHealth());
-        }
+        p.setHealth(p.getMaxHealth());
         p.setFoodLevel(20);
         p.getInventory().setArmorContents(new ItemStack[]{new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR)});
         p.setFlying(false);

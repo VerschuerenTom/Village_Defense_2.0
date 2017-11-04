@@ -12,12 +12,10 @@ import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
  */
 public class KitHandler {
 
-
-
     private List<Kit> kits = new ArrayList<Kit>();
     private Kit defaultKit = null;
 
-    public  void registerKit(Kit kit){
+    public void registerKit(Kit kit){
         kits.add(kit);
     }
 

@@ -78,7 +78,6 @@ import me.TomTheDeveloper.Shop.Shop;
 import me.TomTheDeveloper.Stats.FileStats;
 import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Stats.VillageDefenseStats;
-import me.TomTheDeveloper.Utils.ItemBuilder;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.chunks.ChunkManager;
@@ -108,7 +107,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     private boolean chatformat = true;
     private RewardsHandler rewardsHandler;
     private GameAPI gameAPI = new GameAPI();
-    private LanguageManager newConfigManager = new LanguageManager(this);
 
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
     private String version;
@@ -124,8 +122,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     public boolean is1_12_R1() {
         return getVersion().equalsIgnoreCase("v1_12_R1");
     }
-
-
+    
     public boolean is1_8_R4() {
         return getVersion().equalsIgnoreCase("v1_8_R4");
     }
@@ -151,6 +148,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         InvasionInstance.youtuberInvasion = this;
         gameAPI.onSetup(this, this);
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
+        LanguageManager.init(this);
         LanguageManager.saveDefaultLanguageFile();
         // this.onSetup();
         if (!this.getConfig().contains("DatabaseActivated"))
@@ -343,7 +341,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
         loadStatsForPlayersOnline();
         VillageDefenseStats.plugin = this;
-        addExtraItemsToSetupInventory();
     }
 
 
@@ -582,7 +579,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 invasionInstance.endWave();
                 String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Changed-Wave"), invasionInstance.getWave());
                 for(Player player1 : invasionInstance.getPlayers()) {
-                    player1.sendMessage("§a[Village Defense] " + message);
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                 }
                 if (invasionInstance.getZombies() != null) {
                     for (Zombie zombie : invasionInstance.getZombies()) {
@@ -594,10 +591,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 } else {
                     player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                 }
-                if (this.is1_9_R1()) {
+                if(this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
                 } else {
-                    // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                    player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
                     String message1 = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
@@ -690,16 +687,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
     public FileStats getFileStats() {
         return fileStats;
-    }
-
-
-    public void addExtraItemsToSetupInventory() {
-        System.out.println("ITEMSTACK: " + new ItemStack(Material.MONSTER_EGG, 1, (byte) 120));
-        System.out.println("BUILDOER:" + new ItemBuilder(new ItemStack(Material.MONSTER_EGG, 1, (byte) 120))
-                .name(ChatColor.GOLD + "Add villager spawns")
-                .lore(ChatColor.GRAY + "Click to add a villager spawn")
-                .lore(ChatColor.GRAY + "on the place you're standing").build());
-
     }
 
     public MySQLDatabase getMySQLDatabase() {
@@ -976,8 +963,13 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             if (sender.isOp() && args.length == 1) {
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
-                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("orbs-In-Shop"));
-                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                //check any price from lore
+                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("orbs-In-Shop"))) {
+	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("orbs-In-Shop"));
+	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                } else {
+                	p.sendMessage(ChatColor.RED + "This item contains shop price already!");
+                }
                 return true;
             }
 

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -226,7 +225,7 @@ public class SignManager extends BukkitRunnable implements Listener {
             if(instance != null) {
                 for(GameInstance gameInstance: plugin.getGameInstanceManager().getGameInstances()){
                     if(gameInstance.getPlayers().contains(event.getPlayer())){
-                        event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', ChatManager.colorMessage("YouAreAlreadyIngame").toString()));
+                        event.getPlayer().sendMessage(ChatManager.colorMessage("YouAreAlreadyIngame"));
                         return;
                     }
                 }

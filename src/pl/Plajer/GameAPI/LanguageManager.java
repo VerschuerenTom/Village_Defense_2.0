@@ -16,7 +16,7 @@ public class LanguageManager {
 	private static FileConfiguration languageConfig = null;
 	private static File languageConfigFile = null;
 
-	public LanguageManager(JavaPlugin pl){
+	public static void init(JavaPlugin pl){
 		plugin = pl;
 	}
 

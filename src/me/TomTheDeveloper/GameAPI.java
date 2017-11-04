@@ -144,7 +144,6 @@ public class GameAPI {
 		Items.gameAPI = this;
 		this.plugin = plugin;
 
-		System.out.print("GAMEAPI LOADED!");
 		version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
 		onPreStart();
 		ConfigurationManager.plugin = plugin;
