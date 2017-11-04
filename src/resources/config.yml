@@ -1,0 +1,22 @@
+#currently unused
+bar: false
+BungeeActivated: false
+InventoryManager: false
+instances:
+  default:
+    lobbylocation: world,364.0,63.0,-72.0,0.0,0.0
+    Startlocation: world,364.0,63.0,-72.0,0.0,0.0
+    Endlocation: world,364.0,63.0,-72.0,0.0,0.0
+    minimumplayers: 2
+    maximumplayers: 10
+    mapname: mapname
+    world: worldname
+signs:
+  example: world,364.0,63.0,-72.0,0.0,0.0
+Disable-Leave-Command: false
+DatabaseActivated: false
+Starting-Waiting-Time: 60
+Mini-Zombie-Speed: 2.0
+Zombie-Speed: 0.4
+Rewards-Enabled: false
+ChatFormat-Enabled: true

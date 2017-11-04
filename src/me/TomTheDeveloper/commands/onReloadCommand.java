@@ -1,22 +1,12 @@
 package me.TomTheDeveloper.Commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-
 /**
  * Created by Tom on 10/08/2014.
  */
-public class onReloadCommand implements CommandExecutor {
+public class onReloadCommand { //implements CommandExecutor{
 
-    private GameAPI plugin;
+	//unused
+    /*private GameAPI plugin;
 
     public onReloadCommand(GameAPI plugin) {
         this.plugin = plugin;
@@ -57,6 +47,6 @@ public class onReloadCommand implements CommandExecutor {
 
             }
         }, 20L);
-    }
+    }*/
 
 }

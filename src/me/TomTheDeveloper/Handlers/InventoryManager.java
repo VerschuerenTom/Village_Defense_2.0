@@ -27,7 +27,7 @@ public class InventoryManager {
     }
 
 
-    public  boolean saveInventoryToFile(Player player) {
+    public boolean saveInventoryToFile(Player player) {
         String UUID = player.getUniqueId().toString();
         PlayerInventory inventory = player.getInventory();
         File path = new File(plugin.getDataFolder()+ File.separator + "inventorys");
@@ -105,8 +105,6 @@ public class InventoryManager {
         if (!file.exists() || file.isDirectory() || !file.getAbsolutePath().endsWith(".invsave")) return;
         try {
             FileConfiguration invConfig = YamlConfiguration.loadConfiguration(file);
-
-
             try {
                ItemStack[] armor = new ItemStack[player.getInventory().getArmorContents().length];
                 for(int i=0;i<player.getInventory().getArmorContents().length;i++){
@@ -115,12 +113,8 @@ public class InventoryManager {
                 }
                 player.getInventory().setArmorContents(armor);
 
-            } catch (Exception ex) {
-            }
-
-        } catch (Exception ex) {
-
-        }
+            } catch (Exception ex) {}
+        } catch (Exception ex) {}
         Inventory inventory = this.getInventoryFromFile(player.getUniqueId().toString());
 
         for(Integer i=0;i<inventory.getContents().length;i++) {

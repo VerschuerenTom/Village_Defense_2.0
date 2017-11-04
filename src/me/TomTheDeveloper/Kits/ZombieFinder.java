@@ -89,7 +89,7 @@ public class ZombieFinder extends LevelKit implements Listener {
         if (UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("zombie") > 0 && !UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
         	String msgstring = ChatManager.colorMessage("Ability-Still-On-Cooldown");
         	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("zombie")));
-        	event.getPlayer().sendMessage(msgstring.replaceAll("(&([a-f0-9]))", "\u00A7$2"));
+        	event.getPlayer().sendMessage(msgstring);
             return;
         }
         if (invasionInstance.getZombies() != null) {
