@@ -33,7 +33,6 @@ import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.GameInstanceManager;
 import me.TomTheDeveloper.Handlers.InventoryManager;
 import me.TomTheDeveloper.Handlers.SignManager;
-import me.TomTheDeveloper.KitAPI.DefaultKit;
 import me.TomTheDeveloper.KitAPI.KitHandler;
 import me.TomTheDeveloper.KitAPI.KitMenuHandler;
 import me.TomTheDeveloper.Utils.Items;
@@ -177,7 +176,6 @@ public class GameAPI {
 
 		this.kitMenuHandler = new KitMenuHandler(this);
 		plugin.getServer().getPluginManager().registerEvents(this.kitMenuHandler, plugin);
-		this.kitHandler.setDefaultKit(new DefaultKit());
 
 		plugin.getServer().getPluginManager().registerEvents(new onSpectate(this), plugin);
 		// plugin.getServer().getPluginManager().registerEvents(new onDoubleJump(this), plugin);
@@ -188,10 +186,8 @@ public class GameAPI {
 		plugin.getServer().getPluginManager().registerEvents(new SetupInventoryEvents(this), plugin);
 		plugin.getServer().getPluginManager().registerEvents(new onJoin(this),plugin);
 
-		loadInstanceConfig();
 		loadSigns();
 
-		onStart();
 		plugin.saveConfig();
 		if(plugin.getConfig().getBoolean("BungeeActivated")){
 
@@ -316,12 +312,9 @@ public class GameAPI {
 		return kitsenabled;
 	}
 
-
-	public void onStart(){};
-	public void onStop(){};
 	public void addExtraItemsToSetupInventory(GameInstance gameInstance, Inventory inventory){};
 
-	public  String getGameName() {
+	public String getGameName() {
 		return name;
 	}
 
@@ -350,24 +343,6 @@ public class GameAPI {
 
 	public SignManager getSignManager() {
 		return signManager;
-	}
-
-	private void loadInstanceConfig(){
-		if(!plugin.getConfig().contains("instances.default")){
-			this.saveLoc("instances.default.lobbylocation", plugin.getServer().getWorlds().get(0).getSpawnLocation());
-			this.saveLoc("instances.default.Startlocation", plugin.getServer().getWorlds().get(0).getSpawnLocation());
-			this.saveLoc("instances.default.Endlocation", plugin.getServer().getWorlds().get(0).getSpawnLocation());
-			plugin.getConfig().set("instances.default.minimumplayers", new Integer(2));
-			plugin.getConfig().set("instances.default.maximumplayers", new Integer(10));
-			plugin.getConfig().set("instances.default.mapname", "mapname");
-			plugin.getConfig().set("instances.default.world", "worldname");
-			if(this.needsMapRestore())
-				plugin.getConfig().set("instances.default.schematic", "schematic file name (without .schematic!)");
-			plugin.saveConfig();
-
-
-		}
-
 	}
 
 	public InventoryManager getInventoryManager(){

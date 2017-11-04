@@ -14,11 +14,6 @@ import pl.Plajer.GameAPI.LanguageManager;
  */
 public class ChatManager {
 
-	/*
-	 * TODO, FIXME
-	 * Remove this useless code
-	 */
-
 	public static ChatColor PREFIX = ChatColor.GOLD;
 	public static ChatColor NORMAL = ChatColor.GRAY;
 	public static ChatColor HIGHLIGHTED = ChatColor.AQUA;
@@ -31,21 +26,21 @@ public class ChatManager {
 	}
 
 	public void broadcastJoinMessage(Player p){
-		String message = formatMessage("§b" + p.getName() + "§7 joined the Game! (" + gameInstance.getPlayers().size() + "/" + gameInstance.getMAX_PLAYERS() + ")");
+		String message = formatMessage(ChatManager.colorMessage("Join"));
 		for(Player player:gameInstance.getPlayers()) {
 			player.sendMessage(PLUGINPREFIX + message);
 		}
 	}
 
 	public void broadcastLeaveMessage(Player p){
-		String message = formatMessage("§b" + p.getName() + "§7 left the Game! (" + gameInstance.getPlayers().size() + "/" + gameInstance.getMAX_PLAYERS() + ")");
+		String message = formatMessage(ChatManager.colorMessage("Leave"));
 		for(Player player:gameInstance.getPlayers()) {
 			player.sendMessage(PLUGINPREFIX + message);
 		}
 	}
 
 	public void broadcastDeathMessage(Player player){
-		String message = formatMessage("§b" + player.getName() + "§7 died!");
+		String message = formatMessage(ChatManager.colorMessage("Death"));
 		for(Player p : gameInstance.getPlayers()) {
 			p.sendMessage(PLUGINPREFIX + message);
 		}

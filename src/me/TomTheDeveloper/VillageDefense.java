@@ -45,7 +45,6 @@ import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
 import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
-import me.TomTheDeveloper.Events.DeathEvent;
 import me.TomTheDeveloper.Events.Events;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
 import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
@@ -53,6 +52,7 @@ import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.RewardsHandler;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.Items.SpecialItem;
 import me.TomTheDeveloper.Kits.ArcherKit;
@@ -84,7 +84,6 @@ import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Stats.VillageDefenseStats;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.rewards.RewardsHandler;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
@@ -147,10 +146,13 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.setAllowBuilding(true);
         InvasionInstance.youtuberInvasion = this;
         gameAPI.onSetup(this, this);
+        new MetricsLite(this);
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
+        
         LanguageManager.init(this);
         LanguageManager.saveDefaultLanguageFile();
-        // this.onSetup();
+        saveDefaultConfig();
+
         if (!this.getConfig().contains("DatabaseActivated"))
             this.getConfig().set("DatabaseActivated", false);
         this.saveConfig();
@@ -176,6 +178,17 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             fileStats = new FileStats(this);
         }
         version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+        if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.Youtuber.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.PlayerBuster.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.GolemBuster.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.HardZombie.class);
+            gameAPI.registerEntity1_7_10("Villager", 120, me.TomTheDeveloper.Creatures.v1_7_R4.RidableVillager.class);
+            gameAPI.registerEntity1_7_10("VillagerGolem", 99, me.TomTheDeveloper.Creatures.v1_7_R4.RidableIronGolem.class);
+            gameAPI.registerEntity1_7_10("Wolf", 95, me.TomTheDeveloper.Creatures.v1_7_R4.WorkingWolf.class);
+        }
         if (this.getVersion().equalsIgnoreCase("v1_8_R3")) {
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.Youtuber.class);
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.FastZombie.class);
@@ -188,18 +201,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             gameAPI.registerEntity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_8_R3.TankerZombie.class);
             gameAPI.registerEntity("Wolf", 95, me.TomTheDeveloper.Creatures.v1_8_R3.WorkingWolf.class);
         }
-        if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.Youtuber.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.FastZombie.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.BabyZombie.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.PlayerBuster.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.GolemBuster.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.TomTheDeveloper.Creatures.v1_7_R4.HardZombie.class);
-            gameAPI.registerEntity1_7_10("Villager", 120, me.TomTheDeveloper.Creatures.v1_7_R4.RidableVillager.class);
-            gameAPI.registerEntity1_7_10("VillagerGolem", 99, me.TomTheDeveloper.Creatures.v1_7_R4.RidableIronGolem.class);
-            gameAPI.registerEntity1_7_10("Wolf", 95, me.TomTheDeveloper.Creatures.v1_7_R4.WorkingWolf.class);
-        }
-
         if (this.getVersion().equalsIgnoreCase("v1_9_R1")) {
             gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.FastZombie.class);
             gameAPI.register1_9_R1_Entity("Zombie", 54, me.TomTheDeveloper.Creatures.v1_9_R1.BabyZombie.class);
@@ -209,7 +210,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             gameAPI.register1_9_R1_Entity("Wolf", 95, me.TomTheDeveloper.Creatures.v1_9_R1.WorkingWolf.class);
             gameAPI.register1_9_R1_Entity("VillagerGolem", 99, me.TomTheDeveloper.Creatures.v1_9_R1.RidableIronGolem.class);
             gameAPI.register1_9_R1_Entity("Villager", 120, me.TomTheDeveloper.Creatures.v1_9_R1.RidableVillager.class);
-
         }
         if (this.getVersion().equalsIgnoreCase("v1_12_R1")) {
             NMSUtils.registerEntity(this, "FastZombie", NMSUtils.Type.ZOMBIE, FastZombie.class, false);
@@ -232,7 +232,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         }
 
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
 
         this.getCommand("setshopchest").setExecutor(new ChestCommand(this));
@@ -506,10 +505,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     return true;
                 }
 
-                if (this.is1_9_R1()) {
+                if (this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
                 } else {
-                    //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                    player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
                     String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
@@ -532,10 +531,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                     return true;
                 }
-                if (this.is1_9_R1()) {
+                if (this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
                 } else {
-                    //  player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                    player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
                     String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Villagers"), new Player[] {(player1)});
@@ -559,10 +558,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
                     return true;
                 }
-                if (this.is1_9_R1()) {
+                if(this.is1_9_R1()|| this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
                 } else {
-                    // player.playSound(player.getLocation(), Sound.ZOMBIE_DEATH, 1, 1);
+                    player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
                     String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Golems"), new Player[] {(player1)});
@@ -683,7 +682,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     public boolean is1_9_R1() {
         return getVersion().equalsIgnoreCase("v1_9_R1");
     }
-
 
     public FileStats getFileStats() {
         return fileStats;

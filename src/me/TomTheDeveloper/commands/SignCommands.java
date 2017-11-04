@@ -24,7 +24,7 @@ public class SignCommands implements CommandExecutor {
 
     private GameAPI plugin;
 
-    private static int i;
+    private int i;
 
 
     private int counter =0;

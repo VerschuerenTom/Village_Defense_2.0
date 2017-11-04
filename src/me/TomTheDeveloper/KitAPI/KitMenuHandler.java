@@ -141,7 +141,7 @@ public class KitMenuHandler implements Listener {
             return;
         PlayerChooseKitEvent playerChooseKitEvent = new PlayerChooseKitEvent(player, GameAPI.getKitHandler().getKit(event.getCurrentItem()));
         Bukkit.getPluginManager().callEvent(playerChooseKitEvent);
-
+        
 
     }
 
