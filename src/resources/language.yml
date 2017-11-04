@@ -1,5 +1,159 @@
+Kit-Menu-Item-Name: Kit-Menu
+KitUnlockedLoreInKitMenu: §aUNLOCKED!
+KitLockedLoreInKitMenu: §cLOCKED!
+Unlocks-at-level: '§aUnlocks at level %NUMBER% '
+Unlock-This-Kit-In-The-Store: '§bUnlock this in the store!'
+Join: §b%PLAYER%§7 joined the game (%PLAYERSIZE%/%MAXPLAYERS%)!
+Leave: §b%PLAYER% §7left the game (%PLAYERSIZE%/%MAXPLAYERS%)!
+Death: §b%PLAYER% §7died!
+Seconds-Left-Until-Game-Starts: The game starts in §b%TIME%§7 seconds!
+Waiting-For-Players: Waiting for players... We need at least §b%MINPLAYERS%§7 players
+  to start.
+Enough-Players-To-Start: We now have enough players. The game is starting soon!
 Teleport-To-EndLocation-In-X-Seconds: You will be teleported to the lobby in §b%TIME%§7
   seconds
+The-Game-Has-Started: The game has started! Defend the village against waves of zombies!
+Zombie-Got-Stuck-In-The-Map: It seems like the last zombie got stuck somewhere. No
+  worries! The gods killed him for you!
+Dead-Tag-On-Death: §8Dead
+Teleported-To-The-Lobby: Teleported to the lobby!
+You-leveled-up: '§aYou leveled up! You''re now level %NUMBER%! '
+All-Villagers-Have-Died: §cAll villagers have died! You lost the game!
+Reached-Wave-X: You have reached wave §b%NUMBER%§7!
+Teleporting-To-Lobby-In-10-Seconds: You will be teleported to the lobby in §b10§7
+  seconds!
+All-Players-Have-Died: §cAll players have died!
+You-Feel-Refreshed: §aYou feel refreshed!
+Next-Wave-Starts-In: Next wave starts in §b%NUMBER%§7 seconds!
+A-Villager-Has-Died: §cA villager has died!
+You-Are-Spectator: §cYou're now a spectator! You can fly now!
+You're-Back-In-Game: §aYou're not a spectator anymore! You're back in the game!
+Don't-Hit-Me-With-Weapon: §cYou can't hit me with a weapon. That's just rude!
+Only-Command-Ingame-Is-Leave: §cYou have to leave the game first to perform commands.
+  The only command that works is /leave!
+Need-More-Orbs-To-Buy-this: §cYou need more orbs to buy this item!
+You-Can't-Clean-You're-Spectator: §cYou can't clean the map now! You are a spectator!
+  You'll respawn at the start of the next wave!
+You-Can't-Teleport-You're-Spectator: §cYou can't teleport zombies to u now! You are a spectator! You'll respawn at the start of the next wave!
+Map-is-already-empty: §aThe map is already empty!
+Player-has-cleaned-the-map: §b%PLAYER% has cleaned the map!
+Ability-Still-On-Cooldown: §cthis ability is on cooldown! Wait %COOLDOWN% more seconds!
+Teleportion-Menu-Name: §rTeleportation Menu
+Teleportion-Item-Lore: §7Right click to open teleportation menu!
+Teleportation-Menu-Name: Teleporter Menu
+Teleported-To-Villager: §aTeleported!
+Didn't-Found-The-Villager: §4Village defense didn't found that villager! That villager
+  is probably already dead!
+Teleported-To-Player: §aTeleported to %PLAYER%
+Player-Not-Found: §cPlayer not found! Try again!
+Cleaner-Wand-Name: §6Cleaner Wand!
+Cleaner-Item-Lore: 'Right click to kill all zombies!   Cooldown: 400 seconds'
+STATS-AboveLine: '§l-----YOUR STATS----- '
+STATS-Kills: '§aKills: §e'
+STATS-Deaths: '§aDeaths: §e'
+STATS-Games-Played: '§aGames played: §e'
+STATS-Hihgest-Wave: '§aHighest wave: §e'
+STATS-Level: '§aLevel: §e'
+STATS-Exp: '§aExp: §e'
+STATS-Next-Level-Exp: §aNext Level Exp §e
+STATS-UnderLinen: §l--------------------
+SCOREBOARD-Rotten-Flesh: '§2Rotten Flesh:'
+SCOREBOARD-Villagers: '§aVillagers:'
+SCOREBOARD-Zombies: '§cZombies:'
+SCOREBOARD-Players-Left: '§7Players Left:'
+SCOREBOARD-Starting-In: '§bStarting In:'
+SCOREBOARD-Min-Players: '§bMin Players:'
+SCOREBOARD-Players: '§bPlayers:'
+SCOREBOARD-Orbs: '§bOrbs:'
+SCOREBOARD-Next-Wave-In: '§7Next wave in:'
+Wave-Started: Wave §b%NUMBER%§7 started!
+SCOREBOARD-Header: §6Village Defense
+RottenFleshLevelUp: §bThe gods were happy with the rottenflesh!§b There for they gave
+  you an extra heart!
+Spawn-Golem: Spawn Golem
+Golem-Spawned: §aGolem spawned in the village!
+Wolf-Spawned: §aWolf spawned in the village!
+orbs-In-Shop: orbs
+Dog-Friend-Kit-Name: §bDog Friend
+Dog-Friend-Kit-Description: Start off with three dogs and get one extra dog every
+  wave!!
+DEAD-SCREEN: §cYou died!
+Died-Respawn-In-Next-Wave: §e§lDON'T LEAVE!§aYou'll respawn next once the wave ends!
+Barrier-Placed: §aBarrier placed!
+Door-Placed: §aDoor placed!
+KitChosenButNotUnlockedMessage: §cYou haven't unlocked §b%KIT%§c yet!
+KitChosenMessage: '§aYou have chosen: §b%KIT%§a !'
+Knight-Kit-Name: §2Knight
+Knight-Kit-Description: this is the one and only knight kit!Many people think this
+  is the worst kit! I must admit they they are totally wrong!
+Light-Tank-Kit-Name: §2 Light Tank
+Light-Tank-Kit-Description: You are tank Junior!
+The-Bunny-Kit-Name: §bThe Bunny
+Jumper-Kit-Description: Jumping is your passion. During the past, you've developed a way to double jump! Jumping on the roofs is easy! However you could use some extra training for shooting your special bow
+Zombie-Teleporter-Kit-Name: §2Zombie Teleporter
+Zombie-Teleporter-Kit-Description: Teleport those zombies to you!Many people think
+  this is the worst kit! I must admit they they are totally wrong!
+Zombie-Teleporter-Name: ZombieTeleporter
+Zombie-Teleporter-Lore: Teleport zombies to you!
+Archer-Kit-Name: §6Archer
+Archer-Kit-Description: Start with a bow, leather armor and a wooden sword. Archers
+  are loved by the villagers, know that!
+Puncher-Kit-Name: §6Puncher
+Puncher-Kit-Description: Punch those zombies back with your epic shovel! Knockback
+  V is not unknow for u!
+Healer-Kit-Name: §6Healer
+Healer-Kit-Description: Being a healer is the same as being loved. Youare able to
+  heal your teammates and villagers! Gets a restock every wave!
+Looter-Kit-Name: §6Looter
+Looter-Kit-Description: Get one additional rotten flesh on every zombie kill!!
+SuperArcher-Kit-Name: §bSuper Archer
+SuperArcher-Kit-Description: You are soo good at shooting arrows that you developed
+  a technic to insta-shoot arrows!Shooting an arrow per second is quite easy for you.
+Runner-Kit-Name: §6Runner
+Runner-Kit-Description: Parkour is your passion! You are able to run faster than everybody
+  else. You have also the ability to jump higher.
+Medium-Tank-Kit: §6 Medium Tank
+Medium-Tank-Kit-Description: Start off with 6 more hearts! Don't be afraid! You have
+  plenty hearts left to lose!
+Worker-Kit-Name: §6Worker
+Worker-Kit-Description: Get each round a door and start of with 2 additional doors.
+  This way u can replace the doors!
+Golem-Friend-Kit-Name: §6Golem Friend
+Golem-Friend-Kit-Description: Start with a golem!
+Terminator-Kit-Name: §6Terminator
+Terminator-Kit-Description: Easily kil those zombies with your strenght powers!!
+Hardcore-Kit-Name: §6Hardcore
+Hardcore-Kit-Description: You'll see yourself why this is hardcore
+Cleaner-Kit-Name: §bCleaner
+Cleaner-Kit-Description: The cleaner has a special ability. With this ability he can
+  make all the zombies dissappear. However it takes a lot of effort to do this!
+Teleporter-Kit-Name: §bTeleporter
+Teleporter-Kit-Description: Everybody is asthonished about your teleportion. Nobody
+  knows how to do it except you! Due to this you are able to teleport to villagers
+  that need help in notime!
+Heavy-Tank-Kit-Name: §bHeavy Tank
+Heavy-Tank-Kit-Description: Start off with iron armor and a double amount of hearts!
+  Yup that's right, you'll be the last man standing!
+ShotBow-Kit-Description: You invented a crazy shotbow!
+Shotbow-Kit-Name: §bShotbow Master
+PremiumHardcore-Kit-Description: One hit most zombies with your OP sword! However
+  be carefull. this kit is only for the pro's! Do not use it if u aren't a pro!
+PremiumHardcore-Kit-Name: §bPremium Hardcore Master
+Tornado-Kit-Name: §bTornado
+Tornado-Kit-Description: Spawn in an awesome tornado!
+Tornado-Item-Name: Tornado Time
+Tornado-Item-Lore: §7Right click to spawn a tornado at your location!
+The-Blocker-Kit-Name: §bBlocker
+Blocker-Kit-Description: Hold the zombies back with your special barriers. These barriers
+  last for 10 seconds
+Blocker-Fence-Item-Name: Fence
+Blocker-Fence-Item-Lore: Place this barrier to hold back zombies! These barriers last for 10 seconds
+Medic-Kit: §6Medic
+Medic-Kit-Description: This kit activates your passive powers. Everytime u hit a zombie,
+  u have a 1/10 chance to heal the players in a 5 block radius around u.
+Kit Menu-Title: Kit Menu
+Open-Kit-Menu: Open Kit Menu
+YouAreAlreadyIngame: §cYou are already qeued for a game! You can leave a game with /leave.
 Admin-ForceStart-Game: §bAn admin forcestarted the game!
 Admin-Set-Starting-In-To-0: §bAn admin set waiting time to 0. Game starts now!
 Admin-Removed-Zombies: '§b%PLAYER% has cleared the zombies!'
@@ -7,3 +161,10 @@ Admin-Removed-Villagers: '§b%PLAYER% has removed all the villagers!'
 Admin-Removed-Golems: '§b%PLAYER% has removed all the golems!'
 Admin-Removed-Zombies: '§b%PLAYER% has cleared the zombies!'
 Admin-Changed-Wave: '§bAdmin changed the wave to %NUMBER%'
+YouGotKickedToMakePlaceForAPremiumPlayer: §cYou got kicked out of the game to make place for a premium player!
+KickedToMakePlaceForPremiumPlayer: '§c%PLAYER% got removed from the game to make place for a premium players!'
+FullGameAlreadyFullWithPermiumPlayers: §cThis game is already full with premium players! Sorry
+NoPermissionToJoinFullGames: §cYou don't have the permission to join full games!
+You-Can't-Ride-Golem-From-Somebody-Else: You can't ride the golem of somebody else!
+Barrier-Can't-Be-Placed-Here: §cUnable to place barrier here
+No-Arena-Like-That: §cNo arena with that ID!
