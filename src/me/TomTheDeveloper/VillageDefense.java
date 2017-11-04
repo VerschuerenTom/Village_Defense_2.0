@@ -146,6 +146,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.setAllowBuilding(true);
         InvasionInstance.youtuberInvasion = this;
         gameAPI.onSetup(this, this);
+        new MetricsLite(this);
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
         
         LanguageManager.init(this);
