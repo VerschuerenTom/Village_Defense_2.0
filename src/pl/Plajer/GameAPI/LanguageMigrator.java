@@ -30,6 +30,9 @@ public class LanguageMigrator {
 	
 	//soon
 	public void initiateMigration() {
+		if(LanguageManager.getLanguageMessage("File-Version") != null) {
+			return;
+		}
 		System.out.println("[GameAPI] Initiated language.yml migration process! (File-Version: 1)");
 		int counter = 0;
 		for(String oldmessage : LanguageManager.getLanguageFile().getKeys(false)) {

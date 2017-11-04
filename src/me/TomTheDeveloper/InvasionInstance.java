@@ -31,6 +31,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
+import me.TomTheDeveloper.Chunks.ChunkManager;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Game.InstanceType;
@@ -38,10 +39,10 @@ import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
 import me.TomTheDeveloper.Handlers.MessageHandler;
 import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Items.SpecialItemManager;
 import me.TomTheDeveloper.Kits.GolemFriend;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.chunks.ChunkManager;
-import me.TomTheDeveloper.items.SpecialItemManager;
 
 //import me.confuser.barapi.BarAPI;
 //import me.mgone.bossbarapi.BossbarAPI;
@@ -730,13 +731,13 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         User user = UserManager.getUser(player.getUniqueId());
         user.addInt(stat, i);
         if (stat.equalsIgnoreCase("xp")) {
-            if (player.hasPermission("minigames.vip")) {
+            if (player.hasPermission(PermissionsManager.getVIP())) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
-            if (player.hasPermission("minigames.mvip")) {
+            if (player.hasPermission(PermissionsManager.getMVP())) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
-            if (player.hasPermission("minigames.elite")) {
+            if (player.hasPermission(PermissionsManager.getELITE())) {
                 user.addInt(stat, (int) Math.ceil(i / 2));
             }
         }
@@ -1067,11 +1068,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         if (getPlayers().contains(event.getEntity()))
             this.onDeath(event.getEntity());
         if (event.getEntity().isDead())
-            if (plugin.is1_8_R3()) {
-                event.getEntity().setHealth(event.getEntity().getMaxHealth());
-            } else {
-                event.getEntity().setHealth(event.getEntity().getMaxHealth());
-            }
+        	event.getEntity().setHealth(event.getEntity().getMaxHealth());
         event.setDeathMessage("");
         this.onDeath(event.getEntity());
     }

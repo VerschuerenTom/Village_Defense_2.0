@@ -11,6 +11,7 @@ import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
@@ -35,7 +36,7 @@ public class DogFriendKit extends PremiumKit {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.dogfriend");
+        return player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getMVP()) || player.hasPermission(PermissionsManager.getELITE()) || player.hasPermission("villagedefense.kit.dogfriend");
     }
 
     @Override

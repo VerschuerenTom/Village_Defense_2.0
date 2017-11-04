@@ -21,6 +21,7 @@ import org.bukkit.potion.PotionType;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.Items;
 
 /**
@@ -42,7 +43,7 @@ public class NakedKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return player.hasPermission("villagedefense.kit.naked") || player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite");
+        return player.hasPermission("villagedefense.kit.naked") || player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getMVP()) || player.hasPermission(PermissionsManager.getELITE());
     }
 
     @Override

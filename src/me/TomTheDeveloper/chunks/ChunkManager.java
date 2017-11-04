@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.chunks;
+package me.TomTheDeveloper.Chunks;
 
 import java.util.ArrayList;
 import java.util.List;

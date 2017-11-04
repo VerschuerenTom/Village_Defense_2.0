@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.TomTheDeveloper.Commands;
 
 import java.util.ArrayList;
 import java.util.List;

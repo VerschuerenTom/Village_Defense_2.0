@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
+import me.TomTheDeveloper.Permissions.PermissionsManager;
+
 /**
  * Created by Tom on 16/08/2014.
  */
@@ -28,7 +30,7 @@ public class ChestCommand implements CommandExecutor {
 
         if (!command.getLabel().equalsIgnoreCase("setshopchest"))
             return true;
-        if (!(player.isOp() || player.hasPermission("minigames.edit")))
+        if (!(player.isOp() || player.hasPermission(PermissionsManager.getEditGames())))
             return true;
         if (plugin.getGameAPI().getWorldEditPlugin().getSelection(player) == null)
             return true;

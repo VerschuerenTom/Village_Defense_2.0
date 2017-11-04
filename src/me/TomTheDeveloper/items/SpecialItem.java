@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.items;
+package me.TomTheDeveloper.Items;
 
 import java.io.IOException;
 import java.util.Arrays;
