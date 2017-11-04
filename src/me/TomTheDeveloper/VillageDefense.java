@@ -150,6 +150,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         
         LanguageManager.init(this);
         LanguageManager.saveDefaultLanguageFile();
+        saveDefaultConfig();
 
         if (!this.getConfig().contains("DatabaseActivated"))
             this.getConfig().set("DatabaseActivated", false);

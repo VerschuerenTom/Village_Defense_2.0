@@ -15,8 +15,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.sk89q.worldedit.bukkit.selections.RegionSelection;
-
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
@@ -275,11 +273,4 @@ public class SignManager extends BukkitRunnable implements Listener {
             }
         }
     }
-
-
-
-	public RegionSelection getSigns() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

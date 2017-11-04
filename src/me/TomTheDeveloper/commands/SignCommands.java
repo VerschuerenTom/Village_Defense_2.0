@@ -22,12 +22,9 @@ import me.TomTheDeveloper.GameAPI;
  */
 public class SignCommands implements CommandExecutor {
 
-	/*
-	 * TODO remove static or remove class (see VillageCommands.java)
-	 */
-    private static GameAPI plugin;
+    private GameAPI plugin;
 
-    private static int i;
+    private int i;
 
 
     private int counter =0;
