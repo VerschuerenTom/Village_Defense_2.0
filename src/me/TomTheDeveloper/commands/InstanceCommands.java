@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.TomTheDeveloper.Commands;
 
 import java.util.HashSet;
 
@@ -18,6 +18,7 @@ import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
 import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
 import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.setup.SetupInventory;
 
@@ -42,14 +43,14 @@ public class InstanceCommands implements CommandExecutor {
         Player player = (Player) commandSender;
         if(commandsInterface.checkPlayerCommands(player, command, s, strings))
             return true;
-        if(!(player.isOp() || player.hasPermission("minigames.edit")))
+        if(!(player.isOp() || player.hasPermission(PermissionsManager.getEditGames())))
             return true;
         if(!(command.getLabel().equalsIgnoreCase(plugin.getGameName()) || command.getLabel().equalsIgnoreCase(plugin.getAbreviation())))
             return true;
         if(commandsInterface.checkSpecialCommands(player, command, s,strings)){
             return true;
         }
-        if(!(strings.length >1) )
+        if(!(strings.length > 1) )
             return true;
 
         if(strings[0].equalsIgnoreCase("create")){

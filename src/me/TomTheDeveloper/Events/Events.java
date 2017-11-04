@@ -58,10 +58,11 @@ import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Game.InstanceType;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.Items.SpecialItemManager;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Shop.Shop;
 import me.TomTheDeveloper.Stats.MySQLDatabase;
 import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.items.SpecialItemManager;
 
 /**
  * Created by Tom on 16/08/2014.
@@ -92,13 +93,13 @@ public class Events implements Listener {
             return;
         }
 
-        if(event.getPlayer().hasPermission("minigames.elite")){
+        if(event.getPlayer().hasPermission(PermissionsManager.getELITE())){
         	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 1.5));
         	return;
-        } else if(event.getPlayer().hasPermission("minigames.mvip")) {
+        } else if(event.getPlayer().hasPermission(PermissionsManager.getMVP())) {
         	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 1.0));
         	return;
-        } else if(event.getPlayer().hasPermission("minigames.vip")) {
+        } else if(event.getPlayer().hasPermission(PermissionsManager.getVIP())) {
         	user.addInt("orbs", (int) Math.ceil(event.getAmount() * 0.5));
         	return;
         } else {
@@ -304,7 +305,7 @@ public class Events implements Listener {
         if (event.getMessage().contains("leave") || event.getMessage().contains("stats")) {
             return;
         }
-        if (event.getPlayer().isOp() || event.getPlayer().hasPermission("minigames.edit"))
+        if (event.getPlayer().isOp() || event.getPlayer().hasPermission(PermissionsManager.getEditGames()))
             return;
         event.setCancelled(true);
         event.getPlayer().sendMessage(ChatManager.colorMessage("Only-Command-Ingame-Is-Leave"));

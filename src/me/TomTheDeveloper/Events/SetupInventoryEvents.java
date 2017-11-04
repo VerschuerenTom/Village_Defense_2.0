@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 
 /**
  * Created by Tom on 15/06/2015.
@@ -32,7 +33,7 @@ public class SetupInventoryEvents implements Listener {
         if(event.getWhoClicked().getType() != EntityType.PLAYER)
             return;
         Player player = (Player) event.getWhoClicked();
-        if(!player.hasPermission("minigames.edit"))
+        if(!player.hasPermission(PermissionsManager.getEditGames()))
             return;
         if(!event.getInventory().getName().contains("Arena:"))
             return;

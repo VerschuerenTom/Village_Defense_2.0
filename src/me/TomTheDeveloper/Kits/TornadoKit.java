@@ -19,6 +19,7 @@ import org.bukkit.util.Vector;
 import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.Utils.WeaponHelper;
@@ -61,7 +62,7 @@ public class TornadoKit extends PremiumKit implements Listener {
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
-        return player.hasPermission("villagedefense.kit.tornado") || player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite");
+        return player.hasPermission("villagedefense.kit.tornado") || player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getMVP()) || player.hasPermission(PermissionsManager.getELITE());
     }
 
     @Override

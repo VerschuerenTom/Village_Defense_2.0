@@ -26,6 +26,7 @@ import me.TomTheDeveloper.VillageDefense;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
+import me.TomTheDeveloper.Permissions.PermissionsManager;
 import me.TomTheDeveloper.Utils.ArmorHelper;
 import me.TomTheDeveloper.Utils.ParticleEffect;
 import me.TomTheDeveloper.Utils.Util;
@@ -71,7 +72,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 
 	@Override
 	public boolean isUnlockedByPlayer(Player player) {
-		return player.hasPermission("minigames.vip") || player.hasPermission("minigames.mvip") || player.hasPermission("minigames.elite") || player.hasPermission("villagedefense.kit.blockerkit") || player.hasPermission("villagedefense.kits.blockerkit");
+		return player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getMVP()) || player.hasPermission(PermissionsManager.getELITE()) || player.hasPermission("villagedefense.kit.blockerkit") || player.hasPermission("villagedefense.kits.blockerkit");
 	}
 
 	@Override

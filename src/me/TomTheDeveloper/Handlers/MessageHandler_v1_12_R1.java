@@ -1,29 +1,21 @@
 package me.TomTheDeveloper.Handlers;
 
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.Game.GameInstance;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
-import net.minecraft.server.v1_8_R3.PlayerConnection;
+import net.minecraft.server.v1_12_R1.IChatBaseComponent;
+import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_12_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_12_R1.PlayerConnection;
 
-/**
- * Created by Tom on 21/07/2015.
- */
-public class MessageHandler {
+public class MessageHandler_v1_12_R1 {
 
     private GameInstance gameInstance;
 
-    private MessageHandler(GameInstance gameInstance){
+    private MessageHandler_v1_12_R1(GameInstance gameInstance){
         this.gameInstance = gameInstance;
     }
-
-
-   // public String announceWinners(Player first, Player second, Player third){
-     //   gameInstance.getChatManager().broadcastMessage();
-    //}
 
     public  static void sendSubTitleMessage(Player player, String message){
         PlayerConnection titleConnection = ((CraftPlayer) player).getHandle().playerConnection;
@@ -33,7 +25,6 @@ public class MessageHandler {
     }
 
     public static void sendTitleMessage(Player player, String message){
-
         PlayerConnection titleConnection = ((CraftPlayer) player).getHandle().playerConnection;
         IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
         PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, titleMain);
@@ -43,7 +34,8 @@ public class MessageHandler {
     public static void sendActionBarMessage(Player player, String message){
         PlayerConnection titleConnection = ((CraftPlayer) player).getHandle().playerConnection;
         IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-        PacketPlayOutChat bar = new PacketPlayOutChat(titleMain, (byte)2);
+        PacketPlayOutChat bar = new PacketPlayOutChat(titleMain);
         titleConnection.sendPacket(bar);
     }
+	
 }

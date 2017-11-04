@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.TomTheDeveloper.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
