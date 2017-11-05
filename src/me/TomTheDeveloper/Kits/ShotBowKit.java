@@ -2,7 +2,6 @@ package me.TomTheDeveloper.Kits;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -30,8 +29,8 @@ public class ShotBowKit extends PremiumKit implements Listener {
 
 
     public ShotBowKit() {
-    	setName(ChatManager.colorMessage("Shotbow-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("ShotBow-Kit-Description"), 40);
+    	setName(ChatManager.colorMessage("Kits.Shot-Bow.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Shot-Bow.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }
@@ -79,7 +78,9 @@ public class ShotBowKit extends PremiumKit implements Listener {
                             e.setCancelled(true);
                             UserManager.getUser(e.getPlayer().getUniqueId()).setCooldown("shotbow", 5);
                         } else {
-                            e.getPlayer().sendMessage(ChatColor.RED + "Ability on cooldown for " + UserManager.getUser(e.getPlayer().getUniqueId()).getCooldown("shotbow") + " more seconds!");
+                        	String msgstring = ChatManager.colorMessage("Kits.Ability-Still-On-Cooldown");
+                        	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(e.getPlayer().getUniqueId()).getCooldown("shotbow")));
+                        	e.getPlayer().sendMessage(msgstring);
                         }
                     }
                 }

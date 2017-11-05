@@ -40,8 +40,8 @@ public class TornadoKit extends PremiumKit implements Listener {
 
     public TornadoKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.colorMessage("Tornado-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Tornado-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Tornado.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Tornado.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
@@ -73,8 +73,8 @@ public class TornadoKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Tornado-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Tornado-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Kits.Tornado.Game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Kits.Tornado.Game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -86,8 +86,8 @@ public class TornadoKit extends PremiumKit implements Listener {
     @Override
     public void reStock(Player player) {
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Tornado-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Tornado-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Kits.Tornado.Game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Kits.Tornado.Game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -104,7 +104,7 @@ public class TornadoKit extends PremiumKit implements Listener {
             return;
         if (!player.getItemInHand().getItemMeta().hasDisplayName())
             return;
-        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Tornado-Item-Name")))
+        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Kits.Tornado.Game-Item-Name")))
             return;
         if (player.getItemInHand().getAmount() <= 1) {
             player.setItemInHand(new ItemStack(Material.AIR));

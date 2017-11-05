@@ -23,8 +23,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class JumperKit extends PremiumKit {
 
     public JumperKit() {
-        setName(ChatManager.colorMessage("The-Bunny-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Jumper-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Bunny.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Bunny.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

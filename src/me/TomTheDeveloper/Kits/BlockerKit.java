@@ -43,8 +43,8 @@ public class BlockerKit extends PremiumKit implements Listener {
 
 	public BlockerKit(final VillageDefense plugin) {
 		this.plugin = plugin;
-		setName(ChatManager.colorMessage("The-Blocker-Kit-Name"));
-		List<String> description = Util.splitString(ChatManager.colorMessage("The-Blocker-Kit-Description"), 40);
+		setName(ChatManager.colorMessage("Kits.Blocker.Kit-Name"));
+		List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Blocker.Kit-Description"), 40);
 		this.setDescription(description.toArray(new String[description.size()]));
 		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 			@Override
@@ -82,8 +82,8 @@ public class BlockerKit extends PremiumKit implements Listener {
 		player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
 		ItemStack is = new ItemStack(Material.FENCE, 3);
 		ItemMeta im = is.getItemMeta();
-		im.setDisplayName(ChatManager.colorMessage("Blocker-Fence-Item-Name"));
-		im.setLore(Arrays.asList(ChatManager.colorMessage("Blocker-Fence-Item-Lore")));
+		im.setDisplayName(ChatManager.colorMessage("Kits.Blocker.Game-Item-Name"));
+		im.setLore(Arrays.asList(ChatManager.colorMessage("Kits.Blocker.Game-Item-Lore")));
 		is.setItemMeta(im);
 		player.getInventory().addItem(new ItemStack(Material.SADDLE));
 
@@ -99,8 +99,8 @@ public class BlockerKit extends PremiumKit implements Listener {
 		PlayerInventory inventory = player.getInventory();
 		ItemStack is = new ItemStack(Material.FENCE, 3);
 		ItemMeta im = is.getItemMeta();
-		im.setDisplayName(ChatManager.colorMessage("Blocker-Fence-Item-Name"));
-		im.setLore(Arrays.asList(ChatManager.colorMessage("Blocker-Fence-Item-Lore")));
+		im.setDisplayName(ChatManager.colorMessage("Kits.Blocker.Game-Item-Name"));
+		im.setLore(Arrays.asList(ChatManager.colorMessage("Kits.Blocker.Game-Item-Lore")));
 		is.setItemMeta(im);
 	}
 
@@ -117,7 +117,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 			return;
 		if (!player.getItemInHand().getItemMeta().hasDisplayName())
 			return;
-		if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Blocker-Fence-Item-Name")))
+		if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Kits.Blocker.Game-Item-Name")))
 			return;
 		Block block = null;
 		for (Block blocks : player.getLastTwoTargetBlocks(null, 5)) {
@@ -125,7 +125,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 				block = blocks;
 		}
 		if (block == null) {
-			event.getPlayer().sendMessage(ChatManager.colorMessage("Barrier-Can't-Be-Placed-Here"));
+			event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Blocker.Game-Item-Place-Fail"));
 			return;
 		}
 		if (player.getItemInHand().getAmount() <= 1) {
@@ -135,7 +135,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 		}
 		User user = UserManager.getUser(event.getPlayer().getUniqueId());
 
-		user.toPlayer().sendMessage(ChatManager.colorMessage("Barrier-Placed"));
+		user.toPlayer().sendMessage(ChatManager.colorMessage("Kits.Blocker.Game-Item-Place-Message"));
 		ZombieBarrier zombieBarrier = new ZombieBarrier();
 		zombieBarrier.setUuid(user.getUuid());
 		zombieBarrier.setLocation(block.getLocation());

@@ -1,11 +1,13 @@
-package pl.Plajer.GameAPI;
+package me.TomTheDeveloper.Handlers;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+
 public class LanguageMigrator {
 
-	private List<String> oldmessages = 
+	private static List<String> oldmessages = 
 			Arrays.asList("Teleported-To-The-Lobby", "No-Arena-Like-That", "STATS-AboveLine", "STATS-UnderLinen", "STATS-Kills", "STATS-Deaths", "STATS-Games-Played", "STATS-Hihgest-Wave", "STATS-Level", "STATS-Exp", "STATS-Next-Level-Exp", "SCOREBOARD-Header", "SCOREBOARD-Villagers", "SCOREBOARD-Zombies", "SCOREBOARD-Players-Left" , "SCOREBOARD-Min-Players", "SCOREBOARD-Starting-In", "SCOREBOARD-Players", "SCOREBOARD-Next-Wave-In",
 					"SCOREBOARD-Orbs", "SCOREBOARD-Rotten-Flesh", "Kit Menu-Title", "KitUnlockedLoreInKitMenu", "KitLockedLoreInKitMenu", "Unlocks-at-level", "Unlock-This-Kit-In-The-Store", "KitChosenButNotUnlockedMessage", "KitChosenMessage", "Kit-Menu-Item-Name", "Open-Kit-Menu", "Ability-Still-On-Cooldown", "Cleaner-Kit-Name", "Cleaner-Kit-Description", "Cleaner-Wand-Name","Cleaner-Item-Lore", "Player-has-cleaned-the-map", "Map-is-already-empty", "You-Can't-Clean-You're-Spectator", "Zombie-Teleporter-Kit-Name", "Zombie-Teleporter-Kit-Description", "Zombie-Teleporter-Name", "Zombie-Teleporter-Lore", "Knight-Kit-Name",
 					"Knight-Kit-Description", "Light-Tank-Kit-Name", "Light-Tank-Kit-Description", "Archer-Kit-Name", "Archer-Kit-Description", "Puncher-Kit-Name", "Puncher-Kit-Description", "Healer-Kit-Name", "Healer-Kit-Description", "SuperArcher-Kit-Name", "SuperArcher-Kit-Description",
@@ -16,7 +18,7 @@ public class LanguageMigrator {
 					"Wave-Started", "A-Villager-Has-Died", "You-Feel-Refreshed", "You-Can't-Ride-Golem-From-Somebody-Else", "Golem-Spawned","Wolf-Spawned", "Zombie-Got-Stuck-In-The-Map", "Spawn-Golem", "Need-More-Orbs-To-Buy-this",
 					"Don't-Hit-Me-With-Weapon", "orbs-In-Shop", "All-Players-Have-Died", "All-Villagers-Have-Died","Reached-Wave-X", "Teleporting-To-Lobby-In-10-Seconds", "Teleport-To-EndLocation-In-X-Seconds",
 					"Admin-ForceStart-Game", "Admin-Set-Starting-In-To-0", "Admin-Removed-Zombies", "Admin-Removed-Golems","Admin-Removed-Villagers","Admin-Removed-Zombies", "Admin-Changed-Wave");
-	private List<String> migratedmessages = 
+	private static List<String> migratedmessages = 
 			Arrays.asList("Commands.Teleported-To-The-Lobby", "Commands.No-Arena-Like-That", "Commands.Stats-Command.Header", "Commands.Stats-Command.Footer", "Commands.Stats-Command.Kills", "Commands.Stats-Command.Deaths", "Commands.Stats-Command.Games-Played", "Commands.Stats-Command.Highest-Wave", "Commands.Stats-Command.Level", "Commands.Stats-Command.Exp", "Commands.Stats-Command.Next-Level-Exp", "Scoreboard.Header", "Scoreboard.Villagers-Left", "Scoreboard.Zombies-Left", "Scoreboard.Players-Left", "Scoreboard.Minimum-Players", "Scoreboard.Starting-In", "Scoreboard.Players", "Scoreboard.Next-Wave-In",
 					"Scoreboard.Orbs", "Scoreboard.Rotten-Flesh", "Kits.Kit-Menu.Title", "Kits.Kit-Menu.Unlocked-Kit-Lore", "Kits.Kit-Menu.Locked-Lores.Locked-Lore", "Kits.Kit-Menu.Locked-Lores.Unlock-At-Level", "Kits.Kit-Menu.Locked-Lores.Unlock-In-Store", "Kits.Not-Unlocked-Message", "Kits.Choose-Message", "Kits.Kit-Menu-Item-Name", "Kits.Open-Kit-Menu", "Kits.Ability-Still-On-Cooldown", "Kits.Cleaner.Kit-Name", "Kits.Cleaner.Kit-Description", "Kits.Cleaner.Game-Item-Name","Kits.Cleaner.Game-Item-Lore", "Kits.Cleaner.Cleaned-Map", "Kits.Cleaner.Nothing-To-Clean", "Kits.Cleaner.Spectator-Warning", "Kits.Zombie-Teleporter.Kit-Name", "Kits.Zombie-Teleporter.Kit-Description", "Kits.Zombie-Teleporter.Game-Item-Name", "Kits.Zombie-Teleporter.Game-Item-Lore", "Kits.Knight.Kit-Name",
 					"Kits.Knight.Kit-Description", "Kits.Light-Tank.Kit-Name", "Kits.Light-Tank.Kit-Description", "Kits.Archer.Kit-Name", "Kits.Archer.Kit-Description",  "Kits.Puncher.Kit-Name", "Kits.Puncher.Kit-Description", "Kits.Healer.Kit-Name", "Kits.Healer.Kit-Description", "Kits.Super-Archer.Kit-Name", "Kits.Super-Archer.Kit-Description",
@@ -28,13 +30,13 @@ public class LanguageMigrator {
 					"In-Game.Messages.Shop-Messages.Rude-Message","In-Game.Messages.Shop-Messages.Currency-In-Shop","In-Game.Messages.Game-End-Messages.All-Players-Died","In-Game.Messages.Game-End-Messages.All-Villagers-Died","In-Game.Messages.Game-End-Messages.Reached-Wave-X","In-Game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds","In-Game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-X-Seconds",
 					"In-Game.Messages.Admin-Messages.Force-Start-Game","In-Game.Messages.Admin-Messages.Set-Starting-In-To-0","In-Game.Messages.Admin-Messages.Removed-Zombies","In-Game.Messages.Admin-Messages.Removed-Golems","In-Game.Messages.Admin-Messages.Removed-Villagers","In-Game.Messages.Admin-Messages.Removed-Zombies","In-Game.Messages.Admin-Messages.Changed-Wave");
 	
-	//soon
-	public void initiateMigration() {
+	public static void initiateMigration() {
 		if(LanguageManager.getLanguageMessage("File-Version") != null) {
 			return;
 		}
 		System.out.println("[GameAPI] Initiated language.yml migration process! (File-Version: 1)");
 		int counter = 0;
+		int nomessages = 0;
 		for(String oldmessage : LanguageManager.getLanguageFile().getKeys(false)) {
 			if(oldmessages.contains(oldmessage)) {
 				for(int i = 0; i < oldmessages.size(); i++) {
@@ -46,9 +48,21 @@ public class LanguageMigrator {
 				}
 			}
 		}
+		LanguageManager.saveLanguageFile();
+		for(String newmessage : migratedmessages) {
+			if(!LanguageManager.getLanguageFile().isSet(newmessage)) {
+				LanguageManager.getLanguageFile().set(newmessage, "MESSAGE NOT FOUND! PLEASE GENERATE NEW LANGUAGE.YML FILE!");
+				System.out.println("[GameAPI] Message " + newmessage + " doesn't exists in your old language.yml!");
+				nomessages++;
+			}
+		}
 		LanguageManager.getLanguageFile().set("File-Version", 1);
 		LanguageManager.saveLanguageFile();
-		System.out.println("[GameAPI] Successfully migrated language.yml to new format! Changes " + counter + " lines!");
+		System.out.println("[GameAPI] Successfully migrated language.yml to new format! Changed " + counter + " lines!");
+		if(nomessages > 0) {
+			Bukkit.getConsoleSender().sendMessage("§c[GameAPI] WARNING! Your old language.yml didn't have all messages needed for migration,");
+			Bukkit.getConsoleSender().sendMessage("§cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
+		}
 	}
 	
 }

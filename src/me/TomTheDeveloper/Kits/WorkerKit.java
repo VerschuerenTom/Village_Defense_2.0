@@ -18,23 +18,19 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 /**
  * Created by Tom on 19/07/2015.
  */
-public class DoorRepairKit extends LevelKit {
+public class WorkerKit extends LevelKit {
 
-    public DoorRepairKit() {
+    public WorkerKit() {
         this.setLevel(15);
-        this.setName(ChatManager.colorMessage("Worker-Kit-Name")); 
-        List<String> description = Util.splitString(ChatManager.colorMessage("Worker-Kit-Description"), 40);
+        this.setName(ChatManager.colorMessage("Kits.Worker.Kit-Name")); 
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Worker.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-
-
     }
 
 
     @Override
     public boolean isUnlockedByPlayer(Player player) {
         return UserManager.getUser(player.getUniqueId()).getInt("level") >= this.getLevel() || player.hasPermission("villagefense.kit.door");
-
-
     }
 
     @Override

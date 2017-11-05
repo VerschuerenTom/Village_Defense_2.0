@@ -1,4 +1,4 @@
-package pl.Plajer.GameAPI;
+package me.TomTheDeveloper.Handlers;
 
 import java.io.File;
 import java.io.IOException;

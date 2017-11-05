@@ -18,8 +18,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class KnightKit extends FreeKit {
 
     public KnightKit() {
-        this.setName(ChatManager.colorMessage("Knight-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Knight-Kit-Description"), 40);
+        this.setName(ChatManager.colorMessage("Kits.Knight.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Knight.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

@@ -289,11 +289,11 @@ public class Events implements Listener {
                 event.getRightClicked().setPassenger(event.getPlayer());
                 return;
             } else {
-                event.getPlayer().sendMessage(ChatManager.colorMessage("You-Can't-Ride-Golem-From-Somebody-Else"));
+                event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Cant-Ride-Others-Golem"));
             }
         } else {
             if (event.getRightClicked().getType() == EntityType.VILLAGER || event.getRightClicked().getType() == EntityType.IRON_GOLEM)
-                event.getPlayer().sendMessage(ChatManager.colorMessage("Don't-Hit-Me-With-Weapon"));
+                event.getPlayer().sendMessage(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Rude-Message"));
         }
     }
 
@@ -308,7 +308,7 @@ public class Events implements Listener {
         if (event.getPlayer().isOp() || event.getPlayer().hasPermission(PermissionsManager.getEditGames()))
             return;
         event.setCancelled(true);
-        event.getPlayer().sendMessage(ChatManager.colorMessage("Only-Command-Ingame-Is-Leave"));
+        event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Only-Command-Ingame-Is-Leave"));
     }
 
     @EventHandler
@@ -491,10 +491,10 @@ public class Events implements Listener {
             return;
         String string = event.getCurrentItem().getItemMeta().getLore().get(0);
         string = ChatColor.stripColor(string);
-        if (!(string.contains(ChatManager.colorMessage("orbs-In-Shop")) || string.contains("orbs"))) {
+        if (!(string.contains(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Currency-In-Shop")) || string.contains("orbs"))) {
             boolean b = false;
             for (String s : event.getCurrentItem().getItemMeta().getLore()) {
-                if (string.contains(ChatManager.colorMessage("orbs-In-Shop")) || string.contains("orbs")) {
+                if (string.contains(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Currency-In-Shop")) || string.contains("orbs")) {
                     string = s;
                     b = true;
                     continue;
@@ -505,25 +505,24 @@ public class Events implements Listener {
         }
         int price = Integer.parseInt(string.split(" ")[0]);
         if (price > UserManager.getUser(player.getUniqueId()).getInt("orbs")) {
-            player.sendMessage(ChatManager.colorMessage("Need-More-Orbs-To-Buy-this"));
+            player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Not-Enough-Orbs"));
             return;
         }
         if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()) {
-            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Spawn-Golem"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Golem-Item-Name"))) {
                 ((InvasionInstance) gameInstance).spawnGolem(gameInstance.getStartLocation(), player);
-                player.sendMessage(ChatManager.colorMessage("Golem-Spawned"));
+                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Golem-Spawned"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
 
             }
+            /*
+             * TODO
+             * Add translatable message for 'Spawn Wolf' item
+             */
             if (event.getCurrentItem().getItemMeta().getDisplayName().contains("Spawn Wolf")) {
-
-				/*   if(user.getKit() instanceof DogFriendKit){
-                    gameInstance.spawnWolf(gameInstance.getStartLocation(), player);
-                    player.sendMessage(ChatManager.getSingleMessage("Wolf-Spawned",ChatColor.GREEN + "Wolf spawned in the village!"));
-                } */
                 ((InvasionInstance) gameInstance).spawnWolf(gameInstance.getStartLocation(), player);
-                player.sendMessage(ChatManager.colorMessage("Wolf-Spawned"));
+                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Wolf-Spawned"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
                 return;
             }
@@ -535,7 +534,7 @@ public class Events implements Listener {
         Iterator iterator = lore.iterator();
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            if (s.contains(ChatManager.colorMessage("orbs-In-Shop"))) {
+            if (s.contains(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Currency-In-Shop"))) {
                 lore.remove(s);
             }
         }
@@ -766,7 +765,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(ChatManager.colorMessage("Door-Placed"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Worker.Game-Item-Place-Message"));
     }
 
 
@@ -825,8 +824,8 @@ public class Events implements Listener {
                             player.setMaxHealth(player.getMaxHealth() + 2.0);
                         }
                         for(Player player1 : gameInstance.getPlayers()) {
-                        	String message = ChatManager.formatMessage(ChatManager.colorMessage("RottenFleshLevelUp"), player1);
-                            player1.sendMessage("§a[VillageDefense] " + message);
+                        	String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Rotten-Flesh-Level-Up"), player1);
+                            player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                         }
                     }
 
@@ -877,10 +876,10 @@ public class Events implements Listener {
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                 } else {
                     player.sendMessage(ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + UserManager.getUser(event.getPlayer().getUniqueId()).getInt("level") +
-                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
+                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Dead-Tag-On-Death")) + ChatColor.GRAY + "]" +
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                     System.out.print(ChatColor.GRAY + "[" + ChatColor.DARK_PURPLE + UserManager.getUser(event.getPlayer().getUniqueId()).getInt("level") +
-                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage("Dead-Tag-On-Death") + ChatColor.GRAY + "]" +
+                            ChatColor.GRAY + "]" + ChatColor.GRAY + "[" + ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Dead-Tag-On-Death")) + ChatColor.GRAY + "]" +
                             ChatColor.GRAY + " " + event.getPlayer().getDisplayName() + ": " + ChatColor.WHITE + event.getMessage());
                 }
             }

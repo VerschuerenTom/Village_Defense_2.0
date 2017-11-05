@@ -206,7 +206,7 @@ public class SignManager extends BukkitRunnable implements Listener {
 
             if(instance == null){
                 Location location = event.getClickedBlock().getLocation();
-                for(GameInstance gameInstance:plugin.getGameInstanceManager().getGameInstances()){
+                for(GameInstance gameInstance : plugin.getGameInstanceManager().getGameInstances()){
                     if(gameInstance.getSigns().contains(location)){
                         instance = gameInstance;
                         break;
@@ -222,7 +222,7 @@ public class SignManager extends BukkitRunnable implements Listener {
             if(instance != null) {
                 for(GameInstance gameInstance: plugin.getGameInstanceManager().getGameInstances()){
                     if(gameInstance.getPlayers().contains(event.getPlayer())){
-                        event.getPlayer().sendMessage(ChatManager.colorMessage("YouAreAlreadyIngame"));
+                        event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Already-Playing"));
                         return;
                     }
                 }
@@ -238,8 +238,8 @@ public class SignManager extends BukkitRunnable implements Listener {
                             } else {
                                 if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {
                                     instance.leaveAttempt(player);
-                                    player.sendMessage(ChatManager.colorMessage("YouGotKickedToMakePlaceForAPremiumPlayer"));
-                                    String message = ChatManager.formatMessage(ChatManager.colorMessage("KickedToMakePlaceForPremiumPlayer"), player);
+                                    player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Lobby-Messages.You-Were-Kicked-For-Premium-Slot"));
+                                    String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Lobby-Messages.Kicked-For-Premium-Slot"), player);
                                 	for(Player p : instance.getPlayers()) {
                                 		p.sendMessage(ChatManager.PLUGINPREFIX + message);
                                 	}
@@ -255,14 +255,14 @@ public class SignManager extends BukkitRunnable implements Listener {
 
                         }
                         if (!b) {
-                            event.getPlayer().sendMessage(ChatManager.colorMessage("FullGameAlreadyFullWithPermiumPlayers"));
+                            event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.No-Slots-For-Premium"));
                             return;
                         } else {
                             return;
                         }
 
                     }else{
-                        event.getPlayer().sendMessage(ChatManager.colorMessage("NoPermissionToJoinFullGames"));
+                        event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Full-Game-No-Permission"));
                         return;
                     }
                    // instance.joinAttempt(event.getPlayer());

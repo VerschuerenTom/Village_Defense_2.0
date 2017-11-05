@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
 import me.TomTheDeveloper.Utils.Util;
-import pl.Plajer.GameAPI.LanguageManager;
 
 /**
  * Created by Tom on 27/07/2014.
@@ -26,21 +25,21 @@ public class ChatManager {
 	}
 
 	public void broadcastJoinMessage(Player p){
-		String message = formatMessage(ChatManager.colorMessage("Join"));
+		String message = formatMessage(ChatManager.colorMessage("In-Game.Messages.Join"), p);
 		for(Player player:gameInstance.getPlayers()) {
 			player.sendMessage(PLUGINPREFIX + message);
 		}
 	}
 
 	public void broadcastLeaveMessage(Player p){
-		String message = formatMessage(ChatManager.colorMessage("Leave"));
+		String message = formatMessage(ChatManager.colorMessage("In-Game.Messages.Leave"), p);
 		for(Player player:gameInstance.getPlayers()) {
 			player.sendMessage(PLUGINPREFIX + message);
 		}
 	}
 
 	public void broadcastDeathMessage(Player player){
-		String message = formatMessage(ChatManager.colorMessage("Death"));
+		String message = formatMessage(ChatManager.colorMessage("In-Game.Messages.Death"), player);
 		for(Player p : gameInstance.getPlayers()) {
 			p.sendMessage(PLUGINPREFIX + message);
 		}
@@ -48,7 +47,7 @@ public class ChatManager {
 
 	public void broadcastMessage(String messageID, OfflinePlayer player){
 		String message = formatMessage(messageID, player);
-		for(Player player1:gameInstance.getPlayers()) {
+		for(Player player1 : gameInstance.getPlayers()) {
 			player1.sendMessage(PLUGINPREFIX + message);
 		}
 	}

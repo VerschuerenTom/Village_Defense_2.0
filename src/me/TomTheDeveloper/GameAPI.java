@@ -209,15 +209,6 @@ public class GameAPI {
 		plugin.getCommand("addsigns").setExecutor(new SignCommands(this));
 		//      this.getCommand("smartreload").setExecutor(new onReloadCommand(this));
 		plugin.getCommand("smartstop").setExecutor(new onStopCommand(this));
-
-
-
-
-
-
-
-
-
 	}
 
 

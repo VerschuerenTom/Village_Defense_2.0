@@ -33,8 +33,8 @@ public class CleanerKit extends PremiumKit implements Listener {
 
     public CleanerKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.colorMessage("Cleaner-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Cleaner-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Cleaner.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Cleaner.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 
@@ -48,10 +48,10 @@ public class CleanerKit extends PremiumKit implements Listener {
         ArmorHelper.setColouredArmor(Color.YELLOW, player);
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         ItemStack cleaneritem = new ItemStack(Material.BLAZE_ROD);
-        List<String> cleanerWandLore = Util.splitString(ChatManager.colorMessage("Cleaner-Item-Lore"), 40);
+        List<String> cleanerWandLore = Util.splitString(ChatManager.colorMessage("Kits.Cleaner.Game-Item-Lore"), 40);
         String[] cleanerWandLoreArray = cleanerWandLore.toArray(new String[cleanerWandLore.size()]);
 
-        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, ChatManager.colorMessage("Cleaner-Wand-Name"), cleanerWandLoreArray);
+        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, ChatManager.colorMessage("Kits.Cleaner.Game-Item-Name"), cleanerWandLoreArray);
         player.getInventory().addItem(cleaneritem);
         player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
@@ -78,18 +78,18 @@ public class CleanerKit extends PremiumKit implements Listener {
             return;
         if (!(event.getItem().getItemMeta().hasDisplayName()))
             return;
-        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Cleaner-Wand-Name"))))
+        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Kits.Cleaner.Game-Item-Name"))))
             return;
         if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
             return;
         if (UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
-            event.getPlayer().sendMessage(ChatManager.colorMessage("You-Can't-Clean-You're-Spectator"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Cleaner.Spectator-Warning"));
             return;
         }
         InvasionInstance invasionInstance = (InvasionInstance) plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer());
 
         if (UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("clean") > 0 && !UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
-        	String msgstring = ChatManager.colorMessage("Ability-Still-On-Cooldown");
+        	String msgstring = ChatManager.colorMessage("Kits.Ability-Still-On-Cooldown");
         	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("clean")));
         	event.getPlayer().sendMessage(msgstring);
             return;
@@ -105,7 +105,7 @@ public class CleanerKit extends PremiumKit implements Listener {
             }
             invasionInstance.getZombies().clear();
         } else {
-            event.getPlayer().sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
             return;
         }
         if (plugin.is1_9_R1() || plugin.is1_12_R1()) {
@@ -113,9 +113,9 @@ public class CleanerKit extends PremiumKit implements Listener {
         } else {
             event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
         }
-        String message = ChatManager.formatMessage(ChatManager.colorMessage("Player-has-cleaned-the-map"), event.getPlayer());
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("Kits.Cleaner.Cleaned-Map"), event.getPlayer());
         for(Player player1 : plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()).getPlayers()) {
-            player1.sendMessage("§a[VillageDefense] " + message);
+            player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
         UserManager.getUser(event.getPlayer().getUniqueId()).setCooldown("clean", 1000);
     }

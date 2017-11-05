@@ -19,8 +19,8 @@ public class MediumTankKit extends LevelKit {
 
 
     public MediumTankKit() {
-        setName(ChatManager.colorMessage("Medium-Tank-Kit"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Medium-Tank-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Medium-Tank.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Medium-Tank.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(12);
 
