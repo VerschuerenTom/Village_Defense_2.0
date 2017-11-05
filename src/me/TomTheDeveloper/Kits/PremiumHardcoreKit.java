@@ -19,10 +19,9 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class PremiumHardcoreKit extends PremiumKit {
 
     public PremiumHardcoreKit() {
-        setName(ChatManager.colorMessage("PremiumHardcore-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("PremiumHardcore-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Premium-Hardcore.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Premium-Hardcore.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
-
     }
 
     @Override

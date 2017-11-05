@@ -22,8 +22,8 @@ public class ArcherKit extends LevelKit {
 
     public ArcherKit() {
         this.setLevel(2);
-        this.setName(ChatManager.colorMessage("Archer-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Archer-Kit-Description"), 40);
+        this.setName(ChatManager.colorMessage("Kits.Archer.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Archer.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
 

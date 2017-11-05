@@ -24,15 +24,15 @@ public class StatsCommand implements CommandExecutor {
     		}
     		Player player = (Player) sender;
             User user = UserManager.getUser(player.getUniqueId());
-            player.sendMessage(ChatManager.colorMessage("STATS-AboveLine"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Kills"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Deaths"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Games-Played"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Hihgest-Wave") + user.getInt("highestwave"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Level") + user.getInt("level"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Exp") + user.getInt("xp"));
-            player.sendMessage(ChatManager.colorMessage("STATS-Next-Level-Exp") + Math.ceil(Math.pow(50 * user.getInt("level"), 1.5)));
-            player.sendMessage(ChatManager.colorMessage("STATS-UnderLinen"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Header"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Kills"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Deaths"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Games-Played"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Highest-Wave") + user.getInt("highestwave"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Level") + user.getInt("level"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Exp") + user.getInt("xp"));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Next-Level-Exp") + Math.ceil(Math.pow(50 * user.getInt("level"), 1.5)));
+            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Footer"));
             return true;
     	}
     	return false;

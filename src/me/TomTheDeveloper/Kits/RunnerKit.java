@@ -24,8 +24,8 @@ public class RunnerKit extends LevelKit {
 
     public RunnerKit() {
         setLevel(10);
-        setName(ChatManager.colorMessage("Runner-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Runner-Kit-Description"), 40);
+        setName(ChatManager.colorMessage("Kits.Runner.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Runner.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

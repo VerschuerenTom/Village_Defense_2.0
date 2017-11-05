@@ -41,10 +41,10 @@ public class KitMenuHandler implements Listener {
 
 
     public KitMenuHandler(GameAPI GameAPI) {
-    	itemname = ChatManager.colorMessage("Kit-Menu-Item-Name");
+    	itemname = ChatManager.colorMessage("Kits.Kit-Menu-Item-Name");
     	this.GameAPI = GameAPI;
-    	UNLOCKED = ChatManager.colorMessage("KitUnlockedLoreInKitMenu");
-    	LOCKED = ChatManager.colorMessage("KitLockedLoreInKitMenu");
+    	UNLOCKED = ChatManager.colorMessage("Kits.Kit-Menu.Unlocked-Kit-Lore");
+    	LOCKED = ChatManager.colorMessage("Kits.Kit-Menu.Locked-Lores.Locked-Lore");
 
     }
 
@@ -152,11 +152,11 @@ public class KitMenuHandler implements Listener {
         if(event.getKit().isUnlockedByPlayer(event.getPlayer())){
             User user = UserManager.getUser(event.getPlayer().getUniqueId());
             user.setKit(event.getKit());
-            String chosenkitmessage = ChatManager.colorMessage("KitChosenMessage");
+            String chosenkitmessage = ChatManager.colorMessage("Kits.Choose-Message");
              chosenkitmessage = ChatManager.formatMessage(chosenkitmessage, event.getKit());
             event.getPlayer().sendMessage(chosenkitmessage);
         }else{
-            String chosenKitMessageButNotUnlocked = ChatManager.colorMessage("KitChosenButNotUnlockedMessage");
+            String chosenKitMessageButNotUnlocked = ChatManager.colorMessage("Kits.Not-Unlocked-Message");
             event.getPlayer().sendMessage(ChatManager.formatMessage(chosenKitMessageButNotUnlocked, event.getKit()));
         }
 

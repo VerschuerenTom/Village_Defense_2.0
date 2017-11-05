@@ -28,8 +28,8 @@ import me.TomTheDeveloper.Utils.WeaponHelper;
 public class SuperArcherKit extends PremiumKit implements Listener {
 
     public SuperArcherKit() {
-    	setName(ChatManager.colorMessage("SuperArcher-Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("SuperArcher-Kit-Description"), 40);
+    	setName(ChatManager.colorMessage("Kits.Super-Archer.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Super-Archer.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }

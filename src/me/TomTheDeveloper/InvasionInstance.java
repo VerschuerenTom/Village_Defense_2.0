@@ -109,7 +109,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                     if (getTimer() <= 0) {
                         setTimer(15);
-                        String message = ChatManager.formatMessage(ChatManager.colorMessage("Waiting-For-Players"), getMIN_PLAYERS());
+                        String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Lobby-Messages.Waiting-For-Players"), getMIN_PLAYERS());
                         for(Player player1 : getPlayers()) {
                             player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                         }
@@ -117,7 +117,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
                 } else {
                 	for(Player p : getPlayers()) {
-                        p.sendMessage(ChatManager.colorMessage("Enough-Players-To-Start"));
+                        p.sendMessage(ChatManager.colorMessage("In-Game.Messages.Lobby-Messages.Enough-Players-To-Start"));
                     }
                     setGameState(GameState.STARTING);
                     setTimer(VillageDefense.STARTING_TIMER_TIME);
@@ -146,7 +146,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         addStat(player, "gamesplayed");
                         addStat(player, "xp", 10);
                         setTimer(25);
-                        player.sendMessage(ChatManager.colorMessage("The-Game-Has-Started"));
+                        player.sendMessage(ChatManager.colorMessage("In-Game.Messages.Lobby-Messages.Game-Started"));
                     }
                     FIGHTING = false;
 
@@ -235,7 +235,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                                 clearZombies();
                                 zombiestospawn = 0;
                                 for(Player p : getPlayers()) {
-                                    p.sendMessage(ChatManager.colorMessage("Zombie-Got-Stuck-In-The-Map"));
+                                    p.sendMessage(ChatManager.colorMessage("In-Game.Messages.Zombie-Got-Stuck-In-The-Map"));
                                 }
                             } else {
                                 int i = getZombiesLeft();
@@ -312,7 +312,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
 
                     for(Player p : getPlayers()) {
-                        p.sendMessage(ChatManager.colorMessage("Teleported-To-The-Lobby"));
+                        p.sendMessage(ChatManager.colorMessage("Commands.Teleported-To-The-Lobby"));
                     }
 
                     setGameState(GameState.RESTARTING);
@@ -359,7 +359,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
         if (Math.pow(50 * user.getInt("level"), 1.5) < user.getInt("xp")) {
             user.addInt("level", 1);
-            player.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("You-leveled-up"), user.getInt("level")));
+            player.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("In-Game.You-Leveled-Up"), user.getInt("level")));
         }
     }
 
@@ -432,15 +432,15 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
     public void stopGame() {
         if (getPlayersLeft().size() > 0) {
         	for(Player p : getPlayers()) {
-                p.sendMessage(ChatManager.colorMessage("All-Villagers-Have-Died"));
-                p.sendMessage(ChatManager.colorMessage("Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
-                p.sendMessage(ChatManager.colorMessage("Teleporting-To-Lobby-In-10-Seconds"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.All-Villagers-Died"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
             }
         } else {
         	for(Player p : getPlayers()) {
-                p.sendMessage(ChatManager.colorMessage("All-Players-Have-Died"));
-                p.sendMessage(ChatManager.colorMessage("Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
-                p.sendMessage(ChatManager.colorMessage("Teleporting-To-Lobby-In-10-Seconds"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.All-Players-Died"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
             }
         }
         for (Player player : getPlayers()) {
@@ -606,7 +606,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         for (User user : UserManager.getUsers(this)) {
             user.getKit().reStock(user.toPlayer());
         }
-        String message = ChatManager.formatMessage(ChatManager.colorMessage("Wave-Started"), wave);
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Wave-Started"), wave);
         for(Player player1 : getPlayers()) {
             player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
@@ -618,12 +618,12 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         setTimer(25);
         zombiecheckerlocations.clear();
         wave = wave + 1;
-        String message = ChatManager.formatMessage(ChatManager.colorMessage("Next-Wave-Starts-In"), getTimer());
+        String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Next-Wave-In"), getTimer());
         for(Player player1 : getPlayers()) {
             player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
         for (Player player : getPlayers()) {
-        	player.sendMessage(ChatManager.colorMessage("You-Feel-Refreshed"));
+        	player.sendMessage(ChatManager.colorMessage("In-Game.Messages.You-Feel-Refreshed"));
             if (!(plugin.is1_8_R3() || plugin.is1_7_R4())) {
                 player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             } else {
@@ -659,7 +659,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
             }
             this.teleportToStartLocation(p);
-            p.sendMessage(ChatManager.colorMessage("You-Are-Spectator"));
+            p.sendMessage(ChatManager.colorMessage("In-Game.You-Are-Spectator"));
             p.getInventory().clear();
             for (PotionEffect potionEffect : p.getActivePotionEffects()) {
                 p.removePotionEffect(potionEffect.getType());
@@ -968,15 +968,15 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                 case STARTING:
                     Objective startingobj = user.getScoreboard().getObjective("starting");
-                    startingobj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
+                    startingobj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
                     startingobj.setDisplaySlot(DisplaySlot.SIDEBAR);
                     if (!plugin.isBarEnabled() && getGameState() == GameState.STARTING) {
-                        Score timerscore = startingobj.getScore(ChatManager.formatMessage("SCOREBOARD-Starting-In"));
+                        Score timerscore = startingobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Starting-In")));
                         timerscore.setScore(getTimer());
                     }
-                    Score playerscore = startingobj.getScore(ChatManager.formatMessage("SCOREBOARD-Players"));
+                    Score playerscore = startingobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Players")));
                     playerscore.setScore(getPlayers().size());
-                    Score minplayerscore = startingobj.getScore(ChatManager.formatMessage("SCOREBOARD-Min-Players"));
+                    Score minplayerscore = startingobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Minimum-Players")));
                     minplayerscore.setScore(getMIN_PLAYERS());
 
 
@@ -986,37 +986,37 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                     if (FIGHTING) {
                         Objective ingameobj = user.getScoreboard().getObjective("ingame");
-                        ingameobj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
+                        ingameobj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
                         ingameobj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                        Score playerleftscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Players-Left"));
+                        Score playerleftscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Players-Left")));
                         playerleftscore.setScore(this.getPlayersLeft().size());
 
-                        Score villagersscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Villagers"));
+                        Score villagersscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Villagers-Left")));
                         villagersscore.setScore(getVillagers().size());
-                        Score orbsscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Orbs"));
+                        Score orbsscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Orbs")));
                         orbsscore.setScore(user.getInt("orbs"));
-                        Score zombiesscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Zombies"));
+                        Score zombiesscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Zombies-Left")));
                         zombiesscore.setScore(getZombiesLeft());
-                        Score rottenfleshscore = ingameobj.getScore(ChatManager.formatMessage("SCOREBOARD-Rotten-Flesh"));
+                        Score rottenfleshscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Rotten-Flesh")));
                         rottenfleshscore.setScore(getRottenFlesh());
 
                     } else {
 
                         Objective ingame2obj = user.getScoreboard().getObjective("ingame2");
-                        ingame2obj.setDisplayName(ChatManager.colorMessage("SCOREBOARD-Header"));
+                        ingame2obj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
                         ingame2obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-                        Score playerleftscore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Players-Left"));
+                        Score playerleftscore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Players-Left")));
                         playerleftscore.setScore(this.getPlayersLeft().size());
 
-                        Score villagersscore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Villagers"));
+                        Score villagersscore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Villagers-Left")));
                         villagersscore.setScore(getVillagers().size());
-                        Score orbsscore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Orbs"));
+                        Score orbsscore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Orbs")));
                         orbsscore.setScore(user.getInt("orbs"));
                         if (!plugin.isBarEnabled()) {
-                            Score nextwavescore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Next-Wave-In"));
+                            Score nextwavescore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Next-Wave-In")));
                             nextwavescore.setScore(getTimer());
                         }
-                        Score rottenfleshscore = ingame2obj.getScore(ChatManager.formatMessage("SCOREBOARD-Rotten-Flesh"));
+                        Score rottenfleshscore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Rotten-Flesh")));
                         rottenfleshscore.setScore(getRottenFlesh());
 
 
@@ -1056,7 +1056,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 getStartLocation().getWorld().strikeLightningEffect(event.getEntity().getLocation());
                 removeVillager((Villager) event.getEntity());
                 for(Player p : getPlayers()) {
-                    p.sendMessage(ChatManager.colorMessage("A-Villager-Has-Died"));
+                    p.sendMessage(ChatManager.colorMessage("In-Game.Messages.Villager-Died"));
                 }
             }
         }
@@ -1118,16 +1118,16 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             hidePlayer(player);
             player.setAllowFlight(true);
             if (plugin.is1_8_R3()) {
-                MessageHandler_v1_8_R3.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
-                MessageHandler_v1_8_R3.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+                MessageHandler_v1_8_R3.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
+                MessageHandler_v1_8_R3.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
             } else if(plugin.is1_9_R1()){
-            	MessageHandler_v1_9_R1.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
-                MessageHandler_v1_9_R1.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+            	MessageHandler_v1_9_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
+                MessageHandler_v1_9_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
         	} else if(plugin.is1_12_R1()) {
-            	MessageHandler_v1_12_R1.sendTitleMessage(player, ChatManager.formatMessage("DEAD-SCREEN"));
-                MessageHandler_v1_12_R1.sendActionBarMessage(player, ChatManager.formatMessage("Died-Respawn-In-Next-Wave"));
+            	MessageHandler_v1_12_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
+                MessageHandler_v1_12_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
             } else {
-                player.sendMessage(ChatManager.colorMessage("You-Are-Spectator"));
+                player.sendMessage(ChatManager.colorMessage("In-Game.You-Are-Spectator"));
             }
             getChatManager().broadcastDeathMessage(player);
 
@@ -1275,7 +1275,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 player.setAllowFlight(false);
                 player.setGameMode(GameMode.SURVIVAL);
                 this.showPlayers();
-                player.sendMessage(ChatManager.colorMessage("You're-Back-In-Game"));
+                player.sendMessage(ChatManager.colorMessage("In-Game.Back-In-Game"));
             }
 
         }

@@ -52,6 +52,8 @@ import me.TomTheDeveloper.Game.GameInstance;
 import me.TomTheDeveloper.Game.GameState;
 import me.TomTheDeveloper.Handlers.ChatManager;
 import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.Handlers.LanguageManager;
+import me.TomTheDeveloper.Handlers.LanguageMigrator;
 import me.TomTheDeveloper.Handlers.RewardsHandler;
 import me.TomTheDeveloper.Handlers.UserManager;
 import me.TomTheDeveloper.Items.SpecialItem;
@@ -59,7 +61,7 @@ import me.TomTheDeveloper.Kits.ArcherKit;
 import me.TomTheDeveloper.Kits.BlockerKit;
 import me.TomTheDeveloper.Kits.CleanerKit;
 import me.TomTheDeveloper.Kits.DogFriendKit;
-import me.TomTheDeveloper.Kits.DoorRepairKit;
+import me.TomTheDeveloper.Kits.WorkerKit;
 import me.TomTheDeveloper.Kits.GolemFriend;
 import me.TomTheDeveloper.Kits.HardcoreKit;
 import me.TomTheDeveloper.Kits.HealerKit;
@@ -87,7 +89,6 @@ import me.TomTheDeveloper.Utils.Util;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
-import pl.Plajer.GameAPI.LanguageManager;
 
 
 /**
@@ -140,6 +141,12 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
     @Override
     public void onEnable() {
+        LanguageManager.init(this);
+        LanguageManager.saveDefaultLanguageFile();
+        saveDefaultConfig();
+        if(LanguageManager.getLanguageMessage("File-Version") == null || LanguageManager.getLanguageMessage("File-Version").equals("0")) {
+        	LanguageMigrator.initiateMigration();
+        }
         gameAPI.setGameName("VillageDefense");
         gameAPI.setAbreviation("vd");
         gameAPI.enableKits();
@@ -149,10 +156,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         new MetricsLite(this);
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
         
-        LanguageManager.init(this);
-        LanguageManager.saveDefaultLanguageFile();
-        saveDefaultConfig();
-
         if (!this.getConfig().contains("DatabaseActivated"))
             this.getConfig().set("DatabaseActivated", false);
         this.saveConfig();
@@ -268,7 +271,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.getKitHandler().registerKit(runnerKit);
         MediumTankKit mediumTankKit = new MediumTankKit();
         gameAPI.getKitHandler().registerKit(mediumTankKit);
-        DoorRepairKit doorRepairKit = new DoorRepairKit();
+        WorkerKit doorRepairKit = new WorkerKit();
         gameAPI.getKitHandler().registerKit(doorRepairKit);
         GolemFriend golemFriendKit = new GolemFriend(this);
         gameAPI.getKitHandler().registerKit(golemFriendKit);
@@ -314,9 +317,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         rewardsHandler = new RewardsHandler(this);
         gameAPI.getKitHandler().setDefaultKit(knightkit);
         gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
-        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("Kit-Menu-Item-Name"));
-        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("Kit Menu-Title"));
-        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("Open-Kit-Menu")});
+        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("Kits.Kit-Menu-Item-Name"));
+        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("Kits.Kit-Menu.Title"));
+        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("Kits.Open-Kit-Menu")});
 
         SpecialItem.loadAll();
         loadInstances();
@@ -361,7 +364,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 }
 
             }
-            player.sendMessage(ChatManager.colorMessage("No-Arena-Like-That"));
+            player.sendMessage(ChatManager.colorMessage("Commands.No-Arena-Like-That"));
             return true;
         }
         if (strings.length == 1 && strings[0].equals("leave")) {
@@ -501,7 +504,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
+                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
 
@@ -511,8 +514,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
-                    player1.sendMessage("§a[VillageDefense]" + message);
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Removed-Zombies"), new Player[] {(player1)});
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                 }
                 return true;
             }
@@ -528,7 +531,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getVillagers().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
+                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
                 if (this.is1_9_R1() || this.is1_12_R1()) {
@@ -537,8 +540,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Villagers"), new Player[] {(player1)});
-                    player1.sendMessage("§a[VillageDefense]" + message);
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Removed-Villagers"), new Player[] {(player1)});
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                 }
                 return true;
             }
@@ -555,7 +558,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     invasionInstance.getIronGolems().clear();
 
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
+                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
                 if(this.is1_9_R1()|| this.is1_12_R1()) {
@@ -564,8 +567,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Golems"), new Player[] {(player1)});
-                    player1.sendMessage("§a[VillageDefense]" + message);
+                    String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Removed-Golems"), new Player[] {(player1)});
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                 }
             }
         }
@@ -576,7 +579,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             if (NumberUtils.isNumber(strings[2])) {
                 invasionInstance.setWave(Integer.parseInt(strings[2]) - 1);
                 invasionInstance.endWave();
-                String message = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Changed-Wave"), invasionInstance.getWave());
+                String message = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Changed-Wave"), invasionInstance.getWave());
                 for(Player player1 : invasionInstance.getPlayers()) {
                     player1.sendMessage(ChatManager.PLUGINPREFIX + message);
                 }
@@ -588,7 +591,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Map-is-already-empty"));
+                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
                 }
                 if(this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);
@@ -596,8 +599,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     player.playSound(player.getLocation(), Sound.valueOf("ZOMBIE_DEATH"), 1, 1);
                 }
                 for(Player player1 : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    String message1 = ChatManager.formatMessage(ChatManager.colorMessage("Admin-Removed-Zombies"), new Player[] {(player1)});
-                    player1.sendMessage("§a[VillageDefense]" + message1);
+                    String message1 = ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Removed-Zombies"), new Player[] {(player1)});
+                    player1.sendMessage(ChatManager.PLUGINPREFIX + message1);
                 }
                 return true;
             } else {
@@ -613,14 +616,14 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             if (invasionInstance.getGameState() == GameState.WAITING_FOR_PLAYERS) {
                 invasionInstance.setGameState(GameState.STARTING);
                 for(Player p : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("Admin-ForceStart-Game"));
+                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Force-Start-Game"));
                 }
                 return true;
             }
             if (invasionInstance.getGameState() == GameState.STARTING) {
                 invasionInstance.setTimer(0);
                 for(Player p : gameAPI.getGameInstanceManager().getGameInstance(player).getPlayers()) {
-                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("Admin-Set-Starting-In-To-0"));
+                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-Game.Messages.Admin-Messages.Set-Starting-In-To-0"));
                 }
                 return true;
             }
@@ -639,7 +642,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             player.setFlying(false);
             player.setAllowFlight(false);
             invasionInstance.showPlayer(player);
-            player.sendMessage(LanguageManager.getLanguageFile().get("You're-Back-In-Game").toString());
+            player.sendMessage(ChatManager.colorMessage("In-Game.Back-In-Game"));
             return true;
         }
         if (strings.length == 2 && strings[0].equalsIgnoreCase("respawn")) {
@@ -659,7 +662,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     getplayer.setFlying(false);
                     getplayer.setAllowFlight(false);
                     invasionInstance.showPlayer(getplayer);
-                    getplayer.sendMessage(ChatManager.colorMessage("You're-Back-In-Game"));
+                    getplayer.sendMessage(ChatManager.colorMessage("In-Game.Back-In-Game"));
                     return true;
                 }
             }
@@ -871,7 +874,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
             }
             i++;
             gameAPI.saveLoc("instances." + event.getArenaID() + ".zombiespawns." + i, event.getPlayer().getLocation());
-            event.getPlayer().sendMessage(ChatColor.GREEN + "Zombiespawn added!");
+            event.getPlayer().sendMessage(ChatColor.GREEN + "Zombie spawn added!");
             return;
         }
         if (event.getSpawnName().equalsIgnoreCase("villager")) {
@@ -884,7 +887,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
             i++;
             gameAPI.saveLoc("instances." + event.getArenaID() + ".villagerspawns." + i, event.getPlayer().getLocation());
-            event.getPlayer().sendMessage(ChatColor.GREEN + "VillagerSpawn added!");
+            event.getPlayer().sendMessage(ChatColor.GREEN + "Villager spawn added!");
             return;
         }
 
@@ -962,8 +965,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
                 //check any price from lore
-                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("orbs-In-Shop"))) {
-	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("orbs-In-Shop"));
+                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Currency-In-Shop"))) {
+	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-Game.Messages.Shop-Messages.Currency-In-Shop"));
 	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                 } else {
                 	p.sendMessage(ChatColor.RED + "This item contains shop price already!");
