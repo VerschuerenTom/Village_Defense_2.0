@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.tomthedeveloper.commands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
-import me.TomTheDeveloper.GameAPI;
+import me.tomthedeveloper.GameAPI;
 
 /**
  * Created by Tom on 7/08/2014.

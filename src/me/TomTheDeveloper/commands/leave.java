@@ -1,12 +1,12 @@
-package me.TomTheDeveloper.commands;
+package me.tomthedeveloper.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.bungee.Bungee;
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.bungee.Bungee;
 
 /**
  * Created by Tom on 5/08/2014.

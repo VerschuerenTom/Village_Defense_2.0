@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.tomthedeveloper.commands;
 
 /**
  * Created by Tom on 10/08/2014.

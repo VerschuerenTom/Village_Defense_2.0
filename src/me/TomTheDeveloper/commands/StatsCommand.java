@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.tomthedeveloper.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,9 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.handlers.ChatManager;
-import me.TomTheDeveloper.handlers.UserManager;
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 18/08/2014.
@@ -24,15 +24,15 @@ public class StatsCommand implements CommandExecutor {
     		}
     		Player player = (Player) sender;
             User user = UserManager.getUser(player.getUniqueId());
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Header"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Kills"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Deaths"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Games-Played"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Highest-Wave") + user.getInt("highestwave"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Level") + user.getInt("level"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Exp") + user.getInt("xp"));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Next-Level-Exp") + Math.ceil(Math.pow(50 * user.getInt("level"), 1.5)));
-            player.sendMessage(ChatManager.colorMessage("Commands.Stats-Command.Footer"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Header"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Kills"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Deaths"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Games-Played"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Highest-Wave") + user.getInt("highestwave"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Level") + user.getInt("level"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Exp") + user.getInt("xp"));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Next-Level-Exp") + Math.ceil(Math.pow(50 * user.getInt("level"), 1.5)));
+            player.sendMessage(ChatManager.colorMessage("commands.Stats-Command.Footer"));
             return true;
     	}
     	return false;

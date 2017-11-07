@@ -182,7 +182,7 @@ In-Game:
       Teleporting-To-Lobby-In-X-Seconds: "&7You will be teleported to the lobby in &b%TIME% &7seconds"
     Admin-Messages:
       Force-Start-Game: "&bAn admin forcestarted the game!"
-      Set-Starting-In-To-0: "&bAn admin set waiting time to 0. Game starts now!"
+      Set-Starting-In-To-0: "&bAn admin set waiting time to 0. game starts now!"
       Removed-Zombies: "&b%PLAYER% has cleared the zombies!"
       Removed-Villagers: "&b%PLAYER% has removed all the villagers!"
       Removed-Golems: "&b%PLAYER% has removed all the golems!"

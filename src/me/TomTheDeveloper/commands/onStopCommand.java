@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.commands;
+package me.tomthedeveloper.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,9 +7,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.game.GameInstance;
-import me.TomTheDeveloper.game.GameState;
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.game.GameState;
 
 /**
  * Created by Tom on 10/08/2014.
