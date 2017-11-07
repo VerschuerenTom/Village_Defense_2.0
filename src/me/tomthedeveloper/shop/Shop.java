@@ -52,7 +52,7 @@ public class Shop {
             //if (itemStack != null)
             i++;
         }
-        iconMenu = new IconMenu("Shop", i);
+        iconMenu = new IconMenu("shop", i);
         i = 0;
         for (ItemStack itemStack : chest.getInventory().getContents()) {
 

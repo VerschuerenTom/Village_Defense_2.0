@@ -37,7 +37,7 @@ public class ChestCommand implements CommandExecutor {
                     selection.getMaximumPoint().getZ() != selection.getMinimumPoint().getZ()))
                 return true;
             plugin.getGameAPI().saveLoc("shop.location", plugin.getGameAPI().getWorldEditPlugin().getSelection(player).getMinimumPoint());
-            player.sendMessage(ChatColor.GREEN + "Shop for chest set!");
+            player.sendMessage(ChatColor.GREEN + "shop for chest set!");
             return true;
     	}
     	return false;

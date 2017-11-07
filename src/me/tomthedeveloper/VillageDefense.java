@@ -983,8 +983,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
                 //check any price from lore
-                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"))) {
-	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
+                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop"))) {
+	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop"));
 	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                 } else {
                 	p.sendMessage(ChatColor.RED + "This item contains shop price already!");
