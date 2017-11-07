@@ -36,8 +36,8 @@ public class MedicKit extends PremiumKit implements Listener {
 
     public MedicKit(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.colorMessage("Kits.Medic.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Medic.Kit-Description"), 40);
+        setName(ChatManager.colorMessage("kits.Medic.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Medic.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

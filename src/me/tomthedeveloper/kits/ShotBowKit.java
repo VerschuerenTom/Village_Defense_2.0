@@ -29,8 +29,8 @@ public class ShotBowKit extends PremiumKit implements Listener {
 
 
     public ShotBowKit() {
-    	setName(ChatManager.colorMessage("Kits.Shot-Bow.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Shot-Bow.Kit-Description"), 40);
+    	setName(ChatManager.colorMessage("kits.Shot-Bow.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Shot-Bow.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
 
     }
@@ -78,7 +78,7 @@ public class ShotBowKit extends PremiumKit implements Listener {
                             e.setCancelled(true);
                             UserManager.getUser(e.getPlayer().getUniqueId()).setCooldown("shotbow", 5);
                         } else {
-                        	String msgstring = ChatManager.colorMessage("Kits.Ability-Still-On-Cooldown");
+                        	String msgstring = ChatManager.colorMessage("kits.Ability-Still-On-Cooldown");
                         	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(e.getPlayer().getUniqueId()).getCooldown("shotbow")));
                         	e.getPlayer().sendMessage(msgstring);
                         }

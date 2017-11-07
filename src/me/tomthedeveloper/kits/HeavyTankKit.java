@@ -20,8 +20,8 @@ import me.tomthedeveloper.utils.WeaponHelper;
 public class HeavyTankKit extends PremiumKit {
 
     public HeavyTankKit() {
-        setName(ChatManager.colorMessage("Kits.Heavy-Tank.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Heavy-Tank.Kit-Description"), 40);
+        setName(ChatManager.colorMessage("kits.Heavy-Tank.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Heavy-Tank.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 

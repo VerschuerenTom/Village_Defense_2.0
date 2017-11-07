@@ -30,7 +30,7 @@ public abstract class PremiumKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack, ChatManager.colorMessage("Kits.Kit-Menu.Locked-Lores.Unlock-In-Store"));
+        Util.addLore(itemStack, ChatManager.colorMessage("kits.Kit-Menu.Locked-Lores.Unlock-In-Store"));
         return itemStack;
     }
 }

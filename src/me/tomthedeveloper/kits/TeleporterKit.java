@@ -44,8 +44,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
     public TeleporterKit(VillageDefense plugin) {
         this.plugin = plugin;
         gameAPI = plugin.getGameAPI();
-        setName(ChatManager.colorMessage("Kits.Teleporter.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Teleporter.Kit-Description"), 40);
+        setName(ChatManager.colorMessage("kits.Teleporter.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Teleporter.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
     }
 
@@ -62,8 +62,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.ENDER_PEARL);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("Kits.Teleporter.game-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("Kits.Teleporter.game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Teleporter.game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Teleporter.game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -79,7 +79,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
     public void OpenAndCreateTeleportationMenu(World world, Player p) {
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(p);
-        Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.colorMessage("Kits.Teleporter.game-Item-Menu-Name"));
+        Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.colorMessage("kits.Teleporter.game-Item-Menu-Name"));
         for (Player player : world.getPlayers()) {
             if (gameAPI.getGameInstanceManager().getGameInstance(player) != null && !UserManager.getUser(player.getUniqueId()).isFakeDead()) {
                 ItemStack skull = new ItemStack(397, 1, (short) 3);
@@ -115,7 +115,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
                     if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName() == null)
                         return;
 
-                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("Kits.Teleporter.game-Item-Name"))) {
+                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.game-Item-Name"))) {
                         OpenAndCreateTeleportationMenu(e.getPlayer().getWorld(), e.getPlayer());
                     }
                 }
@@ -143,7 +143,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
         if (!e.getCurrentItem().getItemMeta().hasLore())
             return;
         if (e.getCurrentItem().hasItemMeta()) {
-            if (e.getInventory().getName().equalsIgnoreCase(ChatManager.colorMessage("Kits.Teleporter.game-Item-Menu-Name"))) {
+            if (e.getInventory().getName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.game-Item-Menu-Name"))) {
                 e.setCancelled(true);
                 if ((e.isLeftClick() || e.isRightClick())) {
                     if (e.getCurrentItem().getType() == Material.EMERALD) {
@@ -165,12 +165,12 @@ public class TeleporterKit extends PremiumKit implements Listener {
                                     p.getWorld().spawnParticle(Particle.PORTAL, p.getLocation(), 30, 1, 1, 1);
                                 }
                                 villagerfound = true;
-                                p.sendMessage(ChatManager.colorMessage("Kits.Teleporter.Teleported-To-Villager"));
+                                p.sendMessage(ChatManager.colorMessage("kits.Teleporter.Teleported-To-Villager"));
                                 break;
                             }
                         }
                         if (!villagerfound) {
-                            p.sendMessage(ChatManager.colorMessage("Kits.Teleporter.Villager-Warning"));
+                            p.sendMessage(ChatManager.colorMessage("kits.Teleporter.Villager-Warning"));
                         }
                         villagerfound = false;
                         e.setCancelled(true);
@@ -179,7 +179,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
                         ItemMeta meta = e.getCurrentItem().getItemMeta();
                         for (Player player : gameInstance.getPlayers()) {
                             if (player.getName().equalsIgnoreCase(meta.getDisplayName()) || ChatColor.stripColor(meta.getDisplayName()).contains(player.getName())) {
-                                p.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("Kits.Teleporter.Teleported-To-Player"), player));
+                                p.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("kits.Teleporter.Teleported-To-Player"), player));
                                 p.teleport(player);
                                 if (plugin.is1_9_R1() || plugin.is1_12_R1()) {
                                     p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1, 1);
@@ -197,7 +197,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
                             }
                         }
-                        p.sendMessage(ChatManager.colorMessage("Kits.Teleporter.Player-Not-Found"));
+                        p.sendMessage(ChatManager.colorMessage("kits.Teleporter.Player-Not-Found"));
                     }
                     e.setCancelled(true);
                 }

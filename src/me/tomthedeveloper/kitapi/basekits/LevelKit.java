@@ -20,12 +20,12 @@ public abstract class LevelKit extends Kit {
 
     public void setLevel(int level){
         this.level = level;
-        FileConfiguration config = ConfigurationManager.getConfig("Kits");
+        FileConfiguration config = ConfigurationManager.getConfig("kits");
         String name = getClass().getName().substring(getClass().getName().indexOf("K"));
         if(!config.contains(name)) {
             config.set("Required-Level." + name, level);
             try {
-                config.save(ConfigurationManager.getFile("Kits"));
+                config.save(ConfigurationManager.getFile("kits"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,7 +41,7 @@ public abstract class LevelKit extends Kit {
     public ItemStack getItemStack(){
         ItemStack itemStack = new ItemStack(getMaterial());
         setItemNameAndLore(itemStack, getName(), getDescription());
-        Util.addLore(itemStack, ChatManager.colorMessage("Kits.Kit-Menu.Locked-Lores.Unlock-At-Level").replaceAll("%NUMBER%",Integer.toString(getLevel())));
+        Util.addLore(itemStack, ChatManager.colorMessage("kits.Kit-Menu.Locked-Lores.Unlock-At-Level").replaceAll("%NUMBER%",Integer.toString(getLevel())));
         return itemStack;
     }
 }

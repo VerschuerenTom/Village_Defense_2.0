@@ -32,8 +32,8 @@ public class ZombieFinder extends LevelKit implements Listener {
 
     public ZombieFinder(VillageDefense plugin) {
         this.plugin = plugin;
-        setName(ChatManager.colorMessage("Kits.Zombie-Teleporter.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Zombie-Teleporter.Kit-Description"), 40);
+        setName(ChatManager.colorMessage("kits.Zombie-Teleporter.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Zombie-Teleporter.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         this.setLevel(1);
 
@@ -50,8 +50,8 @@ public class ZombieFinder extends LevelKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.GRILLED_PORK, 8));
         ItemStack zombieteleporter = WeaponHelper.getEnchanted(new ItemStack(Material.BOOK), new Enchantment[]{Enchantment.DAMAGE_ALL}, new int[]{1});
         ItemMeta im = zombieteleporter.getItemMeta();
-        im.setDisplayName(ChatManager.colorMessage("Kits.Zombie-Teleporter.game-Item-Name"));
-        im.setLore(Arrays.asList(ChatManager.colorMessage("Kits.Zombie-Teleporter.game-Item-Lore")));
+        im.setDisplayName(ChatManager.colorMessage("kits.Zombie-Teleporter.game-Item-Name"));
+        im.setLore(Arrays.asList(ChatManager.colorMessage("kits.Zombie-Teleporter.game-Item-Lore")));
         zombieteleporter.setItemMeta(im);
         player.getInventory().addItem(zombieteleporter);
     }
@@ -76,7 +76,7 @@ public class ZombieFinder extends LevelKit implements Listener {
             return;
         if (!(event.getItem().getItemMeta().hasDisplayName()))
             return;
-        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("Kits.Zombie-Teleporter.game-Item-Name"))))
+        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("kits.Zombie-Teleporter.game-Item-Name"))))
         	return;
         if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
             return;
@@ -85,13 +85,13 @@ public class ZombieFinder extends LevelKit implements Listener {
         	 * TODO
         	 * Change it from Teleporter to Zombie-Teleporter kit
         	 */
-            event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Teleporter.Spectator-Warning"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Teleporter.Spectator-Warning"));
             return;
         }
         InvasionInstance invasionInstance = (InvasionInstance) plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer());
 
         if (UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("zombie") > 0 && !UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator()) {
-        	String msgstring = ChatManager.colorMessage("Kits.Ability-Still-On-Cooldown");
+        	String msgstring = ChatManager.colorMessage("kits.Ability-Still-On-Cooldown");
         	msgstring = msgstring.replaceFirst("%COOLDOWN%",Long.toString( UserManager.getUser(event.getPlayer().getUniqueId()).getCooldown("zombie")));
         	event.getPlayer().sendMessage(msgstring);
             return;
@@ -103,7 +103,7 @@ public class ZombieFinder extends LevelKit implements Listener {
             }
             //invasionInstance.getZombies().clear();
         } else {
-            event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
+            event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Cleaner.Nothing-To-Clean"));
             return;
         }
         if (plugin.is1_9_R1() || plugin.is1_12_R1()) {

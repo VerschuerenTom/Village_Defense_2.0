@@ -339,9 +339,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         rewardsHandler = new RewardsHandler(this);
         gameAPI.getKitHandler().setDefaultKit(knightkit);
         gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
-        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("Kits.Kit-Menu-Item-Name"));
-        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("Kits.Kit-Menu.Title"));
-        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("Kits.Open-Kit-Menu")});
+        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("kits.Kit-Menu-Item-Name"));
+        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("kits.Kit-Menu.Title"));
+        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("kits.Open-Kit-Menu")});
 
         SpecialItem.loadAll();
         loadInstances();
@@ -526,7 +526,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
+                    player.sendMessage(ChatManager.colorMessage("kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
 
@@ -553,7 +553,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getVillagers().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
+                    player.sendMessage(ChatManager.colorMessage("kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
                 if (this.is1_9_R1() || this.is1_12_R1()) {
@@ -580,7 +580,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     invasionInstance.getIronGolems().clear();
 
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
+                    player.sendMessage(ChatManager.colorMessage("kits.Cleaner.Nothing-To-Clean"));
                     return true;
                 }
                 if(this.is1_9_R1()|| this.is1_12_R1()) {
@@ -613,7 +613,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     }
                     invasionInstance.getZombies().clear();
                 } else {
-                    player.sendMessage(ChatManager.colorMessage("Kits.Cleaner.Nothing-To-Clean"));
+                    player.sendMessage(ChatManager.colorMessage("kits.Cleaner.Nothing-To-Clean"));
                 }
                 if(this.is1_9_R1() || this.is1_12_R1()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_DEATH, 1, 1);

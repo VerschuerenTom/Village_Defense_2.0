@@ -761,7 +761,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(ChatManager.colorMessage("Kits.Worker.game-Item-Place-Message"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Worker.game-Item-Place-Message"));
     }
 
 

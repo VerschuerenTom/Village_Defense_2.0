@@ -22,8 +22,8 @@ import me.tomthedeveloper.utils.WeaponHelper;
 public class HealerKit extends LevelKit {
 
     public HealerKit() {
-        setName(ChatManager.colorMessage("Kits.Healer.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Healer.Kit-Description"), 40);
+        setName(ChatManager.colorMessage("kits.Healer.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Healer.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(6);
     }

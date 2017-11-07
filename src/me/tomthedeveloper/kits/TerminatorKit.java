@@ -24,8 +24,8 @@ public class TerminatorKit extends LevelKit {
 
 
     public TerminatorKit() {
-    	setName(ChatManager.colorMessage("Kits.Terminator.Kit-Name"));
-        List<String> description = Util.splitString(ChatManager.colorMessage("Kits.Terminator.Kit-Description"), 40);
+    	setName(ChatManager.colorMessage("kits.Terminator.Kit-Name"));
+        List<String> description = Util.splitString(ChatManager.colorMessage("kits.Terminator.Kit-Description"), 40);
         this.setDescription(description.toArray(new String[description.size()]));
         setLevel(20);
     }
