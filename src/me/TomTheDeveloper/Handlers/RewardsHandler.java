@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Handlers;
+package me.TomTheDeveloper.handlers;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 30/01/2016.

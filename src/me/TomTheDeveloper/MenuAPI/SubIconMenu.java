@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.MenuAPI;
+package me.TomTheDeveloper.menuapi;
 
 /**
  * Created by Tom on 27/07/2014.

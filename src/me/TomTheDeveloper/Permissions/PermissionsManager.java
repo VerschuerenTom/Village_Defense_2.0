@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Permissions;
+package me.TomTheDeveloper.permissions;
 
 /**
  * Created by Tom on 14/08/2014.

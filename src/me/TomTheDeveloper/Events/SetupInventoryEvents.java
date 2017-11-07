@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,8 +11,8 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.permissions.PermissionsManager;
 
 /**
  * Created by Tom on 15/06/2015.

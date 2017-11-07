@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import java.util.Collection;
 

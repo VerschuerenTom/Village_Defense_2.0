@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Kits;
+package me.TomTheDeveloper.kits;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ import org.bukkit.potion.PotionType;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.Items;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
+import me.TomTheDeveloper.KitAPI.basekits.PremiumKit;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.utils.ArmorHelper;
+import me.TomTheDeveloper.utils.Items;
+import me.TomTheDeveloper.utils.ParticleEffect;
+import me.TomTheDeveloper.utils.Util;
+import me.TomTheDeveloper.utils.WeaponHelper;
 
 /**
  * Created by Tom on 1/12/2015.

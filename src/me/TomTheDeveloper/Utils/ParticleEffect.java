@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Utils;
+package me.TomTheDeveloper.utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -15,11 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-/**
- * Created by Tom on 30/07/2014.
- */
-
-import me.TomTheDeveloper.Utils.ReflectionHandler.PackageType;
+import me.TomTheDeveloper.utils.ReflectionHandler.PackageType;
 
 /**
  * <b>ParticleEffect Library</b>

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Stats;
+package me.TomTheDeveloper.stats;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
 
 /**
  * User: Ivan

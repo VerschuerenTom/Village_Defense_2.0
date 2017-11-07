@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Kits;
+package me.TomTheDeveloper.kits;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
+import me.TomTheDeveloper.KitAPI.basekits.PremiumKit;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.utils.Util;
+import me.TomTheDeveloper.utils.WeaponHelper;
 
 /**
  * Created by Tom on 28/07/2015.

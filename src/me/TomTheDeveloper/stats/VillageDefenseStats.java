@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Stats;
+package me.TomTheDeveloper.stats;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,8 +13,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 30/12/2015.

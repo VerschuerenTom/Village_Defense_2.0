@@ -14,8 +14,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.utils.ParticleEffect;
+import me.TomTheDeveloper.utils.Util;
 
 
 /**

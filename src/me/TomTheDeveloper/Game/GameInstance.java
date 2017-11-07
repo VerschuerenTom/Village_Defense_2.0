@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Game;
+package me.TomTheDeveloper.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,10 +22,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.Bungee.Bungee;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.bungee.Bungee;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 27/07/2014.

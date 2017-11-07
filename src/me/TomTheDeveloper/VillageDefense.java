@@ -33,9 +33,6 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
-import me.TomTheDeveloper.Chunks.ChunkManager;
-import me.TomTheDeveloper.Commands.InstanceCommands;
-import me.TomTheDeveloper.Commands.StatsCommand;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BabyZombie;
 import me.TomTheDeveloper.Creatures.v1_12_R1.BreakFenceListener;
 import me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie;
@@ -45,47 +42,51 @@ import me.TomTheDeveloper.Creatures.v1_12_R1.PlayerBuster;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableIronGolem;
 import me.TomTheDeveloper.Creatures.v1_12_R1.RidableVillager;
 import me.TomTheDeveloper.Creatures.v1_12_R1.WorkingWolf;
-import me.TomTheDeveloper.Events.Events;
-import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
-import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.LanguageManager;
-import me.TomTheDeveloper.Handlers.LanguageMigrator;
-import me.TomTheDeveloper.Handlers.RewardsHandler;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.Items.SpecialItem;
-import me.TomTheDeveloper.Kits.ArcherKit;
-import me.TomTheDeveloper.Kits.BlockerKit;
-import me.TomTheDeveloper.Kits.CleanerKit;
-import me.TomTheDeveloper.Kits.DogFriendKit;
-import me.TomTheDeveloper.Kits.WorkerKit;
-import me.TomTheDeveloper.Kits.GolemFriend;
-import me.TomTheDeveloper.Kits.HardcoreKit;
-import me.TomTheDeveloper.Kits.HealerKit;
-import me.TomTheDeveloper.Kits.HeavyTankKit;
-import me.TomTheDeveloper.Kits.KnightKit;
-import me.TomTheDeveloper.Kits.LightTankKit;
-import me.TomTheDeveloper.Kits.LooterKit;
-import me.TomTheDeveloper.Kits.MedicKit;
-import me.TomTheDeveloper.Kits.MediumTankKit;
-import me.TomTheDeveloper.Kits.PremiumHardcoreKit;
-import me.TomTheDeveloper.Kits.PuncherKit;
-import me.TomTheDeveloper.Kits.RunnerKit;
-import me.TomTheDeveloper.Kits.ShotBowKit;
-import me.TomTheDeveloper.Kits.SuperArcherKit;
-import me.TomTheDeveloper.Kits.TeleporterKit;
-import me.TomTheDeveloper.Kits.TerminatorKit;
-import me.TomTheDeveloper.Kits.TornadoKit;
-import me.TomTheDeveloper.Kits.ZombieFinder;
-import me.TomTheDeveloper.Shop.Shop;
-import me.TomTheDeveloper.Stats.FileStats;
-import me.TomTheDeveloper.Stats.MySQLDatabase;
-import me.TomTheDeveloper.Stats.VillageDefenseStats;
-import me.TomTheDeveloper.Utils.ParticleEffect;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.chunks.ChunkManager;
+import me.TomTheDeveloper.commands.InstanceCommands;
+import me.TomTheDeveloper.commands.StatsCommand;
+import me.TomTheDeveloper.events.Events;
+import me.TomTheDeveloper.events.PlayerAddCommandEvent;
+import me.TomTheDeveloper.events.PlayerAddSpawnCommandEvent;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.game.GameState;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.LanguageManager;
+import me.TomTheDeveloper.handlers.LanguageMigrator;
+import me.TomTheDeveloper.handlers.RewardsHandler;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.items.SpecialItem;
+import me.TomTheDeveloper.kits.ArcherKit;
+import me.TomTheDeveloper.kits.BlockerKit;
+import me.TomTheDeveloper.kits.CleanerKit;
+import me.TomTheDeveloper.kits.DogFriendKit;
+import me.TomTheDeveloper.kits.GolemFriend;
+import me.TomTheDeveloper.kits.HardcoreKit;
+import me.TomTheDeveloper.kits.HealerKit;
+import me.TomTheDeveloper.kits.HeavyTankKit;
+import me.TomTheDeveloper.kits.KnightKit;
+import me.TomTheDeveloper.kits.LightTankKit;
+import me.TomTheDeveloper.kits.LooterKit;
+import me.TomTheDeveloper.kits.MedicKit;
+import me.TomTheDeveloper.kits.MediumTankKit;
+import me.TomTheDeveloper.kits.PremiumHardcoreKit;
+import me.TomTheDeveloper.kits.PuncherKit;
+import me.TomTheDeveloper.kits.RunnerKit;
+import me.TomTheDeveloper.kits.ShotBowKit;
+import me.TomTheDeveloper.kits.SuperArcherKit;
+import me.TomTheDeveloper.kits.TeleporterKit;
+import me.TomTheDeveloper.kits.TerminatorKit;
+import me.TomTheDeveloper.kits.TornadoKit;
+import me.TomTheDeveloper.kits.WorkerKit;
+import me.TomTheDeveloper.kits.ZombieFinder;
+import me.TomTheDeveloper.shop.Shop;
+import me.TomTheDeveloper.stats.FileStats;
+import me.TomTheDeveloper.stats.MySQLDatabase;
+import me.TomTheDeveloper.stats.VillageDefenseStats;
+import me.TomTheDeveloper.utils.Items;
+import me.TomTheDeveloper.utils.ParticleEffect;
+import me.TomTheDeveloper.utils.Util;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 import me.TomTheDeveloper.versions.InvasionInstance1_9_R1;
@@ -107,6 +108,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     private boolean chatformat = true;
     private RewardsHandler rewardsHandler;
     private GameAPI gameAPI = new GameAPI();
+    private String currentVersion;
+	private String latestVersion;
 
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
     private String version;
@@ -115,20 +118,24 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.setAbreviation("vd");
     }
 
+    public boolean is1_7_R4() {
+        return getVersion().equalsIgnoreCase("v1_7_R4");
+    }
+    
     public boolean is1_8_R3() {
         return getVersion().equalsIgnoreCase("v1_8_R3");
-    }
-
-    public boolean is1_12_R1() {
-        return getVersion().equalsIgnoreCase("v1_12_R1");
     }
     
     public boolean is1_8_R4() {
         return getVersion().equalsIgnoreCase("v1_8_R4");
     }
 
-    public boolean is1_7_R4() {
-        return getVersion().equalsIgnoreCase("v1_7_R4");
+    public boolean is1_9_R1() {
+        return getVersion().equalsIgnoreCase("v1_9_R1");
+    }
+    
+    public boolean is1_12_R1() {
+        return getVersion().equalsIgnoreCase("v1_12_R1");
     }
 
     public String getVersion() {
@@ -152,10 +159,25 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.enableKits();
         gameAPI.setAllowBuilding(true);
         InvasionInstance.youtuberInvasion = this;
+		Items.villageDefense = this;
         gameAPI.onSetup(this, this);
         new MetricsLite(this);
-        this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
         
+        currentVersion = "v" + Bukkit.getPluginManager().getPlugin("Pinata").getDescription().getVersion();
+		if (this.getConfig().getBoolean("update-notify")){
+            try {
+                UpdateChecker.checkUpdate(currentVersion);
+                latestVersion = UpdateChecker.getLatestVersion();
+                if (latestVersion != null) {
+                    latestVersion = "v" + latestVersion;
+                    Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
+                }
+            } catch (Exception ex) {
+            	Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] An error occured while checking for update!");
+            }
+        }
+        
+        this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
         if (!this.getConfig().contains("DatabaseActivated"))
             this.getConfig().set("DatabaseActivated", false);
         this.saveConfig();
@@ -680,10 +702,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         else if (spyChatEnabled.get(player.getUniqueId()) == null)
             return false;
         return spyChatEnabled.get(player.getUniqueId());
-    }
-
-    public boolean is1_9_R1() {
-        return getVersion().equalsIgnoreCase("v1_9_R1");
     }
 
     public FileStats getFileStats() {

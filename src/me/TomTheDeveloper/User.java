@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
+import me.TomTheDeveloper.KitAPI.basekits.Kit;
+import me.TomTheDeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 27/07/2014.

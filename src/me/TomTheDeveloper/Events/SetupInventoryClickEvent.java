@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 15/06/2015.

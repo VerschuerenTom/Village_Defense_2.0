@@ -34,13 +34,14 @@ public class InvasionInstance1_12_R1 extends InvasionInstance {
 
     public InvasionInstance1_12_R1(String ID) {
         super(ID);
+        
     }
 
     public void spawnFastZombie(Random random) {
 
         Location location = zombiespawns.get(random.nextInt(zombiespawns.size()));
         net.minecraft.server.v1_12_R1.World McWorld = ((CraftWorld) location.getWorld()).getHandle();
-        me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie fastZombie = new me.TomTheDeveloper.Creatures.v1_12_R1.FastZombie(location.getWorld());
+        FastZombie fastZombie = new FastZombie(location.getWorld());
         fastZombie.setPosition(location.getX(), location.getY(), location.getZ());
         McWorld.addEntity(fastZombie, CreatureSpawnEvent.SpawnReason.CUSTOM);
         Zombie zombie = (Zombie) fastZombie.getBukkitEntity();

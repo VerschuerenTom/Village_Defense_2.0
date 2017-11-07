@@ -1,9 +1,9 @@
-package me.TomTheDeveloper.KitAPI.BaseKits;
+package me.TomTheDeveloper.KitAPI.basekits;
 
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.utils.Util;
 
 /**
  * Created by Tom on 25/07/2014.

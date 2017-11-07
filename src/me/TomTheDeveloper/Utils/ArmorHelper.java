@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Utils;
+package me.TomTheDeveloper.utils;
 
 import org.bukkit.Color;
 import org.bukkit.Material;

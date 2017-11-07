@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Stats;
+package me.TomTheDeveloper.stats;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

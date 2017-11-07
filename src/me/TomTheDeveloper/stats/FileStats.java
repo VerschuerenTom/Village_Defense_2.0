@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Stats;
+package me.TomTheDeveloper.stats;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 17/06/2015.

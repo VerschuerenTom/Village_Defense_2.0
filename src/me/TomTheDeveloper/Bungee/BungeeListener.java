@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Bungee;
+package me.TomTheDeveloper.bungee;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;

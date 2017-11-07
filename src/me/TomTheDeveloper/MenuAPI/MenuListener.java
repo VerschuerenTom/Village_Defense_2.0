@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.MenuAPI;
+package me.TomTheDeveloper.menuapi;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

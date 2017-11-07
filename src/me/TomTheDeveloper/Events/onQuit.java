@@ -1,8 +1,7 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.TomTheDeveloper.GameAPI;
@@ -25,13 +24,5 @@ public class onQuit implements Listener {
             return;
         if(!plugin.isBungeeActivated())
          plugin.getGameInstanceManager().getGameInstance(event.getPlayer()).leaveAttempt(event.getPlayer());
-    }
-
-    @EventHandler
-    public void onKick(PlayerKickEvent event){
-        if(plugin.getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
-            return;
-        if(!plugin.isBungeeActivated())
-            plugin.getGameInstanceManager().getGameInstance(event.getPlayer()).leaveAttempt(event.getPlayer());
     }
 }

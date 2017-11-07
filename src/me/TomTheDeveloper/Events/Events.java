@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,17 +52,17 @@ import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.User;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Bungee.Bungee;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Game.InstanceType;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.Items.SpecialItemManager;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Shop.Shop;
-import me.TomTheDeveloper.Stats.MySQLDatabase;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.bungee.Bungee;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.game.GameState;
+import me.TomTheDeveloper.game.InstanceType;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.items.SpecialItemManager;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.shop.Shop;
+import me.TomTheDeveloper.stats.MySQLDatabase;
+import me.TomTheDeveloper.utils.Util;
 
 /**
  * Created by Tom on 16/08/2014.
@@ -214,11 +214,7 @@ public class Events implements Listener {
         if (name.contains("Set the chest shop")) {
             event.setCancelled(true);
             Block targetblock;
-            if (plugin.is1_8_R3()) {
-                targetblock = event.getPlayer().getTargetBlock(null, 100);
-            } else {
-                targetblock = event.getPlayer().getTargetBlock(null, 100);
-            }
+            targetblock = event.getPlayer().getTargetBlock(null, 100);
             if (targetblock == null || targetblock.getType() != Material.CHEST) {
                 event.getPlayer().sendMessage(ChatColor.RED + "Look at the chest! You are targetting something else!");
                 return;

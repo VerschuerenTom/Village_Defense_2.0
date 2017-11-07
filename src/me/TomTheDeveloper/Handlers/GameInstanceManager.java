@@ -1,11 +1,11 @@
-package me.TomTheDeveloper.Handlers;
+package me.TomTheDeveloper.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.Game.GameInstance;
+import me.TomTheDeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 27/07/2014.

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Bungee;
+package me.TomTheDeveloper.bungee;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,9 +16,9 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.game.GameState;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
 
 /**
  * Created by Tom on 31/08/2014.

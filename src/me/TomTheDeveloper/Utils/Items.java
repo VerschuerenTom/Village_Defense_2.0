@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Utils;
+package me.TomTheDeveloper.utils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -17,7 +17,7 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import me.TomTheDeveloper.GameAPI;
+import me.TomTheDeveloper.VillageDefense;
 
 /**
  * Created by Tom on 2/08/2014.
@@ -25,7 +25,7 @@ import me.TomTheDeveloper.GameAPI;
 public class Items {
 
     private static ItemStack spectatoritem = null;
-    public static GameAPI gameAPI;
+    public static VillageDefense villageDefense;
 
     public static ItemStack getSpecatorItemStack(){
         if(spectatoritem != null)
@@ -53,7 +53,7 @@ public class Items {
     }
 
     public static ItemStack getPotion(PotionType type,int tier,boolean splash,int amount){
-        if(gameAPI.is1_7_R4() || gameAPI.is1_8_R3()) {
+        if(villageDefense.is1_7_R4() || villageDefense.is1_8_R3()) {
             Potion potion = new Potion(type);
             potion.setLevel(tier);
             potion.setSplash(splash);

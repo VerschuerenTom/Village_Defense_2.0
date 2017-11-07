@@ -15,12 +15,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.TomTheDeveloper.GameAPI;
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.Events.PlayerChooseKitEvent;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
-import me.TomTheDeveloper.MenuAPI.IconMenu;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.KitAPI.basekits.Kit;
+import me.TomTheDeveloper.events.PlayerChooseKitEvent;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.menuapi.IconMenu;
+import me.TomTheDeveloper.utils.Util;
 
 /**
  * Created by Tom on 26/07/2014.

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Items;
+package me.TomTheDeveloper.items;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,8 +11,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Utils.ParticleEffect;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.utils.ParticleEffect;
 
 /**
  * Created by Tom on 5/02/2016.

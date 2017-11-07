@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +18,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 1/08/2014.
@@ -54,31 +54,31 @@ public class onSpectate implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onspectate(PlayerBucketEmptyEvent event){
+    public void onBucketEmpty(PlayerBucketEmptyEvent event){
         if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
             event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onspectate(PlayerInteractEntityEvent event){
+    public void onInteract(PlayerInteractEntityEvent event){
         if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
             event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(PlayerShearEntityEvent event){
+    public void onShear(PlayerShearEntityEvent event){
         if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
             event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(PlayerItemConsumeEvent event){
+    public void onConsume(PlayerItemConsumeEvent event){
         if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
             event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(FoodLevelChangeEvent event){
+    public void onFoodLevelChange(FoodLevelChangeEvent event){
         if(!(event.getEntity() instanceof Player))
             return;
         Player player = (Player) event.getEntity();
@@ -87,7 +87,7 @@ public class onSpectate implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(EntityDamageEvent event){
+    public void onDamage(EntityDamageEvent event){
         if(!(event.getEntity() instanceof Player))
             return;
         Player player = (Player) event.getEntity();
@@ -101,7 +101,7 @@ public class onSpectate implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(EntityDamageByBlockEvent event){
+    public void onDamageByBlock(EntityDamageByBlockEvent event){
         if(!(event.getEntity() instanceof Player))
             return;
         Player player = (Player) event.getEntity();
@@ -110,7 +110,7 @@ public class onSpectate implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(EntityDamageByEntityEvent event){
+    public void onDamageByEntity(EntityDamageByEntityEvent event){
         if(!(event.getDamager() instanceof Player))
             return;
         Player player = (Player) event.getDamager();
@@ -119,18 +119,9 @@ public class onSpectate implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onSpectate(PlayerPickupItemEvent event){
-
-        if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
-            event.setCancelled(true);
+    public void onPickup(PlayerPickupItemEvent event){
+    	if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
+    		event.setCancelled(true);
     }
-
-
-
-
-
-
-
-
 
 }

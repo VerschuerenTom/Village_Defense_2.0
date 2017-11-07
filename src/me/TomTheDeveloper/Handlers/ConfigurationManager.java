@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Handlers;
+package me.TomTheDeveloper.handlers;
 
 
 import java.io.File;

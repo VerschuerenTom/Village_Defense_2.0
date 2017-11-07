@@ -31,20 +31,20 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
-import me.TomTheDeveloper.Chunks.ChunkManager;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Game.InstanceType;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.MessageHandler_v1_12_R1;
-import me.TomTheDeveloper.Handlers.MessageHandler_v1_8_R3;
-import me.TomTheDeveloper.Handlers.MessageHandler_v1_9_R1;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.Items.SpecialItemManager;
-import me.TomTheDeveloper.Kits.GolemFriend;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.ArmorHelper;
+import me.TomTheDeveloper.chunks.ChunkManager;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.game.GameState;
+import me.TomTheDeveloper.game.InstanceType;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.MessageHandler_v1_12_R1;
+import me.TomTheDeveloper.handlers.MessageHandler_v1_8_R3;
+import me.TomTheDeveloper.handlers.MessageHandler_v1_9_R1;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.items.SpecialItemManager;
+import me.TomTheDeveloper.kits.GolemFriend;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.utils.ArmorHelper;
 
 //import me.confuser.barapi.BarAPI;
 //import me.mgone.bossbarapi.BossbarAPI;
@@ -624,7 +624,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         }
         for (Player player : getPlayers()) {
         	player.sendMessage(ChatManager.colorMessage("In-Game.Messages.You-Feel-Refreshed"));
-            if (!(plugin.is1_8_R3() || plugin.is1_7_R4())) {
+            if (!(youtuberInvasion.is1_8_R3() || youtuberInvasion.is1_7_R4())) {
                 player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             } else {
                 player.setHealth(player.getMaxHealth());
@@ -669,7 +669,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             this.addPlayer(p);
             p.setHealth(p.getMaxHealth());
             p.setFoodLevel(20);
-            if (plugin.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3()) {
                 p.setGameMode(GameMode.SPECTATOR);
             } else {
                 p.setGameMode(GameMode.SURVIVAL);
@@ -1096,7 +1096,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
         if (user.isFakeDead()) {
             player.setAllowFlight(true);
-            if (plugin.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3()) {
                 player.setGameMode(GameMode.SPECTATOR);
             } else {
                 player.setGameMode(GameMode.SURVIVAL);
@@ -1108,7 +1108,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         } else {
             teleportToStartLocation(player);
             user.setSpectator(true);
-            if (plugin.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3()) {
                 player.setGameMode(GameMode.SPECTATOR);
             } else {
                 player.setGameMode(GameMode.SURVIVAL);
@@ -1117,13 +1117,13 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             user.setInt("orbs", 0);
             hidePlayer(player);
             player.setAllowFlight(true);
-            if (plugin.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3()) {
                 MessageHandler_v1_8_R3.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
                 MessageHandler_v1_8_R3.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
-            } else if(plugin.is1_9_R1()){
+            } else if(youtuberInvasion.is1_9_R1()){
             	MessageHandler_v1_9_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
                 MessageHandler_v1_9_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
-        	} else if(plugin.is1_12_R1()) {
+        	} else if(youtuberInvasion.is1_12_R1()) {
             	MessageHandler_v1_12_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Death-Screen")));
                 MessageHandler_v1_12_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-Game.Died-Respawn-In-Next-Wave")));
             } else {

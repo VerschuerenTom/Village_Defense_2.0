@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.MenuAPI;
+package me.TomTheDeveloper.menuapi;
 
 import java.util.Arrays;
 

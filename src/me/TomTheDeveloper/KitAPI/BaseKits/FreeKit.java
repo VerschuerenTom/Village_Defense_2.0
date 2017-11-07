@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.KitAPI.BaseKits;
+package me.TomTheDeveloper.KitAPI.basekits;
 
 /**
  * Created by Tom on 25/07/2014.

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.MenuAPI;
+package me.TomTheDeveloper.menuapi;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
 
 /**
  * Created by Tom on 27/07/2014.

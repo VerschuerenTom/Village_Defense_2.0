@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Handlers;
+package me.TomTheDeveloper.handlers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,9 +16,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Game.GameState;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.game.GameState;
+import me.TomTheDeveloper.permissions.PermissionsManager;
 
 /**
  * User: Ivan

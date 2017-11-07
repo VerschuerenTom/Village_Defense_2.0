@@ -1,12 +1,12 @@
-package me.TomTheDeveloper.Handlers;
+package me.TomTheDeveloper.handlers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.KitAPI.basekits.Kit;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.utils.Util;
 
 /**
  * Created by Tom on 27/07/2014.

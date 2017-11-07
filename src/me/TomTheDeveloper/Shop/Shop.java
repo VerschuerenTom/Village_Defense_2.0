@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Shop;
+package me.TomTheDeveloper.shop;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.MenuAPI.IconMenu;
+import me.TomTheDeveloper.menuapi.IconMenu;
 
 /**
  * Created by Tom on 16/08/2014.

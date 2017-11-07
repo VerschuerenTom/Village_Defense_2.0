@@ -11,8 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Utils.ItemBuilder;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.utils.ItemBuilder;
 
 /**
  * Created by Tom on 15/06/2015.

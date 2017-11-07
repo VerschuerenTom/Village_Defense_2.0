@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Commands;
+package me.TomTheDeveloper.commands;
 
 public class VillageCommands {//implements CommandExecutor {
 

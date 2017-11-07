@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Kits;
+package me.TomTheDeveloper.kits;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,11 +18,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionType;
 
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.Items;
+import me.TomTheDeveloper.KitAPI.basekits.PremiumKit;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.UserManager;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.utils.Items;
 
 /**
  * Created by Tom on 8/02/2015.

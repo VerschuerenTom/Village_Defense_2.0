@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Items;
+package me.TomTheDeveloper.items;
 
 import java.util.HashMap;
 

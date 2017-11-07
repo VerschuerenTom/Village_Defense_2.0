@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Utils;
+package me.TomTheDeveloper.utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

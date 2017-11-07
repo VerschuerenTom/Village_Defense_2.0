@@ -18,24 +18,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
-import me.TomTheDeveloper.Bungee.Bungee;
-import me.TomTheDeveloper.Commands.InstanceCommands;
-import me.TomTheDeveloper.Commands.SignCommands;
-import me.TomTheDeveloper.Commands.leave;
-import me.TomTheDeveloper.Commands.onStopCommand;
-import me.TomTheDeveloper.Events.SetupInventoryEvents;
-import me.TomTheDeveloper.Events.onBuild;
-import me.TomTheDeveloper.Events.onJoin;
-import me.TomTheDeveloper.Events.onQuit;
-import me.TomTheDeveloper.Events.onSpectate;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Handlers.ConfigurationManager;
-import me.TomTheDeveloper.Handlers.GameInstanceManager;
-import me.TomTheDeveloper.Handlers.InventoryManager;
-import me.TomTheDeveloper.Handlers.SignManager;
 import me.TomTheDeveloper.KitAPI.KitHandler;
 import me.TomTheDeveloper.KitAPI.KitMenuHandler;
-import me.TomTheDeveloper.Utils.Items;
+import me.TomTheDeveloper.bungee.Bungee;
+import me.TomTheDeveloper.commands.InstanceCommands;
+import me.TomTheDeveloper.commands.SignCommands;
+import me.TomTheDeveloper.commands.leave;
+import me.TomTheDeveloper.commands.onStopCommand;
+import me.TomTheDeveloper.events.SetupInventoryEvents;
+import me.TomTheDeveloper.events.onBuild;
+import me.TomTheDeveloper.events.onJoin;
+import me.TomTheDeveloper.events.onQuit;
+import me.TomTheDeveloper.events.onSpectate;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.handlers.ConfigurationManager;
+import me.TomTheDeveloper.handlers.GameInstanceManager;
+import me.TomTheDeveloper.handlers.InventoryManager;
+import me.TomTheDeveloper.handlers.SignManager;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityTypes;
 import net.minecraft.server.v1_12_R1.MinecraftKey;
@@ -62,8 +61,6 @@ public class GameAPI {
 		return plugin;
 	}
 
-
-
 	private  boolean needsMapRestore = false;
 	private boolean allowBuilding = false;
 	private static boolean restart = false;
@@ -84,12 +81,9 @@ public class GameAPI {
 		return bungee;
 	}
 
-
-
 	public String getVersion(){
 		return version;
 	}
-
 
 	public boolean getAllowBuilding(){
 		return allowBuilding;
@@ -107,35 +101,7 @@ public class GameAPI {
 		needsMapRestore = b;
 	}
 
-
-	public boolean is1_8_R3(){
-		if(getVersion().equalsIgnoreCase("v1_8_R3"))
-			return true;
-		return false;
-	}
-
-	public boolean is1_12_R1(){
-		if(getVersion().equalsIgnoreCase("v1_12_R1"))
-			return true;
-		return false;
-	}
-
-	public boolean is1_7_R4(){
-		if(getVersion().equalsIgnoreCase("v1_7_R4"))
-			return true;
-		return false;
-	}
-
-	public boolean is1_9_R1(){
-		if(getVersion().equalsIgnoreCase("v1_9_R1"))
-			return true;
-		return false;
-	}
-
-
-
 	public  void onSetup(JavaPlugin plugin,CommandsInterface commandsInterface){
-		Items.gameAPI = this;
 		this.plugin = plugin;
 
 		version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
@@ -194,7 +160,7 @@ public class GameAPI {
 			plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
 
 			setupBungee();
-			me.TomTheDeveloper.Bungee.Bungee.plugin = this;
+			me.TomTheDeveloper.bungee.Bungee.plugin = this;
 			plugin.getServer().getPluginManager().registerEvents(new Bungee(), plugin);
 		}
 

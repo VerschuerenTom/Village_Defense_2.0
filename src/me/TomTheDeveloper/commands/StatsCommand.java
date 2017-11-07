@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Commands;
+package me.TomTheDeveloper.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,8 +7,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.User;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.Handlers.UserManager;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.handlers.UserManager;
 
 /**
  * Created by Tom on 18/08/2014.

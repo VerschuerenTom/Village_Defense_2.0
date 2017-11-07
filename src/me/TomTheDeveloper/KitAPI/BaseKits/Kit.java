@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.KitAPI.BaseKits;
+package me.TomTheDeveloper.KitAPI.basekits;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Kits;
+package me.TomTheDeveloper.kits;
 
 import java.util.List;
 
@@ -8,13 +8,13 @@ import org.bukkit.inventory.ItemStack;
 
 import me.TomTheDeveloper.InvasionInstance;
 import me.TomTheDeveloper.VillageDefense;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Handlers.ChatManager;
-import me.TomTheDeveloper.KitAPI.BaseKits.PremiumKit;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.ArmorHelper;
-import me.TomTheDeveloper.Utils.Util;
-import me.TomTheDeveloper.Utils.WeaponHelper;
+import me.TomTheDeveloper.KitAPI.basekits.PremiumKit;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.handlers.ChatManager;
+import me.TomTheDeveloper.permissions.PermissionsManager;
+import me.TomTheDeveloper.utils.ArmorHelper;
+import me.TomTheDeveloper.utils.Util;
+import me.TomTheDeveloper.utils.WeaponHelper;
 import me.TomTheDeveloper.versions.InvasionInstance1_12_R1;
 import me.TomTheDeveloper.versions.InvasionInstance1_8_R3;
 

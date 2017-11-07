@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Commands;
+package me.TomTheDeveloper.commands;
 
 import java.util.HashSet;
 
@@ -15,12 +15,12 @@ import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.CommandsInterface;
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Events.PlayerAddCommandEvent;
-import me.TomTheDeveloper.Events.PlayerAddSpawnCommandEvent;
-import me.TomTheDeveloper.Game.GameInstance;
-import me.TomTheDeveloper.Permissions.PermissionsManager;
-import me.TomTheDeveloper.Utils.Util;
+import me.TomTheDeveloper.events.PlayerAddCommandEvent;
+import me.TomTheDeveloper.events.PlayerAddSpawnCommandEvent;
+import me.TomTheDeveloper.game.GameInstance;
+import me.TomTheDeveloper.permissions.PermissionsManager;
 import me.TomTheDeveloper.setup.SetupInventory;
+import me.TomTheDeveloper.utils.Util;
 
 /**
  * Created by Tom on 7/08/2014.

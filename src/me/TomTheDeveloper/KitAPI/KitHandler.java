@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
-import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
+import me.TomTheDeveloper.KitAPI.basekits.Kit;
 
 /**
  * Created by Tom on 25/07/2014.

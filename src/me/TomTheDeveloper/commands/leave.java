@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Commands;
+package me.TomTheDeveloper.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.TomTheDeveloper.GameAPI;
-import me.TomTheDeveloper.Bungee.Bungee;
+import me.TomTheDeveloper.bungee.Bungee;
 
 /**
  * Created by Tom on 5/08/2014.

@@ -1,4 +1,4 @@
-package me.TomTheDeveloper.Game;
+package me.TomTheDeveloper.game;
 
 /**
  * Created by Tom on 21/02/2016.

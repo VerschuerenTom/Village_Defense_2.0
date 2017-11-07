@@ -1,10 +1,10 @@
-package me.TomTheDeveloper.Events;
+package me.TomTheDeveloper.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import me.TomTheDeveloper.KitAPI.BaseKits.Kit;
+import me.TomTheDeveloper.KitAPI.basekits.Kit;
 
 /**
  * Created by Tom on 28/07/2014.
