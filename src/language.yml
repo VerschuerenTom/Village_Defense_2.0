@@ -1,4 +1,4 @@
-Commands:
+commands:
   Teleported-To-The-Lobby: "Teleported to the lobby!"
   No-Arena-Like-That: "&cNo arena with that ID!"
   Stats-Command:
@@ -24,7 +24,7 @@ Scoreboard:
   Orbs: "&bOrbs:"
   Rotten-Flesh: "&2Rotten Flesh:"
 
-Kits:
+kits:
   Kit-Menu:
     Title: "Kit Menu"
     Unlocked-Kit-Lore: "&aUNLOCKED!"
@@ -138,12 +138,13 @@ Kits:
     Bunny-Kit-Description: "&7Jumping is your passion. During the past, you've developed a way to double jump!
   Jumping on the roofs is easy! However you could use some extra training for shooting your special bow"
 
-In-Game:
+In-game:
+  Plugin-Prefix: "&a[Village Defense] "
   Already-Playing: "&cYou are already queued for a game! You can leave a game with /leave."
   Full-Game-No-Permission: "&cYou don't have the permission to join full games!"
   No-Slots-For-Premium: "&cThis game is already full with premium players! Sorry"
   Dead-Tag-On-Death: "&8Dead"
-  Death-Screen: "&cYou died!"
+  Death-Screen: "You died!"
   Died-Respawn-In-Next-Wave: "&e&lDON'T LEAVE! &aYou'll respawn next once the wave ends!"
   Back-In-Game: "&aYou're not a spectator anymore! You're back in the game!"
   You-Are-Spectator: "&cYou're now a spectator! You can fly now!"

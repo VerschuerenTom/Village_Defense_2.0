@@ -37,9 +37,7 @@ import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.game.InstanceType;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.handlers.MessageHandler_v1_12_R1;
-import me.tomthedeveloper.handlers.MessageHandler_v1_8_R3;
-import me.tomthedeveloper.handlers.MessageHandler_v1_9_R1;
+import me.tomthedeveloper.handlers.MessageHandler;
 import me.tomthedeveloper.handlers.UserManager;
 import me.tomthedeveloper.items.SpecialItemManager;
 import me.tomthedeveloper.kits.GolemFriend;
@@ -1117,15 +1115,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             user.setInt("orbs", 0);
             hidePlayer(player);
             player.setAllowFlight(true);
-            if (youtuberInvasion.is1_8_R3()) {
-                MessageHandler_v1_8_R3.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Death-Screen")));
-                MessageHandler_v1_8_R3.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Died-Respawn-In-Next-Wave")));
-            } else if(youtuberInvasion.is1_9_R1()){
-            	MessageHandler_v1_9_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Death-Screen")));
-                MessageHandler_v1_9_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Died-Respawn-In-Next-Wave")));
-        	} else if(youtuberInvasion.is1_12_R1()) {
-            	MessageHandler_v1_12_R1.sendTitleMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Death-Screen")));
-                MessageHandler_v1_12_R1.sendActionBarMessage(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Died-Respawn-In-Next-Wave")));
+            if(!youtuberInvasion.is1_7_R4()) {
+            	MessageHandler.sendTitle(player, ChatColor.stripColor(ChatManager.formatMessage("In-game.Death-Screen")), 0, 5*20, 0, ChatColor.RED);
+            	MessageHandler.sendActionbar(player, ChatManager.formatMessage(ChatManager.colorMessage("In-game.Died-Respawn-In-Next-Wave")));
             } else {
                 player.sendMessage(ChatManager.colorMessage("In-game.You-Are-Spectator"));
             }

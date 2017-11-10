@@ -16,7 +16,7 @@ public class ChatManager {
 	public static ChatColor PREFIX = ChatColor.GOLD;
 	public static ChatColor NORMAL = ChatColor.GRAY;
 	public static ChatColor HIGHLIGHTED = ChatColor.AQUA;
-	public static final String PLUGINPREFIX = "�a[VillageDefense] ";
+	public static final String PLUGINPREFIX = colorMessage("In-game.Plugin-Prefix");
 
 	private static GameInstance gameInstance;
 

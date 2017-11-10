@@ -33,6 +33,9 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 
+import me.tomthedeveloper.chunks.ChunkManager;
+import me.tomthedeveloper.commands.InstanceCommands;
+import me.tomthedeveloper.commands.StatsCommand;
 import me.tomthedeveloper.creatures.v1_12_R1.BabyZombie;
 import me.tomthedeveloper.creatures.v1_12_R1.BreakFenceListener;
 import me.tomthedeveloper.creatures.v1_12_R1.FastZombie;
@@ -42,9 +45,6 @@ import me.tomthedeveloper.creatures.v1_12_R1.PlayerBuster;
 import me.tomthedeveloper.creatures.v1_12_R1.RidableIronGolem;
 import me.tomthedeveloper.creatures.v1_12_R1.RidableVillager;
 import me.tomthedeveloper.creatures.v1_12_R1.WorkingWolf;
-import me.tomthedeveloper.chunks.ChunkManager;
-import me.tomthedeveloper.commands.InstanceCommands;
-import me.tomthedeveloper.commands.StatsCommand;
 import me.tomthedeveloper.events.Events;
 import me.tomthedeveloper.events.PlayerAddCommandEvent;
 import me.tomthedeveloper.events.PlayerAddSpawnCommandEvent;
@@ -170,10 +170,10 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 latestVersion = UpdateChecker.getLatestVersion();
                 if (latestVersion != null) {
                     latestVersion = "v" + latestVersion;
-                    Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
+                    Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
                 }
             } catch (Exception ex) {
-            	Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] An error occured while checking for update!");
+            	Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] An error occured while checking for update!");
             }
         }
         

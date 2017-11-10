@@ -32,8 +32,8 @@ public class Items {
             return spectatoritem;
         ItemStack itemStack = new ItemStack(Material.COMPASS);
         ItemMeta meta = itemStack.getItemMeta();
-        meta.setDisplayName("ï¿½6Specator Menu");
-        meta.setLore(Arrays.asList("ï¿½7Right click to open menu!"));
+        meta.setDisplayName("§6Specator Menu");
+        meta.setLore(Arrays.asList("§7Right click to open menu!"));
         itemStack.setItemMeta(meta);
         return itemStack;
     }
