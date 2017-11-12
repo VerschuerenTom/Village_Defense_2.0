@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +12,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.utils.ParticleEffect;
 
@@ -57,6 +59,13 @@ public class SpecialItem {
             config.save(ConfigurationManager.getFile("SpecialItems"));
         } catch (IOException e) {
             e.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving SpecialItems.yml file!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("§c- create blank file named SpecialItems.yml");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
         }
         SpecialItem particleItem = new SpecialItem(name);
         particleItem.setData(config.getInt(name + ".data"));

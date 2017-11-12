@@ -31,6 +31,7 @@ import me.tomthedeveloper.events.onJoin;
 import me.tomthedeveloper.events.onQuit;
 import me.tomthedeveloper.events.onSpectate;
 import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.GameInstanceManager;
 import me.tomthedeveloper.handlers.InventoryManager;
@@ -197,6 +198,12 @@ public class GameAPI {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.8.8 if not try to update it to 1.9 or 1.12");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 		}
 	}
 
@@ -216,6 +223,12 @@ public class GameAPI {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.9 if not try to update it to 1.12");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 		}
 	}
 
@@ -251,6 +264,12 @@ public class GameAPI {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.7.10 if not try to update it to 1.8.8 or 1.9 or 1.12");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 		}
 	}
 
@@ -380,6 +399,13 @@ public class GameAPI {
 				fileConfiguration.save(ConfigurationManager.getFile("bungee"));
 			} catch (IOException e) {
 				e.printStackTrace();
+				Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 			}
 		}
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -59,6 +60,13 @@ public class SignManager extends BukkitRunnable implements Listener {
                 config.save(ConfigurationManager.getFile("signModification"));
             } catch (IOException e) {
                 e.printStackTrace();
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving signModification.yml file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- restart the server");
+                Bukkit.getConsoleSender().sendMessage("§c- create blank file named signModification.yml");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             }
         }
         signlines[0] = config.getString("signs.format.WaitingForNewGame.lines.1");
