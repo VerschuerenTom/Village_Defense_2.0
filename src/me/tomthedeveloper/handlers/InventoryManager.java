@@ -59,6 +59,11 @@ public class InventoryManager {
             return true;
         } catch (Exception ex) {
             System.out.print("NOT WORKING!");
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving inventory of player!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             return false;
         }
     }
@@ -87,12 +92,21 @@ public class InventoryManager {
 
             } catch (Exception ex) {
                 System.out.print("Armor getting not working?");
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving inventory of player!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             }
             file.delete();
             return inventory;
         } catch (Exception ex) {
-
             ex.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving inventory of player!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             return null;
         }
     }

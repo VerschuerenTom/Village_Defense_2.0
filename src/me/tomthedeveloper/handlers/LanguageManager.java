@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,8 +61,13 @@ public class LanguageManager {
 				languageConfig.setDefaults(defConfig);
 			}
 		} catch(Exception e){
-			System.out.println("[NewGameAPI] Error occured while trying to reload configuration!");
 			e.printStackTrace();
+			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with reloading language configuration!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 		}
 	}
 
@@ -73,6 +79,12 @@ public class LanguageManager {
 			getLanguageFile().save(languageConfigFile);
 		} catch (IOException ex) {
 			plugin.getLogger().log(Level.SEVERE, "Could not save file to " + languageConfigFile, ex);
+			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving language file!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
 		}
 	}
 

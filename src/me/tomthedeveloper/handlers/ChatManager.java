@@ -16,6 +16,12 @@ public class ChatManager {
 	public static ChatColor PREFIX = ChatColor.GOLD;
 	public static ChatColor NORMAL = ChatColor.GRAY;
 	public static ChatColor HIGHLIGHTED = ChatColor.AQUA;
+	public static String ERRORPREFIX = "╔═══╗────────────────────────────╔╗\r\n" + 
+			"║╔══╝────────────────────────────║║\r\n" + 
+			"║╚══╦═╦═╦══╦═╗╔══╦══╦══╦╗╔╦═╦══╦═╝║\r\n" + 
+			"║╔══╣╔╣╔╣╔╗║╔╝║╔╗║╔═╣╔═╣║║║╔╣║═╣╔╗║\r\n" + 
+			"║╚══╣║║║║╚╝║║─║╚╝║╚═╣╚═╣╚╝║║║║═╣╚╝║\r\n" + 
+			"╚═══╩╝╚╝╚══╩╝─╚══╩══╩══╩══╩╝╚══╩══╝\r\n";
 	public static final String PLUGINPREFIX = colorMessage("In-game.Plugin-Prefix");
 
 	private static GameInstance gameInstance;

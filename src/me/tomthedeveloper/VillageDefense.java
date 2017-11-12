@@ -170,10 +170,12 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 latestVersion = UpdateChecker.getLatestVersion();
                 if (latestVersion != null) {
                     latestVersion = "v" + latestVersion;
-                    Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
+                    Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
                 }
             } catch (Exception ex) {
-            	Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] An error occured while checking for update!");
+            	Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] An error occured while checking for update!");
+            	Bukkit.getConsoleSender().sendMessage("§cPlease check internet connection or check for update via WWW site directly!");
+            	Bukkit.getConsoleSender().sendMessage("§cWWW site https://www.spigotmc.org/resources/minigame-village-defence-1-12-and-1-8-8.41869/");
             }
         }
         
@@ -353,13 +355,19 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 ConfigurationManager.getConfig("bungee").save(ConfigurationManager.getFile("bungee"));
             } catch (IOException e) {
                 e.printStackTrace();
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             }
         }
         if (!getConfig().contains("ChatFormat-Enabled")) {
             getConfig().set("ChatFormat-Enabled", true);
             saveConfig();
         }
-
 
         chatformat = getConfig().getBoolean("ChatFormat-Enabled");
 
@@ -1074,6 +1082,13 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                         b = true;
                     } catch (SQLException e1) {
                         System.out.print("CONNECTION FAILED FOR PLAYER " + player.getName());
+                        Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                        Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                        Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                        Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                        Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+                        Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+                        Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                         //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
                     if (b = false) {
@@ -1108,6 +1123,11 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                             b = true;
                         } catch (SQLException e1) {
                             System.out.print("CONNECTION FAILED TWICE FOR PLAYER " + player.getName());
+                            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                             //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         }
                     }

@@ -7,6 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
 
+import org.bukkit.Bukkit;
+
+import me.tomthedeveloper.handlers.ChatManager;
+
 public class UpdateChecker {
 	
 	private static String latestVersion;
@@ -36,7 +40,12 @@ public class UpdateChecker {
             con.getOutputStream().write(("resource=" + resourceId).getBytes("UTF-8"));
             version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with checking for an update!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if spigotmc site isn't offline (and wait until it's online)");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
         }
         return version;
     }

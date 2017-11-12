@@ -1,6 +1,6 @@
 name: VillageDefense
 main: me.tomthedeveloper.VillageDefense
-version: 2.1.0
+version: 2.1.2
 prefix: villagedefense
 softdepend: [WorldEdit]
 

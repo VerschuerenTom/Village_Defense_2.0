@@ -15,16 +15,6 @@ import net.md_5.bungee.api.ChatColor;
 
 /**
  *
- * @author
- */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- *
  * @author IvanTheBuilder
  */
 public class ConfigurationManager {
@@ -47,17 +37,18 @@ public class ConfigurationManager {
                 plugin.getLogger().info("Creating "+filename+".yml because it does not exist!");
                 ConfigFile.createNewFile();
             } catch (IOException ex) {
-                error = true;
-                System.out.print("[GameAPI]: Please check the file " + filename + ".yml because it has a format error inside! Check the stacktrace of the error to quickly find out where." );
-                System.out.print("[GameAPI]: Shutting down server! Fix this format error and restart it again.");
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                 Bukkit.getServer().shutdown();
                 ex.printStackTrace();
 
             }
-            if(error){
-                System.out.print("BOOO");
-            }
-
             ConfigFile = new File(plugin.getDataFolder(), filename+".yml");
             YamlConfiguration config = new YamlConfiguration();
 
@@ -66,12 +57,24 @@ public class ConfigurationManager {
                 //YamlConfiguration config = YamlConfiguration.loadConfiguration(ConfigFile);
             }catch (InvalidConfigurationException ex){
                 ex.printStackTrace();
-                System.out.print("[GameAPI]: Please check the file " + filename + ".yml because it has a format error inside! Check the stacktrace of the error to quickly find out where." );
-                System.out.print("[GameAPI]: Shutting down server! Fix this format error and restart it again.");
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                 Bukkit.getServer().shutdown();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,8 +83,14 @@ public class ConfigurationManager {
                 config.save(ConfigFile);
 
             } catch (IOException ex) {
-                System.out.print("[GameAPI]: Please check the file " + filename + ".yml because it has a format error inside! Check the stacktrace of the error to quickly find out where." );
-                System.out.print("[GameAPI]: Shutting down server! Fix this format error and restart it again.");
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                 Bukkit.getServer().shutdown();
                 ex.printStackTrace();
             }
@@ -96,14 +105,25 @@ public class ConfigurationManager {
             //YamlConfiguration config = YamlConfiguration.loadConfiguration(ConfigFile);
         }catch (InvalidConfigurationException ex){
             ex.printStackTrace();
-            plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[GameAPI]: Please check the file " + filename + ".yml because it has a format error inside! Check the stacktrace of the above error to quickly find out where." );
-            plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[GameAPI]: Shutting down server! Fix this format error and restart it again.");
-            plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[GameAPI]: Please ignore following error(s).");
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
+            Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
+            Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             Bukkit.shutdown();
             return null;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
         } catch (IOException e) {
             e.printStackTrace();
         }

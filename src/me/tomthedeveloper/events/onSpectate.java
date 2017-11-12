@@ -51,8 +51,6 @@ public class onSpectate implements Listener {
             event.setCancelled(true);
     }
 
-
-
     @EventHandler(priority = EventPriority.HIGH)
     public void onBucketEmpty(PlayerBucketEmptyEvent event){
         if(UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())

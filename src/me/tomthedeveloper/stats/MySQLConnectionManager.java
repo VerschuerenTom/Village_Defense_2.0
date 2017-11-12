@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
+import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 
 /**
@@ -71,6 +73,13 @@ public class MySQLConnectionManager {
         } catch (Exception e) {
 
             e.printStackTrace(); //you should use exception wrapping on real-production code
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+            Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
         }
 
     }

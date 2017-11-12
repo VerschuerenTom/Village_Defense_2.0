@@ -425,7 +425,6 @@ public class Events implements Listener {
 
 
     @EventHandler
-    @Deprecated
     public void onSpectate(PlayerPickupItemEvent event) {
         if (UserManager.getUser(event.getPlayer().getUniqueId()).isSpectator())
             event.setCancelled(true);
@@ -451,7 +450,7 @@ public class Events implements Listener {
     }
 
     @EventHandler
-    public void onFoodLevelCHange(FoodLevelChangeEvent event) {
+    public void onFoodLevelChange(FoodLevelChangeEvent event) {
         if (event.getEntity().getType() != EntityType.PLAYER)
             return;
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance((Player) event.getEntity());
@@ -619,6 +618,13 @@ public class Events implements Listener {
                     b = true;
                 } catch (SQLException e1) {
                     System.out.print("CONNECTION FAILED FOR PLAYER " + event.getPlayer().getName());
+                    Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                    Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                    Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                    Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                    Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+                    Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+                    Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                     //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
                 if (b = false) {
@@ -706,6 +712,13 @@ public class Events implements Listener {
                         } catch (NullPointerException npe) {
                             i = 0;
                             System.out.print("COULDN'T GET STATS FROM PLAYER: " + player.getName());
+                            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with getting player data in MySQL database!");
+                            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                            Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+                            Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+                            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                         }
 
                         if (i > user.getInt(s)) {

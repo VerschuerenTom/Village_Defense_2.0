@@ -3,6 +3,7 @@ package me.tomthedeveloper.bungee;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,7 @@ import com.google.common.io.ByteStreams;
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
+import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 
 /**
@@ -51,6 +53,13 @@ public class Bungee implements Listener {
                 motdsconfig.save(ConfigurationManager.getFile("MOTD"));
             } catch (IOException e) {
                 e.printStackTrace();
+                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving MOTD file!");
+                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("§c- create blank file named MOTD.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             }
         }else{
             motds.put(GameState.WAITING_FOR_PLAYERS, motdsconfig.getString("WAITING_FOR_PLAYERS"));

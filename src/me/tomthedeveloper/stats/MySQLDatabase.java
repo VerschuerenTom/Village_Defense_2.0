@@ -8,7 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import me.tomthedeveloper.handlers.ChatManager;
 
 public class MySQLDatabase {
 
@@ -41,7 +44,14 @@ public class MySQLDatabase {
                     ");");
             manager.closeConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+            Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
         }
 
         // Table exists
