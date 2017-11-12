@@ -61,7 +61,7 @@ public class BabyZombie extends EntityZombie {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, false));
         this.setBaby(true);
         this.setHealth(2);
-
+        this.p(true);
 
     }
 

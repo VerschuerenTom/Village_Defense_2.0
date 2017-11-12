@@ -48,10 +48,10 @@ public class CleanerKit extends PremiumKit implements Listener {
         ArmorHelper.setColouredArmor(Color.YELLOW, player);
         player.getInventory().addItem(WeaponHelper.getUnBreakingSword(WeaponHelper.ResourceType.WOOD, 10));
         ItemStack cleaneritem = new ItemStack(Material.BLAZE_ROD);
-        List<String> cleanerWandLore = Util.splitString(ChatManager.colorMessage("kits.Cleaner.game-Item-Lore"), 40);
+        List<String> cleanerWandLore = Util.splitString(ChatManager.colorMessage("kits.Cleaner.Game-Item-Lore"), 40);
         String[] cleanerWandLoreArray = cleanerWandLore.toArray(new String[cleanerWandLore.size()]);
 
-        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, ChatManager.colorMessage("kits.Cleaner.game-Item-Name"), cleanerWandLoreArray);
+        ItemStack itemStack = this.setItemNameAndLore(cleaneritem, ChatManager.colorMessage("kits.Cleaner.Game-Item-Name"), cleanerWandLoreArray);
         player.getInventory().addItem(cleaneritem);
         player.getInventory().addItem(new ItemStack(Material.ARROW, 64));
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
@@ -78,7 +78,7 @@ public class CleanerKit extends PremiumKit implements Listener {
             return;
         if (!(event.getItem().getItemMeta().hasDisplayName()))
             return;
-        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("kits.Cleaner.game-Item-Name"))))
+        if (!(event.getItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("kits.Cleaner.Game-Item-Name"))))
             return;
         if (plugin.getGameAPI().getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
             return;

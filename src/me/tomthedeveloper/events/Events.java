@@ -2,10 +2,7 @@ package me.tomthedeveloper.events;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -214,7 +211,7 @@ public class Events implements Listener {
         if (name.contains("Set the chest shop")) {
             event.setCancelled(true);
             Block targetblock;
-            targetblock = event.getPlayer().getTargetBlock(null, 100);
+            targetblock = event.getPlayer().getTargetBlock((HashSet<Material>)null, 100);
             if (targetblock == null || targetblock.getType() != Material.CHEST) {
                 event.getPlayer().sendMessage(ChatColor.RED + "Look at the chest! You are targetting something else!");
                 return;
@@ -787,7 +784,7 @@ public class Events implements Listener {
             return;
         if (gameInstance.getType() != InstanceType.VILLAGE_DEFENSE)
             return;
-        if (event.getPlayer().getTargetBlock(null, 7).getType() == Material.WORKBENCH)
+        if (event.getPlayer().getTargetBlock((HashSet<Material>)null, 7).getType() == Material.WORKBENCH)
             event.setCancelled(true);
     }
 

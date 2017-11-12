@@ -23,12 +23,12 @@ import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
 /**
  * Created by Tom on 21/07/2015.
  */
-public class GolemFriend extends LevelKit {
+public class GolemFriendKit extends LevelKit {
 
     private VillageDefense plugin;
 
 
-    public GolemFriend(VillageDefense plugin) {
+    public GolemFriendKit(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Golem-Friend.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Golem-Friend.Kit-Description"), 40);

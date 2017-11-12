@@ -25,12 +25,12 @@ import me.tomthedeveloper.utils.WeaponHelper;
 /**
  * Created by Tom on 21/07/2015.
  */
-public class ZombieFinder extends LevelKit implements Listener {
+public class ZombieFinderKit extends LevelKit implements Listener {
 
 
     private VillageDefense plugin;
 
-    public ZombieFinder(VillageDefense plugin) {
+    public ZombieFinderKit(VillageDefense plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Zombie-Teleporter.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Zombie-Teleporter.Kit-Description"), 40);

@@ -61,7 +61,7 @@ import me.tomthedeveloper.kits.ArcherKit;
 import me.tomthedeveloper.kits.BlockerKit;
 import me.tomthedeveloper.kits.CleanerKit;
 import me.tomthedeveloper.kits.DogFriendKit;
-import me.tomthedeveloper.kits.GolemFriend;
+import me.tomthedeveloper.kits.GolemFriendKit;
 import me.tomthedeveloper.kits.HardcoreKit;
 import me.tomthedeveloper.kits.HealerKit;
 import me.tomthedeveloper.kits.HeavyTankKit;
@@ -79,7 +79,7 @@ import me.tomthedeveloper.kits.TeleporterKit;
 import me.tomthedeveloper.kits.TerminatorKit;
 import me.tomthedeveloper.kits.TornadoKit;
 import me.tomthedeveloper.kits.WorkerKit;
-import me.tomthedeveloper.kits.ZombieFinder;
+import me.tomthedeveloper.kits.ZombieFinderKit;
 import me.tomthedeveloper.shop.Shop;
 import me.tomthedeveloper.stats.FileStats;
 import me.tomthedeveloper.stats.MySQLDatabase;
@@ -163,17 +163,17 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.onSetup(this, this);
         new MetricsLite(this);
         
-        currentVersion = "v" + Bukkit.getPluginManager().getPlugin("Pinata").getDescription().getVersion();
+        currentVersion = "v" + Bukkit.getPluginManager().getPlugin("VillageDefense").getDescription().getVersion();
 		if (this.getConfig().getBoolean("update-notify")){
             try {
                 UpdateChecker.checkUpdate(currentVersion);
                 latestVersion = UpdateChecker.getLatestVersion();
                 if (latestVersion != null) {
                     latestVersion = "v" + latestVersion;
-                    Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
+                    Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
                 }
             } catch (Exception ex) {
-            	Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] An error occured while checking for update!");
+            	Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] An error occured while checking for update!");
             }
         }
         
@@ -273,9 +273,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.getKitHandler().registerKit(knightkit);
         LightTankKit lightTankKit = new LightTankKit();
         gameAPI.getKitHandler().registerKit(lightTankKit);
-        ZombieFinder zombieFinderKit = new ZombieFinder(this);
-        gameAPI.getKitHandler().registerKit(zombieFinderKit);
-        this.getServer().getPluginManager().registerEvents(zombieFinderKit, this);
+        ZombieFinderKit zombieFinderKitKit = new ZombieFinderKit(this);
+        gameAPI.getKitHandler().registerKit(zombieFinderKitKit);
+        this.getServer().getPluginManager().registerEvents(zombieFinderKitKit, this);
         ArcherKit archerKit = new ArcherKit();
         gameAPI.getKitHandler().registerKit(archerKit);
 
@@ -295,8 +295,8 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         gameAPI.getKitHandler().registerKit(mediumTankKit);
         WorkerKit doorRepairKit = new WorkerKit();
         gameAPI.getKitHandler().registerKit(doorRepairKit);
-        GolemFriend golemFriendKit = new GolemFriend(this);
-        gameAPI.getKitHandler().registerKit(golemFriendKit);
+        GolemFriendKit golemFriendKitKit = new GolemFriendKit(this);
+        gameAPI.getKitHandler().registerKit(golemFriendKitKit);
         TerminatorKit strenghtKit = new TerminatorKit();
         gameAPI.getKitHandler().registerKit(strenghtKit);
         HardcoreKit hardcoreKit = new HardcoreKit();
@@ -983,8 +983,19 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
                 //check any price from lore
-                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop"))) {
-	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop"));
+                if(!item.hasItemMeta()){
+                    Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
+                    p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                    return true;
+                }
+                if(!item.getItemMeta().hasLore()){
+                    Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
+                    p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+                    return true;
+                }
+
+                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"))) {
+	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
 	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                 } else {
                 	p.sendMessage(ChatColor.RED + "This item contains shop price already!");

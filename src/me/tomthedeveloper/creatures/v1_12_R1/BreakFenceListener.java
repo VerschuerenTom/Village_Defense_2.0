@@ -27,6 +27,7 @@ public class BreakFenceListener extends BukkitRunnable {
 
     @Override
     public void run() {
+
         for (World world : Bukkit.getServer().getWorlds()) {
             for (Entity entity : world.getEntities()) {
                 if (!(entity.getType() == EntityType.ZOMBIE))
@@ -42,13 +43,13 @@ public class BreakFenceListener extends BukkitRunnable {
                             // block.getWorld().playSound(block.getLocation(), Sound.ZOMBIE_WOOD, 5F, 5F);
                         }
                         this.particleDoor(block);
-                        if (random.nextInt(15) == 5) {
+                        if (random.nextInt(20) == 5) {
                             breakDoor(block);
-                            if (this.is1_9_R1()) {
-                                block.getWorld().playSound(block.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, 1, 1);
-                            } else {
+                            //if (this.is1_9_R1()) {
+                              //  block.getWorld().playSound(block.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, 1, 1);
+                            //} else {
                                 //  block.getWorld().playSound(block.getLocation(), Sound.ZOMBIE_WOOD, 5F, 5F);
-                            }
+                            //}
                         }
                     }
 

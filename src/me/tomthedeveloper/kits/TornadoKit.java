@@ -73,8 +73,8 @@ public class TornadoKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Tornado.game-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Tornado.game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Tornado.Game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Tornado.Game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -86,8 +86,8 @@ public class TornadoKit extends PremiumKit implements Listener {
     @Override
     public void reStock(Player player) {
         ItemStack enderpealteleporter = new ItemStack(Material.WEB, 5);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Tornado.game-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Tornado.game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Tornado.Game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Tornado.Game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -104,7 +104,7 @@ public class TornadoKit extends PremiumKit implements Listener {
             return;
         if (!player.getItemInHand().getItemMeta().hasDisplayName())
             return;
-        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("kits.Tornado.game-Item-Name")))
+        if (!player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("kits.Tornado.Game-Item-Name")))
             return;
         if (player.getItemInHand().getAmount() <= 1) {
             player.setItemInHand(new ItemStack(Material.AIR));

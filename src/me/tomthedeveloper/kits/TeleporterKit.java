@@ -62,8 +62,8 @@ public class TeleporterKit extends PremiumKit implements Listener {
         player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF, 10));
         player.getInventory().addItem(new ItemStack(Material.SADDLE));
         ItemStack enderpealteleporter = new ItemStack(Material.ENDER_PEARL);
-        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Teleporter.game-Item-Lore"), 40);
-        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Teleporter.game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
+        List<String> teleporationlore = Util.splitString(ChatManager.colorMessage("kits.Teleporter.Game-Item-Lore"), 40);
+        this.setItemNameAndLore(enderpealteleporter, ChatManager.colorMessage("kits.Teleporter.Game-Item-Name"), teleporationlore.toArray(new String[teleporationlore.size()]));
         player.getInventory().addItem(enderpealteleporter);
     }
 
@@ -79,7 +79,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
 
     public void OpenAndCreateTeleportationMenu(World world, Player p) {
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(p);
-        Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.colorMessage("kits.Teleporter.game-Item-Menu-Name"));
+        Inventory inventory = plugin.getServer().createInventory(null, 18, ChatManager.colorMessage("kits.Teleporter.Game-Item-Menu-Name"));
         for (Player player : world.getPlayers()) {
             if (gameAPI.getGameInstanceManager().getGameInstance(player) != null && !UserManager.getUser(player.getUniqueId()).isFakeDead()) {
                 ItemStack skull = new ItemStack(397, 1, (short) 3);
@@ -115,7 +115,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
                     if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName() == null)
                         return;
 
-                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.game-Item-Name"))) {
+                    if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.Game-Item-Name"))) {
                         OpenAndCreateTeleportationMenu(e.getPlayer().getWorld(), e.getPlayer());
                     }
                 }
@@ -143,7 +143,7 @@ public class TeleporterKit extends PremiumKit implements Listener {
         if (!e.getCurrentItem().getItemMeta().hasLore())
             return;
         if (e.getCurrentItem().hasItemMeta()) {
-            if (e.getInventory().getName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.game-Item-Menu-Name"))) {
+            if (e.getInventory().getName().equalsIgnoreCase(ChatManager.colorMessage("kits.Teleporter.Game-Item-Menu-Name"))) {
                 e.setCancelled(true);
                 if ((e.isLeftClick() || e.isRightClick())) {
                     if (e.getCurrentItem().getType() == Material.EMERALD) {

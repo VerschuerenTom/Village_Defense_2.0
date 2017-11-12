@@ -34,7 +34,7 @@ public class LanguageMigrator {
 		if(LanguageManager.getLanguageMessage("File-Version") != null) {
 			return;
 		}
-		System.out.println("[GameAPI] Initiated language.yml migration process! (File-Version: 1)");
+		System.out.println("[VillageDefense] Initiated language.yml migration process! (File-Version: 1)");
 		int counter = 0;
 		int nomessages = 0;
 		for(String oldmessage : LanguageManager.getLanguageFile().getKeys(false)) {
@@ -51,18 +51,19 @@ public class LanguageMigrator {
 		LanguageManager.saveLanguageFile();
 		for(String newmessage : migratedmessages) {
 			if(!LanguageManager.getLanguageFile().isSet(newmessage)) {
-				LanguageManager.getLanguageFile().set(newmessage, "MESSAGE NOT FOUND! PLEASE GENERATE NEW LANGUAGE.YML FILE!");
-				System.out.println("[GameAPI] Message " + newmessage + " doesn't exists in your old language.yml!");
+				LanguageManager.getLanguageFile().set(newmessage, "MESSAGE NOT FOUND! Either fill this one in yourself or delete this file to create a entire new one!");
+				System.out.println("[VillageDefense] Message " + newmessage + " doesn't exists in your old language.yml!");
 				nomessages++;
 			}
 		}
 		LanguageManager.getLanguageFile().set("In-Game.Plugin-Prefix", "&a[Village Defense] ");
 		LanguageManager.getLanguageFile().set("File-Version", 1);
 		LanguageManager.saveLanguageFile();
-		System.out.println("[GameAPI] Successfully migrated language.yml to new format! Changed " + counter + " lines!");
+		System.out.println("[VillageDefense] Successfully migrated language.yml to new format! Changed " + counter + " lines!");
 		if(nomessages > 0) {
-			Bukkit.getConsoleSender().sendMessage("§c[GameAPI] WARNING! Your old language.yml didn't have all messages needed for migration,");
-			Bukkit.getConsoleSender().sendMessage("§cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
+
+			Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] WARNING! Your old language.yml didn't have all messages needed for migration,");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
 		}
 	}
 	

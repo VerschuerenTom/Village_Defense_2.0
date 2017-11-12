@@ -71,7 +71,7 @@ public class PlayerBuster extends EntityZombie {
         this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, true, false));
 
         this.setHealth(1);
-
+        this.p(true);
 
     }
 

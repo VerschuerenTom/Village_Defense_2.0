@@ -64,7 +64,7 @@ public class GolemBuster extends EntityZombie {
         this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true)); // this one to target human
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, false));
         this.setHealth(5);
-
+        this.p(true);
 
     }
 

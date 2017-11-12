@@ -61,7 +61,7 @@ public class TankerZombie extends EntityZombie {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
         this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, false));
         this.setHealth(35);
-
+        this.p(true);
     }
 
     public static Object getPrivateField(String fieldName, Class clazz, Object object) {

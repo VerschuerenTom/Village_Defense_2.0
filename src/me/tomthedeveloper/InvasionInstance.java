@@ -40,7 +40,7 @@ import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.MessageHandler;
 import me.tomthedeveloper.handlers.UserManager;
 import me.tomthedeveloper.items.SpecialItemManager;
-import me.tomthedeveloper.kits.GolemFriend;
+import me.tomthedeveloper.kits.GolemFriendKit;
 import me.tomthedeveloper.permissions.PermissionsManager;
 import me.tomthedeveloper.utils.ArmorHelper;
 
@@ -144,7 +144,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         addStat(player, "gamesplayed");
                         addStat(player, "xp", 10);
                         setTimer(25);
-                        player.sendMessage(ChatManager.colorMessage("In-game.Messages.Lobby-Messages.game-Started"));
+                        player.sendMessage(ChatManager.colorMessage("In-game.Messages.Lobby-Messages.Game-Started"));
                     }
                     FIGHTING = false;
 
@@ -430,15 +430,15 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
     public void stopGame() {
         if (getPlayersLeft().size() > 0) {
         	for(Player p : getPlayers()) {
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.All-Villagers-Died"));
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.All-Villagers-Died"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
             }
         } else {
         	for(Player p : getPlayers()) {
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.All-Players-Died"));
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
-                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.All-Players-Died"));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.Reached-Wave-X").replaceAll("%NUMBER%", String.valueOf(getWave())));
+                p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds"));
             }
         }
         for (Player player : getPlayers()) {
@@ -1094,7 +1094,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
         if (user.isFakeDead()) {
             player.setAllowFlight(true);
-            if (youtuberInvasion.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3() || youtuberInvasion.is1_12_R1()) {
                 player.setGameMode(GameMode.SPECTATOR);
             } else {
                 player.setGameMode(GameMode.SURVIVAL);
@@ -1106,7 +1106,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         } else {
             teleportToStartLocation(player);
             user.setSpectator(true);
-            if (youtuberInvasion.is1_8_R3()) {
+            if (youtuberInvasion.is1_8_R3() || youtuberInvasion.is1_12_R1()) {
                 player.setGameMode(GameMode.SPECTATOR);
             } else {
                 player.setGameMode(GameMode.SURVIVAL);
@@ -1159,7 +1159,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         user.setAllowDoubleJump(false);
         user.setSpectator(false);
         user.removeScoreboard();
-        if (user.getKit() instanceof GolemFriend) {
+        if (user.getKit() instanceof GolemFriendKit) {
             for (IronGolem ironGolem : getIronGolems()) {
                 if (ironGolem.getCustomName().contains(user.toPlayer().getName()))
                     ironGolem.remove();
