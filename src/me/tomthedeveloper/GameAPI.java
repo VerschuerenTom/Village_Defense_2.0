@@ -18,16 +18,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
-import me.tomthedeveloper.kitapi.KitHandler;
-import me.tomthedeveloper.kitapi.KitMenuHandler;
 import me.tomthedeveloper.bungee.Bungee;
 import me.tomthedeveloper.commands.InstanceCommands;
 import me.tomthedeveloper.commands.SignCommands;
 import me.tomthedeveloper.commands.leave;
 import me.tomthedeveloper.commands.onStopCommand;
-import me.tomthedeveloper.events.onBuild;
 import me.tomthedeveloper.events.JoinEvent;
 import me.tomthedeveloper.events.QuitEvent;
+import me.tomthedeveloper.events.onBuild;
 import me.tomthedeveloper.events.onSpectate;
 import me.tomthedeveloper.events.customevents.SetupInventoryEvents;
 import me.tomthedeveloper.game.GameInstance;
@@ -36,6 +34,8 @@ import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.GameInstanceManager;
 import me.tomthedeveloper.handlers.InventoryManager;
 import me.tomthedeveloper.handlers.SignManager;
+import me.tomthedeveloper.kitapi.KitHandler;
+import me.tomthedeveloper.kitapi.KitMenuHandler;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityTypes;
 import net.minecraft.server.v1_12_R1.MinecraftKey;

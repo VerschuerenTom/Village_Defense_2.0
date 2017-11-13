@@ -115,7 +115,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
                 } else {
                 	for(Player p : getPlayers()) {
-                        p.sendMessage(ChatManager.colorMessage("In-game.Messages.Lobby-Messages.Enough-Players-To-Start"));
+                        p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Lobby-Messages.Enough-Players-To-Start"));
                     }
                     setGameState(GameState.STARTING);
                     setTimer(VillageDefense.STARTING_TIMER_TIME);
@@ -233,7 +233,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                                 clearZombies();
                                 zombiestospawn = 0;
                                 for(Player p : getPlayers()) {
-                                    p.sendMessage(ChatManager.colorMessage("In-game.Messages.Zombie-Got-Stuck-In-The-Map"));
+                                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Zombie-Got-Stuck-In-The-Map"));
                                 }
                             } else {
                                 int i = getZombiesLeft();
@@ -625,7 +625,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             player1.sendMessage(ChatManager.PLUGINPREFIX + message);
         }
         for (Player player : getPlayers()) {
-        	player.sendMessage(ChatManager.colorMessage("In-game.Messages.You-Feel-Refreshed"));
+        	player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.You-Feel-Refreshed"));
             if (!(youtuberInvasion.is1_8_R3() || youtuberInvasion.is1_7_R4())) {
                 player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
             } else {
@@ -1061,7 +1061,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 getStartLocation().getWorld().strikeLightningEffect(event.getEntity().getLocation());
                 removeVillager((Villager) event.getEntity());
                 for(Player p : getPlayers()) {
-                    p.sendMessage(ChatManager.colorMessage("In-game.Messages.Villager-Died"));
+                    p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Villager-Died"));
                 }
             }
         }
@@ -1276,7 +1276,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 player.setAllowFlight(false);
                 player.setGameMode(GameMode.SURVIVAL);
                 this.showPlayers();
-                player.sendMessage(ChatManager.colorMessage("In-game.Back-In-game"));
+                player.sendMessage(ChatManager.colorMessage("In-game.Back-In-Game"));
             }
 
         }
