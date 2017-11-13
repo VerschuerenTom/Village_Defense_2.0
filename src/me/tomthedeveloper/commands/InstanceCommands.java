@@ -15,8 +15,8 @@ import org.bukkit.entity.Player;
 
 import me.tomthedeveloper.CommandsInterface;
 import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.events.PlayerAddCommandEvent;
-import me.tomthedeveloper.events.PlayerAddSpawnCommandEvent;
+import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
+import me.tomthedeveloper.events.customevents.PlayerAddSpawnCommandEvent;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.permissions.PermissionsManager;
 import me.tomthedeveloper.setup.SetupInventory;

@@ -1,23 +1,23 @@
-package me.tomthedeveloper.events;
+package me.tomthedeveloper.events.customevents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import me.tomthedeveloper.kitapi.basekits.Kit;
-
 /**
- * Created by Tom on 28/07/2014.
+ * Created by Tom on 15/08/2014.
  */
-public class PlayerChooseKitEvent extends Event {
+public class PlayerAddCommandEvent extends Event {
 
     private Player player;
-    private Kit kit;
     private boolean cancel = false;
+    private String[] argument;
+    private String ID;
 
-    public PlayerChooseKitEvent(Player player, Kit kit) {
+    public PlayerAddCommandEvent(Player player, String[] arguments, String ID) {
         this.player = player;
-        this.kit = kit;
+        this.argument= arguments;
+        this.ID = ID;
     }
 
     public Player getPlayer() {
@@ -28,13 +28,17 @@ public class PlayerChooseKitEvent extends Event {
         this.player = player;
     }
 
-    public Kit getKit() {
-        return kit;
+    public String[] getArguments(){
+        return argument;
     }
 
-    public void setKit(Kit kit) {
-        this.kit = kit;
+    public String getArenaID(){
+        return ID;
     }
+
+
+
+
 
     public void setCancelled(Boolean cancelled) {
         this.cancel = cancelled;

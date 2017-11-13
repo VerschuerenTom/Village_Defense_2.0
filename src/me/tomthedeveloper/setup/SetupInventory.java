@@ -108,15 +108,10 @@ public class SetupInventory {
 
     public Inventory getInventory(){
         return inventory;
-
     }
-
 
     public void openInventory(Player player){
         player.openInventory(inventory);
     }
-
-
-
 
 }

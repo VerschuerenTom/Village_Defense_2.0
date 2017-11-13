@@ -17,6 +17,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.VillageDefense;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -31,10 +32,6 @@ public class Bungee implements Listener {
 
     private FileConfiguration motdsconfig;
     private HashMap<GameState,String> motds = new HashMap<GameState,String>();
-
-
-
-
 
     public Bungee(){
         motdsconfig = ConfigurationManager.getConfig("MOTD");
@@ -56,6 +53,7 @@ public class Bungee implements Listener {
                 Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                 Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                 Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving MOTD file!");
+                e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named MOTD.yml if it doesn't exists");
                 Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
@@ -97,14 +95,18 @@ public class Bungee implements Listener {
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onServerListPing(ServerListPingEvent event){
         if(plugin == null){
-            System.out.print("SOMETHING IS WRONG AT LINE 91 FROM BUNGEE.CLASS. TELL THIS TO THE DEVELOPER!");
+        	if(VillageDefense.isDebugged()) {
+        		System.out.print("[Village Debugger] SOMETHING IS WRONG IN BUNGEE.CLASS. REPORT THIS TO THE DEVELOPER!");
+        	}
         }
         if(plugin.getGameInstanceManager() == null)
             return;
         if(plugin.getGameInstanceManager().getGameInstances().size() == 0)
             return;;
         if(plugin.getGameInstanceManager().getGameInstances() == null){
-            System.out.print("NO GAMEINSTANCE FOUND! FIRST CONFIGURE AN ARENA BEFORE ACTIVATING BUNGEEEMODE!");
+        	if(VillageDefense.isDebugged()) {
+        		System.out.print("[Village Debugger] NO GAMEINSTANCE FOUND! FIRST CONFIGURE AN ARENA BEFORE ACTIVATING BUNGEEEMODE!");
+        	}
             return;
         }
         event.setMaxPlayers(plugin.getGameInstanceManager().getGameInstances().get(0).getMAX_PLAYERS());
@@ -114,12 +116,12 @@ public class Bungee implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onJoin(final PlayerJoinEvent event){
-        event.setJoinMessage("");
-        plugin.getPlugin().getServer().getScheduler().runTaskLater(plugin.getPlugin(), new Runnable() {
-            @Override
-            public void run() {
-                plugin.getGameInstanceManager().getGameInstances().get(0).joinAttempt(event.getPlayer());
-            /*    if(plugin.getGameInstanceManager().getGameInstances().get(0).getGameState() == GameState.INGAME ||
+    	event.setJoinMessage("");
+    	plugin.getPlugin().getServer().getScheduler().runTaskLater(plugin.getPlugin(), new Runnable() {
+    		@Override
+    		public void run() {
+    			plugin.getGameInstanceManager().getGameInstances().get(0).joinAttempt(event.getPlayer());
+    			/*    if(plugin.getGameInstanceManager().getGameInstances().get(0).getGameState() == GameState.INGAME ||
                         ( plugin.getGameInstanceManager().getGameInstances().get(0).getGameState() == GameState.STARTING &&plugin.getGameInstanceManager().getGameInstances().get(0).getTimer() <=15) ){
                     UserManager.getUser(event.getPlayer().getUniqueId()).setSpectator(true);
                     UserManager.getUser(event.getPlayer().getUniqueId()).setFakeDead(true);
@@ -158,12 +160,9 @@ public class Bungee implements Listener {
 
 
                 }*/
-            }
-        }, 1L);
-
-
-        }
-
+    		}
+    	}, 1L);
+    }
 
     @EventHandler   (priority = EventPriority.HIGHEST)
     public void onQuit(PlayerQuitEvent event){
@@ -172,10 +171,5 @@ public class Bungee implements Listener {
         plugin.getGameInstanceManager().getGameInstances().get(0).leaveAttempt(event.getPlayer());
 
     }
-
-
-
-
-
 
 }

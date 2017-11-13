@@ -23,16 +23,14 @@ public class onChatEvent implements Listener{
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event){
         if(plugin.getGameInstanceManager().getGameInstance(event.getPlayer()) == null){
-            for(Player player:event.getRecipients()){
+            for(Player player : event.getRecipients()){
                 if(plugin.getGameInstanceManager().getGameInstance(event.getPlayer()) == null)
                     return;
                 event.getRecipients().remove(player);
 
             }
         }
-
         event.getRecipients().clear();
         event.getRecipients().addAll((Collection) plugin.getGameInstanceManager().getGameInstance(event.getPlayer()).getPlayers());
-
     }
 }

@@ -25,11 +25,11 @@ import me.tomthedeveloper.commands.InstanceCommands;
 import me.tomthedeveloper.commands.SignCommands;
 import me.tomthedeveloper.commands.leave;
 import me.tomthedeveloper.commands.onStopCommand;
-import me.tomthedeveloper.events.SetupInventoryEvents;
 import me.tomthedeveloper.events.onBuild;
-import me.tomthedeveloper.events.onJoin;
-import me.tomthedeveloper.events.onQuit;
+import me.tomthedeveloper.events.JoinEvent;
+import me.tomthedeveloper.events.QuitEvent;
 import me.tomthedeveloper.events.onSpectate;
+import me.tomthedeveloper.events.customevents.SetupInventoryEvents;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
@@ -104,7 +104,9 @@ public class GameAPI {
 
 	public  void onSetup(JavaPlugin plugin,CommandsInterface commandsInterface){
 		this.plugin = plugin;
-
+		if(VillageDefense.isDebugged()) {
+			System.out.println("[Village Debugger] Village Defense setup started!");
+		}
 		version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
 		onPreStart();
 		ConfigurationManager.plugin = plugin;
@@ -149,9 +151,9 @@ public class GameAPI {
 		if(!this.getAllowBuilding()) {
 			plugin.getServer().getPluginManager().registerEvents(new onBuild(this), plugin);
 		}
-		plugin.getServer().getPluginManager().registerEvents(new onQuit(this), plugin);
+		plugin.getServer().getPluginManager().registerEvents(new QuitEvent(this), plugin);
 		plugin.getServer().getPluginManager().registerEvents(new SetupInventoryEvents(this), plugin);
-		plugin.getServer().getPluginManager().registerEvents(new onJoin(this),plugin);
+		plugin.getServer().getPluginManager().registerEvents(new JoinEvent(this),plugin);
 
 		loadSigns();
 
@@ -201,6 +203,7 @@ public class GameAPI {
 			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.8.8 if not try to update it to 1.9 or 1.12");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
@@ -226,6 +229,7 @@ public class GameAPI {
 			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.9 if not try to update it to 1.12");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
@@ -267,6 +271,7 @@ public class GameAPI {
 			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+            e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.7.10 if not try to update it to 1.8.8 or 1.9 or 1.12");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
@@ -340,12 +345,17 @@ public class GameAPI {
 			path = "signs." + path;
 
 			Location loc = getLocation(path);
-			if(loc == null)
-				System.out.print("LOCATION IS NNNNUUUUULLLL!!");
+			if(loc == null) {
+				if(VillageDefense.isDebugged()) {
+					System.out.println("[Village Debugger] Location of sign is null!");
+				}
+			}
 			if(loc.getBlock().getState() instanceof Sign){
 				getSignManager().registerSign((Sign) loc.getBlock().getState());
 			}else {
-				System.out.println("Block at given location " + path + " isn't a sign!");
+				if(VillageDefense.isDebugged()) {
+					System.out.println("[Village Debugger] Block at given location " + path + " isn't a sign!");
+				}
 			}
 		}
 	}
@@ -402,6 +412,7 @@ public class GameAPI {
 				Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                 Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                 Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
                 Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");

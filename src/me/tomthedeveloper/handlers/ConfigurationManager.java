@@ -11,8 +11,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.md_5.bungee.api.ChatColor;
-
 /**
  *
  * @author IvanTheBuilder
@@ -21,6 +19,7 @@ public class ConfigurationManager {
 
 
     public static JavaPlugin plugin;
+    
     public static File getFile(String filename){
         return new File(plugin.getDataFolder()+ File.separator + filename +".yml");
     }
@@ -129,7 +128,5 @@ public class ConfigurationManager {
         }
         return config;
     }
-
-
-
+    
 }

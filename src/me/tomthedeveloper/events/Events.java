@@ -50,6 +50,7 @@ import me.tomthedeveloper.InvasionInstance;
 import me.tomthedeveloper.User;
 import me.tomthedeveloper.VillageDefense;
 import me.tomthedeveloper.bungee.Bungee;
+import me.tomthedeveloper.events.customevents.SetupInventoryClickEvent;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.game.InstanceType;
@@ -621,6 +622,7 @@ public class Events implements Listener {
                     Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                     Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                     Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                    e1.printStackTrace();
                     Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                     Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
                     Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
@@ -659,6 +661,14 @@ public class Events implements Listener {
                         b = true;
                     } catch (SQLException e1) {
                         System.out.print("CONNECTION FAILED TWICE FOR PLAYER " + event.getPlayer().getName());
+                        Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                        Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                        Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                        e1.printStackTrace();
+                        Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                        Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+                        Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+                        Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                         //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
                 }
@@ -715,6 +725,7 @@ public class Events implements Listener {
                             Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with getting player data in MySQL database!");
+                            npe.printStackTrace();
                             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                             Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
                             Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
@@ -771,7 +782,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Worker.game-Item-Place-Message"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Worker.Game-Item-Place-Message"));
     }
 
 

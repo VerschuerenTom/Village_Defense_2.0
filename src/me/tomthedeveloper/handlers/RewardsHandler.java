@@ -33,8 +33,10 @@ public class RewardsHandler {
         enabled = plugin.getConfig().getBoolean("Rewards-Enabled");
         File file = new File(plugin.getDataFolder() + File.separator + "rewards.yml");
         if (!file.exists()) {
-            System.out.print("Creating new file rewards.yml");
-            System.out.print("Writing to file rewards.yml");
+        	if(VillageDefense.isDebugged()) {	
+        		System.out.print("Creating new file rewards.yml");
+        		System.out.print("Writing to file rewards.yml");
+        	}
             InputStream inputStream = RewardsHandler.class.getResourceAsStream("rewards.yml");
             OutputStream outputStream = null;
             try {
@@ -45,7 +47,9 @@ public class RewardsHandler {
                 while ((read = inputStream.read(bytes)) != -1) {
                     outputStream.write(bytes, 0, read);
                 }
-                System.out.println("Done!");
+                if(VillageDefense.isDebugged()) {
+                	System.out.println("[Village Debugger] Rewards.yml creating done!");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -62,10 +66,7 @@ public class RewardsHandler {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
-
-
             }
         }
         config = ConfigurationManager.getConfig("rewards");
@@ -125,8 +126,5 @@ public class RewardsHandler {
         } else {
             plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command.replaceAll("%PLAYER%", player.getName()));
         }
-
     }
-
-
 }

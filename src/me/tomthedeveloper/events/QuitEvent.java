@@ -9,12 +9,12 @@ import me.tomthedeveloper.GameAPI;
 /**
  * Created by Tom on 11/08/2014.
  */
-public class onQuit implements Listener {
+public class QuitEvent implements Listener {
 
 
     public GameAPI plugin;
 
-    public onQuit(GameAPI plugin) {
+    public QuitEvent(GameAPI plugin) {
         this.plugin = plugin;
     }
 

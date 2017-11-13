@@ -512,8 +512,10 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         if (getVillagers().size() > 10) {
             return;
         } else if (getVillagerSpawns() == null || getVillagerSpawns().size() <= 0) {
-            System.out.print("NO VILLAGERSPAWNS DEFINED FOR ARENA " + this.getID() + "! ARENA CAN'T RUN WITHOUT VILLAGER SPAWNS! PLEASE ADD VILLAGER SPAWNS!");
-            return;
+        	if(VillageDefense.isDebugged()) {
+        		System.out.print(ChatColor.RED + "[Village Debugger] NO VILLAGERSPAWNS DEFINED FOR ARENA " + this.getID() + "! ARENA CAN'T RUN WITHOUT VILLAGER SPAWNS! PLEASE ADD VILLAGER SPAWNS!");
+        	}
+        	return;
         } else {
             for (Location location : getVillagerSpawns()) {
                 spawnVillager(location);
@@ -521,7 +523,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             if (getVillagers().size() != 0) {
                 spawnVillagers();
             } else {
-                System.out.print("UNABLE TO SPAWN VILLAGERS! PLEASE CONTACT THE DEV TO SOLVE this PROBLEM!!");
+            	if(VillageDefense.isDebugged()) {
+            		System.out.print("[Village Debugger] UNABLE TO SPAWN VILLAGERS! PLEASE CONTACT THE DEV TO SOLVE this PROBLEM!!");
+            	}
             }
         }
     }
@@ -650,6 +654,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     @Override
     public void joinAttempt(Player p) {
+    	if(VillageDefense.isDebugged()) {
+    		System.out.println("[Village Debugger] Player " + p.getName() + " attemping to join arena!");
+    	}
         if ((getGameState() == GameState.INGAME || (getGameState() == GameState.STARTING && getTimer() <= 3) || getGameState() == GameState.ENDING)) {
             if (plugin.isInventoryManagerEnabled()) {
                 p.setLevel(0);
@@ -1144,7 +1151,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     @Override
     public void leaveAttempt(Player p) {
-
+    	if(VillageDefense.isDebugged()) {
+    		System.out.println("[Village Debugger] Player " + p.getName() + " is attemping to leave arena!");
+    	}
         User user = UserManager.getUser(p.getUniqueId());
         user.setInt("orbs", 0);
         p.getInventory().clear();
