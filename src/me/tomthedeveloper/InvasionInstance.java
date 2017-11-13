@@ -144,7 +144,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         addStat(player, "gamesplayed");
                         addStat(player, "xp", 10);
                         setTimer(25);
-                        player.sendMessage(ChatManager.colorMessage("In-game.Messages.Lobby-Messages.Game-Started"));
+                        player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Lobby-Messages.Game-Started"));
                     }
                     FIGHTING = false;
 
