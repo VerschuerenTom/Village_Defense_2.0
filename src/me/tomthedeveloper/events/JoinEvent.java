@@ -10,12 +10,12 @@ import me.tomthedeveloper.GameAPI;
 /**
  * Created by Tom on 10/07/2015.
  */
-public class onJoin implements Listener {
+public class JoinEvent implements Listener {
 
 
     private GameAPI plugin;
 
-    public onJoin(GameAPI plugin){
+    public JoinEvent(GameAPI plugin){
         this.plugin = plugin;
     }
 
@@ -24,8 +24,8 @@ public class onJoin implements Listener {
     public void onJoin(PlayerJoinEvent event){
         if(plugin.isBungeeActivated())
             return;
-        for(Player player:plugin.getPlugin().getServer().getOnlinePlayers()){
-            if(plugin.getGameInstanceManager().getGameInstance(player)==null)
+        for(Player player : plugin.getPlugin().getServer().getOnlinePlayers()){
+            if(plugin.getGameInstanceManager().getGameInstance(player)== null)
                 continue;
             player.hidePlayer(event.getPlayer());
             event.getPlayer().hidePlayer(player);

@@ -1,24 +1,23 @@
-package me.tomthedeveloper.events;
+package me.tomthedeveloper.events.customevents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-/**
- * Created by Tom on 15/08/2014.
- */
-public class PlayerAddSpawnCommandEvent extends Event {
+import me.tomthedeveloper.kitapi.basekits.Kit;
 
+/**
+ * Created by Tom on 28/07/2014.
+ */
+public class PlayerChooseKitEvent extends Event {
 
     private Player player;
+    private Kit kit;
     private boolean cancel = false;
-    private String argument;
-    private String ID;
 
-    public PlayerAddSpawnCommandEvent(Player player, String string, String ID) {
+    public PlayerChooseKitEvent(Player player, Kit kit) {
         this.player = player;
-        this.argument= string;
-        this.ID = ID;
+        this.kit = kit;
     }
 
     public Player getPlayer() {
@@ -29,17 +28,13 @@ public class PlayerAddSpawnCommandEvent extends Event {
         this.player = player;
     }
 
-    public String getSpawnName(){
-        return argument;
+    public Kit getKit() {
+        return kit;
     }
 
-    public String getArenaID(){
-        return ID;
+    public void setKit(Kit kit) {
+        this.kit = kit;
     }
-
-
-
-
 
     public void setCancelled(Boolean cancelled) {
         this.cancel = cancelled;
@@ -48,7 +43,6 @@ public class PlayerAddSpawnCommandEvent extends Event {
     public boolean isCancelled() {
         return this.cancel;
     }
-
 
     public HandlerList getHandlers() {
         return handlers;

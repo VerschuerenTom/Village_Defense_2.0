@@ -50,6 +50,7 @@ import me.tomthedeveloper.InvasionInstance;
 import me.tomthedeveloper.User;
 import me.tomthedeveloper.VillageDefense;
 import me.tomthedeveloper.bungee.Bungee;
+import me.tomthedeveloper.events.customevents.SetupInventoryClickEvent;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.game.InstanceType;
@@ -286,7 +287,7 @@ public class Events implements Listener {
             }
         } else {
             if (event.getRightClicked().getType() == EntityType.VILLAGER || event.getRightClicked().getType() == EntityType.IRON_GOLEM)
-                event.getPlayer().sendMessage(ChatManager.colorMessage("In-game.Messages.shop-Messages.Rude-Message"));
+                event.getPlayer().sendMessage(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Rude-Message"));
         }
     }
 
@@ -483,10 +484,10 @@ public class Events implements Listener {
             return;
         String string = event.getCurrentItem().getItemMeta().getLore().get(0);
         string = ChatColor.stripColor(string);
-        if (!(string.contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop")) || string.contains("orbs"))) {
+        if (!(string.contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop")) || string.contains("orbs"))) {
             boolean b = false;
             for (String s : event.getCurrentItem().getItemMeta().getLore()) {
-                if (string.contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop")) || string.contains("orbs")) {
+                if (string.contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop")) || string.contains("orbs")) {
                     string = s;
                     b = true;
                     continue;
@@ -497,11 +498,11 @@ public class Events implements Listener {
         }
         int price = Integer.parseInt(string.split(" ")[0]);
         if (price > UserManager.getUser(player.getUniqueId()).getInt("orbs")) {
-            player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.shop-Messages.Not-Enough-Orbs"));
+            player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Not-Enough-Orbs"));
             return;
         }
         if (event.getCurrentItem().hasItemMeta() && event.getCurrentItem().getItemMeta().hasDisplayName()) {
-            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Golem-Item-Name"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Golem-Item-Name"))) {
                 ((InvasionInstance) gameInstance).spawnGolem(gameInstance.getStartLocation(), player);
                 player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Golem-Spawned"));
                 UserManager.getUser(player.getUniqueId()).setInt("orbs", UserManager.getUser(player.getUniqueId()).getInt("orbs") - price);
@@ -526,7 +527,7 @@ public class Events implements Listener {
         Iterator iterator = lore.iterator();
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            if (s.contains(ChatManager.colorMessage("In-game.Messages.shop-Messages.Currency-In-shop"))) {
+            if (s.contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-shop"))) {
                 lore.remove(s);
             }
         }
@@ -621,6 +622,7 @@ public class Events implements Listener {
                     Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                     Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                     Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                    e1.printStackTrace();
                     Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                     Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
                     Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
@@ -659,6 +661,14 @@ public class Events implements Listener {
                         b = true;
                     } catch (SQLException e1) {
                         System.out.print("CONNECTION FAILED TWICE FOR PLAYER " + event.getPlayer().getName());
+                        Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+                        Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+                        Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                        e1.printStackTrace();
+                        Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
+                        Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
+                        Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
+                        Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                         //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
                 }
@@ -715,6 +725,7 @@ public class Events implements Listener {
                             Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with getting player data in MySQL database!");
+                            npe.printStackTrace();
                             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                             Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
                             Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
@@ -771,7 +782,7 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Worker.game-Item-Place-Message"));
+        event.getPlayer().sendMessage(ChatManager.colorMessage("kits.Worker.Game-Item-Place-Message"));
     }
 
 

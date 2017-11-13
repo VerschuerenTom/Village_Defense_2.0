@@ -65,6 +65,7 @@ public class LanguageManager {
 			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with reloading language configuration!");
+            e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- restart the server");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
@@ -82,6 +83,7 @@ public class LanguageManager {
 			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving language file!");
+            ex.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- restart the server");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");

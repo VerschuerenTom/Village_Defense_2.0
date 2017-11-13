@@ -1,4 +1,4 @@
-package me.tomthedeveloper.events;
+package me.tomthedeveloper.events.customevents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -7,16 +7,17 @@ import org.bukkit.event.HandlerList;
 /**
  * Created by Tom on 15/08/2014.
  */
-public class PlayerAddCommandEvent extends Event {
+public class PlayerAddSpawnCommandEvent extends Event {
+
 
     private Player player;
     private boolean cancel = false;
-    private String[] argument;
+    private String argument;
     private String ID;
 
-    public PlayerAddCommandEvent(Player player, String[] arguments, String ID) {
+    public PlayerAddSpawnCommandEvent(Player player, String string, String ID) {
         this.player = player;
-        this.argument= arguments;
+        this.argument= string;
         this.ID = ID;
     }
 
@@ -28,17 +29,13 @@ public class PlayerAddCommandEvent extends Event {
         this.player = player;
     }
 
-    public String[] getArguments(){
+    public String getSpawnName(){
         return argument;
     }
 
     public String getArenaID(){
         return ID;
     }
-
-
-
-
 
     public void setCancelled(Boolean cancelled) {
         this.cancel = cancelled;

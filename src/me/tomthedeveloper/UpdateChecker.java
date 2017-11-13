@@ -43,6 +43,7 @@ public class UpdateChecker {
         	Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with checking for an update!");
+            ex.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if spigotmc site isn't offline (and wait until it's online)");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");

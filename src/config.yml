@@ -19,3 +19,4 @@ Mini-Zombie-Speed: 2.0
 Zombie-Speed: 0.4
 Rewards-Enabled: false
 ChatFormat-Enabled: true
+Debug: false

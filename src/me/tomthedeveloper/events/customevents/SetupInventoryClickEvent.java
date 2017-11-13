@@ -1,4 +1,4 @@
-package me.tomthedeveloper.events;
+package me.tomthedeveloper.events.customevents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

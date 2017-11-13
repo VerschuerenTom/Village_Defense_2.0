@@ -46,8 +46,8 @@ import me.tomthedeveloper.creatures.v1_12_R1.RidableIronGolem;
 import me.tomthedeveloper.creatures.v1_12_R1.RidableVillager;
 import me.tomthedeveloper.creatures.v1_12_R1.WorkingWolf;
 import me.tomthedeveloper.events.Events;
-import me.tomthedeveloper.events.PlayerAddCommandEvent;
-import me.tomthedeveloper.events.PlayerAddSpawnCommandEvent;
+import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
+import me.tomthedeveloper.events.customevents.PlayerAddSpawnCommandEvent;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -110,6 +110,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     private GameAPI gameAPI = new GameAPI();
     private String currentVersion;
 	private String latestVersion;
+	private static Boolean debug;
 
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
     private String version;
@@ -137,6 +138,18 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     public boolean is1_12_R1() {
         return getVersion().equalsIgnoreCase("v1_12_R1");
     }
+    
+	public void debugChecker() {
+        if(!getConfig().isSet("Debug")) {
+        	getConfig().set("Debug", false);
+        	saveConfig();
+        }
+        debug = getConfig().getBoolean("Debug");
+	}
+	
+	public static boolean isDebugged() {
+		return debug;
+	}
 
     public String getVersion() {
         return version;
@@ -151,6 +164,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         LanguageManager.init(this);
         LanguageManager.saveDefaultLanguageFile();
         saveDefaultConfig();
+        debugChecker();
         if(LanguageManager.getLanguageMessage("File-Version") == null || LanguageManager.getLanguageMessage("File-Version").equals("0")) {
         	LanguageMigrator.initiateMigration();
         }
@@ -358,6 +372,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                 Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                 Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
                 Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
@@ -784,7 +799,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         }
         gameAPI.getGameInstanceManager().getGameInstances().clear();
         if (!this.getConfig().contains("instances")) {
-            System.out.print(ChatColor.RED + "NO INSTANCES IN CONFIG!");
+        	if(isDebugged()) {
+        		System.out.print(ChatColor.RED + "[Village Debugger] There are no instances in config.yml!");
+        	}
             return;
         }
 
@@ -821,28 +838,15 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 invasionInstance.setStartLocation(gameAPI.getLocation(s + "Startlocation"));
             if (getConfig().contains(s + "Endlocation"))
                 invasionInstance.setEndLocation(gameAPI.getLocation(s + "Endlocation"));
-
-            if (gameAPI.needsMapRestore() && getConfig().contains(s + "schematic")) {
-                if (!getConfig().getString(s + "schematic").contains(" schematic")) {
-                    invasionInstance.setSchematicName(getConfig().getString(s + "schematic"));
-                } else {
-                    System.out.print("You need to assign a schematic file to the arena" + s + ". You can do this in the config or with the ingame-command /earthmaster <arena> set schematic <name of file without .schematic!>");
-                    continue;
-
-                }
-            } else {
-                if (gameAPI.needsMapRestore()) {
-                    System.out.print("No schematic found for arena " + s + ". You need to assign an schematic file to that arena! You can do this with the ingame-command /earthmaster <arena> set schematic <name of file without .schematic!>");
-                    continue;
-                }
-            }
             if (this.getConfig().contains(s + "zombiespawns")) {
                 for (String string : this.getConfig().getConfigurationSection(s + "zombiespawns").getKeys(false)) {
                     String path = s + "zombiespawns." + string;
                     invasionInstance.addZombieSpawn(gameAPI.getLocation(path));
                 }
             } else {
-                System.out.print("ARENA " + ID + " DOESN'T HAS ZOMBIESPAWN(S)!");
+            	if(isDebugged()) {
+            		System.out.print(ChatColor.RED + "[Village Debugger] ARENA " + ID + " DOESN'T HAS ZOMBIESPAWN(S)!");
+            	}
                 gameAPI.getGameInstanceManager().registerGameInstance(invasionInstance);
 
                 continue;
@@ -854,7 +858,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     invasionInstance.addVillagerSpawn(gameAPI.getLocation(path));
                 }
             } else {
-                System.out.print("ARENA " + ID + " DOESN'T HAS VILLAGERSPAWN(S)!");
+            	if(isDebugged()) {
+            		System.out.print(ChatColor.RED + "[Village Debugger] ARENA " + ID + " DOESN'T HAS VILLAGERSPAWN(S)!");
+            	}
                 gameAPI.getGameInstanceManager().registerGameInstance(invasionInstance);
 
                 continue;
@@ -868,7 +874,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
                 }
             } else {
-                System.out.print("ARENA " + ID + "DOESN'T HAS DOORS?");
+            	if(isDebugged()) {
+            		System.out.print(ChatColor.RED + "[Village Debugger] ARENA " + ID + "DOESN'T HAS DOORS?");
+            	}
                 gameAPI.getGameInstanceManager().registerGameInstance(invasionInstance);
                 continue;
             }
@@ -878,9 +886,9 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
 
             invasionInstance.start();
             this.getServer().getPluginManager().registerEvents(invasionInstance, this);
-            System.out.print("INSTANCE " + ID + " STARTED!");
-
-
+            if(isDebugged()) {
+            	System.out.print(ChatColor.RED + "[Village Debugger] INSTANCE " + ID + " STARTED!");
+            }
         }
 
     }
@@ -925,8 +933,6 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
         String ID = event.getArenaID();
         int counter = 0;
         int i = 0;
-
-
         if (!event.getArguments()[2].equalsIgnoreCase("doors"))
             return;
 
@@ -1085,6 +1091,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                         Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                         Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                         Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+                        e1.printStackTrace();
                         Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                         Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
                         Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
@@ -1126,6 +1133,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                             Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
                             Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
                             Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+                            e1.printStackTrace();
                             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
                             //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

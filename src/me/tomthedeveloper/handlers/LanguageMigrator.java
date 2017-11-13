@@ -61,9 +61,8 @@ public class LanguageMigrator {
 		LanguageManager.saveLanguageFile();
 		System.out.println("[VillageDefense] Successfully migrated language.yml to new format! Changed " + counter + " lines!");
 		if(nomessages > 0) {
-
-			Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] WARNING! Your old language.yml didn't have all messages needed for migration,");
-			Bukkit.getConsoleSender().sendMessage("ï¿½cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
+			Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] WARNING! Your old language.yml didn't have all messages needed for migration,");
+			Bukkit.getConsoleSender().sendMessage("§cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
 		}
 	}
 	
