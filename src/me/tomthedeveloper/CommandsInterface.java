@@ -8,8 +8,6 @@ import org.bukkit.entity.Player;
  */
 public interface CommandsInterface {
 
-
-
     boolean checkPlayerCommands(Player player, Command command, String s,String[] strings);
 
     boolean checkSpecialCommands(Player player,Command command,String s, String[] strings);

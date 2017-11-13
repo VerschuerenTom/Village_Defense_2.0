@@ -37,10 +37,6 @@ public class PlayerAddSpawnCommandEvent extends Event {
         return ID;
     }
 
-
-
-
-
     public void setCancelled(Boolean cancelled) {
         this.cancel = cancelled;
     }
