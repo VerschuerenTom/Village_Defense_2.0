@@ -310,7 +310,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
 
                     for(Player p : getPlayers()) {
-                        p.sendMessage(ChatManager.colorMessage("commands.Teleported-To-The-Lobby"));
+                        p.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Teleported-To-The-Lobby"));
                     }
 
                     setGameState(GameState.RESTARTING);
@@ -357,7 +357,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
         if (Math.pow(50 * user.getInt("level"), 1.5) < user.getInt("xp")) {
             user.addInt("level", 1);
-            player.sendMessage(ChatManager.formatMessage(ChatManager.colorMessage("In-game.You-Leveled-Up"), user.getInt("level")));
+            player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.formatMessage(ChatManager.colorMessage("In-game.You-Leveled-Up"), user.getInt("level")));
         }
     }
 
