@@ -279,7 +279,7 @@ public class Events implements Listener {
                 && event.getPlayer().getItemInHand().getType() != Material.STICK
                 && event.getRightClicked().getType() == EntityType.IRON_GOLEM) {
             IronGolem ironGolem = (IronGolem) event.getRightClicked();
-            if (ironGolem.getCustomName().contains(event.getPlayer().getName())) {
+            if (ironGolem.getCustomName() != null && ironGolem.getCustomName().contains(event.getPlayer().getName())) {
                 event.getRightClicked().setPassenger(event.getPlayer());
                 return;
             } else {
