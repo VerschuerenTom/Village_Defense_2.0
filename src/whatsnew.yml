@@ -3,8 +3,8 @@
 + changed VillageDefense to Main
 + fixed kit lores not showing properly (color codes break)
 + removed don't hurt me message
-+ added translatable messages for add orbs command
 
 
 TODO
 - add working language updater
+- add translatable messages for add orbs command

@@ -513,7 +513,8 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
                 User user = UserManager.getUser(player.getUniqueId());
                 user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
-                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
+                player.sendMessage(ChatManager.PLUGINPREFIX + "§7Orbs added to player!");
+                //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount>");
@@ -529,11 +530,13 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
                     if (getplayer.getName().equals(strings[3])) {
                         User user = UserManager.getUser(getplayer.getUniqueId());
                         user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
-                        player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
+                        player.sendMessage(ChatManager.PLUGINPREFIX + "§7Orbs added to player!");
+                        //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                         return true;
                     }
                 }
-                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Player-Not-Found"));
+                player.sendMessage(ChatManager.PLUGINPREFIX + "§cPlayer not found!");
+                //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Player-Not-Found"));
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount> <Player");
