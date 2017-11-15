@@ -190,7 +190,7 @@ public class Util {
         Pattern regex = Pattern.compile(".{1," + max + "}(?:\\s|$)", Pattern.DOTALL);
         Matcher regexMatcher = regex.matcher(string);
         while (regexMatcher.find()) {
-            matchList.add(regexMatcher.group());
+            matchList.add("§7" + regexMatcher.group());
         }
         return matchList;
     }

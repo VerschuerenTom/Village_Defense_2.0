@@ -36,7 +36,38 @@ public class SignCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if(commandSender instanceof Player && command.getLabel().equalsIgnoreCase("addsigns")){
+        /*if(commandSender instanceof Player && command.getName().equalsIgnoreCase("removesigns")) {
+        	Player player = (Player) commandSender;
+            Selection selection = plugin.getWorldEditPlugin().getSelection(player);
+            int i = plugin.getPlugin().getConfig().getConfigurationSection("signs").getKeys(false).size();
+             i = i+2;
+            if(selection == null){
+                player.sendMessage("You have to select a region with 1 or more signs in it with World Edit before clicking on the sign");
+                return true;
+            }
+            if(selection instanceof CuboidSelection){
+                CuboidSelection cuboidSelection = (CuboidSelection) selection;
+                Vector min = cuboidSelection.getNativeMinimumPoint();
+                Vector max = cuboidSelection.getNativeMaximumPoint();
+                for(int x = min.getBlockX();x <= max.getBlockX(); x=x+1){
+                    for(int y = min.getBlockY();y <= max.getBlockY(); y=y+1){
+                        for(int z = min.getBlockZ();z <= max.getBlockZ(); z=z+1){
+                            Location tmpblock = new Location(player.getWorld(), x, y, z);
+                            if(tmpblock.getBlock().getState() instanceof Sign && getSigns().contains(tmpblock.getBlock().getState())){
+                                boolean b = plugin.getSignManager().registerSign((Sign) tmpblock.getBlock().getState());
+                                plugin.getSignManager().removeSign((Sign) tmpblock.getBlock().getState());
+                                plugin.saveLoc("signs." + i, tmpblock);
+                                counter++;
+                                i++;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }*/
+    	if(commandSender instanceof Player && command.getLabel().equalsIgnoreCase("addsigns")){
             Player player = (Player) commandSender;
             Selection selection = plugin.getWorldEditPlugin().getSelection(player);
             int i = plugin.getPlugin().getConfig().getConfigurationSection("signs").getKeys(false).size();
@@ -64,7 +95,7 @@ public class SignCommands implements CommandExecutor {
                     }
                 }
 
-            }else{
+            } else{
                 if(selection.getMaximumPoint().getBlock().getState() instanceof Sign&& !getSigns().contains(selection.getMaximumPoint().getBlock().getState())){
                     plugin.getSignManager().registerSign((Sign) selection.getMaximumPoint().getBlock().getState());
                     plugin.saveLoc("signs." + i, selection.getMaximumPoint());

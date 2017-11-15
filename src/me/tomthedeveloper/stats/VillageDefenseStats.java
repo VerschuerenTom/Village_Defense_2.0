@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.UserManager;
 
@@ -23,7 +23,7 @@ import me.tomthedeveloper.handlers.UserManager;
 public enum VillageDefenseStats {
     KILLS("kills"), DEATHS("deaths"), GAMES_PLAYED("gamesplayed"), HIGHEST_WAVE("highestwave"), LEVEL("level"), XP("xp");
 
-    public static VillageDefense plugin;
+    public static Main plugin;
     private String name;
 
 

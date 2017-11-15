@@ -17,7 +17,7 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 
 /**
  * Created by Tom on 2/08/2014.
@@ -25,7 +25,7 @@ import me.tomthedeveloper.VillageDefense;
 public class Items {
 
     private static ItemStack spectatoritem = null;
-    public static VillageDefense villageDefense;
+    public static Main villageDefense;
 
     public static ItemStack getSpecatorItemStack(){
         if(spectatoritem != null)

@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.permissions.PermissionsManager;
@@ -34,11 +34,11 @@ public class TornadoKit extends PremiumKit implements Listener {
     int lines = 3;
     double height_increasement = 0.5;
     double radius_increasement = max_radius / max_height;
-    private VillageDefense plugin;
+    private Main plugin;
     private List<Tornado> tornados = new ArrayList<Tornado>();
 
 
-    public TornadoKit(VillageDefense plugin) {
+    public TornadoKit(Main plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Tornado.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Tornado.Kit-Description"), 40);

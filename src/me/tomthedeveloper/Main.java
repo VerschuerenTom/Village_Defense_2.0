@@ -95,7 +95,7 @@ import me.tomthedeveloper.versions.InvasionInstance1_9_R1;
 /**
  * Created by Tom on 12/08/2014.
  */
-public class VillageDefense extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor {
+public class Main extends JavaPlugin implements CommandsInterface, Listener, CommandExecutor {
 
     public static int STARTING_TIMER_TIME = 60;
     public static float MINI_ZOMBIE_SPEED;
@@ -111,6 +111,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     private String currentVersion;
 	private String latestVersion;
 	private static Boolean debug;
+	private int LANGUAGE_FILE_VERSION = 2;
 
     private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
     private String version;
@@ -163,11 +164,22 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
     public void onEnable() {
         LanguageManager.init(this);
         LanguageManager.saveDefaultLanguageFile();
+        //LanguageMigrator.init(this);
         saveDefaultConfig();
         debugChecker();
         if(LanguageManager.getLanguageMessage("File-Version") == null || LanguageManager.getLanguageMessage("File-Version").equals("0")) {
         	LanguageMigrator.initiateMigration();
         }
+        /*if(!LanguageManager.getLanguageFile().get("File-Version").equals(LANGUAGE_FILE_VERSION)) {
+        	if(Main.isDebugged()) {
+				System.out.println("[Village Debugger] Initializing language file update!");
+			}
+        	LanguageMigrator.languageUpdate();
+        } else {
+        	if(Main.isDebugged()) {
+				System.out.println("[Village Debugger] You've got latest language file version!");
+			}
+        }*/
         gameAPI.setGameName("VillageDefense");
         gameAPI.setAbreviation("vd");
         gameAPI.enableKits();
@@ -501,6 +513,7 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
                 User user = UserManager.getUser(player.getUniqueId());
                 user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
+                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount>");
@@ -516,11 +529,11 @@ public class VillageDefense extends JavaPlugin implements CommandsInterface, Lis
                     if (getplayer.getName().equals(strings[3])) {
                         User user = UserManager.getUser(getplayer.getUniqueId());
                         user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
-                        player.sendMessage(ChatColor.GREEN + "Orbs add to that player!");
+                        player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                         return true;
                     }
                 }
-                player.sendMessage(ChatColor.RED + "PLayer not found!");
+                player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Player-Not-Found"));
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "Wrong usage. Do /villagedefense add orbs <amount> <Player");

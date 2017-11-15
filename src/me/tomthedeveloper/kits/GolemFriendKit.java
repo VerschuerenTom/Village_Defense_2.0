@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.LevelKit;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -25,10 +25,10 @@ import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
  */
 public class GolemFriendKit extends LevelKit {
 
-    private VillageDefense plugin;
+    private Main plugin;
 
 
-    public GolemFriendKit(VillageDefense plugin) {
+    public GolemFriendKit(Main plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Golem-Friend.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Golem-Friend.Kit-Description"), 40);

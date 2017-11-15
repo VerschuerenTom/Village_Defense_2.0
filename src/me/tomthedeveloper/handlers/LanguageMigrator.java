@@ -1,11 +1,23 @@
 package me.tomthedeveloper.handlers;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import me.tomthedeveloper.Main;
 
 public class LanguageMigrator {
+	
+	private static Main plugin;
 
 	private static List<String> oldmessages = 
 			Arrays.asList("Teleported-To-The-Lobby", "No-Arena-Like-That", "STATS-AboveLine", "STATS-UnderLinen", "STATS-Kills", "STATS-Deaths", "STATS-Games-Played", "STATS-Hihgest-Wave", "STATS-Level", "STATS-Exp", "STATS-Next-Level-Exp", "SCOREBOARD-Header", "SCOREBOARD-Villagers", "SCOREBOARD-Zombies", "SCOREBOARD-Players-Left" , "SCOREBOARD-Min-Players", "SCOREBOARD-Starting-In", "SCOREBOARD-Players", "SCOREBOARD-Next-Wave-In",
@@ -29,6 +41,10 @@ public class LanguageMigrator {
 					"In-game.Messages.Wave-Started","In-game.Messages.Villager-Died","In-game.Messages.You-Feel-Refreshed","In-game.Messages.Cant-Ride-Others-Golem", "In-game.Messages.Golem-Spawned","In-game.Messages.Wolf-Spawned","In-game.Messages.Zombie-Got-Stuck-In-The-Map","In-game.Messages.shop-Messages.Golem-Item-Name","In-game.Messages.shop-Messages.Not-Enough-Orbs",
 					"In-game.Messages.shop-Messages.Rude-Message","In-game.Messages.shop-Messages.Currency-In-shop","In-game.Messages.Game-End-Messages.All-Players-Died","In-game.Messages.Game-End-Messages.All-Villagers-Died","In-game.Messages.Game-End-Messages.Reached-Wave-X","In-game.Messages.game-End-Messages.Teleporting-To-Lobby-In-10-Seconds","In-game.Messages.game-End-Messages.Teleporting-To-Lobby-In-X-Seconds",
 					"In-game.Messages.Admin-Messages.Force-Start-game","In-game.Messages.Admin-Messages.Set-Starting-In-To-0","In-game.Messages.Admin-Messages.Removed-Zombies","In-game.Messages.Admin-Messages.Removed-Golems","In-game.Messages.Admin-Messages.Removed-Villagers","In-game.Messages.Admin-Messages.Removed-Zombies","In-game.Messages.Admin-Messages.Changed-Wave");
+	
+	public static void init(Main main) {
+		plugin = main;
+	}
 	
 	public static void initiateMigration() {
 		if(LanguageManager.getLanguageMessage("File-Version") != null) {
@@ -65,5 +81,42 @@ public class LanguageMigrator {
 			Bukkit.getConsoleSender().sendMessage("§cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
 		}
 	}
+	
+	/*public static void languageUpdate() {
+		if(LanguageManager.getLanguageMessage("File-Version") == null) {
+			if(Main.isDebugged()) {
+				System.out.println("[Village Debugger] Language update cancelled due to too outdated language file! Please migrate it first!");
+			}
+			return;
+		}
+		if(Main.isDebugged()) {
+			System.out.println("[Village Debugger] Updating language file!");
+		}
+		HashMap<String, Object> oldvalues = new HashMap<>();
+		YamlConfiguration config = new YamlConfiguration();
+		try {
+            config.loadFromString(stringFromInputStream(Main.class.getResourceAsStream("/language.yml")));
+        } catch (InvalidConfigurationException e) {}
+        for (String key : config.getKeys(false)) {
+            oldvalues.put(key, config.get(key));
+        }
+        FileConfiguration c = LanguageManager.getLanguageFile();
+        for (String var : c.getKeys(false)) {
+            oldvalues.remove(var);
+        }
+        if (oldvalues.size()!=0) {
+            for (String key : oldvalues.keySet()) {
+                c.set(key, oldvalues.get(key));
+            }
+            try {
+                c.save(new File(plugin.getDataFolder(), "language.yml"));
+            } catch (IOException e) {}
+        }
+        plugin.getLogger().info("Language file successfully updated to latest version!");
+	}
+    @SuppressWarnings("resource")
+	public static String stringFromInputStream(InputStream in) {
+        return new Scanner(in).useDelimiter("\\A").next();
+    }*/
 	
 }

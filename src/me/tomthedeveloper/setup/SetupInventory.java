@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.utils.ItemBuilder;
 
@@ -95,7 +95,7 @@ public class SetupInventory {
                 .lore(ChatColor.GRAY + "Look at the chest")
                 .lore(ChatColor.GRAY + "and click this")
                 .build());
-        if(VillageDefense.isDebugged()) {
+        if(Main.isDebugged()) {
         	System.out.println("[Village Debugger] Setup items generated!");
         }
 

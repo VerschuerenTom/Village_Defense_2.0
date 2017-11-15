@@ -1,6 +1,9 @@
 commands:
   Teleported-To-The-Lobby: "Teleported to the lobby!"
   No-Arena-Like-That: "&cNo arena with that ID!"
+  Admin-Commands:
+    Player-Not-Found: "&cPlayer not found!"
+    Added-Orbs: "&7Added orbs to player!"
   Stats-Command:
     Header: "&l-----YOUR STATS-----"
     Footer: "&l--------------------"
@@ -173,7 +176,6 @@ In-game:
     Shop-Messages:
       Golem-Item-Name: "Spawn Golem"
       Not-Enough-Orbs: "&cYou need more orbs to buy this item!"
-      Rude-Message: "&cYou can't hit me with a weapon. That's just rude!"
       Currency-In-Shop: "orbs"
     Game-End-Messages:
       All-Players-Died: "&cAll players have died!"
@@ -189,4 +191,4 @@ In-game:
       Removed-Golems: "&b%PLAYER% has removed all the golems!"
       Removed-Zombies: "&b%PLAYER% has cleared the zombies!"
       Changed-Wave: "&bAdmin changed the wave to %NUMBER%"
-File-Version: "1"
+File-Version: "2"

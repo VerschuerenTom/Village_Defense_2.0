@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.tomthedeveloper.User;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.LevelKit;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
@@ -26,9 +26,9 @@ import me.tomthedeveloper.utils.WeaponHelper;
 public class LooterKit extends LevelKit implements Listener {
 
 
-    private VillageDefense plugin;
+    private Main plugin;
 
-    public LooterKit(VillageDefense plugin) {
+    public LooterKit(Main plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Looter.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Looter.Kit-Description"), 40);

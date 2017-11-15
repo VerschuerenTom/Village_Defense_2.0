@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -38,10 +38,10 @@ import me.tomthedeveloper.utils.WeaponHelper;
  */
 public class TeleporterKit extends PremiumKit implements Listener {
 
-    private VillageDefense plugin;
+    private Main plugin;
     private GameAPI gameAPI;
 
-    public TeleporterKit(VillageDefense plugin) {
+    public TeleporterKit(Main plugin) {
         this.plugin = plugin;
         gameAPI = plugin.getGameAPI();
         setName(ChatManager.colorMessage("kits.Teleporter.Kit-Name"));
