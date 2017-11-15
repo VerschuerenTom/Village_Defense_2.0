@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -23,9 +23,9 @@ import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
  */
 public class DogFriendKit extends PremiumKit {
 
-    private VillageDefense plugin;
+    private Main plugin;
 
-    public DogFriendKit(VillageDefense invasion) {
+    public DogFriendKit(Main invasion) {
         this.plugin = invasion;
         this.setName(ChatManager.colorMessage("kits.Dog-Friend.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Dog-Friend.Kit-Description"), 40);

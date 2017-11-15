@@ -1,0 +1,10 @@
+#Commit changes file, won't be included in plugin updates.
+
++ changed VillageDefense to Main
++ fixed kit lores not showing properly (color codes break)
++ removed don't hurt me message
+
+
+TODO
+- add working language updater
+- add translatable messages for add orbs command

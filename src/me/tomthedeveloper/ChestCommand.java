@@ -15,9 +15,9 @@ import me.tomthedeveloper.permissions.PermissionsManager;
  */
 public class ChestCommand implements CommandExecutor {
 
-    private VillageDefense plugin;
+    private Main plugin;
 
-    public ChestCommand(VillageDefense plugin) {
+    public ChestCommand(Main plugin) {
         this.plugin = plugin;
     }
 

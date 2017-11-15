@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
@@ -29,9 +29,9 @@ import me.tomthedeveloper.utils.WeaponHelper;
  */
 public class CleanerKit extends PremiumKit implements Listener {
 
-    private VillageDefense plugin;
+    private Main plugin;
 
-    public CleanerKit(VillageDefense plugin) {
+    public CleanerKit(Main plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Cleaner.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Cleaner.Kit-Description"), 40);

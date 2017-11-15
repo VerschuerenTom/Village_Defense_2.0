@@ -104,7 +104,7 @@ public class GameAPI {
 
 	public  void onSetup(JavaPlugin plugin,CommandsInterface commandsInterface){
 		this.plugin = plugin;
-		if(VillageDefense.isDebugged()) {
+		if(Main.isDebugged()) {
 			System.out.println("[Village Debugger] Village Defense setup started!");
 		}
 		version = Bukkit.getServer().getClass().getPackage().getName().replace(".",  ",").split(",")[3];
@@ -346,14 +346,14 @@ public class GameAPI {
 
 			Location loc = getLocation(path);
 			if(loc == null) {
-				if(VillageDefense.isDebugged()) {
+				if(Main.isDebugged()) {
 					System.out.println("[Village Debugger] Location of sign is null!");
 				}
 			}
 			if(loc.getBlock().getState() instanceof Sign){
 				getSignManager().registerSign((Sign) loc.getBlock().getState());
 			}else {
-				if(VillageDefense.isDebugged()) {
+				if(Main.isDebugged()) {
 					System.out.println("[Village Debugger] Block at given location " + path + " isn't a sign!");
 				}
 			}

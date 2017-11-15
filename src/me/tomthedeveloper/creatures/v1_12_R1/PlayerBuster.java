@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import net.minecraft.server.v1_12_R1.DamageSource;
 import net.minecraft.server.v1_12_R1.EntityHuman;
 import net.minecraft.server.v1_12_R1.EntityIronGolem;
@@ -42,7 +42,7 @@ public class PlayerBuster extends EntityZombie {
     public PlayerBuster(org.bukkit.World world) {
 
         super(((CraftWorld) world).getHandle());
-        this.bw = VillageDefense.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
+        this.bw = Main.ZOMBIE_SPEED; //Change this to your liking. this is were you set the speed
         this.damage = 15; // set the damage
         //There's also a ton of options of you do this. play around with it
 

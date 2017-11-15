@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.tomthedeveloper.User;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.UserManager;
@@ -17,10 +17,10 @@ import me.tomthedeveloper.handlers.UserManager;
  */
 public class FileStats {
 
-	public VillageDefense plugin;
+	public Main plugin;
 	private FileConfiguration config;
 
-	public FileStats(VillageDefense plugin) {
+	public FileStats(Main plugin) {
 		this.plugin = plugin;
 		config = ConfigurationManager.getConfig("STATS");
 	}

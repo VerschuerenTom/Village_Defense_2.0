@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntityIronGolem;
 import net.minecraft.server.v1_7_R4.EntityVillager;
@@ -32,7 +32,7 @@ public class BabyZombie extends EntityZombie {
     @SuppressWarnings("rawtypes")
     public BabyZombie(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
-        this.bw = VillageDefense.MINI_ZOMBIE_SPEED; //Change this to your liking. This is were you set the speed
+        this.bw = Main.MINI_ZOMBIE_SPEED; //Change this to your liking. This is were you set the speed
         this.damage = 15; // set the damage
         //There's also a ton of options of you do this. play around with it
 

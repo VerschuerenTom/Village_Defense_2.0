@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.game.GameInstance;
 
 /**
@@ -20,10 +20,10 @@ public class RewardsHandler {
 
 
     private FileConfiguration config;
-    private VillageDefense plugin;
+    private Main plugin;
     private boolean enabled = false;
 
-    public RewardsHandler(VillageDefense plugin) {
+    public RewardsHandler(Main plugin) {
         this.plugin = plugin;
 
         if (!plugin.getConfig().contains("Rewards-Enabled")) {
@@ -33,7 +33,7 @@ public class RewardsHandler {
         enabled = plugin.getConfig().getBoolean("Rewards-Enabled");
         File file = new File(plugin.getDataFolder() + File.separator + "rewards.yml");
         if (!file.exists()) {
-        	if(VillageDefense.isDebugged()) {	
+        	if(Main.isDebugged()) {	
         		System.out.print("Creating new file rewards.yml");
         		System.out.print("Writing to file rewards.yml");
         	}
@@ -47,7 +47,7 @@ public class RewardsHandler {
                 while ((read = inputStream.read(bytes)) != -1) {
                     outputStream.write(bytes, 0, read);
                 }
-                if(VillageDefense.isDebugged()) {
+                if(Main.isDebugged()) {
                 	System.out.println("[Village Debugger] Rewards.yml creating done!");
                 }
             } catch (IOException e) {

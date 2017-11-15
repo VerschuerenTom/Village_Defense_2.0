@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
 import me.tomthedeveloper.User;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
@@ -32,9 +32,9 @@ import me.tomthedeveloper.utils.WeaponHelper;
 public class MedicKit extends PremiumKit implements Listener {
 
 
-    private VillageDefense plugin;
+    private Main plugin;
 
-    public MedicKit(VillageDefense plugin) {
+    public MedicKit(Main plugin) {
         this.plugin = plugin;
         setName(ChatManager.colorMessage("kits.Medic.Kit-Name"));
         List<String> description = Util.splitString(ChatManager.colorMessage("kits.Medic.Kit-Description"), 40);

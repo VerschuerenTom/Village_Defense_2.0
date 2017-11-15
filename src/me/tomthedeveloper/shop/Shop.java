@@ -6,7 +6,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.menuapi.IconMenu;
 
 /**
@@ -14,7 +14,7 @@ import me.tomthedeveloper.menuapi.IconMenu;
  */
 public class Shop {
 
-	public static VillageDefense plugin;
+	public static Main plugin;
 	private static IconMenu iconMenu;
 	private Chest chest;
 
@@ -24,7 +24,7 @@ public class Shop {
 
 	public static void openShop(Player player) {
 		if (iconMenu == null) {
-			if(VillageDefense.isDebugged()) {
+			if(Main.isDebugged()) {
 				System.out.print("[Village Debugger] Set up the shop or the shopchest first please!");
 			}
 			return;
@@ -39,14 +39,14 @@ public class Shop {
 
 	private void setup() {
 		if (!plugin.getConfig().contains("shop.location")) {
-			if(VillageDefense.isDebugged()) {
+			if(Main.isDebugged()) {
 				System.out.print("[Village Debugger] NO SHOP FOUND FOR THE GAME!!!!");
 			}
 			return;
 		}
 		Location location = plugin.getGameAPI().getLocation("shop.location");
 		if (!(location.getBlock().getState() instanceof Chest)) {
-			if(VillageDefense.isDebugged()) {
+			if(Main.isDebugged()) {
 				System.out.print("[Village Debugger] Location for shop isn't a chest!");
 			}
 			return;

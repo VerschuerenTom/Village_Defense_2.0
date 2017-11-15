@@ -18,7 +18,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.tomthedeveloper.User;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.kitapi.basekits.PremiumKit;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
@@ -33,11 +33,11 @@ import me.tomthedeveloper.utils.WeaponHelper;
  */
 public class BlockerKit extends PremiumKit implements Listener {
 
-	private VillageDefense plugin;
+	private Main plugin;
 	private List<ZombieBarrier> zombiebarriers = new ArrayList<ZombieBarrier>();
 
 
-	public BlockerKit(final VillageDefense plugin) {
+	public BlockerKit(final Main plugin) {
 		this.plugin = plugin;
 		setName(ChatManager.colorMessage("kits.Blocker.Kit-Name"));
 		List<String> description = Util.splitString(ChatManager.colorMessage("kits.Blocker.Kit-Description"), 40);

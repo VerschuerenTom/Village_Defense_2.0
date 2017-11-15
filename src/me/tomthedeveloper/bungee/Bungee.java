@@ -17,7 +17,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.VillageDefense;
+import me.tomthedeveloper.Main;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.game.GameState;
 import me.tomthedeveloper.handlers.ChatManager;
@@ -95,7 +95,7 @@ public class Bungee implements Listener {
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onServerListPing(ServerListPingEvent event){
         if(plugin == null){
-        	if(VillageDefense.isDebugged()) {
+        	if(Main.isDebugged()) {
         		System.out.print("[Village Debugger] SOMETHING IS WRONG IN BUNGEE.CLASS. REPORT THIS TO THE DEVELOPER!");
         	}
         }
@@ -104,7 +104,7 @@ public class Bungee implements Listener {
         if(plugin.getGameInstanceManager().getGameInstances().size() == 0)
             return;;
         if(plugin.getGameInstanceManager().getGameInstances() == null){
-        	if(VillageDefense.isDebugged()) {
+        	if(Main.isDebugged()) {
         		System.out.print("[Village Debugger] NO GAMEINSTANCE FOUND! FIRST CONFIGURE AN ARENA BEFORE ACTIVATING BUNGEEEMODE!");
         	}
             return;
