@@ -3,6 +3,7 @@
 + changed VillageDefense to Main
 + fixed kit lores not showing properly (color codes break)
 + removed don't hurt me message
++ fixed golem attacking players bug (1.12)
 
 
 TODO
