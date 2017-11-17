@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntityWolf;
 import net.minecraft.server.v1_7_R4.EntityZombie;
@@ -29,13 +30,13 @@ public class WorkingWolf extends EntityWolf {
         super(((CraftWorld) world).getHandle());
 
 
-        List goalB = (List) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        List goalB = (List) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        List goalC = (List) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        List goalC = (List) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        List targetB = (List) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        List targetB = (List) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        List targetC = (List) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        List targetC = (List) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
 
         this.a(1.4F, 2.9F);
@@ -113,25 +114,4 @@ public class WorkingWolf extends EntityWolf {
             super.e(f, f1);
         }
     } */
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
-    }
-
-
 }

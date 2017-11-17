@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_9_R1.EntityHuman;
 import net.minecraft.server.v1_9_R1.EntityInsentient;
 import net.minecraft.server.v1_9_R1.EntityIronGolem;
@@ -34,14 +35,13 @@ public class RidableIronGolem extends EntityIronGolem {
     public RidableIronGolem(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
-
-        Set goalB = (Set) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        Set goalB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        Set goalC = (Set) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        Set goalC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        Set targetB = (Set) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        Set targetB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        Set targetC = (Set) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        Set targetC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
 
         this.a(1.4F, 2.9F);
@@ -121,25 +121,6 @@ public class RidableIronGolem extends EntityIronGolem {
             this.S = 1.0F;
         }
     } */
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
-    }
 
     @Override
     public void g(float f, float f1) {

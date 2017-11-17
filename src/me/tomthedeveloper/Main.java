@@ -206,23 +206,8 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         }
         
         this.getCommand(gameAPI.getGameName()).setExecutor(new InstanceCommands(gameAPI, this));
-        if (!this.getConfig().contains("DatabaseActivated"))
-            this.getConfig().set("DatabaseActivated", false);
-        this.saveConfig();
-        if (!this.getConfig().contains("Starting-Waiting-Time")) {
-            this.getConfig().set("Starting-Waiting-Time", 60);
-            this.saveConfig();
-        }
         STARTING_TIMER_TIME = this.getConfig().getInt("Starting-Waiting-Time");
-        if (!this.getConfig().contains("Mini-Zombie-Speed")) {
-            this.getConfig().set("Mini-Zombie-Speed", 2.0);
-            this.saveConfig();
-        }
         MINI_ZOMBIE_SPEED = (float) this.getConfig().getDouble("Mini-Zombie-Speed");
-        if (!this.getConfig().contains("Zombie-Speed")) {
-            this.getConfig().set("Zombie-Speed", 0.4);
-            this.saveConfig();
-        }
         ZOMBIE_SPEED = (float) this.getConfig().getDouble("Zombie-Speed");
         databaseActivated = this.getConfig().getBoolean("DatabaseActivated");
         if (databaseActivated)
@@ -230,59 +215,8 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         else {
             fileStats = new FileStats(this);
         }
-        version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.Youtuber.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.FastZombie.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.BabyZombie.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.PlayerBuster.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.GolemBuster.class);
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.HardZombie.class);
-            gameAPI.registerEntity1_7_10("Villager", 120, me.tomthedeveloper.creatures.v1_7_R4.RidableVillager.class);
-            gameAPI.registerEntity1_7_10("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_7_R4.RidableIronGolem.class);
-            gameAPI.registerEntity1_7_10("Wolf", 95, me.tomthedeveloper.creatures.v1_7_R4.WorkingWolf.class);
-        }
-        if (this.getVersion().equalsIgnoreCase("v1_8_R3")) {
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.Youtuber.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.FastZombie.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.BabyZombie.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.PlayerBuster.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.GolemBuster.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.HardZombie.class);
-            gameAPI.registerEntity("Villager", 120, me.tomthedeveloper.creatures.v1_8_R3.RidableVillager.class);
-            gameAPI.registerEntity("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_8_R3.RidableIronGolem.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.TankerZombie.class);
-            gameAPI.registerEntity("Wolf", 95, me.tomthedeveloper.creatures.v1_8_R3.WorkingWolf.class);
-        }
-        if (this.getVersion().equalsIgnoreCase("v1_9_R1")) {
-            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.FastZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.BabyZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.GolemBuster.class);
-            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.HardZombie.class);
-            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.PlayerBuster.class);
-            gameAPI.register1_9_R1_Entity("Wolf", 95, me.tomthedeveloper.creatures.v1_9_R1.WorkingWolf.class);
-            gameAPI.register1_9_R1_Entity("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_9_R1.RidableIronGolem.class);
-            gameAPI.register1_9_R1_Entity("Villager", 120, me.tomthedeveloper.creatures.v1_9_R1.RidableVillager.class);
-        }
-        if (this.getVersion().equalsIgnoreCase("v1_12_R1")) {
-            NMSUtils.registerEntity(this, "FastZombie", NMSUtils.Type.ZOMBIE, FastZombie.class, false);
-            NMSUtils.registerEntity(this, "GolemBuster", NMSUtils.Type.ZOMBIE, GolemBuster.class, false);
-            NMSUtils.registerEntity(this, "HardZombie", NMSUtils.Type.ZOMBIE, HardZombie.class, false);
-            NMSUtils.registerEntity(this, "PlayerBuster", NMSUtils.Type.ZOMBIE, PlayerBuster.class, false);
-            NMSUtils.registerEntity(this, "BabyZombie", NMSUtils.Type.ZOMBIE, BabyZombie.class, false);
-            NMSUtils.registerEntity(this, "IronGolem", NMSUtils.Type.IRON_GOLEM, RidableIronGolem.class, false);
-            NMSUtils.registerEntity(this, "WorkingWolf", NMSUtils.Type.WOLF, WorkingWolf.class, false);
-            NMSUtils.registerEntity(this, "RidableVillager", NMSUtils.Type.VILLAGER, RidableVillager.class, false);
-
-            /*gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.BabyZombie.class);
-            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.GolemBuster.class);
-            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.HardZombie.class);
-            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.PlayerBuster.class);
-            gameAPI.register1_12_R1_Entity("Wolf",95, me.tomthedeveloper.creatures.v1_12_R1.WorkingWolf.class);
-            gameAPI.register1_12_R1_Entity("VillagerGolem",99, me.tomthedeveloper.creatures.v1_12_R1.RidableIronGolem.class);
-            gameAPI.register1_12_R1_Entity("Villager",120, me.tomthedeveloper.creatures.v1_12_R1.RidableVillager.class); */
-
-        }
+        
+        setupNMSEntities();
 
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
@@ -296,80 +230,8 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
 
         BreakFenceListener listener = new BreakFenceListener();
         listener.runTaskTimer(this, 1L, 20L);
-
-        KnightKit knightkit = new KnightKit();
-        gameAPI.getKitHandler().registerKit(knightkit);
-        LightTankKit lightTankKit = new LightTankKit();
-        gameAPI.getKitHandler().registerKit(lightTankKit);
-        ZombieFinderKit zombieFinderKitKit = new ZombieFinderKit(this);
-        gameAPI.getKitHandler().registerKit(zombieFinderKitKit);
-        this.getServer().getPluginManager().registerEvents(zombieFinderKitKit, this);
-        ArcherKit archerKit = new ArcherKit();
-        gameAPI.getKitHandler().registerKit(archerKit);
-
-
-        PuncherKit puncherKit = new PuncherKit();
-        gameAPI.getKitHandler().registerKit(puncherKit);
-
-        HealerKit healerkit = new HealerKit();
-        gameAPI.getKitHandler().registerKit(healerkit);
-        LooterKit looterKit = new LooterKit(this);
-        gameAPI.getKitHandler().registerKit(looterKit);
-        this.getServer().getPluginManager().registerEvents(looterKit, this);
-        this.getServer().getPluginManager().registerEvents(new SuperArcherKit(), this);
-        RunnerKit runnerKit = new RunnerKit();
-        gameAPI.getKitHandler().registerKit(runnerKit);
-        MediumTankKit mediumTankKit = new MediumTankKit();
-        gameAPI.getKitHandler().registerKit(mediumTankKit);
-        WorkerKit doorRepairKit = new WorkerKit();
-        gameAPI.getKitHandler().registerKit(doorRepairKit);
-        GolemFriendKit golemFriendKitKit = new GolemFriendKit(this);
-        gameAPI.getKitHandler().registerKit(golemFriendKitKit);
-        TerminatorKit strenghtKit = new TerminatorKit();
-        gameAPI.getKitHandler().registerKit(strenghtKit);
-        HardcoreKit hardcoreKit = new HardcoreKit();
-        gameAPI.getKitHandler().registerKit(hardcoreKit);
-
-        SuperArcherKit superArcherKit = new SuperArcherKit();
-        gameAPI.getKitHandler().registerKit(superArcherKit);
-        CleanerKit cleanerKit = new CleanerKit(this);
-        gameAPI.getKitHandler().registerKit(cleanerKit);
-        this.getServer().getPluginManager().registerEvents(cleanerKit, this);
-        TeleporterKit teleporterKit = new TeleporterKit(this);
-        gameAPI.getKitHandler().registerKit(teleporterKit);
-        this.getServer().getPluginManager().registerEvents(teleporterKit, this);
-        // JumperKit jumperkit = new JumperKit();
-        //gameAPI.getKitHandler().registerKit(jumperkit);
-        HeavyTankKit heavyTankKit = new HeavyTankKit();
-        gameAPI.getKitHandler().registerKit(heavyTankKit);
-        ShotBowKit shotBowKit = new ShotBowKit();
-        gameAPI.getKitHandler().registerKit(shotBowKit);
-        this.getServer().getPluginManager().registerEvents(shotBowKit, this);
-
-        DogFriendKit dogFriendKit = new DogFriendKit(this);
-        gameAPI.getKitHandler().registerKit(dogFriendKit);
-        PremiumHardcoreKit premiumHardcoreKit = new PremiumHardcoreKit();
-        gameAPI.getKitHandler().registerKit(premiumHardcoreKit);
-
-        TornadoKit tornadoKit = new TornadoKit(this);
-        gameAPI.getKitHandler().registerKit(tornadoKit);
-        this.getServer().getPluginManager().registerEvents(tornadoKit, this);
-
-        BlockerKit blockerKit = new BlockerKit(this);
-        gameAPI.getKitHandler().registerKit(blockerKit);
-        this.getServer().getPluginManager().registerEvents(blockerKit, this);
-        MedicKit medicKit = new MedicKit(this);
-        gameAPI.getKitHandler().registerKit(medicKit);
-
-       /* NakedKit nakedKit = new NakedKit();
-        getKitHandler().registerKit(nakedKit);
-        this.getServer().getPluginManager().registerEvents(nakedKit, this); */
-        rewardsHandler = new RewardsHandler(this);
-        gameAPI.getKitHandler().setDefaultKit(knightkit);
-        gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
-        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("kits.Kit-Menu-Item-Name"));
-        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("kits.Kit-Menu.Title"));
-        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("kits.Open-Kit-Menu")});
+        
+        setupGameKits();
 
         SpecialItem.loadAll();
         loadInstances();
@@ -798,8 +660,154 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         }
 
     }
+    
+    private void setupNMSEntities() {
+        version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+        if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.Youtuber.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.FastZombie.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.BabyZombie.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.PlayerBuster.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.GolemBuster.class);
+            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.HardZombie.class);
+            gameAPI.registerEntity1_7_10("Villager", 120, me.tomthedeveloper.creatures.v1_7_R4.RidableVillager.class);
+            gameAPI.registerEntity1_7_10("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_7_R4.RidableIronGolem.class);
+            gameAPI.registerEntity1_7_10("Wolf", 95, me.tomthedeveloper.creatures.v1_7_R4.WorkingWolf.class);
+        }
+        if (this.getVersion().equalsIgnoreCase("v1_8_R3")) {
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.Youtuber.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.FastZombie.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.BabyZombie.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.PlayerBuster.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.GolemBuster.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.HardZombie.class);
+            gameAPI.registerEntity("Villager", 120, me.tomthedeveloper.creatures.v1_8_R3.RidableVillager.class);
+            gameAPI.registerEntity("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_8_R3.RidableIronGolem.class);
+            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.TankerZombie.class);
+            gameAPI.registerEntity("Wolf", 95, me.tomthedeveloper.creatures.v1_8_R3.WorkingWolf.class);
+        }
+        if (this.getVersion().equalsIgnoreCase("v1_9_R1")) {
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.FastZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.BabyZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.GolemBuster.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.HardZombie.class);
+            gameAPI.register1_9_R1_Entity("Zombie", 54, me.tomthedeveloper.creatures.v1_9_R1.PlayerBuster.class);
+            gameAPI.register1_9_R1_Entity("Wolf", 95, me.tomthedeveloper.creatures.v1_9_R1.WorkingWolf.class);
+            gameAPI.register1_9_R1_Entity("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_9_R1.RidableIronGolem.class);
+            gameAPI.register1_9_R1_Entity("Villager", 120, me.tomthedeveloper.creatures.v1_9_R1.RidableVillager.class);
+        }
+        if (this.getVersion().equalsIgnoreCase("v1_12_R1")) {
+            NMSUtils.registerEntity(this, "FastZombie", NMSUtils.Type.ZOMBIE, FastZombie.class, false);
+            NMSUtils.registerEntity(this, "GolemBuster", NMSUtils.Type.ZOMBIE, GolemBuster.class, false);
+            NMSUtils.registerEntity(this, "HardZombie", NMSUtils.Type.ZOMBIE, HardZombie.class, false);
+            NMSUtils.registerEntity(this, "PlayerBuster", NMSUtils.Type.ZOMBIE, PlayerBuster.class, false);
+            NMSUtils.registerEntity(this, "BabyZombie", NMSUtils.Type.ZOMBIE, BabyZombie.class, false);
+            NMSUtils.registerEntity(this, "IronGolem", NMSUtils.Type.IRON_GOLEM, RidableIronGolem.class, false);
+            NMSUtils.registerEntity(this, "WorkingWolf", NMSUtils.Type.WOLF, WorkingWolf.class, false);
+            NMSUtils.registerEntity(this, "RidableVillager", NMSUtils.Type.VILLAGER, RidableVillager.class, false);
 
+            /*gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.BabyZombie.class);
+            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.GolemBuster.class);
+            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.HardZombie.class);
+            gameAPI.register1_12_R1_Entity("Zombie",54, me.tomthedeveloper.creatures.v1_12_R1.PlayerBuster.class);
+            gameAPI.register1_12_R1_Entity("Wolf",95, me.tomthedeveloper.creatures.v1_12_R1.WorkingWolf.class);
+            gameAPI.register1_12_R1_Entity("VillagerGolem",99, me.tomthedeveloper.creatures.v1_12_R1.RidableIronGolem.class);
+            gameAPI.register1_12_R1_Entity("Villager",120, me.tomthedeveloper.creatures.v1_12_R1.RidableVillager.class); */
 
+        }
+    }
+
+    private void setupGameKits() {
+        KnightKit knightkit = new KnightKit();
+        gameAPI.getKitHandler().registerKit(knightkit);
+        
+        LightTankKit lightTankKit = new LightTankKit();
+        gameAPI.getKitHandler().registerKit(lightTankKit);
+        
+        ZombieFinderKit zombieFinderKitKit = new ZombieFinderKit(this);
+        gameAPI.getKitHandler().registerKit(zombieFinderKitKit);
+        this.getServer().getPluginManager().registerEvents(zombieFinderKitKit, this);
+        
+        ArcherKit archerKit = new ArcherKit();
+        gameAPI.getKitHandler().registerKit(archerKit);
+        
+        PuncherKit puncherKit = new PuncherKit();
+        gameAPI.getKitHandler().registerKit(puncherKit);
+        
+        HealerKit healerkit = new HealerKit();
+        gameAPI.getKitHandler().registerKit(healerkit);
+        
+        LooterKit looterKit = new LooterKit(this);
+        gameAPI.getKitHandler().registerKit(looterKit);
+        this.getServer().getPluginManager().registerEvents(looterKit, this);
+        this.getServer().getPluginManager().registerEvents(new SuperArcherKit(), this);
+        
+        RunnerKit runnerKit = new RunnerKit();
+        gameAPI.getKitHandler().registerKit(runnerKit);
+        
+        MediumTankKit mediumTankKit = new MediumTankKit();
+        gameAPI.getKitHandler().registerKit(mediumTankKit);
+        
+        WorkerKit doorRepairKit = new WorkerKit();
+        gameAPI.getKitHandler().registerKit(doorRepairKit);
+        
+        GolemFriendKit golemFriendKitKit = new GolemFriendKit(this);
+        gameAPI.getKitHandler().registerKit(golemFriendKitKit);
+        
+        TerminatorKit strenghtKit = new TerminatorKit();
+        gameAPI.getKitHandler().registerKit(strenghtKit);
+        
+        HardcoreKit hardcoreKit = new HardcoreKit();
+        gameAPI.getKitHandler().registerKit(hardcoreKit);
+        
+        SuperArcherKit superArcherKit = new SuperArcherKit();
+        gameAPI.getKitHandler().registerKit(superArcherKit);
+        
+        CleanerKit cleanerKit = new CleanerKit(this);
+        gameAPI.getKitHandler().registerKit(cleanerKit);
+        this.getServer().getPluginManager().registerEvents(cleanerKit, this);
+        
+        TeleporterKit teleporterKit = new TeleporterKit(this);
+        gameAPI.getKitHandler().registerKit(teleporterKit);
+        this.getServer().getPluginManager().registerEvents(teleporterKit, this);
+        
+        // JumperKit jumperkit = new JumperKit();
+        //gameAPI.getKitHandler().registerKit(jumperkit);
+        HeavyTankKit heavyTankKit = new HeavyTankKit();
+        gameAPI.getKitHandler().registerKit(heavyTankKit);
+        
+        ShotBowKit shotBowKit = new ShotBowKit();
+        gameAPI.getKitHandler().registerKit(shotBowKit);
+        this.getServer().getPluginManager().registerEvents(shotBowKit, this);
+        
+        DogFriendKit dogFriendKit = new DogFriendKit(this);
+        gameAPI.getKitHandler().registerKit(dogFriendKit);
+        
+        PremiumHardcoreKit premiumHardcoreKit = new PremiumHardcoreKit();
+        gameAPI.getKitHandler().registerKit(premiumHardcoreKit);
+        
+        TornadoKit tornadoKit = new TornadoKit(this);
+        gameAPI.getKitHandler().registerKit(tornadoKit);
+        this.getServer().getPluginManager().registerEvents(tornadoKit, this);
+        
+        BlockerKit blockerKit = new BlockerKit(this);
+        gameAPI.getKitHandler().registerKit(blockerKit);
+        this.getServer().getPluginManager().registerEvents(blockerKit, this);
+        
+        MedicKit medicKit = new MedicKit(this);
+        gameAPI.getKitHandler().registerKit(medicKit);
+       /* NakedKit nakedKit = new NakedKit();
+        getKitHandler().registerKit(nakedKit);
+        this.getServer().getPluginManager().registerEvents(nakedKit, this); */
+        
+        rewardsHandler = new RewardsHandler(this);
+        gameAPI.getKitHandler().setDefaultKit(knightkit);
+        gameAPI.getKitMenuHandler().setMaterial(Material.NETHER_STAR);
+        gameAPI.getKitMenuHandler().setItemName(ChatManager.colorMessage("kits.Kit-Menu-Item-Name"));
+        gameAPI.getKitMenuHandler().setMenuName(ChatManager.colorMessage("kits.Kit-Menu.Title"));
+        gameAPI.getKitMenuHandler().setDescription(new String[]{ChatManager.colorMessage("kits.Open-Kit-Menu")});
+    }
+    
     public void loadInstances() {
         if (gameAPI.getGameInstanceManager().getGameInstances() != null) {
             if (gameAPI.getGameInstanceManager().getGameInstances().size() > 0) {

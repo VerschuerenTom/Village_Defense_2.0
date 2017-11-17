@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntityVillager;
 import net.minecraft.server.v1_8_R3.EntityZombie;
@@ -31,15 +32,14 @@ public class Youtuber extends EntityZombie {
 
     public Youtuber(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
-        List goalB = (List) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        List goalB = (List) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        List goalC = (List) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        List goalC = (List) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        List targetB = (List) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        List targetB = (List) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        List targetC = (List) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        List targetC = (List) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
-
 
         ((Navigation) getNavigation()).b(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
@@ -57,25 +57,5 @@ public class Youtuber extends EntityZombie {
         this.a(0.6F, 1.8F);
 // this are its default goals.
     }
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
-    }
-
 
 }

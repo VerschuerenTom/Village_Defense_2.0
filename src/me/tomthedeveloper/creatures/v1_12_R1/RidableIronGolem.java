@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_12_R1.EntityHuman;
 import net.minecraft.server.v1_12_R1.EntityInsentient;
 import net.minecraft.server.v1_12_R1.EntityIronGolem;
@@ -32,13 +33,13 @@ public class RidableIronGolem extends EntityIronGolem {
         super(((CraftWorld) world).getHandle());
 
 
-        LinkedHashSet goalB = (LinkedHashSet) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        LinkedHashSet goalB = (LinkedHashSet) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        LinkedHashSet goalC = (LinkedHashSet) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        LinkedHashSet goalC = (LinkedHashSet) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        LinkedHashSet targetB = (LinkedHashSet) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        LinkedHashSet targetB = (LinkedHashSet) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        LinkedHashSet targetC = (LinkedHashSet) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        LinkedHashSet targetC = (LinkedHashSet) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
 
         this.a(1.4F, 2.9F);
@@ -56,26 +57,6 @@ public class RidableIronGolem extends EntityIronGolem {
         this.targetSelector.a(2, new PathfinderGoalHurtByTarget(this, false));
         this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, false, true, IMonster.e));
         this.setHealth(500);
-    }
-
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
     }
 
     @Override

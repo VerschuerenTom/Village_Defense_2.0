@@ -11,6 +11,7 @@ import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_9_R1.DamageSource;
 import net.minecraft.server.v1_9_R1.EntityHuman;
 import net.minecraft.server.v1_9_R1.EntityIronGolem;
@@ -41,15 +42,14 @@ public class GolemBuster extends EntityZombie {
         //There's also a ton of options of you do this. play around with it
 
 
-        Set goalB = (Set) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        Set goalB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        Set goalC = (Set) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        Set goalC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        Set targetB = (Set) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        Set targetB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        Set targetC = (Set) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        Set targetC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
-
 
         ((Navigation) getNavigation()).b(true);
 
@@ -63,26 +63,6 @@ public class GolemBuster extends EntityZombie {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, false));
         this.setHealth(5);
 
-
-    }
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
     }
 
     @Override

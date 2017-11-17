@@ -85,16 +85,15 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     @Override
     public boolean needsPlayers() {
+    	//Tom do you think is it a good code? :thinking:
         if (getGameState() == GameState.STARTING || getGameState() == GameState.WAITING_FOR_PLAYERS)
             return true;
         else
             return true;
     }
 
-    @SuppressWarnings("incomplete-switch")
 	@Override
     public void run() {
-
         User.handleCooldowns();
         updateScoreboard();
         if (plugin.isBarEnabled())
@@ -349,6 +348,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 }
 
                 break;
+            default: break; //o.o?
         }
     }
 
@@ -375,17 +375,12 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     //BossbarAPI.setMessage(color + "IP: HCSERVER.COM");
                 }
                 break;
-
             case STARTING:
-                for (Player player : getPlayers()) {
+               /* for (Player player : getPlayers()) {
                     float percentage = (float) Math.ceil((double) (100 * getTimer() / 30));
-
-
                     // BossbarAPI.setMessage(player, ChatColor.GRAY + "Starting in: " + ChatManager.HIGHLIGHTED + getTimer(), percentage);
-
-
-                }
-
+                }*/
+            	// we don't need this for now :) will be available in future releases
                 break;
             case INGAME:
                 if (FIGHTING) {
@@ -407,13 +402,10 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
                     }
                 }
-
                 break;
-            case ENDING:
-
-                break;
-            case RESTARTING:
-                break;
+            case ENDING: break;
+            case RESTARTING: break;
+            default: break;
         }
     }
 
@@ -970,7 +962,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             }
             switch (getGameState()) {
                 case WAITING_FOR_PLAYERS:
-
                 case STARTING:
                     Objective startingobj = user.getScoreboard().getObjective("starting");
                     startingobj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
@@ -983,12 +974,8 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     playerscore.setScore(getPlayers().size());
                     Score minplayerscore = startingobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Minimum-Players")));
                     minplayerscore.setScore(getMIN_PLAYERS());
-
-
                     break;
                 case INGAME:
-
-
                     if (FIGHTING) {
                         Objective ingameobj = user.getScoreboard().getObjective("ingame");
                         ingameobj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
@@ -1004,9 +991,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         zombiesscore.setScore(getZombiesLeft());
                         Score rottenfleshscore = ingameobj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Rotten-Flesh")));
                         rottenfleshscore.setScore(getRottenFlesh());
-
                     } else {
-
                         Objective ingame2obj = user.getScoreboard().getObjective("ingame2");
                         ingame2obj.setDisplayName(ChatManager.colorMessage("Scoreboard.Header"));
                         ingame2obj.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -1023,19 +1008,13 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         }
                         Score rottenfleshscore = ingame2obj.getScore(ChatManager.formatMessage(ChatManager.colorMessage("Scoreboard.Rotten-Flesh")));
                         rottenfleshscore.setScore(getRottenFlesh());
-
-
                     }
-
                     break;
                 case ENDING:
                     user.removeScoreboard();
                     break;
-                case RESTARTING:
-
-                    break;
-                default:
-                    setGameState(GameState.WAITING_FOR_PLAYERS);
+                case RESTARTING: break;
+                default: setGameState(GameState.WAITING_FOR_PLAYERS);
             }
             user.setScoreboard(user.getScoreboard());
         }
@@ -1045,7 +1024,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     @EventHandler
     public void onDieEntity(EntityDeathEvent event) {
-
         if (event.getEntity().getType() == EntityType.ZOMBIE) {
             if (getZombies().contains(event.getEntity()))
                 removeZombie((Zombie) event.getEntity());

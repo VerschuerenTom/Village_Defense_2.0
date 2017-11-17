@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_9_R1.EntityAgeable;
 import net.minecraft.server.v1_9_R1.EntityHuman;
 import net.minecraft.server.v1_9_R1.EntityInsentient;
@@ -40,13 +41,13 @@ public class RidableVillager extends EntityVillager {
     public RidableVillager(org.bukkit.World world) {
         super(((CraftWorld) world).getHandle());
 
-        Set goalB = (Set) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        Set goalB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        Set goalC = (Set) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        Set goalC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        Set targetB = (Set) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        Set targetB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        Set targetC = (Set) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        Set targetC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
 
         this.a(0.6F, 1.8F);
@@ -69,26 +70,6 @@ public class RidableVillager extends EntityVillager {
         this.setCustomName(villagernames[new Random().nextInt(villagernames.length)]);
         this.setCustomNameVisible(true);
     }
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
-    }
-
 
   /*  public void e(float f, float f1)
     {

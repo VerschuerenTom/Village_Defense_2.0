@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
 
+import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_9_R1.EntityHuman;
 import net.minecraft.server.v1_9_R1.EntityWolf;
 import net.minecraft.server.v1_9_R1.EntityZombie;
@@ -30,13 +31,13 @@ public class WorkingWolf extends EntityWolf {
         super(((CraftWorld) world).getHandle());
 
 
-        Set goalB = (Set) getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
+        Set goalB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, goalSelector);
         goalB.clear();
-        Set goalC = (Set) getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
+        Set goalC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, goalSelector);
         goalC.clear();
-        Set targetB = (Set) getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
+        Set targetB = (Set) CreatureUtils.getPrivateField("b", PathfinderGoalSelector.class, targetSelector);
         targetB.clear();
-        Set targetC = (Set) getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
+        Set targetC = (Set) CreatureUtils.getPrivateField("c", PathfinderGoalSelector.class, targetSelector);
         targetC.clear();
 
         this.a(1.4F, 2.9F);
@@ -51,26 +52,6 @@ public class WorkingWolf extends EntityWolf {
         this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityZombie.class, true));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
-
-    }
-
-    public static Object getPrivateField(String fieldName, Class clazz, Object object) {
-        Field field;
-        Object o = null;
-
-        try {
-            field = clazz.getDeclaredField(fieldName);
-
-            field.setAccessible(true);
-
-            o = field.get(object);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return o;
     }
 
   /*  @Override
