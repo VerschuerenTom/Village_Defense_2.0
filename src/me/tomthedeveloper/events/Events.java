@@ -2,7 +2,11 @@ package me.tomthedeveloper.events;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -47,8 +51,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.User;
 import me.tomthedeveloper.Main;
+import me.tomthedeveloper.User;
 import me.tomthedeveloper.bungee.Bungee;
 import me.tomthedeveloper.events.customevents.SetupInventoryClickEvent;
 import me.tomthedeveloper.game.GameInstance;
@@ -222,7 +226,7 @@ public class Events implements Listener {
             return;
         }
     }
-
+    
     @EventHandler
     public void onEntityInteractEntity(PlayerInteractEntityEvent event) {
         GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
@@ -233,33 +237,18 @@ public class Events implements Listener {
             event.setCancelled(true);
             return;
         }
-        if (event.getRightClicked().getType() == EntityType.VILLAGER)
-            event.setCancelled(true);
-        if (event.getPlayer().getItemInHand() == null) {
-            Shop.openShop(event.getPlayer());
-            return;
-        }
         if (event.getPlayer().getItemInHand().getType() == Material.SADDLE) {
             if (event.getRightClicked().getType() == EntityType.IRON_GOLEM || event.getRightClicked().getType() == EntityType.VILLAGER) {
                 event.getRightClicked().setPassenger(event.getPlayer());
+                event.setCancelled(true);
                 return;
             }
-        } else if (event.getPlayer().getItemInHand().getType() != Material.WOOD_SWORD
-                && event.getPlayer().getItemInHand().getType() != Material.STONE_SWORD
-                && event.getPlayer().getItemInHand().getType() != Material.IRON_SWORD
-                && event.getPlayer().getItemInHand().getType() != Material.GOLD_SWORD
-                && event.getPlayer().getItemInHand().getType() != Material.DIAMOND_SWORD
-                && event.getPlayer().getItemInHand().getType() != Material.WOOD_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.STONE_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.IRON_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.GOLD_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.DIAMOND_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.SADDLE
-                && event.getPlayer().getItemInHand().getType() != Material.BOW
-                && event.getPlayer().getItemInHand().getType() != Material.DIAMOND_AXE
-                && event.getPlayer().getItemInHand().getType() != Material.DIAMOND_SPADE
-                && event.getPlayer().getItemInHand().getType() != Material.STICK
-                && event.getRightClicked().getType() == EntityType.IRON_GOLEM) {
+        }
+        if(event.getRightClicked().getType() == EntityType.VILLAGER) {
+            event.setCancelled(true);
+            Shop.openShop(event.getPlayer());
+            return;
+        } else if(event.getRightClicked().getType() == EntityType.IRON_GOLEM) {
             IronGolem ironGolem = (IronGolem) event.getRightClicked();
             if (ironGolem.getCustomName() != null && ironGolem.getCustomName().contains(event.getPlayer().getName())) {
                 event.getRightClicked().setPassenger(event.getPlayer());
