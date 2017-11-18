@@ -57,10 +57,7 @@ public class SignManager extends BukkitRunnable implements Listener {
 			try {
 				config.save(ConfigurationManager.getFile("signModification"));
 			} catch (IOException e) {
-				e.printStackTrace();
-				Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-				Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-				Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving signModification.yml file!");
+				ChatManager.sendErrorHeader("saving signModification.yml file");
 				e.printStackTrace();
 				Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
 				Bukkit.getConsoleSender().sendMessage("§c- restart the server");
@@ -133,7 +130,6 @@ public class SignManager extends BukkitRunnable implements Listener {
 	public void addToQueue(GameInstance instance){
 		if(!(gamequeue.contains(instance) || signpool.containsValue(instance) || signpool.values().contains(instance))) {
 			gamequeue.add(instance);
-		}else{
 		}
 	}
 
@@ -237,9 +233,7 @@ public class SignManager extends BukkitRunnable implements Listener {
 
 						boolean b = false;
 						for (Player player : instance.getPlayers()) {
-							if (player.hasPermission(PermissionsManager.getVIP()) || player.hasPermission(PermissionsManager.getJoinFullGames())) {
-
-							} else {
+							if(!player.hasPermission(PermissionsManager.getVIP()) || !player.hasPermission(PermissionsManager.getJoinFullGames())) {
 								if((instance.getGameState() == GameState.STARTING || instance.getGameState() == GameState.WAITING_FOR_PLAYERS)) {
 									instance.leaveAttempt(player);
 									player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Messages.Lobby-Messages.You-Were-Kicked-For-Premium-Slot"));
@@ -261,10 +255,7 @@ public class SignManager extends BukkitRunnable implements Listener {
 						if (!b) {
 							event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.No-Slots-For-Premium"));
 							return;
-						} else {
-							return;
 						}
-
 					} else{
 						event.getPlayer().sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("In-game.Full-game-No-Permission"));
 						return;

@@ -3,7 +3,7 @@ commands:
   No-Arena-Like-That: "&cNo arena with that ID!"
   Admin-Commands:
     Player-Not-Found: "&cPlayer not found!"
-    Added-Orbs: "&7Added orbs to player!"
+    Added-Orbs: "&7Added orbs to t player!"
   Stats-Command:
     Header: "&l-----YOUR STATS-----"
     Footer: "&l--------------------"
@@ -42,7 +42,7 @@ kits:
   Ability-Still-On-Cooldown: "&cThis ability is on cooldown! Wait %COOLDOWN% more seconds!"
   Cleaner:
     Kit-Name: "&bCleaner"
-    Kit-Description: "&7The cleaner has a special ability. With this ability he can make all the zombies dissappear. However it takes a lot of effort to do this!"
+    Kit-Description: "&7The cleaner has a special ability. With this ability, he can make all the zombies disappear. However, it takes a lot of effort to do this!"
     Game-Item-Name: "&6Cleaner Wand!"
     Game-Item-Lore: "&7Right click to kill all zombies! Cooldown: 400 seconds"
     Cleaned-Map: "&b%PLAYER% has cleaned the map!"
@@ -50,21 +50,21 @@ kits:
     Spectator-Warning: "&cYou can't clean the map now! You are a spectator! You'll respawn at the start of the next wave!"
   Zombie-Teleporter:
     Kit-Name: "&2Zombie Teleporter"
-    Kit-Description: "&7Teleport those zombies to you! Many people think this is the worst kit! I must admit they they are totally wrong!"
+    Kit-Description: "&7Teleport those zombies to you! Many people think this is the worst kit! I must admit they are totally wrong!"
     Game-Item-Name: "Zombie Teleporter" #WARNING: this is Zombie Teleporter GUI name too!
     Game-Item-Lore: "&7Teleport zombies to you!"
   Knight:
     Kit-Name: "&2Knight"
-    Kit-Description: "&7This is the one and only knight kit! Many people think this is the worst kit! I must admit they they are totally wrong!"
+    Kit-Description: "&7This is the one and only knight kit! Many people think this is the worst kit! I must admit they are totally wrong!"
   Light-Tank:
     Kit-Name: "&2Light Tank"
-    Kit-Description: "&7You are tank Junior!"
+    Kit-Description: "&7You are Junior tank!"
   Archer:
     Kit-Name: "&6Archer"
     Kit-Description: "&7Start with a bow, leather armor and a wooden sword. Archers are loved by the villagers, know that!"
   Puncher:
     Kit-Name: "&6Puncher"
-    Kit-Description: "&7Punch those zombies back with your epic shovel! Knockback V is not unknown for you!"
+    Kit-Description: "&7Punch those zombies back with your epic shovel! Knockback V is not unknown to you!"
   Healer:
     Kit-Name: "&6Healer"
     Kit-Description: "&7Being a healer is the same as being loved. You are able to heal your teammates and villagers! Gets a restock every wave!"
@@ -82,7 +82,7 @@ kits:
     Kit-Description: "&7Start off with 6 more hearts! Don't be afraid! You have plenty hearts left to lose!"
   Worker:
     Kit-Name: "&6Worker"
-    Kit-Description: "&7Get each round a door and start of with 2 additional doors. This way u can replace the doors!"
+    Kit-Description: "&7Get each round a door and start off with 2 additional doors. This way u can replace the doors!"
     Game-Item-Place-Message: "&aDoor placed!"
   Dog-Friend:
     Kit-Name: "&bDog Friend"
@@ -100,12 +100,11 @@ kits:
     Game-Item-Lore: "&7Right click to spawn a tornado at your location!"
   Terminator:
     Kit-Name: "&6Terminator"
-    Kit-Description: "&7Easily kill those zombies with your strenght powers!"
+    Kit-Description: "&7Easily kill those zombies with your strength powers!"
   Teleporter:
     Kit-Name: "&bTeleporter"
-    Kit-Description: "&7Everybody is asthonished about your teleportion. Nobody
-  knows how to do it except you! Due to this you are able to teleport to villagers
-  that need help in notime!"
+    Kit-Description: "&7Everybody is astonished about your teleportation. Nobody knows how to do it except you! Due to this, you are able to teleport to villagers
+  that need help in no time!"
     Game-Item-Name: "&rTeleportation Menu"
     Game-Item-Lore: "&7Right click to open teleportation menu!"
     Game-Item-Menu-Name: "Teleporter Menu"
@@ -117,7 +116,7 @@ kits:
   Heavy-Tank:
     Kit-Name: "&bHeavy Tank"
     Kit-Description: "&7Start off with iron armor and a double amount of hearts!
-  Yup that's right, you'll be the last man standing!"
+  Yup, that's right, you'll be the last man standing!"
   Shot-Bow:
     Kit-Name: "&bShotbow Master"
     Kit-Description: "&7You invented a crazy shotbow!"
@@ -130,8 +129,7 @@ kits:
     Game-Item-Place-Fail: "&cUnable to place barrier here"
   Premium-Hardcore:
     Kit-Name: "&bPremium Hardcore Master"
-    Kit-Description: "&7One hit most zombies with your OP sword! However
-  be carefull. this kit is only for the pro's! Do not use it if you aren't a pro!"
+    Kit-Description: "&7One hit most zombies with your OP sword! However be careful. this kit is only for the pros! Do not use it if you aren't a pro!"
   Medic:
     Kit-Name: "&6Medic"
     Kit-Description: "&7This kit activates your passive powers. Everytime you hit a zombie,
@@ -139,20 +137,20 @@ kits:
   Bunny:
     Bunny-Kit-Name: "&bThe Bunny"
     Bunny-Kit-Description: "&7Jumping is your passion. During the past, you've developed a way to double jump!
-  Jumping on the roofs is easy! However you could use some extra training for shooting your special bow"
+  Jumping on the roofs is easy! However, you could use some extra training for shooting your special bow"
 
 In-game:
   Plugin-Prefix: "&a[Village Defense] "
   Already-Playing: "&cYou are already queued for a game! You can leave a game with /leave."
   Full-Game-No-Permission: "&cYou don't have the permission to join full games!"
-  No-Slots-For-Premium: "&cThis game is already full with premium players! Sorry"
+  No-Slots-For-Premium: "&cThis game is already full of premium players! Sorry"
   Dead-Tag-On-Death: "&8Dead"
   Death-Screen: "You died!"
   Died-Respawn-In-Next-Wave: "&e&lDON'T LEAVE! &aYou'll respawn next once the wave ends!"
   Back-In-Game: "&aYou're not a spectator anymore! You're back in the game!"
   You-Are-Spectator: "&cYou're now a spectator! You can fly now!"
   You-Leveled-Up: "&7You leveled up! You're now level %NUMBER%!"
-  Rotten-Flesh-Level-Up: "&bThe gods were happy with the rottenflesh! &bThere for they gave you an extra heart!"
+  Rotten-Flesh-Level-Up: "&bThe gods were happy with the rotten flesh! &bTherefor they gave you an extra heart!"
   Only-Command-Ingame-Is-Leave: "&cYou have to leave the game first to perform commands. The only command that works is /leave!"
   Messages:
     Lobby-Messages:
@@ -160,8 +158,8 @@ In-game:
       Waiting-For-Players: "&7Waiting for players... We need at least &b%MINPLAYERS%&7 players to start."
       Enough-Players-To-Start: "&7We now have enough players. The game is starting soon!"
       Game-Started: "&7The game has started! Defend the village against waves of zombies!"
-      Kicked-For-Premium-Slot: "&c%PLAYER% got removed from the game to make place for a premium players!"
-      You-Were-Kicked-For-Premium-Slot: "&cYou got kicked out of the game to make place for a premium player!"
+      Kicked-For-Premium-Slot: "&c%PLAYER% got removed from the game to make a place for premium players!"
+      You-Were-Kicked-For-Premium-Slot: "&cYou got kicked out of the game to make a place for a premium player!"
     Join: "&b%PLAYER%&7 joined the game (%PLAYERSIZE%/%MAXPLAYERS%)!"
     Leave: "&b%PLAYER% &7left the game (%PLAYERSIZE%/%MAXPLAYERS%)!"
     Death: "&b%PLAYER% &7died!"
@@ -184,7 +182,7 @@ In-game:
       Teleporting-To-Lobby-In-10-Seconds: "&7You will be teleported to the lobby in &b10 &7seconds!"
       Teleporting-To-Lobby-In-X-Seconds: "&7You will be teleported to the lobby in &b%TIME% &7seconds"
     Admin-Messages:
-      Force-Start-Game: "&bAn admin forcestarted the game!"
+      Force-Start-Game: "&bAn admin force started the game !"
       Set-Starting-In-To-0: "&bAn admin set waiting time to 0. game starts now!"
       Removed-Zombies: "&b%PLAYER% has cleared the zombies!"
       Removed-Villagers: "&b%PLAYER% has removed all the villagers!"

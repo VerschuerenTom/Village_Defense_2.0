@@ -85,6 +85,7 @@ import me.tomthedeveloper.stats.FileStats;
 import me.tomthedeveloper.stats.MySQLDatabase;
 import me.tomthedeveloper.stats.VillageDefenseStats;
 import me.tomthedeveloper.utils.Items;
+import me.tomthedeveloper.utils.MySQLConnectionUtils;
 import me.tomthedeveloper.utils.ParticleEffect;
 import me.tomthedeveloper.utils.Util;
 import me.tomthedeveloper.versions.InvasionInstance1_12_R1;
@@ -242,10 +243,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             try {
                 ConfigurationManager.getConfig("bungee").save(ConfigurationManager.getFile("bungee"));
             } catch (IOException e) {
-                e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+            	ChatManager.sendErrorHeader("bungee.yml file save");
                 e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
@@ -1078,91 +1076,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
 
                 @Override
                 public void run() {
-                    boolean b = false;
-                    MySQLDatabase database = getMySQLDatabase();
-                    ResultSet resultSet = database.executeQuery("SELECT UUID from playerstats WHERE UUID='" + playername + "'");
-                    try {
-                        if (!resultSet.next()) {
-                            database.insertPlayer(playername);
-                            b = true;
-                        }
-
-                        int gamesplayed = 0;
-                        int zombiekills = 0;
-                        int highestwave = 0;
-                        int deaths = 0;
-                        int xp = 0;
-                        int level = 0;
-                        int orbs = 0;
-                        gamesplayed = database.getStat(player.getUniqueId().toString(), "gamesplayed");
-                        zombiekills = database.getStat(player.getUniqueId().toString(), "kills");
-                        highestwave = database.getStat(player.getUniqueId().toString(), "highestwave");
-                        deaths = database.getStat(player.getUniqueId().toString(), "deaths");
-                        xp = database.getStat(player.getUniqueId().toString(), "xp");
-                        level = database.getStat(player.getUniqueId().toString(), "level");
-                        orbs = database.getStat(player.getUniqueId().toString(), "orbs");
-                        User user = UserManager.getUser(player.getUniqueId());
-                        user.setInt("gamesplayed", gamesplayed);
-                        user.setInt("kills", zombiekills);
-                        user.setInt("highestwave", highestwave);
-                        user.setInt("deaths", deaths);
-                        user.setInt("xp", xp);
-                        user.setInt("level", level);
-                        user.setInt("orbs", orbs);
-                        b = true;
-                    } catch (SQLException e1) {
-                        System.out.print("CONNECTION FAILED FOR PLAYER " + player.getName());
-                        Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                        Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                        Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
-                        e1.printStackTrace();
-                        Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                        Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
-                        Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
-                        Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
-                        //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                    }
-                    if (b = false) {
-                        try {
-                            if (!resultSet.next()) {
-                                database.insertPlayer(playername);
-                                b = true;
-                            }
-
-                            int gamesplayed = 0;
-                            int zombiekills = 0;
-                            int highestwave = 0;
-                            int deaths = 0;
-                            int xp = 0;
-                            int level = 0;
-                            int orbs = 0;
-                            gamesplayed = database.getStat(player.getUniqueId().toString(), "gamesplayed");
-                            zombiekills = database.getStat(player.getUniqueId().toString(), "kills");
-                            highestwave = database.getStat(player.getUniqueId().toString(), "highestwave");
-                            deaths = database.getStat(player.getUniqueId().toString(), "deaths");
-                            xp = database.getStat(player.getUniqueId().toString(), "xp");
-                            level = database.getStat(player.getUniqueId().toString(), "level");
-                            orbs = database.getStat(player.getUniqueId().toString(), "orbs");
-                            User user = UserManager.getUser(player.getUniqueId());
-                            user.setInt("gamesplayed", gamesplayed);
-                            user.setInt("kills", zombiekills);
-                            user.setInt("highestwave", highestwave);
-                            user.setInt("deaths", deaths);
-                            user.setInt("xp", xp);
-                            user.setInt("level", level);
-                            user.setInt("orbs", orbs);
-                            b = true;
-                        } catch (SQLException e1) {
-                            System.out.print("CONNECTION FAILED TWICE FOR PLAYER " + player.getName());
-                            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
-                            e1.printStackTrace();
-                            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
-                            //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }
-                    }
+                    MySQLConnectionUtils.loadPlayerStats(player, Main.this);
                 }
             });
         }

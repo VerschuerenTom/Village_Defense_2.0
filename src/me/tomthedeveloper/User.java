@@ -74,10 +74,7 @@ public class User {
     }
 
     public boolean isInInstance(){
-        if(plugin.getGameInstanceManager().isInGameInstance(Bukkit.getPlayer(uuid)))
-            return true;
-        else
-            return false;
+        return plugin.getGameInstanceManager().isInGameInstance(Bukkit.getPlayer(uuid));
     }
 
     public GameInstance getGameInstance(){

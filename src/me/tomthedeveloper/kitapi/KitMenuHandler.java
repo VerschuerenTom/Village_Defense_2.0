@@ -129,7 +129,8 @@ public class KitMenuHandler implements Listener {
 			return;
 		if(!GameAPI.areKitsEnabled())
 			return;
-		if(!(event.getWhoClicked() instanceof Player));
+		if(!(event.getWhoClicked() instanceof Player))
+			return;
 		Player player = (Player) event.getWhoClicked();
 		event.setCancelled(true);
 		if(event.getCurrentItem() == null)

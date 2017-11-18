@@ -44,10 +44,7 @@ public class MySQLDatabase {
 					");");
 			manager.closeConnection(connection);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-			Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-			Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+			ChatManager.sendErrorHeader("saving player data in MySQL database");
 			e.printStackTrace();
 			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
 			Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");

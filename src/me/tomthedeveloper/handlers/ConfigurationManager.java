@@ -36,9 +36,8 @@ public class ConfigurationManager {
                 plugin.getLogger().info("Creating "+filename+".yml because it does not exist!");
                 ConfigFile.createNewFile();
             } catch (IOException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+            	ChatManager.sendErrorHeader(filename + ".yml file");
+                ex.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
                 Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
@@ -54,11 +53,9 @@ public class ConfigurationManager {
             try {
                 config.load(ConfigFile);
                 //YamlConfiguration config = YamlConfiguration.loadConfiguration(ConfigFile);
-            }catch (InvalidConfigurationException ex){
+            } catch (InvalidConfigurationException ex){
+            	ChatManager.sendErrorHeader(filename + ".yml file");
                 ex.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
                 Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
@@ -67,10 +64,8 @@ public class ConfigurationManager {
                 Bukkit.getServer().shutdown();
 
             } catch (FileNotFoundException e) {
+            	ChatManager.sendErrorHeader(filename + ".yml file");
                 e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
                 Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
@@ -82,9 +77,8 @@ public class ConfigurationManager {
                 config.save(ConfigFile);
 
             } catch (IOException ex) {
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
+            	ChatManager.sendErrorHeader(filename + ".yml file");
+                ex.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
                 Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
@@ -103,10 +97,8 @@ public class ConfigurationManager {
             config.load(ConfigFile);
             //YamlConfiguration config = YamlConfiguration.loadConfiguration(ConfigFile);
         }catch (InvalidConfigurationException ex){
+        	ChatManager.sendErrorHeader(filename + ".yml file");
             ex.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
             Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
@@ -116,10 +108,8 @@ public class ConfigurationManager {
             return null;
 
         } catch (FileNotFoundException e) {
+        	ChatManager.sendErrorHeader(filename + ".yml file");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + filename + ".yml file!");
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
             Bukkit.getConsoleSender().sendMessage("§c- contact the developer");

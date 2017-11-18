@@ -58,10 +58,8 @@ public class SpecialItem {
         try {
             config.save(ConfigurationManager.getFile("SpecialItems"));
         } catch (IOException e) {
+        	ChatManager.sendErrorHeader("saving SpecialItems.yml file");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving SpecialItems.yml file!");
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- restart the server");
             Bukkit.getConsoleSender().sendMessage("§c- create blank file named SpecialItems.yml");

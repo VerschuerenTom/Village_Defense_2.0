@@ -71,11 +71,7 @@ public class MySQLConnectionManager {
 
 
 		} catch (Exception e) {
-
-			e.printStackTrace(); //you should use exception wrapping on real-production code
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-			Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-			Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving player data in MySQL database!");
+			ChatManager.sendErrorHeader("saving player data in MySQL database");
 			e.printStackTrace();
 			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
 			Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");

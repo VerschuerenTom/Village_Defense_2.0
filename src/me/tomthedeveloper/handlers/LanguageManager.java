@@ -61,10 +61,7 @@ public class LanguageManager {
 				languageConfig.setDefaults(defConfig);
 			}
 		} catch(Exception e){
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with reloading language configuration!");
+			ChatManager.sendErrorHeader("reloading language configuration");
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- restart the server");
@@ -80,9 +77,7 @@ public class LanguageManager {
 			getLanguageFile().save(languageConfigFile);
 		} catch (IOException ex) {
 			plugin.getLogger().log(Level.SEVERE, "Could not save file to " + languageConfigFile, ex);
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving language file!");
+			ChatManager.sendErrorHeader("saving language file");
             ex.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- restart the server");

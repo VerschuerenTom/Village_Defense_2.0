@@ -49,17 +49,14 @@ public class Bungee implements Listener {
             try {
                 motdsconfig.save(ConfigurationManager.getFile("MOTD"));
             } catch (IOException e) {
-                e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving MOTD file!");
+            	ChatManager.sendErrorHeader("saving MOTD file");
                 e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named MOTD.yml if it doesn't exists");
                 Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
                 Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
             }
-        }else{
+        } else{
             motds.put(GameState.WAITING_FOR_PLAYERS, motdsconfig.getString("WAITING_FOR_PLAYERS"));
             motds.put(GameState.STARTING, motdsconfig.getString("STARTING"));
             motds.put(GameState.INGAME, motdsconfig.getString("INGAME"));
@@ -67,8 +64,6 @@ public class Bungee implements Listener {
             motds.put(GameState.RESTARTING, motdsconfig.getString("RESTARTING"));
         }
     }
-
-
 
     public static void connectToHub(Player player){
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -94,15 +89,10 @@ public class Bungee implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onServerListPing(ServerListPingEvent event){
-        if(plugin == null){
-        	if(Main.isDebugged()) {
-        		System.out.print("[Village Debugger] SOMETHING IS WRONG IN BUNGEE.CLASS. REPORT THIS TO THE DEVELOPER!");
-        	}
-        }
         if(plugin.getGameInstanceManager() == null)
             return;
-        if(plugin.getGameInstanceManager().getGameInstances().size() == 0)
-            return;;
+        if(plugin.getGameInstanceManager().getGameInstances().isEmpty())
+            return;
         if(plugin.getGameInstanceManager().getGameInstances() == null){
         	if(Main.isDebugged()) {
         		System.out.print("[Village Debugger] NO GAMEINSTANCE FOUND! FIRST CONFIGURE AN ARENA BEFORE ACTIVATING BUNGEEEMODE!");

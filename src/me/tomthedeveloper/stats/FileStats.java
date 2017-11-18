@@ -31,10 +31,7 @@ public class FileStats {
 		try {
 			config.save(ConfigurationManager.getFile("STATS"));
 		} catch (IOException e) {
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-			Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-			Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with saving STATS.yml file!");
+			ChatManager.sendErrorHeader("saving STATS.yml file");
 			e.printStackTrace();
 			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
 			Bukkit.getConsoleSender().sendMessage("§c- restart the server");

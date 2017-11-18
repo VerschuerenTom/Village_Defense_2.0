@@ -163,7 +163,7 @@ public class GameAPI {
 			plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
 
 			setupBungee();
-			me.tomthedeveloper.bungee.Bungee.plugin = this;
+			Bungee.plugin = this;
 			plugin.getServer().getPluginManager().registerEvents(new Bungee(), plugin);
 		}
 
@@ -199,10 +199,7 @@ public class GameAPI {
 			((Map<Class<? extends net.minecraft.server.v1_8_R3.EntityInsentient>, Integer>) dataMaps.get(3)).put(customClass, id);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.8.8 if not try to update it to 1.9 or 1.12");
@@ -225,10 +222,7 @@ public class GameAPI {
 			((Map<Class<? extends net.minecraft.server.v1_9_R1.EntityInsentient>, Integer>) dataMaps.get(3)).put(customClass, id);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.9 if not try to update it to 1.12");
@@ -267,10 +261,7 @@ public class GameAPI {
 			((Map<Class<? extends net.minecraft.server.v1_7_R4.EntityInsentient>, Integer>) dataMaps.get(3)).put(customClass, id);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-            Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-            Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with entity registering!");
+			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
             Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
             Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.7.10 if not try to update it to 1.8.8 or 1.9 or 1.12");
@@ -408,10 +399,7 @@ public class GameAPI {
 			try {
 				fileConfiguration.save(ConfigurationManager.getFile("bungee"));
 			} catch (IOException e) {
-				e.printStackTrace();
-				Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
-                Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with bungee.yml file save!");
+				ChatManager.sendErrorHeader("bungee.yml file save");
                 e.printStackTrace();
                 Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
                 Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");

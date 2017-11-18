@@ -1,5 +1,6 @@
 package me.tomthedeveloper.handlers;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -28,6 +29,12 @@ public class ChatManager {
 
 	public ChatManager(GameInstance gameInstance) {
 		this.gameInstance = gameInstance;
+	}
+	
+	public static void sendErrorHeader(String problem) {
+		Bukkit.getConsoleSender().sendMessage(ChatManager.ERRORPREFIX);
+        Bukkit.getConsoleSender().sendMessage("§c-------------------------------------");
+        Bukkit.getConsoleSender().sendMessage("§cIt seems that you've occured an error with " + problem + "!");
 	}
 
 	public void broadcastJoinMessage(Player p){
