@@ -6,20 +6,19 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" type="java-resource" />
     </content>
-    <orderEntry type="library" name="spigot-1.12.2" level="project" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" exported="" name="spigot-1.9" level="project" />
     <orderEntry type="library" name="spigot-1.8.7" level="application" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="org.mongodb:mongo-java-driver:2.12.3" level="project" />
     <orderEntry type="library" name="com.jolbox:bonecp:Release" level="project" />
-    <orderEntry type="library" name="spigot-fake1-8" level="project" />
-    <orderEntry type="library" name="WorldEdit1" level="project" />
     <orderEntry type="library" name="spigot" level="project" />
-    <orderEntry type="library" name="spigot-1.12" level="project" />
-    <orderEntry type="library" name="spigot-1.91" level="project" />
     <orderEntry type="library" name="spigot-1.7.10-SNAPSHOT-b1657" level="project" />
     <orderEntry type="library" name="worldedit-bukkit-6.1.7.3" level="project" />
-    <orderEntry type="library" name="worldedit-bukkit-6.1.7.31" level="project" />
+    <orderEntry type="library" name="spigot-api-1.12.2-R0.1-SNAPSHOT-b1409" level="project" />
+    <orderEntry type="library" name="spigot-api-1.9.2-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="spigot-1.12.1-R0.1-SNAPSHOT-b1405" level="project" />
+    <orderEntry type="library" name="spigot-1.9.2-R0.1-SNAPSHOT-latest" level="project" />
+    <orderEntry type="library" name="spigot-1.12.1-R0.1-SNAPSHOT-b14051" level="application" />
+    <orderEntry type="library" name="spigot-api-1.8.4-R0.1-SNAPSHOT-latest" level="project" />
   </component>
 </module>
