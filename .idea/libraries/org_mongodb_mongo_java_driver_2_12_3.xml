@@ -1,9 +1,7 @@
 <component name="libraryTable">
   <library name="org.mongodb:mongo-java-driver:2.12.3" type="repository">
     <properties maven-id="org.mongodb:mongo-java-driver:2.12.3" />
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/2.12.3/mongo-java-driver-2.12.3.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

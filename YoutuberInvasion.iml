@@ -11,20 +11,15 @@
     <orderEntry type="library" exported="" name="spigot-1.9" level="project" />
     <orderEntry type="library" name="spigot-1.8.7" level="application" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="WorldEdit" level="project" />
     <orderEntry type="library" name="org.mongodb:mongo-java-driver:2.12.3" level="project" />
-    <orderEntry type="library" name="com.jolbox:bonecp:0.8.0.RELEASE" level="project" />
+    <orderEntry type="library" name="com.jolbox:bonecp:Release" level="project" />
     <orderEntry type="library" name="spigot-fake1-8" level="project" />
     <orderEntry type="library" name="WorldEdit1" level="project" />
-    <orderEntry type="library" name="bukkit-1.5.2" level="project" />
     <orderEntry type="library" name="spigot" level="project" />
     <orderEntry type="library" name="spigot-1.12" level="project" />
-    <orderEntry type="library" name="slf4j-simple-1.7.25" level="project" />
-    <orderEntry type="library" name="slf4j-api-1.7.25" level="project" />
     <orderEntry type="library" name="spigot-1.91" level="project" />
     <orderEntry type="library" name="spigot-1.7.10-SNAPSHOT-b1657" level="project" />
     <orderEntry type="library" name="worldedit-bukkit-6.1.7.3" level="project" />
     <orderEntry type="library" name="worldedit-bukkit-6.1.7.31" level="project" />
-    <orderEntry type="library" name="GameAPI" level="project" />
   </component>
 </module>
