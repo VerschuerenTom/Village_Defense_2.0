@@ -1,10 +1,9 @@
 package me.tomthedeveloper.events;
 
+import me.tomthedeveloper.GameAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import me.tomthedeveloper.GameAPI;
 
 /**
  * Created by Tom on 11/08/2014.

@@ -1,14 +1,13 @@
 package me.tomthedeveloper.menuapi;
 
-import java.util.Arrays;
-
+import me.tomthedeveloper.handlers.ConfigurationManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.tomthedeveloper.handlers.ConfigurationManager;
+import java.util.Arrays;
 
 /**
  * Created by Tom on 27/07/2014.

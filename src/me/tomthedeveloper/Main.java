@@ -1,20 +1,33 @@
 package me.tomthedeveloper;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import com.sk89q.worldedit.bukkit.selections.Selection;
+import me.tomthedeveloper.chunks.ChunkManager;
+import me.tomthedeveloper.commands.InstanceCommands;
+import me.tomthedeveloper.commands.StatsCommand;
+import me.tomthedeveloper.creatures.v1_12_R1.*;
+import me.tomthedeveloper.events.Events;
+import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
+import me.tomthedeveloper.events.customevents.PlayerAddSpawnCommandEvent;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.game.GameState;
+import me.tomthedeveloper.handlers.*;
+import me.tomthedeveloper.items.SpecialItem;
+import me.tomthedeveloper.kits.*;
+import me.tomthedeveloper.shop.Shop;
+import me.tomthedeveloper.stats.FileStats;
+import me.tomthedeveloper.stats.MySQLDatabase;
+import me.tomthedeveloper.stats.VillageDefenseStats;
+import me.tomthedeveloper.utils.Items;
+import me.tomthedeveloper.utils.MySQLConnectionUtils;
+import me.tomthedeveloper.utils.ParticleEffect;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.versions.InvasionInstance1_12_R1;
+import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
+import me.tomthedeveloper.versions.InvasionInstance1_9_R1;
 import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,68 +42,11 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import com.sk89q.worldedit.bukkit.selections.Selection;
-
-import me.tomthedeveloper.chunks.ChunkManager;
-import me.tomthedeveloper.commands.InstanceCommands;
-import me.tomthedeveloper.commands.StatsCommand;
-import me.tomthedeveloper.creatures.v1_12_R1.BabyZombie;
-import me.tomthedeveloper.creatures.v1_12_R1.BreakFenceListener;
-import me.tomthedeveloper.creatures.v1_12_R1.FastZombie;
-import me.tomthedeveloper.creatures.v1_12_R1.GolemBuster;
-import me.tomthedeveloper.creatures.v1_12_R1.HardZombie;
-import me.tomthedeveloper.creatures.v1_12_R1.PlayerBuster;
-import me.tomthedeveloper.creatures.v1_12_R1.RidableIronGolem;
-import me.tomthedeveloper.creatures.v1_12_R1.RidableVillager;
-import me.tomthedeveloper.creatures.v1_12_R1.WorkingWolf;
-import me.tomthedeveloper.events.Events;
-import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
-import me.tomthedeveloper.events.customevents.PlayerAddSpawnCommandEvent;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.game.GameState;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.handlers.LanguageManager;
-import me.tomthedeveloper.handlers.LanguageMigrator;
-import me.tomthedeveloper.handlers.RewardsHandler;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.items.SpecialItem;
-import me.tomthedeveloper.kits.ArcherKit;
-import me.tomthedeveloper.kits.BlockerKit;
-import me.tomthedeveloper.kits.CleanerKit;
-import me.tomthedeveloper.kits.DogFriendKit;
-import me.tomthedeveloper.kits.GolemFriendKit;
-import me.tomthedeveloper.kits.HardcoreKit;
-import me.tomthedeveloper.kits.HealerKit;
-import me.tomthedeveloper.kits.HeavyTankKit;
-import me.tomthedeveloper.kits.KnightKit;
-import me.tomthedeveloper.kits.LightTankKit;
-import me.tomthedeveloper.kits.LooterKit;
-import me.tomthedeveloper.kits.MedicKit;
-import me.tomthedeveloper.kits.MediumTankKit;
-import me.tomthedeveloper.kits.PremiumHardcoreKit;
-import me.tomthedeveloper.kits.PuncherKit;
-import me.tomthedeveloper.kits.RunnerKit;
-import me.tomthedeveloper.kits.ShotBowKit;
-import me.tomthedeveloper.kits.SuperArcherKit;
-import me.tomthedeveloper.kits.TeleporterKit;
-import me.tomthedeveloper.kits.TerminatorKit;
-import me.tomthedeveloper.kits.TornadoKit;
-import me.tomthedeveloper.kits.WorkerKit;
-import me.tomthedeveloper.kits.ZombieFinderKit;
-import me.tomthedeveloper.shop.Shop;
-import me.tomthedeveloper.stats.FileStats;
-import me.tomthedeveloper.stats.MySQLDatabase;
-import me.tomthedeveloper.stats.VillageDefenseStats;
-import me.tomthedeveloper.utils.Items;
-import me.tomthedeveloper.utils.MySQLConnectionUtils;
-import me.tomthedeveloper.utils.ParticleEffect;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.versions.InvasionInstance1_12_R1;
-import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
-import me.tomthedeveloper.versions.InvasionInstance1_9_R1;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -197,12 +153,12 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
                 latestVersion = UpdateChecker.getLatestVersion();
                 if (latestVersion != null) {
                     latestVersion = "v" + latestVersion;
-                    Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
+                    Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] Plugin is up to date! Your version %old%, new version %new".replaceAll("%old%", currentVersion).replaceAll("%new%", latestVersion));
                 }
             } catch (Exception ex) {
-            	Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] An error occured while checking for update!");
-            	Bukkit.getConsoleSender().sendMessage("§cPlease check internet connection or check for update via WWW site directly!");
-            	Bukkit.getConsoleSender().sendMessage("§cWWW site https://www.spigotmc.org/resources/minigame-village-defence-1-12-and-1-8-8.41869/");
+            	Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] An error occured while checking for update!");
+            	Bukkit.getConsoleSender().sendMessage("ï¿½cPlease check internet connection or check for update via WWW site directly!");
+            	Bukkit.getConsoleSender().sendMessage("ï¿½cWWW site https://www.spigotmc.org/resources/minigame-village-defence-1-12-and-1-8-8.41869/");
             }
         }
         
@@ -245,10 +201,10 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             } catch (IOException e) {
             	ChatManager.sendErrorHeader("bungee.yml file save");
                 e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
-                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named bungee.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
             }
         }
         if (!getConfig().contains("ChatFormat-Enabled")) {
@@ -373,7 +329,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
                 InvasionInstance invasionInstance = (InvasionInstance) gameAPI.getGameInstanceManager().getGameInstance(player);
                 User user = UserManager.getUser(player.getUniqueId());
                 user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
-                player.sendMessage(ChatManager.PLUGINPREFIX + "§7Orbs added to player!");
+                player.sendMessage(ChatManager.PLUGINPREFIX + "ï¿½7Orbs added to player!");
                 //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                 return true;
             } else {
@@ -390,12 +346,12 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
                     if (getplayer.getName().equals(strings[3])) {
                         User user = UserManager.getUser(getplayer.getUniqueId());
                         user.setInt("orbs", user.getInt("orbs") + Integer.parseInt(strings[2]));
-                        player.sendMessage(ChatManager.PLUGINPREFIX + "§7Orbs added to player!");
+                        player.sendMessage(ChatManager.PLUGINPREFIX + "ï¿½7Orbs added to player!");
                         //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Added-Orbs"));
                         return true;
                     }
                 }
-                player.sendMessage(ChatManager.PLUGINPREFIX + "§cPlayer not found!");
+                player.sendMessage(ChatManager.PLUGINPREFIX + "ï¿½cPlayer not found!");
                 //player.sendMessage(ChatManager.PLUGINPREFIX + ChatManager.colorMessage("commands.Admin-Commands.Player-Not-Found"));
                 return true;
             } else {

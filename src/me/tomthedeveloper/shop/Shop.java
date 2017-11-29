@@ -1,13 +1,12 @@
 package me.tomthedeveloper.shop;
 
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.menuapi.IconMenu;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.menuapi.IconMenu;
 
 /**
  * Created by Tom on 16/08/2014.

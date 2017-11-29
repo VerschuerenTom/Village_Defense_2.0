@@ -1,11 +1,10 @@
 package me.tomthedeveloper.kitapi;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import me.tomthedeveloper.kitapi.basekits.Kit;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.kitapi.basekits.Kit;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tom on 25/07/2014.

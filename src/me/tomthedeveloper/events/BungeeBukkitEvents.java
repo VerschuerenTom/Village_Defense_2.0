@@ -1,13 +1,11 @@
 package me.tomthedeveloper.events;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+import me.tomthedeveloper.GameAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-
-import me.tomthedeveloper.GameAPI;
 
 /**
  * Created by Tom on 31/08/2014.

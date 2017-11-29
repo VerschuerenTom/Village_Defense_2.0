@@ -1,9 +1,8 @@
 package me.tomthedeveloper.items;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.ConfigurationManager;
+import me.tomthedeveloper.utils.ParticleEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -12,9 +11,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.utils.ParticleEffect;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Tom on 5/02/2016.
@@ -60,10 +59,10 @@ public class SpecialItem {
         } catch (IOException e) {
         	ChatManager.sendErrorHeader("saving SpecialItems.yml file");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
-            Bukkit.getConsoleSender().sendMessage("§c- create blank file named SpecialItems.yml");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named SpecialItems.yml");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
         }
         SpecialItem particleItem = new SpecialItem(name);
         particleItem.setData(config.getInt(name + ".data"));

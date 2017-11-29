@@ -1,14 +1,12 @@
 package me.tomthedeveloper;
 
+import com.sk89q.worldedit.bukkit.selections.Selection;
+import me.tomthedeveloper.permissions.PermissionsManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import com.sk89q.worldedit.bukkit.selections.Selection;
-
-import me.tomthedeveloper.permissions.PermissionsManager;
 
 /**
  * Created by Tom on 16/08/2014.

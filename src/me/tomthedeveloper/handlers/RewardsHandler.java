@@ -31,45 +31,7 @@ public class RewardsHandler {
             plugin.saveConfig();
         }
         enabled = plugin.getConfig().getBoolean("Rewards-Enabled");
-        File file = new File(plugin.getDataFolder() + File.separator + "rewards.yml");
-        if (!file.exists()) {
-        	if(Main.isDebugged()) {	
-        		System.out.print("Creating new file rewards.yml");
-        		System.out.print("Writing to file rewards.yml");
-        	}
-            InputStream inputStream = RewardsHandler.class.getResourceAsStream("rewards.yml");
-            OutputStream outputStream = null;
-            try {
-                outputStream =
-                        new FileOutputStream(file);
-                int read = 0;
-                byte[] bytes = new byte[1024];
-                while ((read = inputStream.read(bytes)) != -1) {
-                    outputStream.write(bytes, 0, read);
-                }
-                if(Main.isDebugged()) {
-                	System.out.println("[Village Debugger] Rewards.yml creating done!");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (inputStream != null) {
-                    try {
-                        inputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (outputStream != null) {
-                    try {
-                        outputStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-        config = ConfigurationManager.getConfig("rewards");
+        ConfigurationManager.getConfig("rewards");
     }
 
     public void performEndGameRewards(InvasionInstance gameInstance) {

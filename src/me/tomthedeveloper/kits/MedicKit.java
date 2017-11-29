@@ -1,7 +1,12 @@
 package me.tomthedeveloper.kits;
 
-import java.util.List;
-
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.PremiumKit;
+import me.tomthedeveloper.permissions.PermissionsManager;
+import me.tomthedeveloper.utils.*;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -14,17 +19,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
 
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.kitapi.basekits.PremiumKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.permissions.PermissionsManager;
-import me.tomthedeveloper.utils.ArmorHelper;
-import me.tomthedeveloper.utils.Items;
-import me.tomthedeveloper.utils.ParticleEffect;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.List;
 
 /**
  * Created by Tom on 1/12/2015.

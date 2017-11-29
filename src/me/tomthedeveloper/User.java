@@ -1,15 +1,14 @@
 package me.tomthedeveloper;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.kitapi.basekits.Kit;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.kitapi.basekits.Kit;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * Created by Tom on 27/07/2014.

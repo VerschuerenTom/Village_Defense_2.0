@@ -1,15 +1,14 @@
 package me.tomthedeveloper;
 
+import me.tomthedeveloper.handlers.ChatManager;
+import org.bukkit.Bukkit;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
-
-import org.bukkit.Bukkit;
-
-import me.tomthedeveloper.handlers.ChatManager;
 
 public class UpdateChecker {
 	
@@ -42,9 +41,9 @@ public class UpdateChecker {
         } catch (IOException ex) {
         	ChatManager.sendErrorHeader("checking for an update");
             ex.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- check if spigotmc site isn't offline (and wait until it's online)");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if spigotmc site isn't offline (and wait until it's online)");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
         }
         return version;
     }

@@ -1,8 +1,13 @@
 package me.tomthedeveloper.bungee;
 
-import java.io.IOException;
-import java.util.HashMap;
-
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.game.GameState;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.ConfigurationManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -13,15 +18,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.game.GameState;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Created by Tom on 31/08/2014.
@@ -51,10 +49,10 @@ public class Bungee implements Listener {
             } catch (IOException e) {
             	ChatManager.sendErrorHeader("saving MOTD file");
                 e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- create blank file named MOTD.yml if it doesn't exists");
-                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named MOTD.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
             }
         } else{
             motds.put(GameState.WAITING_FOR_PLAYERS, motdsconfig.getString("WAITING_FOR_PLAYERS"));

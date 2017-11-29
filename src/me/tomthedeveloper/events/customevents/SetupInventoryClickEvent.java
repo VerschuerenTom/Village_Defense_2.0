@@ -1,12 +1,11 @@
 package me.tomthedeveloper.events.customevents;
 
+import me.tomthedeveloper.game.GameInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-
-import me.tomthedeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 15/06/2015.

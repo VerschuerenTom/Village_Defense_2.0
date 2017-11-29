@@ -1,11 +1,23 @@
 package me.tomthedeveloper;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import me.tomthedeveloper.bungee.Bungee;
+import me.tomthedeveloper.commands.InstanceCommands;
+import me.tomthedeveloper.commands.SignCommands;
+import me.tomthedeveloper.commands.leave;
+import me.tomthedeveloper.commands.onStopCommand;
+import me.tomthedeveloper.events.JoinEvent;
+import me.tomthedeveloper.events.QuitEvent;
+import me.tomthedeveloper.events.customevents.SetupInventoryEvents;
+import me.tomthedeveloper.events.onBuild;
+import me.tomthedeveloper.events.onSpectate;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.handlers.*;
+import me.tomthedeveloper.kitapi.KitHandler;
+import me.tomthedeveloper.kitapi.KitMenuHandler;
+import net.minecraft.server.v1_12_R1.Entity;
+import net.minecraft.server.v1_12_R1.EntityTypes;
+import net.minecraft.server.v1_12_R1.MinecraftKey;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -16,29 +28,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-
-import me.tomthedeveloper.bungee.Bungee;
-import me.tomthedeveloper.commands.InstanceCommands;
-import me.tomthedeveloper.commands.SignCommands;
-import me.tomthedeveloper.commands.leave;
-import me.tomthedeveloper.commands.onStopCommand;
-import me.tomthedeveloper.events.JoinEvent;
-import me.tomthedeveloper.events.QuitEvent;
-import me.tomthedeveloper.events.onBuild;
-import me.tomthedeveloper.events.onSpectate;
-import me.tomthedeveloper.events.customevents.SetupInventoryEvents;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.handlers.GameInstanceManager;
-import me.tomthedeveloper.handlers.InventoryManager;
-import me.tomthedeveloper.handlers.SignManager;
-import me.tomthedeveloper.kitapi.KitHandler;
-import me.tomthedeveloper.kitapi.KitMenuHandler;
-import net.minecraft.server.v1_12_R1.Entity;
-import net.minecraft.server.v1_12_R1.EntityTypes;
-import net.minecraft.server.v1_12_R1.MinecraftKey;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Tom on 25/07/2014.
@@ -201,9 +195,9 @@ public class GameAPI {
 		} catch (Exception e) {
 			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.8.8 if not try to update it to 1.9 or 1.12");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if your server version is 1.8.8 if not try to update it to 1.9 or 1.12");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 
@@ -224,9 +218,9 @@ public class GameAPI {
 		} catch (Exception e) {
 			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.9 if not try to update it to 1.12");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if your server version is 1.9 if not try to update it to 1.12");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 
@@ -263,9 +257,9 @@ public class GameAPI {
 		} catch (Exception e) {
 			ChatManager.sendErrorHeader("entity registering");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- check if your server version is 1.7.10 if not try to update it to 1.8.8 or 1.9 or 1.12");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if your server version is 1.7.10 if not try to update it to 1.8.8 or 1.9 or 1.12");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 
@@ -401,10 +395,10 @@ public class GameAPI {
 			} catch (IOException e) {
 				ChatManager.sendErrorHeader("bungee.yml file save");
                 e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- create blank file named bungee.yml if it doesn't exists");
-                Bukkit.getConsoleSender().sendMessage("§c- disable bungee option in config (Bungeecord support will not work)");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named bungee.yml if it doesn't exists");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- disable bungee option in config (Bungeecord support will not work)");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 			}
 		}
 

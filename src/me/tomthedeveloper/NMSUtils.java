@@ -1,109 +1,16 @@
 package me.tomthedeveloper;
 
-import java.lang.reflect.Field;
-import java.util.Iterator;
-import java.util.List;
-
+import com.sk89q.worldedit.blocks.metadata.MobType;
+import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_12_R1.BiomeBase.BiomeMeta;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
 
-import com.sk89q.worldedit.blocks.metadata.MobType;
-
-import net.minecraft.server.v1_12_R1.BiomeBase;
-import net.minecraft.server.v1_12_R1.BiomeBase.BiomeMeta;
-import net.minecraft.server.v1_12_R1.Entity;
-import net.minecraft.server.v1_12_R1.EntityAreaEffectCloud;
-import net.minecraft.server.v1_12_R1.EntityArmorStand;
-import net.minecraft.server.v1_12_R1.EntityArrow;
-import net.minecraft.server.v1_12_R1.EntityBat;
-import net.minecraft.server.v1_12_R1.EntityBlaze;
-import net.minecraft.server.v1_12_R1.EntityBoat;
-import net.minecraft.server.v1_12_R1.EntityCaveSpider;
-import net.minecraft.server.v1_12_R1.EntityChicken;
-import net.minecraft.server.v1_12_R1.EntityCow;
-import net.minecraft.server.v1_12_R1.EntityCreeper;
-import net.minecraft.server.v1_12_R1.EntityDragonFireball;
-import net.minecraft.server.v1_12_R1.EntityEgg;
-import net.minecraft.server.v1_12_R1.EntityEnderCrystal;
-import net.minecraft.server.v1_12_R1.EntityEnderDragon;
-import net.minecraft.server.v1_12_R1.EntityEnderPearl;
-import net.minecraft.server.v1_12_R1.EntityEnderSignal;
-import net.minecraft.server.v1_12_R1.EntityEnderman;
-import net.minecraft.server.v1_12_R1.EntityEndermite;
-import net.minecraft.server.v1_12_R1.EntityEvoker;
-import net.minecraft.server.v1_12_R1.EntityEvokerFangs;
-import net.minecraft.server.v1_12_R1.EntityExperienceOrb;
-import net.minecraft.server.v1_12_R1.EntityFallingBlock;
-import net.minecraft.server.v1_12_R1.EntityFireball;
-import net.minecraft.server.v1_12_R1.EntityFireworks;
-import net.minecraft.server.v1_12_R1.EntityGhast;
-import net.minecraft.server.v1_12_R1.EntityGiantZombie;
-import net.minecraft.server.v1_12_R1.EntityGuardian;
-import net.minecraft.server.v1_12_R1.EntityGuardianElder;
-import net.minecraft.server.v1_12_R1.EntityHorse;
-import net.minecraft.server.v1_12_R1.EntityHorseDonkey;
-import net.minecraft.server.v1_12_R1.EntityHorseMule;
-import net.minecraft.server.v1_12_R1.EntityHorseSkeleton;
-import net.minecraft.server.v1_12_R1.EntityHorseZombie;
-import net.minecraft.server.v1_12_R1.EntityIllagerIllusioner;
-import net.minecraft.server.v1_12_R1.EntityInsentient;
-import net.minecraft.server.v1_12_R1.EntityIronGolem;
-import net.minecraft.server.v1_12_R1.EntityItem;
-import net.minecraft.server.v1_12_R1.EntityItemFrame;
-import net.minecraft.server.v1_12_R1.EntityLeash;
-import net.minecraft.server.v1_12_R1.EntityLlama;
-import net.minecraft.server.v1_12_R1.EntityLlamaSpit;
-import net.minecraft.server.v1_12_R1.EntityMagmaCube;
-import net.minecraft.server.v1_12_R1.EntityMinecartChest;
-import net.minecraft.server.v1_12_R1.EntityMinecartCommandBlock;
-import net.minecraft.server.v1_12_R1.EntityMinecartFurnace;
-import net.minecraft.server.v1_12_R1.EntityMinecartHopper;
-import net.minecraft.server.v1_12_R1.EntityMinecartMobSpawner;
-import net.minecraft.server.v1_12_R1.EntityMinecartRideable;
-import net.minecraft.server.v1_12_R1.EntityMinecartTNT;
-import net.minecraft.server.v1_12_R1.EntityMushroomCow;
-import net.minecraft.server.v1_12_R1.EntityOcelot;
-import net.minecraft.server.v1_12_R1.EntityPainting;
-import net.minecraft.server.v1_12_R1.EntityParrot;
-import net.minecraft.server.v1_12_R1.EntityPig;
-import net.minecraft.server.v1_12_R1.EntityPigZombie;
-import net.minecraft.server.v1_12_R1.EntityPolarBear;
-import net.minecraft.server.v1_12_R1.EntityPotion;
-import net.minecraft.server.v1_12_R1.EntityRabbit;
-import net.minecraft.server.v1_12_R1.EntitySheep;
-import net.minecraft.server.v1_12_R1.EntityShulker;
-import net.minecraft.server.v1_12_R1.EntityShulkerBullet;
-import net.minecraft.server.v1_12_R1.EntitySilverfish;
-import net.minecraft.server.v1_12_R1.EntitySkeleton;
-import net.minecraft.server.v1_12_R1.EntitySkeletonStray;
-import net.minecraft.server.v1_12_R1.EntitySkeletonWither;
-import net.minecraft.server.v1_12_R1.EntitySlime;
-import net.minecraft.server.v1_12_R1.EntitySmallFireball;
-import net.minecraft.server.v1_12_R1.EntitySnowball;
-import net.minecraft.server.v1_12_R1.EntitySnowman;
-import net.minecraft.server.v1_12_R1.EntitySpectralArrow;
-import net.minecraft.server.v1_12_R1.EntitySpider;
-import net.minecraft.server.v1_12_R1.EntitySquid;
-import net.minecraft.server.v1_12_R1.EntityTNTPrimed;
-import net.minecraft.server.v1_12_R1.EntityThrownExpBottle;
-import net.minecraft.server.v1_12_R1.EntityTypes;
-import net.minecraft.server.v1_12_R1.EntityVex;
-import net.minecraft.server.v1_12_R1.EntityVillager;
-import net.minecraft.server.v1_12_R1.EntityVindicator;
-import net.minecraft.server.v1_12_R1.EntityWitch;
-import net.minecraft.server.v1_12_R1.EntityWither;
-import net.minecraft.server.v1_12_R1.EntityWitherSkull;
-import net.minecraft.server.v1_12_R1.EntityWolf;
-import net.minecraft.server.v1_12_R1.EntityZombie;
-import net.minecraft.server.v1_12_R1.EntityZombieHusk;
-import net.minecraft.server.v1_12_R1.EntityZombieVillager;
-import net.minecraft.server.v1_12_R1.GenericAttributes;
-import net.minecraft.server.v1_12_R1.IAttribute;
-import net.minecraft.server.v1_12_R1.Item;
-import net.minecraft.server.v1_12_R1.MinecraftKey;
-import net.minecraft.server.v1_12_R1.MinecraftServer;
+import java.lang.reflect.Field;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * A Free-to-use library class for registering custom entities in Minecraft,
@@ -138,7 +45,7 @@ public class NMSUtils {
         Item.REGISTRY.a(id, new MinecraftKey(provider.getName(), name), item);
     }
 
-    /**
+    /*
      * Adds a random spawn for the mob with the specified arguments.
      * <p>
      * If you're using a custom entity class, remember to <b>register</b> it before

@@ -1,54 +1,5 @@
 package me.tomthedeveloper.events;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.IronGolem;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.Zombie;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.entity.ItemSpawnEvent;
-import org.bukkit.event.entity.PlayerLeashEntityEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryPickupItemEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerExpChangeEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.InvasionInstance;
 import me.tomthedeveloper.Main;
@@ -63,9 +14,31 @@ import me.tomthedeveloper.handlers.UserManager;
 import me.tomthedeveloper.items.SpecialItemManager;
 import me.tomthedeveloper.permissions.PermissionsManager;
 import me.tomthedeveloper.shop.Shop;
-import me.tomthedeveloper.stats.MySQLDatabase;
 import me.tomthedeveloper.utils.MySQLConnectionUtils;
 import me.tomthedeveloper.utils.Util;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryPickupItemEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.*;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.*;
 
 /**
  * Created by Tom on 16/08/2014.
@@ -604,10 +577,10 @@ public class Events implements Listener {
                             System.out.print("COULDN'T GET STATS FROM PLAYER: " + player.getName());
                             ChatManager.sendErrorHeader("getting player data in MySQL database");
                             npe.printStackTrace();
-                            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                            Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
-                            Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
-                            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if you configured MySQL username, password etc. correctly");
+                            Bukkit.getConsoleSender().sendMessage("ï¿½c- disable mysql option (MySQL will not work)");
+                            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
                         }
 
                         if (i > user.getInt(s)) {

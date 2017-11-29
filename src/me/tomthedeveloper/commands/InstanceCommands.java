@@ -1,18 +1,5 @@
 package me.tomthedeveloper.commands;
 
-import java.util.HashSet;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Sign;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import me.tomthedeveloper.CommandsInterface;
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
@@ -21,6 +8,14 @@ import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.permissions.PermissionsManager;
 import me.tomthedeveloper.setup.SetupInventory;
 import me.tomthedeveloper.utils.Util;
+import org.bukkit.*;
+import org.bukkit.block.Sign;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.HashSet;
 
 /**
  * Created by Tom on 7/08/2014.

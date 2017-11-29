@@ -1,5 +1,8 @@
 package me.tomthedeveloper.events.customevents;
 
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.permissions.PermissionsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,10 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.permissions.PermissionsManager;
 
 /**
  * Created by Tom on 15/06/2015.

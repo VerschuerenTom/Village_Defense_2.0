@@ -1,11 +1,10 @@
 package me.tomthedeveloper.events;
 
+import me.tomthedeveloper.GameAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-
-import me.tomthedeveloper.GameAPI;
 
 /**
  * Created by Tom on 9/08/2014.

@@ -1,13 +1,5 @@
 package me.tomthedeveloper.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-/**
- * Created by Tom on 9/04/2015.
- */
-
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -20,6 +12,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * Created by Tom on 9/04/2015.
+ */
 
 /**
  * This is a chainable builder for {@link org.bukkit.inventory.ItemStack}s in {@link org.bukkit.Bukkit}

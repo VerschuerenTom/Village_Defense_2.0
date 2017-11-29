@@ -1,5 +1,7 @@
 package me.tomthedeveloper.utils;
 
+import org.bukkit.Bukkit;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -10,8 +12,6 @@ import java.util.Map;
 /**
  * Created by Tom on 30/07/2014.
  */
-
-import org.bukkit.Bukkit;
 
 /**
  * <b>ReflectionUtils</b>

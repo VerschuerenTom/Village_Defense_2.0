@@ -1,10 +1,9 @@
 package me.tomthedeveloper.handlers;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.game.GameState;
+import me.tomthedeveloper.permissions.PermissionsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
@@ -16,10 +15,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.game.GameState;
-import me.tomthedeveloper.permissions.PermissionsManager;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * User: Ivan
@@ -59,10 +58,10 @@ public class SignManager extends BukkitRunnable implements Listener {
 			} catch (IOException e) {
 				ChatManager.sendErrorHeader("saving signModification.yml file");
 				e.printStackTrace();
-				Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-				Bukkit.getConsoleSender().sendMessage("§c- restart the server");
-				Bukkit.getConsoleSender().sendMessage("§c- create blank file named signModification.yml");
-				Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+				Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+				Bukkit.getConsoleSender().sendMessage("ï¿½c- restart the server");
+				Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named signModification.yml");
+				Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 			}
 		}
 		signlines[0] = config.getString("signs.format.WaitingForNewGame.lines.1");

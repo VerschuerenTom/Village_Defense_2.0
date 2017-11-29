@@ -1,18 +1,12 @@
 package me.tomthedeveloper.game;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
-
-//import me.confuser.barapi.BarAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.bungee.Bungee;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.ConfigurationManager;
+import me.tomthedeveloper.handlers.UserManager;
+import org.bukkit.*;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -20,12 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.bungee.Bungee;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.handlers.UserManager;
+import java.io.IOException;
+import java.util.*;
+
+//import me.confuser.barapi.BarAPI;
 
 /**
  * Created by Tom on 27/07/2014.

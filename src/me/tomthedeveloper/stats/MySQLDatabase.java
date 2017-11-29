@@ -1,5 +1,9 @@
 package me.tomthedeveloper.stats;
 
+import me.tomthedeveloper.handlers.ChatManager;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,11 +11,6 @@ import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import me.tomthedeveloper.handlers.ChatManager;
 
 public class MySQLDatabase {
 
@@ -46,10 +45,10 @@ public class MySQLDatabase {
 		} catch (SQLException e) {
 			ChatManager.sendErrorHeader("saving player data in MySQL database");
 			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-			Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
-			Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
-			Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- check if you configured MySQL username, password etc. correctly");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- disable mysql option (MySQL will not work)");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 
 		// Table exists

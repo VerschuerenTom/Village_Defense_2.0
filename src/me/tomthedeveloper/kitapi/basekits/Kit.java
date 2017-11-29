@@ -1,11 +1,11 @@
 package me.tomthedeveloper.kitapi.basekits;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Arrays;
 
 /**
  * Created by Tom on 25/07/2014.

@@ -1,21 +1,20 @@
 package me.tomthedeveloper.kits;
 
-import java.util.List;
-
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.PremiumKit;
+import me.tomthedeveloper.permissions.PermissionsManager;
+import me.tomthedeveloper.utils.ArmorHelper;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.utils.WeaponHelper;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.kitapi.basekits.PremiumKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.permissions.PermissionsManager;
-import me.tomthedeveloper.utils.ArmorHelper;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.List;
 
 /**
  * Created by Tom on 19/08/2014.

@@ -1,8 +1,12 @@
 package me.tomthedeveloper.kits;
 
-import java.util.Arrays;
-import java.util.List;
-
+import me.tomthedeveloper.InvasionInstance;
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.LevelKit;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.utils.WeaponHelper;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
@@ -14,13 +18,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.kitapi.basekits.LevelKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Tom on 21/07/2015.

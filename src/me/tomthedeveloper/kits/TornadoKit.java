@@ -1,8 +1,12 @@
 package me.tomthedeveloper.kits;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.kitapi.basekits.PremiumKit;
+import me.tomthedeveloper.permissions.PermissionsManager;
+import me.tomthedeveloper.utils.ArmorHelper;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.utils.WeaponHelper;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,13 +20,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.kitapi.basekits.PremiumKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.permissions.PermissionsManager;
-import me.tomthedeveloper.utils.ArmorHelper;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tom on 30/12/2015.

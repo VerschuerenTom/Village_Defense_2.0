@@ -1,15 +1,14 @@
 package me.tomthedeveloper.handlers;
 
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.game.GameInstance;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.game.GameInstance;
 
 /**
  * Created by Tom on 27/07/2014.

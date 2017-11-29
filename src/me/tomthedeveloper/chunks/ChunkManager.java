@@ -1,12 +1,12 @@
 package me.tomthedeveloper.chunks;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Chunk;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkUnloadEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChunkManager implements Listener {
 

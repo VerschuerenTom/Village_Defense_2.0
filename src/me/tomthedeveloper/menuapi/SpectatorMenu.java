@@ -1,8 +1,7 @@
 package me.tomthedeveloper.menuapi;
 
-import java.io.IOException;
-import java.util.Arrays;
-
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.handlers.ConfigurationManager;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -10,8 +9,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.handlers.ConfigurationManager;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Tom on 2/08/2014.

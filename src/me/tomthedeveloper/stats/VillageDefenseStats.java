@@ -1,20 +1,12 @@
 package me.tomthedeveloper.stats;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-
 import me.tomthedeveloper.Main;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.handlers.UserManager;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+
+import java.util.*;
 
 /**
  * Created by Tom on 30/12/2015.

@@ -1,16 +1,15 @@
 package me.tomthedeveloper.stats;
 
-import java.io.IOException;
-
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.ConfigurationManager;
+import me.tomthedeveloper.handlers.UserManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.ConfigurationManager;
-import me.tomthedeveloper.handlers.UserManager;
+import java.io.IOException;
 
 /**
  * Created by Tom on 17/06/2015.
@@ -33,10 +32,10 @@ public class FileStats {
 		} catch (IOException e) {
 			ChatManager.sendErrorHeader("saving STATS.yml file");
 			e.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-			Bukkit.getConsoleSender().sendMessage("§c- restart the server");
-			Bukkit.getConsoleSender().sendMessage("§c- create blank file named STATS.yml");
-			Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- restart the server");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- create blank file named STATS.yml");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 

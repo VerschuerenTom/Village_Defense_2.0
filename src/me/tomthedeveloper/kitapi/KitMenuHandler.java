@@ -1,7 +1,13 @@
 package me.tomthedeveloper.kitapi;
 
-import java.util.Arrays;
-
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.User;
+import me.tomthedeveloper.events.customevents.PlayerChooseKitEvent;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.Kit;
+import me.tomthedeveloper.menuapi.IconMenu;
+import me.tomthedeveloper.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,14 +19,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.User;
-import me.tomthedeveloper.events.customevents.PlayerChooseKitEvent;
-import me.tomthedeveloper.kitapi.basekits.Kit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.menuapi.IconMenu;
-import me.tomthedeveloper.utils.Util;
+import java.util.Arrays;
 
 /**
  * Created by Tom on 26/07/2014.

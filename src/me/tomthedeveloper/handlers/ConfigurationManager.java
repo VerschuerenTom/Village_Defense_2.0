@@ -1,15 +1,15 @@
 package me.tomthedeveloper.handlers;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -38,11 +38,11 @@ public class ConfigurationManager {
             } catch (IOException ex) {
             	ChatManager.sendErrorHeader(filename + ".yml file");
                 ex.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
-                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
-                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
                 Bukkit.getServer().shutdown();
                 ex.printStackTrace();
 
@@ -56,19 +56,19 @@ public class ConfigurationManager {
             } catch (InvalidConfigurationException ex){
             	ChatManager.sendErrorHeader(filename + ".yml file");
                 ex.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
-                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
-                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
                 Bukkit.getServer().shutdown();
 
             } catch (FileNotFoundException e) {
             	ChatManager.sendErrorHeader(filename + ".yml file");
                 e.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- try to restart the server if the file wasn't generated");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,11 +79,11 @@ public class ConfigurationManager {
             } catch (IOException ex) {
             	ChatManager.sendErrorHeader(filename + ".yml file");
                 ex.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
-                Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
-                Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- remove " + filename + ".yml to generate a new one");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- copy contents of " + filename + ".yml and check formatting at this website:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½chttp://yaml-online-parser.appspot.com/");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
                 Bukkit.getServer().shutdown();
                 ex.printStackTrace();
             }
@@ -99,20 +99,20 @@ public class ConfigurationManager {
         }catch (InvalidConfigurationException ex){
         	ChatManager.sendErrorHeader(filename + ".yml file");
             ex.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- remove " + filename + ".yml to generate a new one");
-            Bukkit.getConsoleSender().sendMessage("§c- copy contents of " + filename + ".yml and check formatting at this website:");
-            Bukkit.getConsoleSender().sendMessage("§chttp://yaml-online-parser.appspot.com/");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- remove " + filename + ".yml to generate a new one");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- copy contents of " + filename + ".yml and check formatting at this website:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½chttp://yaml-online-parser.appspot.com/");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
             Bukkit.shutdown();
             return null;
 
         } catch (FileNotFoundException e) {
         	ChatManager.sendErrorHeader(filename + ".yml file");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- try to restart the server if the file wasn't generated");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- try to restart the server if the file wasn't generated");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,15 +1,15 @@
 package me.tomthedeveloper.handlers;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.logging.Level;
-
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class LanguageManager {
 
@@ -37,7 +37,7 @@ public class LanguageManager {
 		if(getLanguageFile().isSet(message)) {
 			return getLanguageFile().getString(message);
 		}
-		return null;
+		return "MESSAGE NOT FOUND";
 	}
 	
 	public static FileConfiguration getLanguageFile() {
@@ -63,9 +63,9 @@ public class LanguageManager {
 		} catch(Exception e){
 			ChatManager.sendErrorHeader("reloading language configuration");
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 
@@ -79,9 +79,9 @@ public class LanguageManager {
 			plugin.getLogger().log(Level.SEVERE, "Could not save file to " + languageConfigFile, ex);
 			ChatManager.sendErrorHeader("saving language file");
             ex.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- restart the server");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- restart the server");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 		}
 	}
 

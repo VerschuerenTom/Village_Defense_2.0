@@ -1,9 +1,10 @@
 package me.tomthedeveloper.kits;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.PremiumKit;
+import me.tomthedeveloper.permissions.PermissionsManager;
+import me.tomthedeveloper.utils.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -18,11 +19,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionType;
 
-import me.tomthedeveloper.kitapi.basekits.PremiumKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.permissions.PermissionsManager;
-import me.tomthedeveloper.utils.Items;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Tom on 8/02/2015.

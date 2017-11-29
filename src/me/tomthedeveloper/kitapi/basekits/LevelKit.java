@@ -1,13 +1,12 @@
 package me.tomthedeveloper.kitapi.basekits;
 
-import java.io.IOException;
-
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.ItemStack;
-
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.ConfigurationManager;
 import me.tomthedeveloper.utils.Util;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
+
+import java.io.IOException;
 
 /**
  * Created by Tom on 14/08/2014.

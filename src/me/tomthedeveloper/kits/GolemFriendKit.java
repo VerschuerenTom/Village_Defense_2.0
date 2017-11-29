@@ -1,24 +1,23 @@
 package me.tomthedeveloper.kits;
 
-import java.util.List;
-
-import org.bukkit.Color;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
 import me.tomthedeveloper.InvasionInstance;
 import me.tomthedeveloper.Main;
-import me.tomthedeveloper.kitapi.basekits.LevelKit;
 import me.tomthedeveloper.game.GameInstance;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.LevelKit;
 import me.tomthedeveloper.utils.ArmorHelper;
 import me.tomthedeveloper.utils.Util;
 import me.tomthedeveloper.utils.WeaponHelper;
 import me.tomthedeveloper.versions.InvasionInstance1_12_R1;
 import me.tomthedeveloper.versions.InvasionInstance1_7_10;
 import me.tomthedeveloper.versions.InvasionInstance1_8_R3;
+import org.bukkit.Color;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 /**
  * Created by Tom on 21/07/2015.

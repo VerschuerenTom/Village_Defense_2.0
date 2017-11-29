@@ -1,7 +1,5 @@
 package me.tomthedeveloper.handlers;
 
-import java.io.File;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,6 +11,8 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 /**
  * Created by Tom on 15/02/2015.
@@ -59,8 +59,8 @@ public class InventoryManager {
 			System.out.print("NOT WORKING!");
 			ChatManager.sendErrorHeader("saving inventory of player");
 			ex.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-			Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 			return false;
 		}
 	}
@@ -91,16 +91,16 @@ public class InventoryManager {
 				System.out.print("Armor getting not working?");
 				ChatManager.sendErrorHeader("saving inventory of player");
 				ex.printStackTrace();
-				Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-				Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+				Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+				Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 			}
 			file.delete();
 			return inventory;
 		} catch (Exception ex) {
 			ChatManager.sendErrorHeader("saving inventory of player");
 			ex.printStackTrace();
-			Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-			Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
 			return null;
 		}
 	}

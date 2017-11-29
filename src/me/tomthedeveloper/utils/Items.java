@@ -1,13 +1,7 @@
 package me.tomthedeveloper.utils;
 
-import java.util.Arrays;
-import java.util.Random;
-
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
+import me.tomthedeveloper.Main;
+import org.bukkit.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,7 +11,8 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import me.tomthedeveloper.Main;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Created by Tom on 2/08/2014.
@@ -32,8 +27,8 @@ public class Items {
             return spectatoritem;
         ItemStack itemStack = new ItemStack(Material.COMPASS);
         ItemMeta meta = itemStack.getItemMeta();
-        meta.setDisplayName("§6Specator Menu");
-        meta.setLore(Arrays.asList("§7Right click to open menu!"));
+        meta.setDisplayName("ï¿½6Specator Menu");
+        meta.setLore(Arrays.asList("ï¿½7Right click to open menu!"));
         itemStack.setItemMeta(meta);
         return itemStack;
     }

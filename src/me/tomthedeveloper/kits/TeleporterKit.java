@@ -1,13 +1,18 @@
 package me.tomthedeveloper.kits;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import me.tomthedeveloper.GameAPI;
+import me.tomthedeveloper.InvasionInstance;
+import me.tomthedeveloper.Main;
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.handlers.UserManager;
+import me.tomthedeveloper.kitapi.basekits.PremiumKit;
+import me.tomthedeveloper.permissions.PermissionsManager;
+import me.tomthedeveloper.utils.ArmorHelper;
+import me.tomthedeveloper.utils.ParticleEffect;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.utils.WeaponHelper;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -20,18 +25,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import me.tomthedeveloper.GameAPI;
-import me.tomthedeveloper.InvasionInstance;
-import me.tomthedeveloper.Main;
-import me.tomthedeveloper.kitapi.basekits.PremiumKit;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.handlers.UserManager;
-import me.tomthedeveloper.permissions.PermissionsManager;
-import me.tomthedeveloper.utils.ArmorHelper;
-import me.tomthedeveloper.utils.ParticleEffect;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Tom on 18/08/2014.

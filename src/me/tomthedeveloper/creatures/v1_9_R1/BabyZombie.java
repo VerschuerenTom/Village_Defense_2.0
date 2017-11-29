@@ -1,27 +1,11 @@
 package me.tomthedeveloper.creatures.v1_9_R1;
 
-import java.lang.reflect.Field;
-import java.util.Set;
-
-import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
-
 import me.tomthedeveloper.Main;
 import me.tomthedeveloper.utils.CreatureUtils;
-import net.minecraft.server.v1_9_R1.EntityHuman;
-import net.minecraft.server.v1_9_R1.EntityIronGolem;
-import net.minecraft.server.v1_9_R1.EntityVillager;
-import net.minecraft.server.v1_9_R1.EntityZombie;
-import net.minecraft.server.v1_9_R1.GenericAttributes;
-import net.minecraft.server.v1_9_R1.Navigation;
-import net.minecraft.server.v1_9_R1.PathfinderGoalBreakDoor;
-import net.minecraft.server.v1_9_R1.PathfinderGoalFloat;
-import net.minecraft.server.v1_9_R1.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_9_R1.PathfinderGoalLookAtPlayer;
-import net.minecraft.server.v1_9_R1.PathfinderGoalMeleeAttack;
-import net.minecraft.server.v1_9_R1.PathfinderGoalMoveTowardsRestriction;
-import net.minecraft.server.v1_9_R1.PathfinderGoalNearestAttackableTarget;
-import net.minecraft.server.v1_9_R1.PathfinderGoalRandomLookaround;
-import net.minecraft.server.v1_9_R1.PathfinderGoalSelector;
+import net.minecraft.server.v1_9_R1.*;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
+
+import java.util.Set;
 
 /**
  * Created by Tom on 14/08/2014.

@@ -1,15 +1,5 @@
 package me.tomthedeveloper.utils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -23,6 +13,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.BlockIterator;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Tom on 29/07/2014.
@@ -190,7 +184,7 @@ public class Util {
         Pattern regex = Pattern.compile(".{1," + max + "}(?:\\s|$)", Pattern.DOTALL);
         Matcher regexMatcher = regex.matcher(string);
         while (regexMatcher.find()) {
-            matchList.add("§7" + regexMatcher.group());
+            matchList.add("ï¿½7" + regexMatcher.group());
         }
         return matchList;
     }

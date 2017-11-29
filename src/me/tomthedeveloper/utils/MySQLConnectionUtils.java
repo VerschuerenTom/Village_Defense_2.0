@@ -1,16 +1,15 @@
 package me.tomthedeveloper.utils;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import me.tomthedeveloper.Main;
 import me.tomthedeveloper.User;
 import me.tomthedeveloper.handlers.ChatManager;
 import me.tomthedeveloper.handlers.UserManager;
 import me.tomthedeveloper.stats.MySQLDatabase;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author Plajer
@@ -56,10 +55,10 @@ public class MySQLConnectionUtils {
             System.out.print("CONNECTION FAILED FOR PLAYER " + player.getName());
             ChatManager.sendErrorHeader("saving player data in MySQL database");
             e1.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
-            Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
-            Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+            Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- check if you configured MySQL username, password etc. correctly");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- disable mysql option (MySQL will not work)");
+            Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
             //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         if (b = false) {
@@ -96,10 +95,10 @@ public class MySQLConnectionUtils {
                 System.out.print("CONNECTION FAILED TWICE FOR PLAYER " + player.getName());
                 ChatManager.sendErrorHeader("saving player data in MySQL database");
                 e1.printStackTrace();
-                Bukkit.getConsoleSender().sendMessage("§cDon't panic! Try to do this steps:");
-                Bukkit.getConsoleSender().sendMessage("§c- check if you configured MySQL username, password etc. correctly");
-                Bukkit.getConsoleSender().sendMessage("§c- disable mysql option (MySQL will not work)");
-                Bukkit.getConsoleSender().sendMessage("§c- contact the developer");
+                Bukkit.getConsoleSender().sendMessage("ï¿½cDon't panic! Try to do this steps:");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- check if you configured MySQL username, password etc. correctly");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- disable mysql option (MySQL will not work)");
+                Bukkit.getConsoleSender().sendMessage("ï¿½c- contact the developer");
                 //e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
         }

@@ -1,8 +1,9 @@
 package me.tomthedeveloper.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import com.sk89q.worldedit.bukkit.selections.Selection;
+import me.tomthedeveloper.GameAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
@@ -11,11 +12,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import com.sk89q.worldedit.bukkit.selections.Selection;
-
-import me.tomthedeveloper.GameAPI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tom on 7/08/2014.

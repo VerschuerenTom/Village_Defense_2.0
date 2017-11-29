@@ -1,11 +1,11 @@
 package me.tomthedeveloper.menuapi;
 
-import java.util.Arrays;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Arrays;
 
 /**
  * Created by Tom on 27/07/2014.

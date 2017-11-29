@@ -1,15 +1,14 @@
 package me.tomthedeveloper.kits;
 
-import java.util.List;
-
+import me.tomthedeveloper.handlers.ChatManager;
+import me.tomthedeveloper.kitapi.basekits.FreeKit;
+import me.tomthedeveloper.utils.Util;
+import me.tomthedeveloper.utils.WeaponHelper;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.tomthedeveloper.kitapi.basekits.FreeKit;
-import me.tomthedeveloper.handlers.ChatManager;
-import me.tomthedeveloper.utils.Util;
-import me.tomthedeveloper.utils.WeaponHelper;
+import java.util.List;
 
 /**
  * Created by Tom on 18/08/2014.

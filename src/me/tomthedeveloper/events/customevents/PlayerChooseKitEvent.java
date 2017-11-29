@@ -1,10 +1,9 @@
 package me.tomthedeveloper.events.customevents;
 
+import me.tomthedeveloper.kitapi.basekits.Kit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import me.tomthedeveloper.kitapi.basekits.Kit;
 
 /**
  * Created by Tom on 28/07/2014.

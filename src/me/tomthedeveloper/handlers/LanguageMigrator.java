@@ -1,19 +1,10 @@
 package me.tomthedeveloper.handlers;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
 import me.tomthedeveloper.Main;
+import org.bukkit.Bukkit;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LanguageMigrator {
 	
@@ -77,8 +68,8 @@ public class LanguageMigrator {
 		LanguageManager.saveLanguageFile();
 		System.out.println("[VillageDefense] Successfully migrated language.yml to new format! Changed " + counter + " lines!");
 		if(nomessages > 0) {
-			Bukkit.getConsoleSender().sendMessage("§c[VillageDefense] WARNING! Your old language.yml didn't have all messages needed for migration,");
-			Bukkit.getConsoleSender().sendMessage("§cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
+			Bukkit.getConsoleSender().sendMessage("ï¿½c[VillageDefense] WARNING! Your old language.yml didn't have all messages needed for migration,");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
 		}
 	}
 	

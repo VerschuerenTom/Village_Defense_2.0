@@ -1,8 +1,7 @@
 package me.tomthedeveloper.creatures.v1_8_R3;
 
-import java.util.Queue;
-import java.util.Random;
-
+import me.tomthedeveloper.utils.ParticleEffect;
+import me.tomthedeveloper.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -14,8 +13,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.tomthedeveloper.utils.ParticleEffect;
-import me.tomthedeveloper.utils.Util;
+import java.util.Queue;
+import java.util.Random;
 
 
 /**

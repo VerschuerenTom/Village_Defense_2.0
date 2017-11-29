@@ -1,5 +1,12 @@
 package me.tomthedeveloper.utils;
 
+import me.tomthedeveloper.utils.ReflectionHandler.PackageType;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,14 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
-
-import me.tomthedeveloper.utils.ReflectionHandler.PackageType;
 
 /**
  * <b>ParticleEffect Library</b>

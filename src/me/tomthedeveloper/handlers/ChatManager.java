@@ -1,13 +1,12 @@
 package me.tomthedeveloper.handlers;
 
+import me.tomthedeveloper.game.GameInstance;
+import me.tomthedeveloper.kitapi.basekits.Kit;
+import me.tomthedeveloper.utils.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import me.tomthedeveloper.kitapi.basekits.Kit;
-import me.tomthedeveloper.game.GameInstance;
-import me.tomthedeveloper.utils.Util;
 
 /**
  * Created by Tom on 27/07/2014.
@@ -55,13 +54,6 @@ public class ChatManager {
 		String message = formatMessage(ChatManager.colorMessage("In-game.Messages.Death"), player);
 		for(Player p : gameInstance.getPlayers()) {
 			p.sendMessage(PLUGINPREFIX + message);
-		}
-	}
-
-	public void broadcastMessage(String messageID, OfflinePlayer player){
-		String message = formatMessage(messageID, player);
-		for(Player player1 : gameInstance.getPlayers()) {
-			player1.sendMessage(PLUGINPREFIX + message);
 		}
 	}
 

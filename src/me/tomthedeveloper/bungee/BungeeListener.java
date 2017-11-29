@@ -1,9 +1,8 @@
 package me.tomthedeveloper.bungee;
 
+import me.tomthedeveloper.GameAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-
-import me.tomthedeveloper.GameAPI;
 
 /**
  * Created by Tom on 31/08/2014.
