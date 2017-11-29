@@ -46,7 +46,7 @@ kits:
     Game-Item-Name: "&6Cleaner Wand!"
     Game-Item-Lore: "&7Right click to kill all zombies! Cooldown: 400 seconds"
     Cleaned-Map: "&b%PLAYER% has cleaned the map!"
-    Nothing-To-Clean: "&aThe map is already empty!" #used for admin clean commands too!!!
+    Nothing-To-Clean: "&aThe map is already empty!" #WARNING: used for admin clean commands too!!!
     Spectator-Warning: "&cYou can't clean the map now! You are a spectator! You'll respawn at the start of the next wave!"
   Zombie-Teleporter:
     Kit-Name: "&2Zombie Teleporter"
