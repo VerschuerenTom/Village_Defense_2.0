@@ -31,7 +31,11 @@ public class RewardsHandler {
             plugin.saveConfig();
         }
         enabled = plugin.getConfig().getBoolean("Rewards-Enabled");
-        ConfigurationManager.getConfig("rewards");
+        File rewards = new File(plugin.getDataFolder(), "rewards.yml");
+        if(!rewards.exists()) {
+            plugin.saveResource("rewards.yml", false);
+            plugin.getLogger().info("Creating rewards.yml because it does not exist!");
+        }
     }
 
     public void performEndGameRewards(InvasionInstance gameInstance) {

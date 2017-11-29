@@ -132,7 +132,7 @@ kits:
     Kit-Description: "&7One hit most zombies with your OP sword! However be careful. this kit is only for the pros! Do not use it if you aren't a pro!"
   Medic:
     Kit-Name: "&6Medic"
-    Kit-Description: "&7This kit activates your passive powers. Everytime you hit a zombie,
+    Kit-Description: "&7This kit activates your passive powers. Every time you hit a zombie,
   you have a 1/10 chance to heal the players in a 5 block radius around you."
   Bunny:
     Bunny-Kit-Name: "&bThe Bunny"
@@ -189,4 +189,4 @@ In-game:
       Removed-Golems: "&b%PLAYER% has removed all the golems!"
       Removed-Zombies: "&b%PLAYER% has cleared the zombies!"
       Changed-Wave: "&bAdmin changed the wave to %NUMBER%"
-File-Version: "2"
+File-Version: "1"
