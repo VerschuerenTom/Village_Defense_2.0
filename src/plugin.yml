@@ -1,42 +1,15 @@
 name: VillageDefense
 main: me.tomthedeveloper.Main
-version: 2.1.4
-softdepend: [WorldEdit]
+version: 3.0-ALPHA
+softdepend: [WorldEdit, BarAPI]
 
 commands:
-  leave:
-    description: Teleports you to the End!
-    permission: villagedefense.leave
-    usage: /leave
   VillageDefense:
     description: All the commands!
     usage: /VD help
     permission: villagedefense.help
     aliases: [vd, villaged]
-  addsigns:
-    usage: /addsigns
-    permission: villagedefense.admin.addsigns
-    description: Adds the sign to the plugin!
-  smartreload:
-    usage: /smartreload
-    permission: villagedefense.admin.smartreload
-    description: Safely reloads the server!
-  smartstop:
-    usage: /smartstop
-    permission: villagedefense.admin.smartstop
-    description: Safely stops the server!
-  setshopchest:
-    usage: /setshopchest
-    permission: villagedefense.admin.setshopchest
-    description: Sets game shop in a chest!
-  setprice:
-    usage: /setprice
-    permission: villagedefense.admin.setprice
-    description: Sets holding item price!
-  stats:
-    usage: /stats
-    permission: villagedefense.stats
-    description: Shows you your stats!
+  #we gonna use only main command for every action
 
 permissions:
   villagedefense.admin.*:
