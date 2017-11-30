@@ -620,7 +620,6 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
     private void setupNMSEntities() {
         version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
         if (this.getVersion().equalsIgnoreCase("v1_7_R4")) {
-            gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.Youtuber.class);
             gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.FastZombie.class);
             gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.BabyZombie.class);
             gameAPI.registerEntity1_7_10("Zombie", 54, me.tomthedeveloper.creatures.v1_7_R4.PlayerBuster.class);
@@ -631,7 +630,6 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             gameAPI.registerEntity1_7_10("Wolf", 95, me.tomthedeveloper.creatures.v1_7_R4.WorkingWolf.class);
         }
         if (this.getVersion().equalsIgnoreCase("v1_8_R3")) {
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.Youtuber.class);
             gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.FastZombie.class);
             gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.BabyZombie.class);
             gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.PlayerBuster.class);
