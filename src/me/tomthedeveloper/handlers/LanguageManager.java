@@ -37,7 +37,7 @@ public class LanguageManager {
 		if(getLanguageFile().isSet(message)) {
 			return getLanguageFile().getString(message);
 		}
-		return "MESSAGE NOT FOUND";
+		return null;
 	}
 	
 	public static FileConfiguration getLanguageFile() {
