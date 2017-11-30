@@ -140,6 +140,7 @@ kits:
   Jumping on the roofs is easy! However, you could use some extra training for shooting your special bow"
 
 In-game:
+  Villager-Names: "Jagger,Kelsey,Kelton,Haylie,Harlow,Howard,Wulffric,Winfred,Ashley,Bailey,Beckett,Alfredo,Alfred,Adair,Edgar,ED,Eadwig,Edgaras,Buckley,Stanley,Nuffley,Mary,Jeffry,Rosaly,Elliot,Harry,Sam,Rosaline,Tom,Ivan,Kevin,Adam"
   Plugin-Prefix: "&a[Village Defense] "
   Already-Playing: "&cYou are already queued for a game! You can leave a game with /leave."
   Full-Game-No-Permission: "&cYou don't have the permission to join full games!"
@@ -189,4 +190,4 @@ In-game:
       Removed-Golems: "&b%PLAYER% has removed all the golems!"
       Removed-Zombies: "&b%PLAYER% has cleared the zombies!"
       Changed-Wave: "&bAdmin changed the wave to %NUMBER%"
-File-Version: "1"
+File-Version: "2"

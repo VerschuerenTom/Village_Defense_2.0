@@ -69,6 +69,22 @@ public class LanguageMigrator {
 			Bukkit.getConsoleSender().sendMessage("�cplease backup 'language.yml' file and generate new to copy needed messages to file from backup!");
 		}
 	}
+
+	/*
+	 * Will be ineffective in the future
+	 * marked as deprecated for further notice
+	 */
+	@Deprecated
+	public static void ineffectiveFileUpdate(){
+		if(LanguageManager.getLanguageMessage("File-Version") == "1"){
+			if(Main.isDebugged()){
+				System.out.println("[Village Debugger] Language file is updating please wait...");
+			}
+			LanguageManager.getLanguageFile().set("In-game.Villager-Names", "Jagger,Kelsey,Kelton,Haylie,Harlow,Howard,Wulffric,Winfred,Ashley,Bailey,Beckett,Alfredo,Alfred,Adair,Edgar,ED,Eadwig,Edgaras,Buckley,Stanley,Nuffley,Mary,Jeffry,Rosaly,Elliot,Harry,Sam,Rosaline,Tom,Ivan,Kevin,Adam");
+			LanguageManager.getLanguageFile().set("File-Version", "2");
+			LanguageManager.saveLanguageFile();
+		}
+	}
 	
 	/*public static void languageUpdate() {
 		if(LanguageManager.getLanguageMessage("File-Version") == null) {

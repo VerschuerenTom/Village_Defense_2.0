@@ -128,6 +128,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         if(LanguageManager.getLanguageMessage("File-Version") == null || LanguageManager.getLanguageMessage("File-Version").equals("0")) {
         	LanguageMigrator.initiateMigration();
         }
+        LanguageMigrator.ineffectiveFileUpdate();
         /*if(!LanguageManager.getLanguageFile().get("File-Version").equals(LANGUAGE_FILE_VERSION)) {
         	if(Main.isDebugged()) {
 				System.out.println("[Village Debugger] Initializing language file update!");

@@ -1,5 +1,6 @@
 package me.tomthedeveloper.creatures.v1_12_R1;
 
+import me.tomthedeveloper.handlers.LanguageManager;
 import me.tomthedeveloper.utils.CreatureUtils;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
@@ -12,8 +13,7 @@ import java.util.Random;
  */
 public class RidableVillager extends EntityVillager {
 
-    private String[] villagernames = {"Jagger", "Kelsey", "Kelton", "Haylie", "Harlow", "Howard", "Wulffric", "Winfred", "Ashley", "Bailey", "Beckett", "Alfredo", "Alfred", "Adair", "Edgar", "ED", "Eadwig", "Edgaras", "Buckley", "Stanley", "Nuffley", "Mary", "Jeffry", "Rosaly", "Elliot", "Harry", "Sam", "Rosaline", "Tom", "Ivan", "Kevin", "Adam"};
-
+    private String[] villagernames = LanguageManager.getLanguageMessage("In-game.Villager-Names").split(",");
 
     @SuppressWarnings("rawtypes")
     public RidableVillager(org.bukkit.World world) {
