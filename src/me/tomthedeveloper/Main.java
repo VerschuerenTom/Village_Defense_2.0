@@ -999,11 +999,6 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         return true;
     }
 
-
-    public void checkForSteal() {
-
-    }
-
     public void loadStatsForPlayersOnline() {
         for (final Player player : getServer().getOnlinePlayers()) {
             if (gameAPI.isBungeeActivated())

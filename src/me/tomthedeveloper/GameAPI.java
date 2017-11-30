@@ -120,9 +120,13 @@ public class GameAPI {
 		inventorymanagerEnabled = plugin.getConfig().getBoolean("InventoryManager");
 		bar = plugin.getConfig().getBoolean("bar");
 
-		/* if(bar){
-            BossBar.plugin = this;
-        } */
+		if(bar){
+			if (plugin.getServer().getPluginManager().getPlugin("BarAPI") == null) {
+				if(Main.isDebugged()) {
+					System.out.println("[Village Debugger] BarAPI not found! Boss bar support won't be provided!");
+				}
+			}
+        }
 
 		ConfigurationManager.plugin = plugin;
 		GameInstance.plugin = this;

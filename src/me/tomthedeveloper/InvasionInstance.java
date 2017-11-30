@@ -28,8 +28,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 
 import java.util.*;
+import me.confuser.barapi.BarAPI;
 
-//import me.confuser.barapi.BarAPI;
 //import me.mgone.bossbarapi.BossbarAPI;
 
 /**
@@ -274,8 +274,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         player.getInventory().clear();
 
                         ArmorHelper.clearArmor(player);
-                        // if (plugin.isBungeeActivated())
-                        //BossbarAPI.removeBar(player);
+                        if (plugin.isBungeeActivated()) {
+                            BarAPI.removeBar(player);
+                        }
                         player.setMaxHealth(20.0);
                         for (Player players : youtuberInvasion.getServer().getOnlinePlayers()) {
                             if (plugin.getGameInstanceManager().getGameInstance(players) != null)
@@ -357,15 +358,14 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     if (i == 1) color = ChatColor.YELLOW;
                     if (i == 2) color = ChatColor.LIGHT_PURPLE;
                     if (i == 3) color = ChatColor.RED;
-                    //BossbarAPI.setMessage(color + "IP: HCSERVER.COM");
+                    BarAPI.setMessage(color + "Your message for 64 chars, editable in config soon :tm:");
                 }
                 break;
             case STARTING:
-               /* for (Player player : getPlayers()) {
+               for (Player player : getPlayers()) {
                     float percentage = (float) Math.ceil((double) (100 * getTimer() / 30));
-                    // BossbarAPI.setMessage(player, ChatColor.GRAY + "Starting in: " + ChatManager.HIGHLIGHTED + getTimer(), percentage);
-                }*/
-            	// we don't need this for now :) will be available in future releases
+                    BarAPI.setMessage(player, ChatColor.GRAY + "Starting in: " + ChatManager.HIGHLIGHTED + getTimer(), percentage);
+                }
                 break;
             case INGAME:
                 if (FIGHTING) {
@@ -377,14 +377,12 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                         if (i == 1) color = ChatColor.YELLOW;
                         if (i == 2) color = ChatColor.LIGHT_PURPLE;
                         if (i == 3) color = ChatColor.RED;
-                        //    BossbarAPI.setMessage(color + "IP: PLAY.EDGEVILLEMC.COM");
+                        BarAPI.setMessage(color + "Your message for 64 chars, editable in config soon :tm:");
                     }
                 } else {
                     for (Player player : getPlayers()) {
                         float percentage = (float) Math.ceil(100 * getTimer() / 40);
-                        //  BossbarAPI.setMessage(player, ChatManager.PREFIX + "Next wave in " + ChatManager.HIGHLIGHTED + getTimer() + ChatManager.PREFIX + " seconds!", percentage);
-
-
+                         BarAPI.setMessage(player, ChatManager.PREFIX + "Next wave in " + ChatManager.HIGHLIGHTED + getTimer() + ChatManager.PREFIX + " seconds!", percentage);
                     }
                 }
                 break;
@@ -419,8 +417,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             }
         }
         for (Player player : getPlayers()) {
-            //if (plugin.isBungeeActivated())
-            //BossbarAPI.removeBar(player);
+            if (plugin.isBungeeActivated()) {
+                BarAPI.removeBar(player);
+            }
             setStat(player, "highestwave", wave);
             addStat(player, "xp", wave);
 
@@ -1137,9 +1136,9 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     ironGolem.remove();
             }
         }
-        //  if(plugin.isBarEnabled())
-        //    BossbarAPI.removeBar(p);
-
+        if(plugin.isBarEnabled()) {
+            BarAPI.removeBar(p);
+        }
         p.setMaxHealth(20.0);
         p.setFoodLevel(20);
         p.setFlying(false);

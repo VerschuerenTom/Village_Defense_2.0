@@ -1,5 +1,6 @@
 package me.tomthedeveloper.game;
 
+import me.confuser.barapi.BarAPI;
 import me.tomthedeveloper.GameAPI;
 import me.tomthedeveloper.User;
 import me.tomthedeveloper.bungee.Bungee;
@@ -359,9 +360,9 @@ public abstract class GameInstance extends BukkitRunnable {
         user.setAllowDoubleJump(false);
         user.setSpectator(false);
         user.removeScoreboard();
-       // if(plugin.isBarEnabled())
-            //BossbarAPI.removeBar(p);
-
+        if(plugin.isBarEnabled()) {
+            BarAPI.removeBar(p);
+        }
         p.setMaxHealth(20.0);
         p.setFoodLevel(20);
         p.setFlying(false);
@@ -590,45 +591,6 @@ public abstract class GameInstance extends BukkitRunnable {
 
 
     }
-
-
-    public Player getFirstPlace(){
-        if(firstPlace == null)
-            return null;
-        return Bukkit.getPlayer(firstPlace);
-    }
-
-    public Player getSecondPlace(){
-        if(secondPlace == null)
-            return null;
-        return Bukkit.getPlayer(secondPlace);
-    }
-
-    public Player getThirdPlace(){
-        if(thirdPlace == null)
-            return null;
-        return Bukkit.getPlayer(thirdPlace);
-    }
-
-    public void setFirstPlace(Player player){
-        firstPlace = player.getUniqueId();
-    }
-
-    public void setSecondPlace(Player player){
-        secondPlace = player.getUniqueId();
-    }
-
-    public void setThirdPlace(Player player){
-        thirdPlace = player.getUniqueId();
-    }
-
-    public void resetPlaces(){
-        firstPlace = null;
-        secondPlace = null;
-        thirdPlace = null;
-    }
-
-
 
 }
 
