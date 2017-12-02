@@ -35,7 +35,7 @@ public class FastZombie extends net.minecraft.server.v1_12_R1.EntityZombie {
         ((Navigation) getNavigation()).b(true);
 
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-        this.goalSelector.a(2, new PathfinderGoalZombieAttack(this, 1.0D, false));
+        this.goalSelector.a(2, new PathfinderGoalZombieAttack(this, this.bw, false));
         this.goalSelector.a(4, new PathfinderGoalMoveTowardsRestriction(this, this.bw));
         this.goalSelector.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F)); // this one to look at human
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
