@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public class UserManager {
 
-	private static HashMap<UUID, User> users = new HashMap<UUID, User>();
+	private static HashMap<UUID, User> users = new HashMap<>();
 
 	public static User getUser(UUID uuid){
 		if(users.containsKey(uuid)){
@@ -28,7 +28,7 @@ public class UserManager {
 	}
 
 	public static List<User> getAllUsersOnServer(){
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 		for(Player player : Bukkit.getServer().getOnlinePlayers()){
 			users.add(getUser(player.getUniqueId()));
 		}
@@ -36,7 +36,7 @@ public class UserManager {
 	}
 
 	public static List<User> getUsers(GameInstance GameInstance){
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 		for(Player player:GameInstance.getPlayers()){
 			users.add(getUser(player.getUniqueId()));
 		}

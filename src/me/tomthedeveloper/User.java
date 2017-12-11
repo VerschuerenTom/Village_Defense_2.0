@@ -19,21 +19,13 @@ public class User {
     private Scoreboard scoreboard;
     private static long COOLDOWNCOUNTER = 0;
     private UUID uuid;
-    private UUID lasthitted;
-    private int power;
-    private int exp;
     private boolean fakedead = false;
     private boolean spectator = false;
-    private boolean doublejump = false;
-    private boolean hasdoublejumped = false;
     public static GameAPI plugin;
     private Kit kit;
-    private HashMap<String, Integer> ints = new HashMap<String, Integer>();
-    private HashMap<String, Long> cooldowns = new HashMap<String, Long>();
-    private HashMap<String, Object> objects = new HashMap<String, Object>();
-
-
-
+    private HashMap<String, Integer> ints = new HashMap<>();
+    private HashMap<String, Long> cooldowns = new HashMap<>();
+    private HashMap<String, Object> objects = new HashMap<>();
 
 
     public User(UUID uuid){
@@ -88,38 +80,6 @@ public class User {
         this.uuid = uuid;
     }
 
-    public int getPower(){
-        return power;
-    }
-
-    public void setPower(int power){
-        this.power = power;
-    }
-
-    public void addPower(){
-        setPower(getPower() + 1);
-    }
-
-    public void addPower(int i){
-        setPower(getPower() + i);
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
-    public void addExp(int exp){
-        setExp(getExp() + exp);
-    }
-
-    public void addExp(){
-        setExp(getExp() + 1);
-    }
-
     public void setFakeDead(boolean b){
         fakedead = b;
     }
@@ -130,10 +90,6 @@ public class User {
 
     public Player toPlayer(){
         return Bukkit.getServer().getPlayer(uuid);
-    }
-
-    public void removePower(int i){
-        setPower(getPower() -i);
     }
 
     public void setSpectator(boolean b){
@@ -172,10 +128,6 @@ public class User {
         VIP, MVP, ELITE;
     }
 
-    public void setAllowDoubleJump(boolean b){
-        doublejump = b;
-    }
-
     public static void handleCooldowns(){
        COOLDOWNCOUNTER++;
     }
@@ -198,23 +150,5 @@ public class User {
             ints.put(string, ints.get(string) - i);
         }
     }
-
-    public Player getLastHitted(){
-        if(lasthitted == null)
-            return null;
-        return Bukkit.getPlayer(lasthitted);
-    }
-
-    public void setLastHitted(Player player){
-        if(player == null){
-            lasthitted = null;
-            return;
-        }
-        lasthitted = player.getUniqueId();
-    }
-
-
-
-
 
 }

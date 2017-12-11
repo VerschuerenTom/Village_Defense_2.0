@@ -432,7 +432,6 @@ public class Events implements Listener {
                 if (string.contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop")) || string.contains("orbs")) {
                     string = s;
                     b = true;
-                    continue;
                 }
             }
             if (b = false)
@@ -465,7 +464,7 @@ public class Events implements Listener {
 
         ItemStack itemStack = event.getCurrentItem().clone();
         ItemMeta itemMeta = itemStack.getItemMeta();
-        List<String> lore = new ArrayList<String>();
+        List<String> lore = new ArrayList<>();
         Iterator iterator = lore.iterator();
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
@@ -489,7 +488,7 @@ public class Events implements Listener {
             event.getPlayer().teleport(gameAPI.getGameInstanceManager().getGameInstances().get(0).getEndLocation());
         }
         if (!plugin.isDatabaseActivated()) {
-            List<String> temp = new ArrayList<String>();
+            List<String> temp = new ArrayList<>();
             temp.add("gamesplayed");
             temp.add("kills");
             temp.add("deaths");
@@ -559,7 +558,7 @@ public class Events implements Listener {
             Bukkit.getScheduler().runTaskAsynchronously(plugin, new Runnable() {
                 @Override
                 public void run() {
-                    List<String> temp = new ArrayList<String>();
+                    List<String> temp = new ArrayList<>();
                     temp.add("gamesplayed");
                     temp.add("kills");
                     temp.add("deaths");
@@ -593,7 +592,7 @@ public class Events implements Listener {
             });
 
         } else {
-            List<String> temp = new ArrayList<String>();
+            List<String> temp = new ArrayList<>();
             temp.add("gamesplayed");
             temp.add("kills");
             temp.add("deaths");
@@ -721,7 +720,7 @@ public class Events implements Listener {
         }
         if (plugin.isChatFormatEnabled()) {
             Iterator<Player> iterator = event.getRecipients().iterator();
-            List<Player> remove = new ArrayList<Player>();
+            List<Player> remove = new ArrayList<>();
             while (iterator.hasNext()) {
                 Player player = iterator.next();
                 if (!plugin.isSpyChatEnabled(player))
@@ -754,7 +753,7 @@ public class Events implements Listener {
         } else {
             GameInstance gameInstance = gameAPI.getGameInstanceManager().getGameInstance(event.getPlayer());
             event.getRecipients().clear();
-            event.getRecipients().addAll(new ArrayList<Player>(gameInstance.getPlayers()));
+            event.getRecipients().addAll(new ArrayList<>(gameInstance.getPlayers()));
             event.setMessage(event.getMessage().replaceAll("%KIT%", UserManager.getUser(event.getPlayer().getUniqueId()).getKit().getName()));
         }
 

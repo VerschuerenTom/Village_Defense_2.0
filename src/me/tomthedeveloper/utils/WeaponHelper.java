@@ -22,7 +22,7 @@ public class WeaponHelper {
 
     public static ItemStack getEnchantedBow(Enchantment[] enchantments,int[] levels ){
        ItemStack itemStack = new ItemStack(Material.BOW);
-        Map<Enchantment, Integer> enchantmentsmap = new HashMap<Enchantment, Integer>();
+        Map<Enchantment, Integer> enchantmentsmap = new HashMap<>();
         int i = 0;
         for(Enchantment enchantment: enchantments){
            enchantmentsmap.put(enchantment, levels[i]);
@@ -33,7 +33,7 @@ public class WeaponHelper {
     }
 
     public static ItemStack getEnchanted(ItemStack itemStack, Enchantment[] enchantments, int[] levels){
-        Map<Enchantment, Integer> enchantmentsmap = new HashMap<Enchantment, Integer>();
+        Map<Enchantment, Integer> enchantmentsmap = new HashMap<>();
         int i = 0;
         for(Enchantment enchantment: enchantments){
             enchantmentsmap.put(enchantment, levels[i]);

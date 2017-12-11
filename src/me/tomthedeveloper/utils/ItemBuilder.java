@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -34,7 +33,7 @@ public class ItemBuilder implements Listener {
 
 
     private static boolean listener	= false;
-    private static final HashMap<String, PotionEffect>	effects	= new HashMap<String, PotionEffect>();
+    private static final HashMap<String, PotionEffect>	effects	= new HashMap<>();
 
     private final ItemStack is;
 
@@ -100,7 +99,7 @@ public class ItemBuilder implements Listener {
         final ItemMeta meta = is.getItemMeta();
         List<String> lore = meta.getLore();
         if (lore == null) {
-            lore = new ArrayList<String>();
+            lore = new ArrayList<>();
         }
         lore.add(name);
         meta.setLore(lore);
@@ -183,7 +182,7 @@ public class ItemBuilder implements Listener {
      */
     public ItemBuilder clearLore() {
         final ItemMeta meta = is.getItemMeta();
-        meta.setLore(new ArrayList<String>());
+        meta.setLore(new ArrayList<>());
         is.setItemMeta(meta);
         return this;
     }
@@ -222,59 +221,6 @@ public class ItemBuilder implements Listener {
     }
 
     /**
-     * Adds a effects to the item. The effects gets applied to player when
-     * <s>wearing the item</s> (later) or consuming it
-     *
-     * @param type
-     *            the {@link org.bukkit.potion.PotionEffectType} to apply
-     * @param duration
-     *            the duration in ticks (-1 for endless)
-     * @param amplifier
-     *         ient status
-     * @return this builder for chaining
-     * @since 1.2
-
-
-    /**
-     * Adds a effects to the item. The effects gets applied to player when
-     * <s>wearing the item</s> (later) or consuming it
-     *
-     * @param effect
-     *            the effect to apply
-     * @return this builder for chaining
-     * @since 1.2
-     */
-
-
-    /**
-     * Adds a effects to the item. The effects gets applied to player when
-     * <s>wearing the item</s> (later) or consuming it
-     *
-     * @param type
-     *            the {@link org.bukkit.potion.PotionEffectType} to apply
-     * @param duration
-     *            the duration in ticks (-1 for endless)
-     * @param amplifier
-     *            the amplifier of the effect
-     * @return this builder for chaining
-     * @since 1.2
-     */
-
-
-    /**
-     * Adds a effects to the item. The effects gets applied to player when
-     * <s>wearing the item</s> (later) or consuming it
-     *
-     * @param type
-     *            the {@link org.bukkit.potion.PotionEffectType} to apply
-     * @param duration
-     *            the duration (-1 for endless)
-     * @return this builder for chaining
-     * @since 1.2
-     */
-
-
-    /**
      * Builds the {@link org.bukkit.inventory.ItemStack}
      *
      * @return the created {@link org.bukkit.inventory.ItemStack}
@@ -295,11 +241,6 @@ public class ItemBuilder implements Listener {
                 name += "#";
             }
         }
-    }
-
-    @EventHandler
-    public void onItemApply(InventoryClickEvent e) {
-        // TODO add effects when item is applied
     }
 
 }

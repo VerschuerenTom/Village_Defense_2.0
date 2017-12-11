@@ -24,8 +24,8 @@ import java.util.*;
  */
 public abstract class GameInstance extends BukkitRunnable {
 
-    protected HashMap<GameState, String[]> signlines = new HashMap<GameState, String[]>();
-    private HashSet<Location> signs = new HashSet<Location>();
+    protected HashMap<GameState, String[]> signlines = new HashMap<>();
+    private HashSet<Location> signs = new HashSet<>();
 
     private GameState gameState;
     private int MIN_PLAYERS = 2;
@@ -55,7 +55,7 @@ public abstract class GameInstance extends BukkitRunnable {
         chatManager = new ChatManager(this);
 
         this.ID = ID;
-        players = new HashSet<UUID>();
+        players = new HashSet<>();
         loadSignLines();
 
     }
@@ -247,17 +247,6 @@ public abstract class GameInstance extends BukkitRunnable {
 
     }
 
-    private String[] formatText(String[] string){
-        String[] returnstring = string;
-        returnstring[0] = formatText(string[0]);
-        returnstring[1] = formatText(string[1]);
-        returnstring[2] = formatText(string[2]);
-        returnstring[3] = formatText(string[3]);
-        return returnstring;
-
-    }
-
-
     private String formatText(String s){
         String returnstring = s;
         returnstring = returnstring.replaceAll("%ARENA%", getID());
@@ -329,16 +318,16 @@ public abstract class GameInstance extends BukkitRunnable {
     }
 
     public HashSet<Player> getPlayers(){
-        HashSet<Player> list = new HashSet<Player>();
+        HashSet<Player> list = new HashSet<>();
         for(UUID uuid: players){
-            list.add( (Player) Bukkit.getPlayer(uuid));
+            list.add(Bukkit.getPlayer(uuid));
         }
 
         return list;
     }
 
     public List<Player> getPlayersLeft(){
-        List<Player> players = new ArrayList<Player>();
+        List<Player> players = new ArrayList<>();
         for(User user: UserManager.getUsers(this)){
             if(!user.isFakeDead())
                 players.add(user.toPlayer());
@@ -356,7 +345,6 @@ public abstract class GameInstance extends BukkitRunnable {
             getChatManager().broadcastLeaveMessage(p);
         }
         user.setFakeDead(false);
-        user.setAllowDoubleJump(false);
         user.setSpectator(false);
         user.removeScoreboard();
        // if(plugin.isBarEnabled())

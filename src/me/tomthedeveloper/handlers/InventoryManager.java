@@ -39,7 +39,7 @@ public class InventoryManager {
 			invConfig.set("Exp", player.getExpToLevel());
 			invConfig.set("Size", inventory.getSize());
 			invConfig.set("Max stack size", inventory.getMaxStackSize());
-			if (inventory.getHolder() instanceof Player) invConfig.set("Holder", ((Player) inventory.getHolder()).getName());
+			if (inventory.getHolder() instanceof Player) invConfig.set("Holder", (inventory.getHolder()).getName());
 
 			ItemStack[] invContents = inventory.getContents();
 			for (int i = 0; i < invContents.length; i++) {

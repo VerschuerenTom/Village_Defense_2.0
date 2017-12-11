@@ -38,24 +38,24 @@ import java.util.*;
 public abstract class InvasionInstance extends GameInstance implements Listener {
 
     public static Main youtuberInvasion;
-    public LinkedHashMap<Location, Byte> doorblocks = new LinkedHashMap<Location, Byte>();
-    protected List<Location> zombiespawns = new ArrayList<Location>();
+    public LinkedHashMap<Location, Byte> doorblocks = new LinkedHashMap<>();
+    protected List<Location> zombiespawns = new ArrayList<>();
     protected int zombiestospawn;
-    private List<Location> villagerspawns = new ArrayList<Location>();
-    private List<Zombie> zombies = new ArrayList<Zombie>();
-    private List<Wolf> wolfs = new ArrayList<Wolf>();
-    private List<Villager> villagers = new ArrayList<Villager>();
-    private List<IronGolem> irongolems = new ArrayList<IronGolem>();
+    private List<Location> villagerspawns = new ArrayList<>();
+    private List<Zombie> zombies = new ArrayList<>();
+    private List<Wolf> wolfs = new ArrayList<>();
+    private List<Villager> villagers = new ArrayList<>();
+    private List<IronGolem> irongolems = new ArrayList<>();
     private boolean FIGHTING;
     private int wave;
     private int rottenflesh;
     private int rottenfleshlevel;
     private int zombiechecker = 0;
     private Random random;
-    private List<Zombie> glitchedzombies = new ArrayList<Zombie>();
+    private List<Zombie> glitchedzombies = new ArrayList<>();
 
     private int spawncounter = 0;
-    private HashMap<Zombie, Location> zombiecheckerlocations = new HashMap<Zombie, Location>();
+    private HashMap<Zombie, Location> zombiecheckerlocations = new HashMap<>();
 
 
     public InvasionInstance(String ID) {
@@ -144,7 +144,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                 }
                 zombiechecker++;
                 if (zombiechecker >= 60) {
-                    List<Villager> remove = new ArrayList<Villager>();
+                    List<Villager> remove = new ArrayList<>();
                     for (Villager villager : getVillagers()) {
                         if (villager.isDead())
                             remove.add(villager);
@@ -154,7 +154,7 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     }
                     remove.clear();
                     zombiechecker = 0;
-                    List<Zombie> removeaferloop = new ArrayList<Zombie>();
+                    List<Zombie> removeaferloop = new ArrayList<>();
                     for (Zombie zombie : getZombies()) {
                         if (zombie.isDead()) {
                             removeaferloop.add(zombie);
@@ -303,7 +303,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
                     for (User user : UserManager.getUsers(this)) {
                         user.setSpectator(false);
                         user.setInt("orbs", 0);
-                        user.setAllowDoubleJump(false);
                         user.setFakeDead(false);
                     }
                     clearPlayers();
@@ -487,12 +486,10 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
 
     public void spawnVillagers() {
         if (getVillagers().size() > 10) {
-            return;
         } else if (getVillagerSpawns() == null || getVillagerSpawns().size() <= 0) {
         	if(Main.isDebugged()) {
         		System.out.print(ChatColor.RED + "[Village Debugger] NO VILLAGERSPAWNS DEFINED FOR ARENA " + this.getID() + "! ARENA CAN'T RUN WITHOUT VILLAGER SPAWNS! PLEASE ADD VILLAGER SPAWNS!");
         	}
-        	return;
         } else {
             for (Location location : getVillagerSpawns()) {
                 spawnVillager(location);
@@ -864,10 +861,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
         wolfs.add(wolf);
     }
 
-    public void removeWolf(Wolf wolf) {
-        wolfs.remove(wolf);
-    }
-
     public List<Wolf> getWolfs() {
         return wolfs;
     }
@@ -922,13 +915,10 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
     public void restoreDoors() {
         for (Location location : doorblocks.keySet()) {
 
-
-            byte raw = 8;
             Block block = location.getBlock();
             Byte doordata = doorblocks.get(location);
             int id = Material.WOODEN_DOOR.getId();
             block.setTypeIdAndData(id, doordata, false);
-
 
         }
     }
@@ -1054,7 +1044,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             player.setFlying(false);
             player.setAllowFlight(false);
             User user = UserManager.getUser(player.getUniqueId());
-            user.setAllowDoubleJump(false);
             user.setInt("orbs", 0);
             player.teleport(this.getEndLocation());
             return;
@@ -1128,7 +1117,6 @@ public abstract class InvasionInstance extends GameInstance implements Listener 
             getChatManager().broadcastLeaveMessage(p);
         }
         user.setFakeDead(false);
-        user.setAllowDoubleJump(false);
         user.setSpectator(false);
         user.removeScoreboard();
         if (user.getKit() instanceof GolemFriendKit) {

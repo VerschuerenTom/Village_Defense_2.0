@@ -7,18 +7,26 @@
       <sourceFolder url="file://$MODULE_DIR$" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="spigot-1.8.7" level="application" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.mongodb:mongo-java-driver:2.12.3" level="project" />
-    <orderEntry type="library" name="com.jolbox:bonecp:Release" level="project" />
-    <orderEntry type="library" name="spigot" level="project" />
-    <orderEntry type="library" name="spigot-1.7.10-SNAPSHOT-b1657" level="project" />
-    <orderEntry type="library" name="worldedit-bukkit-6.1.7.3" level="project" />
     <orderEntry type="library" name="spigot-api-1.12.2-R0.1-SNAPSHOT-b1409" level="project" />
-    <orderEntry type="library" name="spigot-api-1.9.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="spigot-1.12.1-R0.1-SNAPSHOT-b1405" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../APIs, engines/Engines/Craftbukkit 1.8.8-R0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../APIs, engines/Engines/Craftbukkit 1.8.8-R0.1.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="BukkitAPI 1.8.8-R0.1" level="project" />
+    <orderEntry type="library" name="worldedit-bukkit-6.1.7.3" level="project" />
+    <orderEntry type="library" name="spigot-1.7.10-SNAPSHOT-b1657" level="project" />
+    <orderEntry type="library" name="spigot-api-1.9.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="spigot-1.9.2-R0.1-SNAPSHOT-latest" level="project" />
-    <orderEntry type="library" name="spigot-1.12.1-R0.1-SNAPSHOT-b14051" level="application" />
     <orderEntry type="library" name="spigot-api-1.8.4-R0.1-SNAPSHOT-latest" level="project" />
+    <orderEntry type="library" name="com.jolbox:bonecp:0.8.0.RELEASE" level="project" />
   </component>
 </module>

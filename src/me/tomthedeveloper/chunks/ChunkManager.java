@@ -12,7 +12,7 @@ public class ChunkManager implements Listener {
 
 
     private static ChunkManager instance;
-    private List<Chunk> chunks = new ArrayList<Chunk>();
+    private List<Chunk> chunks = new ArrayList<>();
 
     private ChunkManager() {
     }

@@ -33,7 +33,7 @@ import java.util.*;
 public class BlockerKit extends PremiumKit implements Listener {
 
 	private Main plugin;
-	private List<ZombieBarrier> zombiebarriers = new ArrayList<ZombieBarrier>();
+	private List<ZombieBarrier> zombiebarriers = new ArrayList<>();
 
 
 	public BlockerKit(final Main plugin) {
@@ -45,7 +45,7 @@ public class BlockerKit extends PremiumKit implements Listener {
 			@Override
 			public void run() {
 				Iterator<ZombieBarrier> iterator = zombiebarriers.iterator();
-				List<ZombieBarrier> removeAfter = new ArrayList<ZombieBarrier>();
+				List<ZombieBarrier> removeAfter = new ArrayList<>();
 				while (iterator.hasNext()) {
 
 					ZombieBarrier zombieBarrier = iterator.next();

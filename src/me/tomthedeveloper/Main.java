@@ -5,7 +5,6 @@ import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import me.tomthedeveloper.chunks.ChunkManager;
 import me.tomthedeveloper.commands.InstanceCommands;
-import me.tomthedeveloper.commands.StatsCommand;
 import me.tomthedeveloper.creatures.v1_12_R1.*;
 import me.tomthedeveloper.events.Events;
 import me.tomthedeveloper.events.customevents.PlayerAddCommandEvent;
@@ -47,7 +46,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
 
 
 /**
@@ -71,7 +69,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
 	private static Boolean debug;
 	private int LANGUAGE_FILE_VERSION = 2;
 
-    private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<UUID, Boolean>();
+    private HashMap<UUID, Boolean> spyChatEnabled = new HashMap<>();
     private String version;
 
     public void onPreStart() {
@@ -84,10 +82,6 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
     
     public boolean is1_8_R3() {
         return getVersion().equalsIgnoreCase("v1_8_R3");
-    }
-    
-    public boolean is1_8_R4() {
-        return getVersion().equalsIgnoreCase("v1_8_R4");
     }
 
     public boolean is1_9_R1() {
@@ -180,9 +174,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new Events(this), this);
 
-        this.getCommand("setshopchest").setExecutor(new ChestCommand(this));
         this.getCommand("setprice").setExecutor(this);
-        this.getCommand("stats").setExecutor(new StatsCommand());
         Shop.plugin = this;
         new Shop();
         this.getServer().getPluginManager().registerEvents(ChunkManager.getInstance(), this);
@@ -250,8 +242,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             return true;
         }
         if (strings.length == 1 && strings[0].equalsIgnoreCase("spychat") && player.hasPermission("villagedefense.spychat")) {
-            if (!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
-                    this.spyChatEnabled.get(player.getUniqueId()) == false) {
+            if (!this.spyChatEnabled.containsKey(player.getUniqueId())) {
                 player.sendMessage(ChatColor.GREEN + "SpyChat Enabled!");
                 this.spyChatEnabled.put(player.getUniqueId(), true);
                 return true;
@@ -297,8 +288,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         }
 
         if (strings.length == 1 && strings[0].equalsIgnoreCase("spychat")) {
-            if (!this.spyChatEnabled.containsKey(player.getUniqueId()) ||
-                    this.spyChatEnabled.get(player.getUniqueId()) == false) {
+            if (!this.spyChatEnabled.containsKey(player.getUniqueId())) {
                 player.sendMessage(ChatColor.GREEN + "SpyChat Enabled!");
                 this.spyChatEnabled.put(player.getUniqueId(), true);
                 return true;
@@ -577,7 +567,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
     public void onDisable() {
         for (Player player : this.getServer().getOnlinePlayers()) {
             User user = UserManager.getUser(player.getUniqueId());
-            List<String> temp = new ArrayList<String>();
+            List<String> temp = new ArrayList<>();
             temp.add("gamesplayed");
             temp.add("kills");
             temp.add("deaths");
@@ -637,7 +627,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.HardZombie.class);
             gameAPI.registerEntity("Villager", 120, me.tomthedeveloper.creatures.v1_8_R3.RidableVillager.class);
             gameAPI.registerEntity("VillagerGolem", 99, me.tomthedeveloper.creatures.v1_8_R3.RidableIronGolem.class);
-            gameAPI.registerEntity("Zombie", 54, me.tomthedeveloper.creatures.v1_8_R3.TankerZombie.class);
+            gameAPI.registerEntity("Zombie", 54,  me.tomthedeveloper.creatures.v1_8_R3.TankerZombie.class);
             gameAPI.registerEntity("Wolf", 95, me.tomthedeveloper.creatures.v1_8_R3.WorkingWolf.class);
         }
         if (this.getVersion().equalsIgnoreCase("v1_9_R1")) {
@@ -900,10 +890,7 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
             i++;
             gameAPI.saveLoc("instances." + event.getArenaID() + ".villagerspawns." + i, event.getPlayer().getLocation());
             event.getPlayer().sendMessage(ChatColor.GREEN + "Villager spawn added!");
-            return;
         }
-
-
     }
 
     @EventHandler
@@ -970,27 +957,23 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("setprice")) {
+        if (cmd.getName().equalsIgnoreCase("setprice")) {
             if (sender.isOp() && args.length == 1) {
                 Player p = (Player) sender;
                 ItemStack item = p.getItemInHand();
                 //check any price from lore
-                if(!item.hasItemMeta()){
+                if(!item.hasItemMeta() || !item.getItemMeta().hasLore() || !item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"))){
                     Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
                     p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                     return true;
-                }
-                if(!item.getItemMeta().hasLore()){
-                    Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
-                    p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
-                    return true;
-                }
-
-                if(!item.getItemMeta().getLore().contains(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"))) {
-	                Util.addLore(item, ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
-	                p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
                 } else {
-                	p.sendMessage(ChatColor.RED + "This item contains shop price already!");
+                	for(int i = 0; i < item.getItemMeta().getLore().size(); i++){
+                	    if (item.getItemMeta().getLore().get(i).equals(ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"))){
+                	    	item.getItemMeta().getLore().set(i,  ChatColor.GOLD + args[0] + " " + ChatManager.colorMessage("In-game.Messages.Shop-Messages.Currency-In-Shop"));
+		                    p.sendMessage(ChatColor.GREEN + "Command succesfully executed!");
+		                    break;
+                	    }
+                    }
                 }
                 return true;
             }
@@ -999,17 +982,12 @@ public class Main extends JavaPlugin implements CommandsInterface, Listener, Com
         return true;
     }
 
-
-    public void checkForSteal() {
-
-    }
-
     public void loadStatsForPlayersOnline() {
         for (final Player player : getServer().getOnlinePlayers()) {
             if (gameAPI.isBungeeActivated())
                 gameAPI.getGameInstanceManager().getGameInstances().get(0).teleportToLobby(player);
             if (!this.isDatabaseActivated()) {
-                List<String> temp = new ArrayList<String>();
+                List<String> temp = new ArrayList<>();
                 temp.add("gamesplayed");
                 temp.add("kills");
                 temp.add("deaths");

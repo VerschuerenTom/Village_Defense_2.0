@@ -34,7 +34,7 @@ public class TornadoKit extends PremiumKit implements Listener {
     double height_increasement = 0.5;
     double radius_increasement = max_radius / max_height;
     private Main plugin;
-    private List<Tornado> tornados = new ArrayList<Tornado>();
+    private List<Tornado> tornados = new ArrayList<>();
 
 
     public TornadoKit(Main plugin) {
@@ -45,7 +45,7 @@ public class TornadoKit extends PremiumKit implements Listener {
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
-                ArrayList<Tornado> removeAfter = new ArrayList<Tornado>();
+                ArrayList<Tornado> removeAfter = new ArrayList<>();
                 for (Tornado tornado : tornados) {
                     if (tornado.getTimes() > 75) {
                         removeAfter.add(tornado);

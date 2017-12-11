@@ -1,5 +1,6 @@
 package me.tomthedeveloper.utils;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -31,7 +32,7 @@ public class Util {
             if(meta != null &&meta.hasLore()) {
                 lore = meta.getLore();
             }else{
-                lore = new ArrayList<String>();
+                lore = new ArrayList<>();
             }
             lore.add(string);
             meta.setLore(lore);
@@ -46,7 +47,7 @@ public class Util {
         }
 
 
-        Queue<Block> blocks = new LinkedList<Block>();
+        Queue<Block> blocks = new LinkedList<>();
         Iterator<Block> itr = new BlockIterator(entity, maxDistance);
         while (itr.hasNext()) {
             Block block = itr.next();
@@ -74,7 +75,7 @@ public class Util {
     public static Entity[] getNearbyEntities(Location l, int radius) {
 
         int chunkRadius = radius < 16 ? 1 : radius / 16;
-        HashSet<Entity> radiusEntities = new HashSet<Entity>();
+        HashSet<Entity> radiusEntities = new HashSet<>();
         for (int chX = 0 - chunkRadius; chX <= chunkRadius; chX++) {
             for (int chZ = 0 - chunkRadius; chZ <= chunkRadius; chZ++) {
                 int x = (int) l.getX(), y = (int) l.getY(), z = (int) l.getZ();
@@ -180,11 +181,11 @@ public class Util {
 
 
     public static List<String> splitString(String string, int max){
-        List<String> matchList = new ArrayList<String>();
+        List<String> matchList = new ArrayList<>();
         Pattern regex = Pattern.compile(".{1," + max + "}(?:\\s|$)", Pattern.DOTALL);
         Matcher regexMatcher = regex.matcher(string);
         while (regexMatcher.find()) {
-            matchList.add("�7" + regexMatcher.group());
+            matchList.add(ChatColor.translateAlternateColorCodes('&', "&7") + regexMatcher.group());
         }
         return matchList;
     }

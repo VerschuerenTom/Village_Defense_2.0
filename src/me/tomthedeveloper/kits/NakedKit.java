@@ -111,7 +111,7 @@ public class NakedKit extends PremiumKit implements Listener {
 
 
     public List<Material> getAllArmorTypes() {
-        List<Material> list = new ArrayList<Material>();
+        List<Material> list = new ArrayList<>();
         list.add(Material.LEATHER_BOOTS);
         list.add(Material.LEATHER_CHESTPLATE);
         list.add(Material.LEATHER_LEGGINGS);

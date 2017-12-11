@@ -29,7 +29,7 @@ public class Bungee implements Listener {
     public static GameAPI plugin;
 
     private FileConfiguration motdsconfig;
-    private HashMap<GameState,String> motds = new HashMap<GameState,String>();
+    private HashMap<GameState,String> motds = new HashMap<>();
 
     public Bungee(){
         motdsconfig = ConfigurationManager.getConfig("MOTD");

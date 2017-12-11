@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class GameInstanceManager {
 
-	private List<GameInstance> gameInstances = new ArrayList<GameInstance>();
+	private List<GameInstance> gameInstances = new ArrayList<>();
 	private static GameInstanceManager gameInstanceManager;
 
 	public List<GameInstance> getGameInstances() {

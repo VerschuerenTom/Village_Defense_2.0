@@ -117,7 +117,7 @@ public class MySQLDatabase {
 
 	public Map<UUID, Integer> getColumn(String stat) {
 		ResultSet set = executeQuery("SELECT UUID, " + stat + " FROM playerstats ORDER BY " + stat + " DESC;");
-		Map<java.util.UUID, java.lang.Integer> column = new LinkedHashMap<UUID, Integer>();
+		Map<java.util.UUID, java.lang.Integer> column = new LinkedHashMap<>();
 		try {
 			while (set.next()) {
 				column.put(java.util.UUID.fromString(set.getString("UUID")), set.getInt(stat));

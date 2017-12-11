@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LanguageMigrator {
-	
-	private static Main plugin;
 
 	private static List<String> oldmessages = 
 			Arrays.asList("Teleported-To-The-Lobby", "No-Arena-Like-That", "STATS-AboveLine", "STATS-UnderLinen", "STATS-Kills", "STATS-Deaths", "STATS-Games-Played", "STATS-Hihgest-Wave", "STATS-Level", "STATS-Exp", "STATS-Next-Level-Exp", "SCOREBOARD-Header", "SCOREBOARD-Villagers", "SCOREBOARD-Zombies", "SCOREBOARD-Players-Left" , "SCOREBOARD-Min-Players", "SCOREBOARD-Starting-In", "SCOREBOARD-Players", "SCOREBOARD-Next-Wave-In",
@@ -32,10 +30,6 @@ public class LanguageMigrator {
 					"In-game.Messages.Wave-Started","In-game.Messages.Villager-Died","In-game.Messages.You-Feel-Refreshed","In-game.Messages.Cant-Ride-Others-Golem", "In-game.Messages.Golem-Spawned","In-game.Messages.Wolf-Spawned","In-game.Messages.Zombie-Got-Stuck-In-The-Map","In-game.Messages.Shop-Messages.Golem-Item-Name","In-game.Messages.Shop-Messages.Not-Enough-Orbs",
 					"In-game.Messages.Shop-Messages.Rude-Message","In-game.Messages.Shop-Messages.Currency-In-Shop","In-game.Messages.Game-End-Messages.All-Players-Died","In-game.Messages.Game-End-Messages.All-Villagers-Died","In-game.Messages.Game-End-Messages.Reached-Wave-X","In-game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-10-Seconds","In-game.Messages.Game-End-Messages.Teleporting-To-Lobby-In-X-Seconds",
 					"In-game.Messages.Admin-Messages.Force-Start-Game","In-game.Messages.Admin-Messages.Set-Starting-In-To-0","In-game.Messages.Admin-Messages.Removed-Zombies","In-game.Messages.Admin-Messages.Removed-Golems","In-game.Messages.Admin-Messages.Removed-Villagers","In-game.Messages.Admin-Messages.Removed-Zombies","In-game.Messages.Admin-Messages.Changed-Wave", "In-game.Plugin-Prefix");
-	
-	public static void init(Main main) {
-		plugin = main;
-	}
 	
 	public static void initiateMigration() {
 		System.out.println("[VillageDefense] Initiated language.yml migration process! (File-Version: 1)");
@@ -70,11 +64,6 @@ public class LanguageMigrator {
 		}
 	}
 
-	/*
-	 * Will be ineffective in the future
-	 * marked as deprecated for further notice
-	 */
-	@Deprecated
 	public static void ineffectiveFileUpdate(){
 		if(LanguageManager.getLanguageMessage("File-Version") == "1"){
 			if(Main.isDebugged()){
@@ -85,42 +74,5 @@ public class LanguageMigrator {
 			LanguageManager.saveLanguageFile();
 		}
 	}
-	
-	/*public static void languageUpdate() {
-		if(LanguageManager.getLanguageMessage("File-Version") == null) {
-			if(Main.isDebugged()) {
-				System.out.println("[Village Debugger] Language update cancelled due to too outdated language file! Please migrate it first!");
-			}
-			return;
-		}
-		if(Main.isDebugged()) {
-			System.out.println("[Village Debugger] Updating language file!");
-		}
-		HashMap<String, Object> oldvalues = new HashMap<>();
-		YamlConfiguration config = new YamlConfiguration();
-		try {
-            config.loadFromString(stringFromInputStream(Main.class.getResourceAsStream("/language.yml")));
-        } catch (InvalidConfigurationException e) {}
-        for (String key : config.getKeys(false)) {
-            oldvalues.put(key, config.get(key));
-        }
-        FileConfiguration c = LanguageManager.getLanguageFile();
-        for (String var : c.getKeys(false)) {
-            oldvalues.remove(var);
-        }
-        if (oldvalues.size()!=0) {
-            for (String key : oldvalues.keySet()) {
-                c.set(key, oldvalues.get(key));
-            }
-            try {
-                c.save(new File(plugin.getDataFolder(), "language.yml"));
-            } catch (IOException e) {}
-        }
-        plugin.getLogger().info("Language file successfully updated to latest version!");
-	}
-    @SuppressWarnings("resource")
-	public static String stringFromInputStream(InputStream in) {
-        return new Scanner(in).useDelimiter("\\A").next();
-    }*/
 	
 }

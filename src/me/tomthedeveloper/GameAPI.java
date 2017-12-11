@@ -2,10 +2,7 @@ package me.tomthedeveloper;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import me.tomthedeveloper.bungee.Bungee;
-import me.tomthedeveloper.commands.InstanceCommands;
-import me.tomthedeveloper.commands.SignCommands;
-import me.tomthedeveloper.commands.leave;
-import me.tomthedeveloper.commands.onStopCommand;
+import me.tomthedeveloper.commands.*;
 import me.tomthedeveloper.events.JoinEvent;
 import me.tomthedeveloper.events.QuitEvent;
 import me.tomthedeveloper.events.customevents.SetupInventoryEvents;
@@ -24,7 +21,6 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -64,20 +60,12 @@ public class GameAPI {
 		restart = true;
 	}
 
-	public static boolean getRestart(){
-		return restart;
-	}
-
 	public boolean isBarEnabled(){
 		return bar;
 	}
 
 	public boolean isBungeeActivated(){
 		return bungee;
-	}
-
-	public String getVersion(){
-		return version;
 	}
 
 	public boolean getAllowBuilding(){
@@ -90,10 +78,6 @@ public class GameAPI {
 
 	public boolean needsMapRestore(){
 		return needsMapRestore;
-	}
-
-	public void setNeedsMapRestore(boolean b){
-		needsMapRestore = b;
 	}
 
 	public  void onSetup(JavaPlugin plugin,CommandsInterface commandsInterface){
@@ -165,13 +149,11 @@ public class GameAPI {
 			plugin.getConfig().set("Disable-Leave-Command", false);
 			plugin.saveConfig();
 		}
-		if(! plugin.getConfig().getBoolean("Disable-Leave-Command")) {
-			plugin.getCommand("leave").setExecutor(new leave(this));
-		}
+
+		new GameCommands(this);
+
 		plugin.getCommand(this.getGameName()).setExecutor(new InstanceCommands(this,commandsInterface));
 		plugin.getCommand("addsigns").setExecutor(new SignCommands(this));
-		//      this.getCommand("smartreload").setExecutor(new onReloadCommand(this));
-		plugin.getCommand("smartstop").setExecutor(new onStopCommand(this));
 	}
 
 
@@ -181,7 +163,7 @@ public class GameAPI {
 	public void registerEntity(String name, int id, Class<? extends net.minecraft.server.v1_8_R3.EntityInsentient> customClass) {
 		try {
 
-			List<Map<?, ?>> dataMaps = new ArrayList<Map<?, ?>>();
+			List<Map<?, ?>> dataMaps = new ArrayList<>();
 			for (Field f : net.minecraft.server.v1_8_R3.EntityTypes.class.getDeclaredFields()) {
 				if (f.getType().getSimpleName().equals(Map.class.getSimpleName())) {
 					f.setAccessible(true);
@@ -204,7 +186,7 @@ public class GameAPI {
 	public void register1_9_R1_Entity(String name, int id, Class<? extends net.minecraft.server.v1_9_R1.EntityInsentient> customClass) {
 		try {
 
-			List<Map<?, ?>> dataMaps = new ArrayList<Map<?, ?>>();
+			List<Map<?, ?>> dataMaps = new ArrayList<>();
 			for (Field f : net.minecraft.server.v1_9_R1.EntityTypes.class.getDeclaredFields()) {
 				if (f.getType().getSimpleName().equals(Map.class.getSimpleName())) {
 					f.setAccessible(true);
@@ -217,22 +199,11 @@ public class GameAPI {
 
 		} catch (Exception e) {
 			ChatManager.sendErrorHeader("entity registering");
-            e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("�cDon't panic! Try to do this steps:");
-            Bukkit.getConsoleSender().sendMessage("�c- check if your server version is 1.9 if not try to update it to 1.12");
-            Bukkit.getConsoleSender().sendMessage("�c- contact the developer");
+			e.printStackTrace();
+			Bukkit.getConsoleSender().sendMessage("�cDon't panic! Try to do this steps:");
+			Bukkit.getConsoleSender().sendMessage("�c- check if your server version is 1.9 if not try to update it to 1.12");
+			Bukkit.getConsoleSender().sendMessage("�c- contact the developer");
 		}
-	}
-
-	@SuppressWarnings("unchecked")
-	public void register1_12_R1_Entity(String name, int id, Class<? extends net.minecraft.server.v1_12_R1.EntityInsentient> customClass) {
-
-		MinecraftKey minecraftKey = new MinecraftKey(name);
-		EntityTypes.b.a(id, minecraftKey, customClass);
-	}
-
-	public static void addCustomEntity(int entityId, String entityName, Class<? extends Entity> entityClass) {
-
 	}
 
 	public void loadInstances(){
@@ -243,7 +214,7 @@ public class GameAPI {
 	public void registerEntity1_7_10(String name, int id, Class<? extends net.minecraft.server.v1_7_R4.EntityInsentient> customClass) {
 		try {
 
-			List<Map<?, ?>> dataMaps = new ArrayList<Map<?, ?>>();
+			List<Map<?, ?>> dataMaps = new ArrayList<>();
 			for (Field f : net.minecraft.server.v1_7_R4.EntityTypes.class.getDeclaredFields()) {
 				if (f.getType().getSimpleName().equals(Map.class.getSimpleName())) {
 					f.setAccessible(true);
@@ -270,15 +241,9 @@ public class GameAPI {
 		kitsenabled = true;
 	}
 
-	public void disalbeKits(){
-		kitsenabled = false;
-	}
-
 	public boolean areKitsEnabled(){
 		return kitsenabled;
 	}
-
-	public void addExtraItemsToSetupInventory(GameInstance gameInstance, Inventory inventory){};
 
 	public String getGameName() {
 		return name;
@@ -288,18 +253,13 @@ public class GameAPI {
 		name = newName;
 	}
 
-
 	public KitHandler getKitHandler(){
 		return kitHandler;
 	}
 
-
 	public GameInstanceManager getGameInstanceManager() {
 		return gameInstanceManager;
 	}
-
-
-
 
 	public KitMenuHandler getKitMenuHandler() {
 		return kitMenuHandler;

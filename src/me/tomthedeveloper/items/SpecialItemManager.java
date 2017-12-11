@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class SpecialItemManager {
 
 
-    private static HashMap<String, SpecialItem> specialItems = new HashMap<String, SpecialItem>();
+    private static HashMap<String, SpecialItem> specialItems = new HashMap<>();
 
 
     public static void addEntityItem(String name, SpecialItem entityItem) {

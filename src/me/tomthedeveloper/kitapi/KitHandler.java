@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class KitHandler {
 
-    private List<Kit> kits = new ArrayList<Kit>();
+    private List<Kit> kits = new ArrayList<>();
     private Kit defaultKit = null;
 
     public void registerKit(Kit kit){

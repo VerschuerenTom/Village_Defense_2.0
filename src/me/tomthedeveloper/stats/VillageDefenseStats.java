@@ -32,8 +32,8 @@ public enum VillageDefenseStats {
             }
         });
         Map sortedMap = new LinkedHashMap();
-        for (Iterator it = list.iterator(); it.hasNext(); ) {
-            Map.Entry entry = (Map.Entry) it.next();
+        for (Object aList : list) {
+            Map.Entry entry = (Map.Entry) aList;
             sortedMap.put(entry.getKey(), entry.getValue());
         }
         return sortedMap;
@@ -44,7 +44,7 @@ public enum VillageDefenseStats {
             return plugin.getMySQLDatabase().getColumn(name);
         else {
             FileConfiguration config = ConfigurationManager.getConfig("STATS");
-            Map<UUID, Integer> stats = new LinkedHashMap<UUID, Integer>();
+            Map<UUID, Integer> stats = new LinkedHashMap<>();
             for (String string : config.getKeys(false)) {
                 stats.put(UUID.fromString(string), config.getInt(string + "." + name));
             }

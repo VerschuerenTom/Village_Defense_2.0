@@ -21,8 +21,8 @@ public class SetupInventory {
 
     private GameInstance gameInstance;
     private Inventory inventory;
-    private HashMap<ItemStack, String> linkedcommands = new HashMap<ItemStack, String>();
-    public static List<ItemStack> ITEMS_TO_ADD = new ArrayList<ItemStack>();
+    private HashMap<ItemStack, String> linkedcommands = new HashMap<>();
+    public static List<ItemStack> ITEMS_TO_ADD = new ArrayList<>();
 
     public SetupInventory(GameInstance gameInstance){
         this.gameInstance = gameInstance;

@@ -31,7 +31,7 @@ import java.util.Queue;
 public class SignManager extends BukkitRunnable implements Listener {
 
 	HashMap<Sign,GameInstance> signpool = new HashMap();
-	Queue<GameInstance> gamequeue = new LinkedList<GameInstance>();
+	Queue<GameInstance> gamequeue = new LinkedList<>();
 	public GameAPI plugin;
 	public static String[] signlines = new String[]{"--------", "Waiting", "", "--------"};
 
